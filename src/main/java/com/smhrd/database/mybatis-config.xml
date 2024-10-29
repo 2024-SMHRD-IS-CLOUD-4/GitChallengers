@@ -6,6 +6,7 @@
 	<properties resource="com/smhrd/database/db.properties"></properties>
 	<typeAliases>
 		<typeAlias type="com.smhrd.model.Member" alias = "Member"/>
+		<typeAlias type="com.smhrd.model.Challenge" alias = "Challenge"/>
 	</typeAliases>
   <environments default="development">
     <environment id="development">
@@ -20,5 +21,6 @@
   </environments>
   <mappers>
     <mapper resource="com/smhrd/database/MemberMapper.xml"/>
+    <mapper resource="com/smhrd/database/ChallengeMapper.xml"/>
   </mappers>
 </configuration>

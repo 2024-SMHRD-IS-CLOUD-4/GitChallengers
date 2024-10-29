@@ -27,5 +27,14 @@ public class MemberDAO {
 		return result;
 	}
 	
+	// 아이디 중복 확인
+	public boolean idCheck(String id) {
+		SqlSession sqlSession = factory.openSession(true);
+		boolean result = sqlSession.selectOne("MemberMapper.idCheck", id);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 
 }

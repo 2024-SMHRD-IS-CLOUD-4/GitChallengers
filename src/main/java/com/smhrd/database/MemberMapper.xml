@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+	<insert id="join" parameterType="Member">
+		insert into ch_member_tb values (#{id}, #{pw}, #{name}, #{nickname}, #{email}, #{address}, #{age}, #{fav_book}, #{phoneNum})
+	</insert>
+	<select id="login" parameterType="Member" resultType="Member">
+		select * from ch_member_tb where id=#{id} and pw=#{pw}
+	</select>
+</mapper>

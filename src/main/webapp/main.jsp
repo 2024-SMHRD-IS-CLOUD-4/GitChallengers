@@ -20,7 +20,9 @@
 				<input type="submit" value="검색">
 		</form>
 		<button type="button" onClick="#">마이프로필</button>
-		<button type="button" onClick="loaction.href='logoutCon'">로그아웃</button>
+		<form action="logoutCon">
+			<input type="submit" value="로그아웃">
+		</form>
 	</header>
 		
 	<button type="button" onClick="#">나의 챌린지</button>

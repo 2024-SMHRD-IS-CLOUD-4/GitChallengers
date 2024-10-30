@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberMapper">
 	<insert id="join" parameterType="Member">
-		insert into ch_member (id, pw, name, nick, email, phone, birthday, fav_book)
-		values (#{id}, #{pw}, #{name}, #{nick}, #{email}, #{phone}, #{birthday}, #{fav_book})
+		insert into ch_member values (#{id}, #{pw}, #{name}, #{nick}, #{email}, #{phone}, #{birthday}, #{fav_book}, sysdate)
 	</insert>
 	<select id="login" parameterType="Member" resultType="Member">
 		select * from ch_member where id=#{id} and pw=#{pw}
@@ -12,5 +11,5 @@
 		select count(*) from ch_member where id = #{id}
 	</select>
 	
-		
+	
 </mapper>

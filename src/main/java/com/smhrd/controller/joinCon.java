@@ -27,9 +27,15 @@ public class joinCon extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String birthday = request.getParameter("birthday");
 		String fav_book = request.getParameter("fav_book");
+		birthday = birthday.replace("-","");
 		
+		Member join;
 		
-		Member join = new Member(id, pw, name, nick, email, phone, birthday, fav_book);
+		if(fav_book == null) {
+			join = new Member(id, pw, name, nick, email, phone, birthday);
+		}else {
+			join = new Member(id, pw, name, nick, email, phone, birthday, fav_book);			
+		}
 		MemberDAO dao = new MemberDAO();
 		int result = dao.join(join);
 		

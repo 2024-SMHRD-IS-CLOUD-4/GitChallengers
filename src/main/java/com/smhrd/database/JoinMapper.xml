@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="GroupMapper">
-	<!-- 그룹리스트 가져오기 -->
-	<select id="selectAll" resultType="Group">
-		select * from ch_group
+<mapper namespace="JoinMapper">
+	<select id="count" parameterType="int" resultType="int">
+		select count(*) from ch_join where group_idx=#{idx}
 	</select>
 </mapper>

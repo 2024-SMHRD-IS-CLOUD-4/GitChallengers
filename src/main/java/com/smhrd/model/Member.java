@@ -53,5 +53,17 @@ public class Member {
 		this.fav_book = fav_book;
 	}
 
+	public Member(String id, String pw, String name, String nick, String email, String phone, String birthday) {
+		super();
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.nick = nick;
+		this.email = email;
+		this.phone = phone;
+		this.birthday = birthday;
+	}
+
+	
 	
 }

@@ -9,7 +9,7 @@ import lombok.Getter;
 public class Group {
 	
 	// 그룹 순번 
-	private int group_inx;
+	private int group_idx;
 	
 	// 그룹 이름 
 	private String group_name;

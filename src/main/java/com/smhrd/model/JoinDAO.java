@@ -1,26 +1,22 @@
 package com.smhrd.model;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.smhrd.database.SqlSessionManager;
 
-public class GroupDAO {
+public class JoinDAO {
 	
 	SqlSessionFactory factory = SqlSessionManager.getSqlSessionFactory();
 	
-	// 그룹리스트 조회
-	public List<Group> selectAll() {
+	// 그룹 인원수
+	public int count(int idx) {
 		SqlSession sqlSession = factory.openSession(true);
-		List<Group> result = sqlSession.selectList("GroupMapper.selectAll");
+		int result = sqlSession.selectOne("JoinMapper.count", idx);
 		sqlSession.close();
 		
 		return result;
 	}
 	
-
 	
-
 }

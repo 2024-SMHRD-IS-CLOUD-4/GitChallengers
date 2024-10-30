@@ -9,48 +9,58 @@
 <body>
 <link rel="stylesheet" href="./css/join.css">
 <script src="js/jquery-3.7.1.min.js"></script>
-<div class="signup-container">
+<div class="container">
     <h2>회원가입</h2>
     <form action="joinCon" method="post">
+    	<div class="form-group">
+			<label for="name">이름 *</label>
+			<input type="text" name="name" required>
+        </div>
         <div class="form-group">
-            <label for="username">아이디</label>
-            <input type="text" id="input" name="id">
+			<label for="nick">닉네임 *</label>
+			<input type="text" name="nick" required>
+        </div>
+        <div class="form-group">
+            <label for="id">아이디 *</label>
+            <input type="text" id="input" name="id" required>
             <button type="button" class="idCheck" id="idCheck">중복 확인</button>
             <span id="idCheckResult"></span>
         </div>
         <div class="form-group">
-            <label for="password">비밀번호</label>
-            <input type="password" id="pw" name="pw" oninput="pwC()">
+            <label for="password">비밀번호 *</label>
+            <input type="password" id="pw" name="pw" oninput="pwC()" required>
         </div>
         <div class="form-group">
-            <label for="confirm-password">비밀번호 확인</label>
-            <input type="password" id="pwCheck" name="confirm-password" oninput="pwC()">
+            <label for="confirm-password">비밀번호 확인 *</label>
+            <input type="password" id="pwCheck" name="confirm-password" oninput="pwC()" required>
             <span id="pwCheckResult"></span>
         </div>
         <div class="form-group">
-            <label for="phone">전화번호</label>
-            <input type="text" id="phone" name="phone">
+            <label for="phone">휴대폰번호 *</label>
+            <input type="tel" id="phone" name="phone" required>
         </div>
         <div class="form-group">
-            <label for="email">이메일</label>
-            <input type="text" id="email" name="email">
-            <select>
-                <option>@gmail.com</option>
-                <option>@naver.com</option>
-                <option>@daum.com</option>
-                <option>@kakao.com</option>
-                <!-- 필요에 따라 옵션 추가 -->
-            </select>
+            <label for="email">이메일 *</label>
+                <div class="email-group">
+                    <input type="text" name="email" required>
+                    <select id="domain-select" name="email" onchange="toggleEmailInput(this)" required>
+                        <option value="gmail.com">@gmail.com</option>
+                        <option value="naver.com">@naver.com</option>
+                        <option value="daum.net">@daum.net</option>
+                        <option value="custom">직접 입력</option>
+                    </select>
+                    <input type="text" id="custom-domain" name="custom-domain" placeholder="예: @yourdomain.com" style="display:none; margin-top: 5px;" disabled>
+                </div>
         </div>
         <div class="form-group">
-            <label for="address">주소</label>
-            <input type="text" id="address" name="addr">
-        </div>
+			<label for="birthdate">생년월일 *</label>
+			<input type="date" id="birthdate" name="birthday" required>
+		</div>
         <div class="form-group">
             <label for="favorite-book">감명깊게 읽은책</label>
-            <textarea id="favorite-book" name="fav_book"></textarea>
+            <input id="favorite-book" name="fav_book">
         </div>
-        <button type="submit" class="signup-button">회원가입 완료</button>
+        <button type="submit" class="signup-btn">회원가입 완료</button>
     </form>
     <script>
     	// 아이디 중복 확인
@@ -81,6 +91,26 @@
 	    		$('#pwCheckResult').text('비밀번호 불일치')
 	    	}    		
     	}
+    	
+    	// 이메일 직접입력
+    	function toggleEmailInput(select) {
+            const customInput = document.getElementById('custom-domain');
+            const domainSelect = document.getElementById('domain-select');
+            if (select.value === "custom") {
+                customInput.style.display = 'inline';
+                domainSelect.style.display = 'none'; // Hide the dropdown
+                customInput.placeholder = "예: @yourdomain.com";
+                customInput.disabled = false;
+                customInput.focus();
+                customInput.required = true;
+            } else {
+                customInput.style.display = 'none';
+                domainSelect.style.display = 'inline'; // Show the dropdown again
+                customInput.disabled = true;
+                customInput.required = false;
+                customInput.value = ''; // Clear input when a predefined option is selected
+            }
+        }
     </script>
 </div>
 </body>

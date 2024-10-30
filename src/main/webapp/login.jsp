@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/login.css">
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 </head>
 <body>
 	<div class="login-container">
@@ -19,9 +20,7 @@
 	            <label for="pw">비밀번호</label>
 	            <input type="password" name="pw">
 	        </div>
-	        <div class="social-icons">
-	            <img src="img/naver-icon.png" alt="Naver Login">
-	        </div>
+	        
 	        <div class="button-container">
 	            <button type="submit" class="login-button">로그인</button>
 	            <button type="button" class="signup-button" onClick="location.href='join.jsp'">회원가입</button>

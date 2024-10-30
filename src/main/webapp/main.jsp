@@ -20,7 +20,7 @@
     <div class="header">
         <div class="title">
             <img src="img/team-logo.png" alt="logo">
-            <span><%=member.getName()%>님 환영합니다!</span>
+            <span><%=member.getNick()%>님 환영합니다!</span>
         </div>
         
         <!-- 검색창 -->
@@ -44,7 +44,7 @@
         <div class="sidebar">
             <div class="group-box">
                 <button onClick="location.href='myCh.jsp'">나의 챌린지</button>
-                <button onClick="location.href='grChMain.jsp'">그룹 챌린지</button>
+                <button onClick="location.href='groupChList.jsp'">그룹 챌린지</button>
                 <button>챌린지 작성</button>
             </div>
         </div>

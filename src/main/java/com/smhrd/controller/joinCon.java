@@ -23,14 +23,13 @@ public class joinCon extends HttpServlet {
 		String pw = request.getParameter("pw");
 		String name = request.getParameter("name");
 		String nick = request.getParameter("nick");
-		String addr = request.getParameter("addr");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String birthday = request.getParameter("birthday");
 		String fav_book = request.getParameter("fav_book");
 		
 		
-		Member join = new Member(id, pw, name, nick, addr, email, phone, birthday, fav_book);
+		Member join = new Member(id, pw, name, nick, email, phone, birthday, fav_book);
 		MemberDAO dao = new MemberDAO();
 		int result = dao.join(join);
 		

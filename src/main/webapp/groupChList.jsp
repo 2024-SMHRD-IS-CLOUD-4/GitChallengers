@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+<%@page import="com.smhrd.model.GroupDAO"%>
+<%@page import="com.smhrd.model.Group"%>
+<%@page import="com.smhrd.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,11 +12,16 @@
 </head>
 <link rel="stylesheet" href="./css/grChMain.css">
 <body>
+<%
+	Member member = (Member) session.getAttribute("member");
+	GroupDAO dao = new GroupDAO();
+	List<Group> list = dao.selectAll();
+%>
     <!-- 헤더 -->
     <div class="header">
         <div class="title">
             <img src="img/team-logo.png" alt="logo">
-            <span>사용자님 환영합니다!</span>
+            <span><%=member.getNick()%>님 환영합니다!</span>
         </div>
         
         <!-- 검색창 -->
@@ -20,15 +29,17 @@
             <input type="text" placeholder="검색어를 입력하세요">
         </div>
 
-        <button class="create-group-btn" onClick="location.href='grCh.jsp'">그룹 만들기</button>
+        <button class="create-group-btn" onClick="location.href='groupCh.jsp'">그룹 만들기</button>
     </div>
+
+
 
     <!-- 메인 컨테이너 -->
     <div class="main-container">
         <!-- 그룹 카드 1 -->
         <div class="group-card">
             <div class="profile">
-                <img src="https://via.placeholder.com/60" alt="반장 프로필">
+                <img src="#" alt="반장 프로필">
                 <span>반장 이름</span>
             </div>
             <div class="content">

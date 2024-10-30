@@ -20,9 +20,6 @@ public class Member {
  // 닉네임 
  private String nick;
 
- // 주소 
- private String addr;
-
  // 이메일 
  private String email;
 
@@ -43,14 +40,13 @@ public class Member {
 		this.pw = pw;
 	}
 
-	public Member(String id, String pw, String name, String nick, String addr, String email, String phone,
+	public Member(String id, String pw, String name, String nick, String email, String phone,
 			String birthday, String fav_book) {
 		super();
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
 		this.nick = nick;
-		this.addr = addr;
 		this.email = email;
 		this.phone = phone;
 		this.birthday = birthday;

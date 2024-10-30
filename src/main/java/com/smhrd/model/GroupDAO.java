@@ -20,6 +20,15 @@ public class GroupDAO {
 		return result;
 	}
 	
+	// 그룹 생성
+	public int createGroup(Group g) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.insert("GroupMapper.createGroup", g);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 
 	
 

@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
+// 그룹 가입
 public class Join {
 	
 	// 가입 순번 
@@ -19,7 +20,12 @@ public class Join {
     // 가입 일자 
     private String joined_at;
 
-    // 승인 여부 
-    private String is_accepted;
+	public Join(int group_idx, String id) {
+		super();
+		this.group_idx = group_idx;
+		this.id = id;
+	}
+    
+    
 
 }

@@ -26,5 +26,18 @@ public class Group {
 	// 등록 일자 
 	private String created_at;
 	
+	// 최대인원
+	private int group_max;
+
+	public Group(String group_name, String group_desc, String manager, String sub_manager, int group_max) {
+		super();
+		this.group_name = group_name;
+		this.group_desc = group_desc;
+		this.manager = manager;
+		this.sub_manager = sub_manager;
+		this.group_max = group_max;
+	}
+	
+	
  
 }

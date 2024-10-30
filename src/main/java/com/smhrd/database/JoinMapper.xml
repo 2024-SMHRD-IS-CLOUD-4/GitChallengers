@@ -4,4 +4,11 @@
 	<select id="count" parameterType="int" resultType="int">
 		select count(*) from ch_join where group_idx=#{idx}
 	</select>
+	<insert id="join" parameterType="Join">
+		insert into ch_join values(ch_join_seq.nextval,#{group_idx}, #{id}, sysdate)
+	</insert>
+	<select id="selectAll" resultType="Join">
+		select * from ch_join where group_idx=#{idx}
+	</select>
+	
 </mapper>

@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Join"%>
 <%@page import="com.smhrd.model.JoinDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.GroupDAO"%>
@@ -11,7 +12,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" href="./css/grChMain.css">
+<link rel="stylesheet" href="./css/groupChList.css">
+<script src="js/jquery-3.7.1.min.js"></script>
 <body>
 	<%
 		Member member = (Member) session.getAttribute("member");
@@ -45,6 +47,9 @@
     		int idx = g.getGroup_idx();
     		JoinDAO jdao = new JoinDAO();
     		int count = jdao.count(idx);
+    		List<Join> joinMember = jdao.selectAll(idx);
+    		boolean isJoined = false;
+    		for(Join j : joinMember) {
     %>
         <!-- 그룹 카드 1 -->
         <div class="group-card">
@@ -56,14 +61,44 @@
                 <h3><%=g.getGroup_name()%></h3>
                 <p><%=g.getGroup_desc() %></p>
                 <div class="details">
-                    현재 참가인원 <%=count %>/15명<br>
+                    현재 참가인원 <%=count%>/<%=g.getGroup_max() %><br>
                     <strong>14일 후 종료 예정</strong>
                 </div>
             </div>
-            <button class="join-button">참가하기</button>
+            	<%if(member.getId().equals(j.getId())) {	
+            		isJoined = true;
+				}%>
+	            <%} %>
+           	<%if (member.getId().equals(g.getManager()) || isJoined) { %>
+            	<button class="join-button">참여중</button>
+            <%}else { %>
+            	<button class="join-button" onClick="join(<%=idx%>)">참가하기</button>
+            <%} %>
         </div>
     <%} %>
 
     </div>
+    <script type="text/javascript">
+    	const join = (idx) => {
+    		var id = "<%=member.getId() %>"
+    		$.ajax({
+    			url : 'groupJoinCon',
+    			method : 'post',
+    			data : {"idx":idx,"id":id},
+    			success : function(data){
+					if(data === 'true'){ 
+						alert("가입 성공")
+					}else { 
+						alert("가입 실패")
+					}
+				},
+				error : function(){
+					alert("통신실패")
+				}
+    			
+    		})
+    	}
+    	
+    </script>
 </body>
 </html>

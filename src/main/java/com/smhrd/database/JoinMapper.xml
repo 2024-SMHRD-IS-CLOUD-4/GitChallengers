@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="JoinMapper">
+
+	<!-- 그룹 참여 인원 -->
 	<select id="count" parameterType="int" resultType="int">
 		select count(*) from ch_join where group_idx=#{idx}
 	</select>
+	
+	<!-- 그룹 참여 -->
 	<insert id="join" parameterType="Join">
 		insert into ch_join values(ch_join_seq.nextval,#{group_idx}, #{id}, sysdate)
 	</insert>
+
+	<!-- 그룹 전체 정보 -->	
 	<select id="selectAll" resultType="Join">
 		select * from ch_join where group_idx=#{idx}
 	</select>

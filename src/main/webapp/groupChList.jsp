@@ -49,7 +49,6 @@
     		int count = jdao.count(idx);
     		List<Join> joinMember = jdao.selectAll(idx);
     		boolean isJoined = false;
-    		for(Join j : joinMember) {
     %>
         <!-- 그룹 카드 1 -->
         <div class="group-card">
@@ -65,38 +64,48 @@
                     <strong>14일 후 종료 예정</strong>
                 </div>
             </div>
-            	<%if(member.getId().equals(j.getId())) {	
-            		isJoined = true;
-				}%>
+            	<%for(Join j : joinMember) {
+            		if(member.getId().equals(j.getId())) {	
+            			isJoined = true;
+					}%>
 	            <%} %>
            	<%if (member.getId().equals(g.getManager()) || isJoined) { %>
             	<button class="join-button">참여중</button>
+            <%}else if(count >= g.getGroup_max()) { %>	
+            	<button class="join-button">입장 불가</button>
             <%}else { %>
-            	<button class="join-button" onClick="join(<%=idx%>)">참가하기</button>
+            	<button class="join-button" onClick="join(<%=idx%>, <%=count%>, <%=g.getGroup_max()%>)">참가하기</button>
             <%} %>
         </div>
     <%} %>
 
     </div>
     <script type="text/javascript">
-    	const join = (idx) => {
-    		var id = "<%=member.getId() %>"
-    		$.ajax({
-    			url : 'groupJoinCon',
-    			method : 'post',
-    			data : {"idx":idx,"id":id},
-    			success : function(data){
-					if(data === 'true'){ 
-						alert("가입 성공")
-					}else { 
-						alert("가입 실패")
+    	const join = (idx, count, max) => {
+    		if (count >= max) {
+    			alert('인원초과');
+    		}else{
+	    		var id = "<%=member.getId() %>"
+	    		$.ajax({
+	    			url : 'groupJoinCon',
+	    			method : 'post',
+	    			data : {"idx":idx,"id":id},
+	    			success : function(data){
+						if(data === 'true'){ 
+							alert("가입 성공");
+							location.reload(true);
+						}else { 
+							alert("가입 실패");
+							location.reload(true);
+						}
+					},
+					error : function(){
+						alert("통신실패");
+						location.reload(true);
 					}
-				},
-				error : function(){
-					alert("통신실패")
-				}
-    			
-    		})
+	    			
+	    		})
+    		}
     	}
     	
     </script>

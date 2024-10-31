@@ -5,17 +5,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./css/login.css">
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 </head>
 <body>
-	<form action="loginController" method="post">
-		<h1>로그인</h1>
-		<span>아이디</span><br>
-		<input type="text" name="id"><br>
-		<span>비밀번호</span><br>
-		<input type="password" name="pw"><br>
-		<input type="submit" value="로그인">
-		<button type="button" onClick="location.href='join.jsp'">회원가입</button>
-	</form>
+	<div class="login-container">
+	    <h2>로그인</h2>
+	    <form action="loginCon" method="post">
+	        <div class="form-group">
+	            <label for="id">아이디</label>
+	            <input type="text" name="id">
+	        </div>
+	        <div class="form-group">
+	            <label for="pw">비밀번호</label>
+	            <input type="password" name="pw">
+	        </div>
+	        
+	        <div class="button-container">
+	            <button type="submit" class="login-button">로그인</button>
+	            <button type="button" class="signup-button" onClick="location.href='join.jsp'">회원가입</button>
+	        </div>
+	    </form>
+	</div>
+
 </body>
 </html>
 

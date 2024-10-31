@@ -11,8 +11,8 @@ import javax.servlet.http.HttpSession;
 import com.smhrd.model.Member;
 import com.smhrd.model.MemberDAO;
 
-@WebServlet("/loginController")
-public class loginController extends HttpServlet {
+@WebServlet("/loginCon")
+public class loginCon extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	

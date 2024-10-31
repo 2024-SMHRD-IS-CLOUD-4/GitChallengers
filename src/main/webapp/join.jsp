@@ -7,26 +7,111 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="joinCon" method="post">
-		<h1>회원가입</h1>
-		<span>아이디</span><br>
-		<input type="text" name="id">
-		<span>비밀번호</span><br>
-		<input type="password" name="pw">
-		<span>이름</span><br>
-		<input type="text" name="name">
-		<span>닉네임</span><br>
-		<input type="text" name="nickname">
-		<span>이메일</span><br>
-		<input type="text" name="email">
-		<span>주소</span><br>
-		<input type="text" name="address">
-		<span>나이</span><br>
-		<input type="text" name="age">
-		<span>감명깊게 읽은 책</span><br>
-		<input type="text" name="fav_book">
-		<span>전화번호</span><br>
-		<input type="text" name="phoneNum">
-	</form>
+<link rel="stylesheet" href="./css/join.css">
+<script src="js/jquery-3.7.1.min.js"></script>
+<div class="container">
+    <h2>회원가입</h2>
+    <form action="joinCon" method="post">
+    	<div class="form-group">
+			<label for="name">이름 *</label>
+			<input type="text" name="name" required>
+        </div>
+        <div class="form-group">
+			<label for="nick">닉네임 *</label>
+			<input type="text" name="nick" required>
+        </div>
+        <div class="form-group">
+            <label for="id">아이디 *</label>
+            <input type="text" id="input" name="id" required>
+            <button type="button" class="idCheck" id="idCheck">중복 확인</button>
+            <span id="idCheckResult"></span>
+        </div>
+        <div class="form-group">
+            <label for="password">비밀번호 *</label>
+            <input type="password" id="pw" name="pw" oninput="pwC()" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">비밀번호 확인 *</label>
+            <input type="password" id="pwCheck" name="confirm-password" oninput="pwC()" required>
+            <span id="pwCheckResult"></span>
+        </div>
+        <div class="form-group">
+            <label for="phone">휴대폰번호 *</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="email">이메일 *</label>
+                <div class="email-group">
+                    <input type="text" name="email" required>
+                    <select id="domain-select" name="email" onchange="toggleEmailInput(this)" required>
+                        <option value="gmail.com">@gmail.com</option>
+                        <option value="naver.com">@naver.com</option>
+                        <option value="daum.net">@daum.net</option>
+                        <option value="custom">직접 입력</option>
+                    </select>
+                    <input type="text" id="custom-domain" name="custom-domain" placeholder="예: @yourdomain.com" style="display:none; margin-top: 5px;" disabled>
+                </div>
+        </div>
+        <div class="form-group">
+			<label for="birthdate">생년월일 *</label>
+			<input type="date" id="birthdate" name="birthday" required>
+		</div>
+        <div class="form-group">
+            <label for="favorite-book">감명깊게 읽은책</label>
+            <input id="favorite-book" name="fav_book">
+        </div>
+        <button type="submit" class="signup-btn">회원가입 완료</button>
+    </form>
+    <script>
+    	// 아이디 중복 확인
+    	$('#idCheck').on('click', () => {
+    		let input = $('#input').val();
+    		$.ajax({
+    			url : "idCheck",
+    			type : "get",
+    			data : {"input":input},
+    			success : function(data){
+					if(data === 'true'){ 
+						$("#idCheckResult").text("사용할 수 없는 아아디");
+					}else { 
+						$("#idCheckResult").text("사용할 수 있는 아아디");
+					}
+				},
+				error : function(){
+					alert("통신실패")
+				}
+    			
+    		})  		
+    	})
+    	// 비밀번호 확인
+    	const pwC = () => {
+	    	if ($('#pw').val() == $('#pwCheck').val()) {
+	    		$('#pwCheckResult').text('비밀번호 일치')
+	    	}else {
+	    		$('#pwCheckResult').text('비밀번호 불일치')
+	    	}    		
+    	}
+    	
+    	// 이메일 직접입력
+    	function toggleEmailInput(select) {
+            const customInput = document.getElementById('custom-domain');
+            const domainSelect = document.getElementById('domain-select');
+            if (select.value === "custom") {
+                customInput.style.display = 'inline';
+                domainSelect.style.display = 'none'; // Hide the dropdown
+                customInput.placeholder = "예: @yourdomain.com";
+                customInput.disabled = false;
+                customInput.focus();
+                customInput.required = true;
+            } else {
+                customInput.style.display = 'none';
+                domainSelect.style.display = 'inline'; // Show the dropdown again
+                customInput.disabled = true;
+                customInput.required = false;
+                customInput.value = ''; // Clear input when a predefined option is selected
+            }
+        }
+    </script>
+</div>
 </body>
 </html>

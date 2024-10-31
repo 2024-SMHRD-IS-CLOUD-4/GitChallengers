@@ -1,0 +1,183 @@
+@charset "UTF-8";
+        body {
+            background-color: #C8B8A6;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 80px; /* 고정 헤더 높이만큼 상단 여백 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* 고정 헤더 스타일 */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #D0C0B0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .title img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        /* 검색창 스타일 */
+        .header .search-bar {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            margin: 0 20px;
+        }
+
+        /* 검색창 아이콘 */
+        .header .search-bar .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888888;
+            font-size: 1em;
+        }
+
+        /* 검색창 인풋 필드 스타일 */
+        .header .search-bar input {
+            width: 37%;
+            padding: 8px 15px 8px 40px; /* 왼쪽 여백 추가하여 아이콘 위치 확보 */
+            border: 1px solid #D0D0D0;
+            border-radius: 20px; /* 둥근 모서리 */
+            font-size: 1em;
+            outline: none;
+        }
+
+        .header .actions {
+            display: flex;
+            gap: 10px;
+            margin-right: 10px;
+        }
+
+        .header .actions button {
+            padding: 10px 20px;
+            background-color: #FFFFFF;
+            border: 1px solid #D0D0D0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .header .actions button:hover {
+            background-color: #EFEFEF;
+        }
+
+        /* 중앙 컨테이너 스타일 */
+        .container {
+            display: flex;
+            width: 80%;
+            height: 500px;
+            padding: 20px 0;
+            gap: 20px;
+            max-width: 1200px;
+        }
+
+        /* 사이드바 그룹 스타일 */
+        .sidebar, .rightbar {
+            display: flex;
+            flex-direction: column;
+            width: 15%;
+            gap: 20px;
+            height: 100%;
+        }
+
+        /* 그룹 박스 스타일 */
+        .group-box {
+            background-color: #F4F4F4;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border: 1px solid #D0D0D0;
+            height: 100%;
+            align-items: center; /* 중앙 정렬 */
+            justify-content: center; /* 중앙 정렬 */
+        }
+
+        .group-box button {
+            padding: 15px;
+            font-size: 1em;
+            background-color: #FFFFFF;
+            border: 1px solid #D0D0D0;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%; /* 버튼이 전체 폭을 차지하도록 설정 */
+        }
+
+        .group-box button:hover {
+            background-color: #EFEFEF;
+        }
+
+        /* 메인 패널 스타일 */
+        .main-panel {
+            flex: 1;
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .challenge-list {
+            background-color: #F4F4F4;
+            border-radius: 8px;
+            padding: 20px;
+            width: 60%;
+            height: 100%;
+        }
+
+        .progress-panel {
+            background-color: #F4F4F4;
+            border-radius: 8px;
+            padding: 20px;
+            width: 40%;
+            height: 100%;
+        }
+
+        /* 프로그레스 바 스타일 */
+        .progress-bar {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .progress-label {
+            flex: 1;
+            font-size: 0.9em;
+        }
+
+        .progress-container {
+            flex: 2;
+            background-color: #D0D0D0;
+            height: 8px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-left: 10px;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #888888;
+        }

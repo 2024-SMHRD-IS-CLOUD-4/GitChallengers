@@ -1,0 +1,136 @@
+@charset "UTF-8";
+body {
+    background-color: #d1c4b2;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.card {
+    position: relative;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    height: 600px;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.back-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: transparent;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    color: #555;
+}
+
+.back-button:hover {
+    color: #333;
+}
+
+.title {
+    font-size: 1.2em;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.title:focus {
+    outline: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.card img {
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.page-info-input {
+    font-size: 0.9em;
+    border: none;
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 20px;
+    width: auto;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.page-info-input:focus {
+    outline: none;
+    background-color: #e6e6e6;
+}
+
+.content {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.toggle-buttons {
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.toggle-buttons button {
+    color: #fff;
+    background-color: #f4b1c2;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+    flex: 1;
+}
+
+.toggle-buttons button.active {
+    color: black;
+    background-color: #f0a7b2;
+}
+
+.footer button.action-button {
+    color: #fff;
+    background-color: #f4b1c2;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 40px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.footer button.action-button:hover {
+    background-color: #f0a7b2;
+}
+
+#file-input {
+    display: none;
+}

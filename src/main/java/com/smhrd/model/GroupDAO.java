@@ -29,6 +29,14 @@ public class GroupDAO {
 		return result;
 	}
 	
+	// 그룹 정보 가져오기
+	public Group groupInfo(int idx) {
+		SqlSession sqlSession = factory.openSession(true);
+		Group result = sqlSession.selectOne("GroupMapper.groupInfo", idx);
+		sqlSession.close();
+		
+		return result;
+	}
 
 	
 

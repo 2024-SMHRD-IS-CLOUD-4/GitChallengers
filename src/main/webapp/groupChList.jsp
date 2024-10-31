@@ -52,11 +52,11 @@
     %>
         <!-- 그룹 카드 1 -->
         <div class="group-card">
-            <div class="profile">
+            <div class="profile" onClick="location.href='groupChRoom.jsp?idx=<%=idx%>'">
                 <img src="#" alt="반장 프로필">
                 <span><%=g.getManager()%></span>
             </div>
-            <div class="content">
+            <div class="content" onClick="location.href='groupChRoom.jsp?idx=<%=idx%>'">
                 <h3><%=g.getGroup_name()%></h3>
                 <p><%=g.getGroup_desc() %></p>
                 <div class="details">

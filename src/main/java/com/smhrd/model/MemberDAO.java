@@ -1,5 +1,7 @@
 package com.smhrd.model;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -31,6 +33,15 @@ public class MemberDAO {
 	public boolean idCheck(String id) {
 		SqlSession sqlSession = factory.openSession(true);
 		boolean result = sqlSession.selectOne("MemberMapper.idCheck", id);
+		sqlSession.close();
+		
+		return result;
+	}
+	
+	// 회원정보 가져오기
+	public List<Member> selectAll() {
+		SqlSession sqlSession = factory.openSession(true);
+		List<Member> result = sqlSession.selectList("MemberMapper.selectAll");
 		sqlSession.close();
 		
 		return result;

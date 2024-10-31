@@ -1,3 +1,8 @@
+<%@page import="com.smhrd.model.Join"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smhrd.model.JoinDAO"%>
+<%@page import="com.smhrd.model.GroupDAO"%>
+<%@page import="com.smhrd.model.Group"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -10,6 +15,14 @@
 </head>
 
 <body>
+<%
+	int idx = Integer.parseInt(request.getParameter("idx"));
+	GroupDAO dao = new GroupDAO();
+	Group group = dao.groupInfo(idx);
+	JoinDAO jdao = new JoinDAO();
+	List<Join> list = jdao.selectAll(idx);
+%>
+
     <div class="header">
         <div class="logo">
             <img src="img/team-logo.png" alt="로고">
@@ -35,21 +48,24 @@
             <div class="profile-upload">
                 <div class="profile-img" id="profilePreview"></div>
             </div>
-            <div class="profile-name">방장 닉네임</div>
+            <div class="profile-name"><%=group.getManager()%></div>
             <ul class="group-list">
-                <%
-                    // 그룹원 및 부방장 정보 배열
-                    String[] members = {"부방장", "그룹원", "그룹원", "그룹원", "그룹원"};
-                    String[] profileImages = {"img/team-logo.png", "img/team-logo.png", "img/team-logo.png", "img/team-logo.png", "img/team-logo.png"};
-                    
-                    for (int i = 0; i < members.length; i++) {
-                %>
-                <li class="group-item">
-                    <img src="<%= profileImages[i] %>" alt="subprofile<%= i+1 %>">
-                    <span class="group-name"><%= members[i] %></span>
-                    <input type="checkbox">
+            	<li class="group-item">
+					<img src="">
+					<span class="group-name"><%=group.getSub_manager()%></span>
+					<input type="checkbox">
                 </li>
-                <% } %>
+                <%
+                    for(Join j: list) {
+                    	if(!j.getId().equals(group.getManager()) && !j.getId().equals(group.getSub_manager())) {
+                %>
+			                <li class="group-item">
+			                    <img src="">
+			                    <span class="group-name"><%=j.getId()%></span>
+			                    <input type="checkbox">
+			                </li>
+			                <% } %>
+                	<% } %>
             </ul>
             <button class="button">오늘의 챌린지 작성</button>
         </div>
@@ -83,7 +99,7 @@
                     <button class="comment-btn">댓글 작성</button>
                 </div>
             </div>
-            <% } %>
+            <%} %>
         </div>
     </div>
 

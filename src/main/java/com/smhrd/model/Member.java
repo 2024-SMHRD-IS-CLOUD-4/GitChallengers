@@ -34,6 +34,12 @@ public class Member {
 	
 	// 가입 일자 
 	private String joined_at;
+	
+	// 챌린지 도전회수
+	private int ch_count;
+	
+	// 챌린지 성공횟수
+	private int ch_suc_count;
 
 	public Member(String id, String pw) {
 		this.id = id;

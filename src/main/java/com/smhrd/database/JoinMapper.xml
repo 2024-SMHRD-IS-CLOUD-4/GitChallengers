@@ -17,4 +17,9 @@
 		select * from ch_join where group_idx=#{idx}
 	</select>
 	
+	<!-- 회원이 속한 그룹 찾아오기 -->	
+	<select id="selectMy" resultType="Join">
+		select * from ch_join where id=#{id}
+	</select>
+	
 </mapper>

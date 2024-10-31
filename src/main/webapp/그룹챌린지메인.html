@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #D2C2AD;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 600px;
+            max-height: 100vh;
+            background-color: #F2F2F2;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        .search-bar {
+            flex-grow: 1;
+            margin-left: 20px;
+            padding: 8px;
+            border: 1px solid #CCC;
+            border-radius: 4px;
+        }
+        .create-group {
+            padding: 8px 16px;
+            background-color: #A9A9A9;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .group-list {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .group-item {
+            display: flex;
+            align-items: center;
+            width: 500px;
+            border: 1px solid #DDD;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            background-color: white;
+        }
+        .profile-box {
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+        .profile-box img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+        }
+        .group-details {
+            flex-grow: 1;
+        }
+        .group-details h4 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .group-details p {
+            margin: 8px 0;
+            color: #888;
+            font-size: 15px;
+        }
+        .join-button {
+            padding: 10px 16px;
+            background-color: #D3E9FC;
+            color: #0073E6;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .highlight-text {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <img src="logo.png" alt="Logo">
+        <input type="text" class="search-bar" placeholder="검색...">
+        <button class="create-group">그룹 만들기</button>
+    </div>
+    
+    <div class="group-list">
+        <!-- 그룹 항목 예시 -->
+        <div class="group-item">
+            <div class="profile-box">
+                <img src="profile1.jpg" alt="Profile Image">
+            </div>
+            <div class="group-details">
+                <h4>하루 한권 읽어요</h4>
+                <p>1일 1리뷰 필수!!!</p>
+                <p class="highlight-text">14일 후 종료 예정</p>
+            </div>
+            <button class="join-button">참가하기</button>
+        </div>
+        
+        <!-- 여러 그룹 항목들로 스크롤 기능 확인 -->
+        <div class="group-item">
+            <div class="profile-box">
+                <img src="profile2.jpg" alt="Profile Image">
+            </div>
+            <div class="group-details">
+                <h4>반장 이름</h4>
+            </div>
+            <button class="join-button">참가하기</button>
+        </div>
+        
+        <div class="group-item">
+            <div class="profile-box">
+                <img src="profile3.jpg" alt="Profile Image">
+            </div>
+            <div class="group-details">
+                <h4>반장 이름</h4>
+            </div>
+            <button class="join-button">참가하기</button>
+        </div>
+        
+        <div class="group-item">
+            <div class="profile-box">
+                <img src="profile4.jpg" alt="Profile Image">
+            </div>
+            <div class="group-details">
+                <h4>반장 이름</h4>
+            </div>
+            <button class="join-button">참가하기</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>그룹챌린지방</title>
-    <link rel="stylesheet" href="./css/그룹챌린지방.css">
+    <link rel="stylesheet" href="./css/groupChallengeRoom.css">
 </head>
 
 <body>
@@ -87,7 +87,7 @@
         </div>
     </div>
 
-    <script src="./js/그룹챌린지방.js"></script>
+    <script src="./js/groupChallengeRoom.js"></script>
 </body>
 
 </html>

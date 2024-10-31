@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 페이지</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5eadc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 80px;
+            /* 헤더 높이만큼 상단 여백 */
+            width: 100vw;
+            height: 100vh;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #D0C0B0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            z-index: 2000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 16px;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        .nav-links a:hover {
+            background-color: #e8e4de;
+            border-radius: 5px;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-icons i {
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        .profile-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+            margin-right: 20px;
+            /* 왼쪽으로 이동 */
+        }
+
+        .logout-button {
+            padding: 5px 15px;
+            background-color: #e0c4a8;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 40px;
+            /* 왼쪽으로 이동 */
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            width: 100%;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+        }
+
+        .profile-picture {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .profile-picture img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-picture h2 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+        }
+
+        .button-edit {
+            padding: 5px 10px;
+            background-color: #e0c4a8;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .stats-section {
+            flex: 2;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stats div {
+            background-color: #e8e4de;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            width: calc(50% - 10px);
+            box-sizing: border-box;
+        }
+
+        .stats div p {
+            margin: 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .stats div span {
+            display: block;
+            margin-top: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .intro-section {
+            background-color: #f4f0e9;
+            padding: 15px;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .intro-section textarea {
+            width: 100%;
+            resize: none;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .intro-section textarea:disabled {
+            background-color: #f4f0e9;
+        }
+
+        .points-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .points-section span {
+            margin-right: 10px;
+        }
+
+        .points-section button {
+            padding: 5px 10px;
+            background-color: #e0c4a8;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* Review Section */
+        .review-container {
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+            background-color: #f4f0e9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .review-container h3 {
+            font-size: 18px;
+            margin: 0 0 10px;
+        }
+
+        .review-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .review-buttons button {
+            padding: 8px 15px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #e0c4a8;
+        }
+
+        .review-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Book Showcase Section */
+        .book-showcase {
+            text-align: left;
+            margin-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .book-showcase h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .book-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            max-height: 500px;
+        }
+
+        .book-item {
+            width: calc(33.33% - 10px);
+            padding: 10px;
+            background-color: #f4f0e9;
+            border-radius: 10px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .book-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <img src="img/team-logo.png" alt="로고">
+                <div class="nav-links">
+                    <a href="#">챌린지</a>
+                    <a href="#">챌린지</a>
+                    <a href="#">info</a>
+                </div>
+            </div>
+            <div class="header-icons">
+                <i class="fas fa-search"></i>
+                <div class="profile-circle">
+                    <img src="img/chaechae-1.jpg" alt="프로필 이미지">
+                </div>
+                <i class="fas fa-bell"></i>
+                <button class="logout-button">로그아웃</button>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <!-- Profile Picture and Edit Button -->
+            <div class="profile-picture">
+                <img src="img/chaechae-1.jpg" alt="Profile Image">
+                <h2>채채</h2>
+                <button class="button-edit">프로필 편집</button>
+            </div>
+            <!-- Stats and Intro Section -->
+            <div class="stats-section">
+                <div class="stats">
+                    <div>
+                        <p>챌린지 완료 횟수</p>
+                        <span>20회</span>
+                    </div>
+                    <div>
+                        <p>챌린지 완료 확률</p>
+                        <span>80%</span>
+                    </div>
+                </div>
+                <div class="intro-section">
+                    <textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled></textarea>
+                </div>
+                <div class="points-section">
+                    <span>보유 포인트: 10000000원</span>
+                    <button>포인트 충전</button>
+                </div>
+
+                <!-- Book Showcase Section (Moved under Points Section) -->
+                <div class="book-showcase">
+                    <h3>MY BOOK</h3>
+                    <div class="book-list">
+                        <div class="book-item">
+                            <img src="img/pigbook-1.jfif" alt="돼지책">
+                            <p>돼지책</p>
+                        </div>
+                        <div class="book-item">
+                            <img src="img/pigbook-1.jfif" alt="돼지책">
+                            <p>돼지책</p>
+                        </div>
+                        <div class="book-item">
+                            <img src="img/pigbook-1.jfif" alt="돼지책">
+                            <p>돼지책</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Container -->
+            <div class="review-container">
+                <div class="review-buttons">
+                    <button onclick="showReview()">리뷰</button>
+                    <button onclick="showReviewCount()">작성 수</button>
+                </div>
+                <div id="review-content" class="review-content">
+                    <!-- 초기에는 리뷰 내용 표시 -->
+                    <p>여기에 리뷰 내용이 표시됩니다. 사용자는 스크롤을 통해 긴 리뷰 내용을 확인할 수 있습니다.</p>
+                    <p>리뷰 내용 예시: 이 책은 정말 재미있고, 가족 모두가 함께 즐길 수 있습니다....</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // 리뷰 내용 표시 함수
+            function showReview() {
+                const reviewContent = document.getElementById("review-content");
+                reviewContent.innerHTML = `
+        <p>여기에 리뷰 내용이 표시됩니다. 사용자는 스크롤을 통해 긴 리뷰 내용을 확인할 수 있습니다.</p>
+        <p>리뷰 내용 예시: 이 책은 정말 재미있고, 가족 모두가 함께 즐길 수 있습니다....</p>
+    `;
+            }
+
+            // 작성 수 표시 함수
+            function showReviewCount() {
+                const reviewContent = document.getElementById("review-content");
+                reviewContent.innerHTML = `
+        <p>총 리뷰 작성 수: 10개</p>
+    `;
+            }
+        </script>
+</body>
+
+</html>

@@ -35,20 +35,20 @@
 	    <label for="file-input">
 	        <img id="preview-image" src="https://via.placeholder.com/150x120" alt="Upload Image">
 	    </label>
-	    <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)">
+	    <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)" name="gc_ocr">
 	    
 	    <input type="text" class="page-info-input" placeholder="페이지: 120~150p">
 	    <textarea class="content" placeholder="자유 내용" name="item_desc"></textarea>
 	    
 	    <div class="footer">
 	        <div class="toggle-buttons">
-	            <select name="group_name">
+	            <select name="gc_idx">
 	            	<%for(Join j : list) {%>
-	            	<option><%=gdao.groupInfo((j.getGroup_idx())).getGroup_name() %></option>
+	            	<option value="<%=gdao.groupInfo((j.getGroup_idx())).getGroup_idx()%>"><%=gdao.groupInfo((j.getGroup_idx())).getGroup_name() %></option>
 	            	<%} %>
 	            </select>
 	        </div>
-	        <button class="action-button">글 작성</button>
+	        <button class="action-button" type="submit">글 작성</button>
 	    </div>
 	</div>
 </form>

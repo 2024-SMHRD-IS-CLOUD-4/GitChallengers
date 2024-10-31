@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class ch_items {
+public class gc_items {
 	
 	// 그룹 챌린지 아이템 순번
 	private int item_idx;

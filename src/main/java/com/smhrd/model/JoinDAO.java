@@ -38,4 +38,13 @@ public class JoinDAO {
 		return result;
 	}
 	
+	// 회원이 속한 그룹 찾아오기
+	public List<Join> selectMy(String id){
+		SqlSession sqlSession = factory.openSession(true);
+		List<Join> result = sqlSession.selectList("JoinMapper.selectMy", id);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 }

@@ -32,7 +32,7 @@
         </div>
 
         <div class="actions">
-            <button>마이프로필</button>
+            <button onClick="location.href='propile.jsp'">마이프로필</button>
             <form action="logoutCon">
             	<button style="background-color: #E57B7B;">로그아웃</button>            
             </form>
@@ -45,7 +45,7 @@
             <div class="group-box">
                 <button onClick="location.href='myCh.jsp'">나의 챌린지</button>
                 <button onClick="location.href='groupChList.jsp'">그룹 챌린지</button>
-                <button>챌린지 작성</button>
+                <button onClick="location.href='chWrite.jsp'">챌린지 작성</button>
             </div>
         </div>
 

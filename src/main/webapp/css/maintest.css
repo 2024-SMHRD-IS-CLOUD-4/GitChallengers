@@ -1,0 +1,299 @@
+/* 기본 설정 */
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f2efe8;
+	margin: 0;
+	padding-top: 80px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* Header Section */
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #f2efe8;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 30px;
+	z-index: 2000;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.logo img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.nav-links {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	font-size: 16px;
+}
+
+.nav-links a {
+	color: #333;
+	text-decoration: none;
+	padding: 5px 10px;
+}
+
+.nav-links a:hover {
+	background-color: #e8e4de;
+	border-radius: 5px;
+}
+
+.header-icons {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.header-icons i {
+	font-size: 20px;
+	color: #333;
+	cursor: pointer;
+	margin-right: 20px;
+}
+
+/* 검색 아이콘 스타일 */
+.search-icon {
+	font-size: 20px;
+	color: #333;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+.profile-circle {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #ddd;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	cursor: pointer;
+	margin-right: 20px;
+	/* 왼쪽으로 이동 */
+}
+
+/* 알림 아이콘 스타일 */
+.notification-icon {
+	font-size: 20px;
+	color: #333;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+/* 사용자 환영 텍스트 스타일 */
+.welcome-text {
+	color: #333;
+	text-decoration: none;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+.welcome-text:hover {
+	background-color: #e8e4de;
+}
+
+.logout-button {
+	padding: 5px 15px;
+	background-color: #e0c4a8;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 40px;
+	/* 왼쪽으로 이동 */
+}
+
+/* 팝업 스타일 (위치를 절대값으로 설정) */
+.popup {
+	position: absolute;
+	top: 50px;
+	/* 기본 위치 */
+	padding: 20px;
+	background-color: #fff;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
+	z-index: 1001;
+}
+
+.hidden {
+	display: none;
+}
+
+/* 헤더 중앙 정렬 */
+.nav-links {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+/* 팝업 내부 버튼 스타일 */
+.popup-button {
+	display: block;
+	width: 100%;
+	padding: 8px 12px;
+	margin: 5px 0;
+	background-color: #e0c4a8;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	text-align: left;
+	font-size: 14px;
+	color: #333;
+}
+
+.popup-button:hover {
+	background-color: #d3b89a;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 1200px;
+	width: 100%;
+	padding: 0 20px;
+}
+
+.top-section {
+	display: flex;
+	gap: 20px;
+	margin: 20px 0;
+	width: 103%;
+}
+
+.challenge, .status {
+	flex: 1;
+	background-color: #e5dfcf;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+/* 진행률 원형 그래프 */
+.progress-chart {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.progress-circle {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+}
+
+.progress-circle[data-progress="70"] {
+	background: conic-gradient(#8673a1 0% 70%, #d0c0ce 70%);
+}
+
+.progress-circle[data-progress="50"] {
+	background: conic-gradient(#8673a1 0% 50%, #d0c0ce 50%);
+}
+
+.progress-text {
+	font-size: 16px;
+	font-weight: bold;
+	color: #8673a1;
+	margin-top: 10px;
+}
+
+.bottom-section-wrapper {
+	display: flex;
+	width: 103%;
+	gap: 20px;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.leaderboard-section, .empty-section {
+	flex: 1;
+	background-color: #e5dfcf;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-item-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.leaderboard-item-wrapper img {
+	width: 60px;
+	/* 사진 크기를 60x60으로 확대 */
+	height: 60px;
+	border-radius: 50%;
+}
+
+/* 리더보드의 이름과 포인트를 가로형 네모 박스에 배치 */
+.leaderboard-item {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	background-color: #fff;
+	padding: 8px;
+	/* 네모 칸 크기를 줄이기 위해 padding을 줄임 */
+	border-radius: 10px;
+	justify-content: space-between;
+}
+
+.name, .points {
+	font-weight: bold;
+}
+
+/* 상품 이미지 스타일 */
+.product-item img, .goods-item img {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 상품 목록 한 줄에 5개씩 배치 */
+.products, .goods {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.product-item, .goods-item {
+	width: calc(20% - 10px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.cart-icon {
+	margin-top: 10px;
+	font-size: 24px;
+	cursor: pointer;
+}

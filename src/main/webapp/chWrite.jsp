@@ -24,11 +24,11 @@
 		GroupDAO gdao = new GroupDAO();
 		
 	%>
-<form action="chWrite" method="post">
 	<div class="card">
 	    <!-- Back Button -->
 	    <button class="back-button" onclick="history.back()">←</button>
 	    
+<form action="chWrite" method="post">
 	    <input type="text" class="title" placeholder="제목" name="g_item_title">
 	    <input type="hidden" name = "id" value = "<%=member.getId()%>">
 	    <!-- Label for Image Upload -->

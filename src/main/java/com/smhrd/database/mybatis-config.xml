@@ -9,6 +9,7 @@
 		<typeAlias type="com.smhrd.model.Group" alias = "Group"/>
 		<typeAlias type="com.smhrd.model.Join" alias = "Join"/>
 		<typeAlias type="com.smhrd.model.Gc_items" alias = "items"/>
+		<typeAlias type="com.smhrd.model.Member_point" alias = "point"/>
 	</typeAliases>
   <environments default="development">
     <environment id="development">
@@ -26,5 +27,6 @@
     <mapper resource="com/smhrd/database/GroupMapper.xml"/>
     <mapper resource="com/smhrd/database/JoinMapper.xml"/>
     <mapper resource="com/smhrd/database/Gc_itemsMapper.xml"/>
+    <mapper resource="com/smhrd/database/Member_pointMapper.xml"/>
   </mappers>
 </configuration>

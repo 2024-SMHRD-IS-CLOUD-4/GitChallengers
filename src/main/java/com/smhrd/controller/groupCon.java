@@ -23,7 +23,7 @@ public class groupCon extends HttpServlet {
 		String group_desc = request.getParameter("group_desc");
 		String manager = request.getParameter("manager");
 		String sub_manager = request.getParameter("sub_manager");
-		int group_max = Integer.parseInt(request.getParameter("group_max"));
+		int group_max = 10;
 		
 		
 		Group group = new Group(group_name, group_desc, manager, sub_manager, group_max);

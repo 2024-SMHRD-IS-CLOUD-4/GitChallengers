@@ -86,15 +86,16 @@
                 // 카드 데이터 배열
                 for (Join j : list) {
                 	Gc_items items = new Gc_items(idx, j.getId());
-                	Gc_items getItem = idao.getItem(items); // 작성글 가져오기
-                	if (getItem != null && getItem.getG_item_title() != null) {
+                	List<Gc_items> getItem = idao.getItem(items); // 작성글 가져오기
+                	for (Gc_items gi : getItem) {
+                		if (gi != null) {
             %>
             <div class="card">
                 <div class="card-content">
                     <div class="card-header"><%= j.getId() %></div>
-                    <div class="book-title"><%= getItem.getG_item_title() %></div>
+                    <div class="book-title"><%= gi.getG_item_title() %></div>
                     <div class="page-info"></div>
-                    <div class="content-placeholder"><%= getItem.getG_item_desc() %></div>
+                    <div class="content-placeholder"><%= gi.getG_item_desc() %></div>
                 </div>
                 <div class="card-icons">
                     <i class="heart">🤍</i>
@@ -107,7 +108,8 @@
                     <button class="comment-btn">댓글 작성</button>
                 </div>
             </div>
-            	<%} %>
+    	        	<%} %>
+	            <%} %>
             <%} %>
         </div>
     </div>

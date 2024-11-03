@@ -29,8 +29,8 @@
 	    <!-- Back Button -->
 	    <button class="back-button" onclick="history.back()">←</button>
 	    
-	    <input type="text" class="title" placeholder="제목" name="item_title">
-	    
+	    <input type="text" class="title" placeholder="제목" name="g_item_title">
+	    <input type="hidden" name = "id" value = "<%=member.getId()%>">
 	    <!-- Label for Image Upload -->
 	    <label for="file-input">
 	        <img id="preview-image" src="https://via.placeholder.com/150x120" alt="Upload Image">
@@ -38,7 +38,7 @@
 	    <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)" name="gc_ocr">
 	    
 	    <input type="text" class="page-info-input" placeholder="페이지: 120~150p">
-	    <textarea class="content" placeholder="자유 내용" name="item_desc"></textarea>
+	    <textarea class="content" placeholder="자유 내용" name="g_item_desc"></textarea>
 	    
 	    <div class="footer">
 	        <div class="toggle-buttons">

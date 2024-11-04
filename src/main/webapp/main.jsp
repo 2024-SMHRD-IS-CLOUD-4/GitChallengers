@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.Pc_challenge"%>
+<%@page import="com.smhrd.model.Pc_challengeDAO"%>
 <%@page import="com.smhrd.model.Member_point"%>
 <%@page import="com.smhrd.model.Member_pointDAO"%>
 <%@page import="com.smhrd.model.Group"%>
@@ -26,9 +28,10 @@
 		JoinDAO jdao = new JoinDAO();
 		GroupDAO gdao = new GroupDAO();
 		Member_pointDAO mpdao = new Member_pointDAO();
+		Pc_challengeDAO pcdao = new Pc_challengeDAO();
 		List<Join> list = jdao.selectMy(member.getId()); // 내 그룹 불러오기
 		List<Member_point> rank = mpdao.rank(); // 랭킹 불러오기
-		
+		List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
 		
 	%>
 
@@ -139,15 +142,16 @@
                 <h3>MY 챌린지</h3>
                 <div>
                     <p>개인 챌린지</p>
-                    <button class="popup-button"><%= request.getAttribute("personalChallenge1") != null ? request.getAttribute("personalChallenge1") : "돼지책" %></button>
+                    <%for (Pc_challenge p: pcList) {%>
+                    <button class="popup-button" onClick="location.href='soloChRoom.jsp?idx=<%=p.getPc_idx()%>'"><%= p.getPc_title() != null ? p.getPc_title() : "진행중인 챌린지 없음" %></button>
+                    <%} %>
 
                     <p>그룹 챌린지</p>
                     <%for (Join j : list) {
                     	Group g = gdao.groupInfo(j.getGroup_idx());                    	
                     %>
-	                    <button class="popup-button" onClick="location.href='groupChRoom.jsp?idx=<%=g.getGroup_idx()%>'"><%=g.getGroup_name()%></button>
+	                    <button class="popup-button" onClick="location.href='groupChRoom.jsp?idx=<%=g.getGroup_idx()%>'"><%=g.getGroup_name() != null?g.getGroup_name() : "진행중인 챌린지 없음"%></button>
                     <%} %>
-
                 </div>
             </div>
         </div>

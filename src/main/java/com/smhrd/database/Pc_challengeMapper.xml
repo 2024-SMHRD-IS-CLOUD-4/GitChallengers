@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Pc_challengeMapper">
+	<!-- 개인 챌린지 리스트 불러오기 -->
+	<select id="selectAll" resultType="Pc_challenge">
+		select * from ch_pc_challenge where id=#{id}
+	</select>
+
+</mapper>

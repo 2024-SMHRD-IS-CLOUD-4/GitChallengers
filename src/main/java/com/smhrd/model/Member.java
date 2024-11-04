@@ -40,6 +40,9 @@ public class Member {
 	
 	// 챌린지 성공횟수
 	private int ch_suc_count;
+	
+	// 프로필 사진 
+	private String profile_img;
 
 	public Member(String id, String pw) {
 		this.id = id;

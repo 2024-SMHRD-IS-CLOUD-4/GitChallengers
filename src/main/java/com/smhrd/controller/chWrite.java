@@ -30,7 +30,7 @@ public class chWrite extends HttpServlet {
 		int result = dao.chWrite(items);
 		
 		if(result == 1) {
-			response.sendRedirect("main.jsp");
+			response.sendRedirect("groupChRoom.jsp?idx="+gc_idx);
 		}else {
 			response.sendRedirect("chWrite.jsp");
 		}

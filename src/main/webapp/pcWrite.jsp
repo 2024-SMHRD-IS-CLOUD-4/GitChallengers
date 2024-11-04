@@ -32,7 +32,7 @@
 	<form action="pcWrite" method="post">
 		    <input type="text" class="title" placeholder="제목" name="p_item_title">
 		    <input type="hidden" name = "id" value = "<%=member.getId()%>">
-		    <input type="hidden" name = "gc_idx" value = "<%=idx%>">
+		    <input type="hidden" name = "pc_idx" value = "<%=idx%>">
 		    <!-- Label for Image Upload -->
 		    <label for="file-input">
 		        <img id="preview-image" src="https://via.placeholder.com/150x120" alt="Upload Image">
@@ -46,8 +46,8 @@
 		        
 		        <button class="action-button" type="submit">글 작성</button>
 		    </div>
-		</div>
 	</form>
+	</div>
 <script>
     function previewImage(event) {
         const preview = document.getElementById('preview-image');

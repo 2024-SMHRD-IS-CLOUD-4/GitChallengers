@@ -23,7 +23,7 @@
 	
 	<!-- 회원정보 수정 -->
 	<update id="update" parameterType="Member">
-		update ch_member set id=#{id}, pw=#{pw}
+		update ch_member set pw=#{pw}, nick=#{nick}, email=#{email}, phone=#{phone}, fav_books=#{fav_books} where id=#{id}
 	</update>
 	
 </mapper>

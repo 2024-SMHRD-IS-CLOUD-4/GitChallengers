@@ -1,3 +1,6 @@
+<%@page import="com.smhrd.model.Gc_items"%>
+<%@page import="com.smhrd.model.Gc_itemsDAO"%>
+<%@page import="com.smhrd.model.Member"%>
 <%@page import="com.smhrd.model.Join"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.JoinDAO"%>
@@ -15,12 +18,19 @@
 </head>
 
 <body>
-<%
-	int idx = Integer.parseInt(request.getParameter("idx"));
-	GroupDAO dao = new GroupDAO();
-	Group group = dao.groupInfo(idx);
+<%	
+	Member member = (Member) session.getAttribute("member");
+	if(member == null) {
+		response.sendRedirect("login.jsp");
+	}
+	int idx = Integer.parseInt(request.getParameter("idx")); // 방 인덱스
+	GroupDAO dao = new GroupDAO(); 
+	Group group = dao.groupInfo(idx); // 방 정보
 	JoinDAO jdao = new JoinDAO();
-	List<Join> list = jdao.selectAll(idx);
+	List<Join> list = jdao.selectAll(idx); // 방 참가 인원 정보
+	Gc_itemsDAO idao = new Gc_itemsDAO();
+	
+	
 %>
 
     <div class="header">
@@ -67,26 +77,25 @@
 			                <% } %>
                 	<% } %>
             </ul>
-            <button class="button">오늘의 챌린지 작성</button>
+            <button class="button" onClick="location.href='chWrite.jsp'">오늘의 챌린지 작성</button>
         </div>
 
         <!-- 카드 영역 -->
         <div class="card-container">
             <%
                 // 카드 데이터 배열
-                String[] cardHeaders = {"그룹원 000", "그룹원 001", "그룹원 002"};
-                String[] bookTitles = {"책 제목", "책 제목", "책 제목"};
-                String[] pageInfos = {"페이지: 120~150p", "페이지: 151~180p", "페이지: 181~200p"};
-                String[] contents = {"자유 내용", "자유 내용", "자유 내용"};
-                
-                for (int i = 0; i < cardHeaders.length; i++) {
+                for (Join j : list) {
+                	Gc_items items = new Gc_items(idx, j.getId());
+                	List<Gc_items> getItem = idao.getItem(items); // 작성글 가져오기
+                	for (Gc_items gi : getItem) {
+                		if (gi != null) {
             %>
             <div class="card">
                 <div class="card-content">
-                    <div class="card-header"><%= cardHeaders[i] %></div>
-                    <div class="book-title"><%= bookTitles[i] %></div>
-                    <div class="page-info"><%= pageInfos[i] %></div>
-                    <div class="content-placeholder"><%= contents[i] %></div>
+                    <div class="card-header"><%= j.getId() %></div>
+                    <div class="book-title"><%= gi.getG_item_title() %></div>
+                    <div class="page-info"></div>
+                    <div class="content-placeholder"><%= gi.getG_item_desc() %></div>
                 </div>
                 <div class="card-icons">
                     <i class="heart">🤍</i>
@@ -99,6 +108,8 @@
                     <button class="comment-btn">댓글 작성</button>
                 </div>
             </div>
+    	        	<%} %>
+	            <%} %>
             <%} %>
         </div>
     </div>

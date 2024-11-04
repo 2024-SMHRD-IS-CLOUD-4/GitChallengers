@@ -22,11 +22,12 @@
 
 	<div class="form-container">
 		<form action="groupCon" method="post">
-			<h2><input type="text" placeholder="그룹 이름" name="group_name"></h2>
-			<input type="text" placeholder="인원수 (최대 15인)" name="group_max">
+			<h2><input type="text" placeholder="그룹 이름" name="group_name" required></h2>
 			<input type="hidden" name = "manager" value = "<%=member.getId()%>">
-			<input type="text" placeholder="부방장" name="sub_manager" id="sub_manager">
-			<textarea placeholder="그룹 소개글" name="group_desc"></textarea>
+			<input type="text" placeholder="부방장" name="sub_manager" id="sub_manager" required>
+			<button type="button" id="idCheck">id 확인</button>
+			<span id="idCheckResult"></span>
+			<textarea placeholder="그룹 소개글" name="group_desc" required></textarea>
 			<div class="button-group">
 				<select>
 					<option>7일</option>
@@ -39,7 +40,25 @@
 	</div>
 
 	<script>
-
+		$('#idCheck').on('click', () => {
+			let input = $('#sub_manager').val();
+			$.ajax({
+				url : "idCheck",
+				type : "get",
+				data : {"input":input},
+				success : function(data){
+					if(data === 'true'){ 
+						$("#idCheckResult").text("확인");
+					}else { 
+						$("#idCheckResult").text("등록되지 않은 id");
+					}
+				},
+				error : function(){
+					alert("통신실패")
+				}
+				
+			})  		
+		})
 	</script>
 </body>
 </html>

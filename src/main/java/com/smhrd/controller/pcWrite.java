@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.smhrd.model.Gc_items;
+import com.smhrd.model.Gc_itemsDAO;
+import com.smhrd.model.Pc_items;
+import com.smhrd.model.Pc_itemsDAO;
+
 
 @WebServlet("/pcWrite")
 public class pcWrite extends HttpServlet {
@@ -19,8 +24,13 @@ public class pcWrite extends HttpServlet {
 		String p_item_title = request.getParameter("p_item_title");
 		String p_item_desc = request.getParameter("p_item_desc");
 		int pc_idx = Integer.parseInt(request.getParameter("pc_idx")); 
-		String id = request.getParameter("id");
 		String pc_ocr = request.getParameter("pc_ocr");
+		
+		Pc_items items = new Pc_items(p_item_title, p_item_desc, pc_idx, pc_ocr);
+		Pc_itemsDAO dao = new Pc_itemsDAO();
+		int result = dao.pcWrite(items);
+		
+		System.out.println(result);
 		
 	}
 

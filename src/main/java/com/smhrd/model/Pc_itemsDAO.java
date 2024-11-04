@@ -19,5 +19,13 @@ public class Pc_itemsDAO {
 
 		return result;
 	}
-
+	
+	// 개인 챌린지 글 작성
+	public int pcWrite(Pc_items i) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.insert("Pc_itemsMapper.pcWrite", i);
+		sqlSession.close();
+		
+		return result;
+	}
 }

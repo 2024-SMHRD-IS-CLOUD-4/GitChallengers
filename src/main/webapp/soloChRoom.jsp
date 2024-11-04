@@ -1,3 +1,11 @@
+<%@page import="com.smhrd.model.Pc_items"%>
+<%@page import="com.smhrd.model.Pc_itemsDAO"%>
+<%@page import="com.smhrd.model.Group"%>
+<%@page import="com.smhrd.model.Member_point"%>
+<%@page import="com.smhrd.model.Join"%>
+<%@page import="com.smhrd.model.Member_pointDAO"%>
+<%@page import="com.smhrd.model.GroupDAO"%>
+<%@page import="com.smhrd.model.JoinDAO"%>
 <%@page import="com.smhrd.model.Pc_challenge"%>
 <%@page import="com.smhrd.model.Pc_challengeDAO"%>
 <%@page import="com.smhrd.model.Member"%>
@@ -19,8 +27,14 @@
 	if(member == null) {
 		response.sendRedirect("login.jsp");
 	}
+	JoinDAO jdao = new JoinDAO();
+	GroupDAO gdao = new GroupDAO();
 	Pc_challengeDAO pcdao = new Pc_challengeDAO();
-	List<Pc_challenge> list = pcdao.selectAll(member.getId());
+	Pc_itemsDAO idao = new Pc_itemsDAO();
+	int idx = Integer.parseInt(request.getParameter("idx")); // 방 인덱스
+	List<Join> list = jdao.selectMy(member.getId()); // 내 그룹 불러오기
+	List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
+	List<Pc_items> iList = idao.selectAll(idx); // 작성글 가져오기
 	
 	%>
 	
@@ -57,46 +71,48 @@
         <!-- 카드 영역 -->
         <div class="card-container">
             <!-- 카드 리스트 -->
-            <% 
-               
+            <%
+                // 카드 데이터 배열
+                for (Pc_items i : iList) {
+                	if(i != null) {
             %>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-header">그룹원 </div>
-                        <div class="book-title"></div>
-                        <div class="page-info">페이지: </div>
-                        <div class="content-placeholder"></div>
-                    </div>
-                    <div class="card-icons">
-                        <i class="heart">🤍</i>
-                        <i class="comment">💬</i>
-                        <i>📤</i>
-                    </div>
-                    <div class="comment-section">
-                        <ul class="comment-list">
-                           
-                                <li></li>
-                           
-                        </ul>
-                        <input type="text" class="comment-input" placeholder="댓글을 입력하세요">
-                        <button class="comment-btn">댓글 작성</button>
-                    </div>
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-header"><%=member.getId() %></div>
+                    <div class="book-title"><%=i.getP_item_title() %></div>
+                    <div class="page-info"></div>
+                    <div class="content-placeholder"><%=i.getP_item_desc() %></div>
                 </div>
-            
+                <div class="card-icons">
+                    <i class="heart">🤍</i>
+                    <i class="comment">💬</i>
+                    <i>📤</i>
+                </div>
+                <div class="comment-section">
+                    <ul class="comment-list"></ul>
+                    <input type="text" class="comment-input" placeholder="댓글을 입력하세요">
+                    <button class="comment-btn">댓글 작성</button>
+                </div>
+            </div>
+    	        	<%} %>
+	            <%} %>
+            </div>
 
             <!-- MY 챌린지 팝업 -->
             <div id="myChallengePopup" class="popup hidden">
                 <h3>MY 챌린지</h3>
                 <div>
                     <p>개인 챌린지</p>
-                    
-                        <button class="popup-button"></button>
-                   
+                    <%for (Pc_challenge p: pcList) {%>
+                    <button class="popup-button" onClick="location.href='soloChRoom.jsp?idx=<%=p.getPc_idx()%>'"><%= p.getPc_title() != null ? p.getPc_title() : "진행중인 챌린지 없음" %></button>
+                    <%} %>
 
                     <p>그룹 챌린지</p>
-                    
-                        <button class="popup-button"></button>
-                    
+                    <%for (Join j : list) {
+                    	Group g = gdao.groupInfo(j.getGroup_idx());                    	
+                    %>
+	                    <button class="popup-button" onClick="location.href='groupChRoom.jsp?idx=<%=g.getGroup_idx()%>'"><%=g.getGroup_name() != null?g.getGroup_name() : "진행중인 챌린지 없음"%></button>
+                    <%} %>
                 </div>
             </div>
         </div>

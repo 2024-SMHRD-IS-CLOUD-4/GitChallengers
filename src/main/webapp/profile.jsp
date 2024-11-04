@@ -26,17 +26,16 @@
             <div class="logo">
                 <img src="img/team-logo.png" alt="로고">
                 <div class="nav-links">
-                    <a href="#">챌린지</a>
-                    <a href="#">챌린지</a>
-                    <a href="#">info</a>
+                    <a href="#">MY 챌린지</a>
+                    <a href="#">그룹 챌린지</a>
+                    <a href="#">개인 챌린지</a>
                 </div>
             </div>
             <div class="header-icons">
                 <i class="fas fa-search"></i>
-                <div class="profile-circle">
-                    <img src="img/chaechae-1.jpg" alt="프로필 이미지">
-                </div>
+
                 <i class="fas fa-bell"></i>
+                <button class="edit-profile-button">회원정보 수정</button>
                 <form action="logoutCon">
 	                <button class="logout-button">로그아웃</button>
                 </form>

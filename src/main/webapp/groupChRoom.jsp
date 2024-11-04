@@ -77,7 +77,7 @@
 			                <% } %>
                 	<% } %>
             </ul>
-            <button class="button" onClick="location.href='chWrite.jsp'">오늘의 챌린지 작성</button>
+            <button class="button" onClick="location.href='chWrite.jsp?idx=<%=idx%>'">오늘의 챌린지 작성</button>
         </div>
 
         <!-- 카드 영역 -->

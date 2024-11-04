@@ -27,7 +27,7 @@
     <!-- 헤더 -->
     <div class="header">
         <div class="title">
-            <img src="img/team-logo.png" alt="logo">
+            <img src="img/team-logo.png" alt="logo" onClick="location.href='main.jsp'">
             <span><%=member.getNick()%>님 환영합니다!</span>
         </div>
         

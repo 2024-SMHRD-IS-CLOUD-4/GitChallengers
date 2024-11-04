@@ -44,7 +44,7 @@
                 <div class="nav-links">
                     <a href="#">MY 챌린지</a>
                     <a href="groupChList.jsp">그룹 챌린지</a>
-                    <a href="#">개인 챌린지</a>
+                    <a href="soloChList.jsp">개인 챌린지</a>
                 </div>
             </div>
             <div class="header-icons">

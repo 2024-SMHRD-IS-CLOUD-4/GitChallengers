@@ -41,11 +41,11 @@
     <!-- 헤더 -->
     <div class="header">
         <div class="logo">
-            <img src="<%= request.getContextPath() %>/img/team-logo.png" alt="로고">
+            <img src="<%= request.getContextPath() %>/img/team-logo.png" alt="로고" onClick="location.href='main.jsp'">
             <div class="nav-links">
                 <a href="#">MY 챌린지</a>
                 <a href="groupChList.jsp">그룹 챌린지</a>
-                <a href="#">개인 챌린지</a>
+                <a href="soloChList.jsp">개인 챌린지</a>
             </div>
         </div>
         <div class="header-icons">

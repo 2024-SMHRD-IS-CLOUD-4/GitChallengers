@@ -28,4 +28,14 @@ public class Pc_items {
 	// 개인 챌린지 이미지
 	private String pc_ocr;
 
+	public Pc_items(String p_item_title, String p_item_desc, int pc_idx, String pc_ocr) {
+		super();
+		this.p_item_title = p_item_title;
+		this.p_item_desc = p_item_desc;
+		this.pc_idx = pc_idx;
+		this.pc_ocr = pc_ocr;
+	}
+
+	
+	
 }

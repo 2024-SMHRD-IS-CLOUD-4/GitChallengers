@@ -2,8 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Pc_itemsMapper">
 	
+	<!-- 내 챌린지 가져오기 -->
 	<select id="selectAll" resultType="Pc_items">
 		select * from ch_pc_items where pc_idx=#{pc_idx}
 	</select>
 
+	<!-- 개인 챌린지 글 작성하기 -->
+	<insert id="pcWrite" parameterType="Pc_items">
+		insert into ch_pc_items (p_itme_title, p_item_desc, pc_idx, pc_ocr) values (#{p_item_title}, #{p_item_desc}, #{pc_idx}, #{pc_ocr})
+	</insert>
+	
 </mapper>

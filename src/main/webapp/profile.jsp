@@ -78,6 +78,7 @@
 					<button>포인트 충전</button>
 				</div>
 
+
 				<!-- Book Showcase Section (Moved under Points Section) -->
 				<div class="book-showcase">
 					<h3>MY BOOK</h3>

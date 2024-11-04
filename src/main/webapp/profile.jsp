@@ -33,9 +33,8 @@
             </div>
             <div class="header-icons">
                 <i class="fas fa-search"></i>
-
                 <i class="fas fa-bell"></i>
-                <button class="edit-profile-button">회원정보 수정</button>
+                <button class="edit-profile-button" onClick="location.href='joinEdit.jsp'">회원정보 수정</button>
                 <form action="logoutCon">
 	                <button class="logout-button">로그아웃</button>
                 </form>

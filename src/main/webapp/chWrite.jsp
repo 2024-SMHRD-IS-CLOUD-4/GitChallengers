@@ -46,8 +46,8 @@
 		        
 		        <button class="action-button" type="submit">글 작성</button>
 		    </div>
-		</div>
 	</form>
+	</div>
 <script>
     function previewImage(event) {
         const preview = document.getElementById('preview-image');

@@ -22,9 +22,13 @@ public class pcWrite extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		String p_item_title = request.getParameter("p_item_title");
+		System.out.println(p_item_title);
 		String p_item_desc = request.getParameter("p_item_desc");
-		int pc_idx = Integer.parseInt(request.getParameter("pc_idx")); 
+		System.out.println(p_item_desc);
+		int pc_idx = Integer.parseInt(request.getParameter("pc_idx"));
+		System.out.println(pc_idx);
 		String pc_ocr = request.getParameter("pc_ocr");
+		System.out.println(pc_ocr);
 		
 		Pc_items items = new Pc_items(p_item_title, p_item_desc, pc_idx, pc_ocr);
 		Pc_itemsDAO dao = new Pc_itemsDAO();

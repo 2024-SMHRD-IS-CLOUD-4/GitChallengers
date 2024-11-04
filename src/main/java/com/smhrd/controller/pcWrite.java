@@ -15,7 +15,12 @@ public class pcWrite extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+		request.setCharacterEncoding("UTF-8");
+		String p_item_title = request.getParameter("p_item_title");
+		String p_item_desc = request.getParameter("p_item_desc");
+		int pc_idx = Integer.parseInt(request.getParameter("pc_idx")); 
+		String id = request.getParameter("id");
+		String pc_ocr = request.getParameter("pc_ocr");
 		
 	}
 

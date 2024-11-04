@@ -65,6 +65,7 @@
                 <label for="id">아이디 *</label>
                 <div class="input-group">
                     <input type="text" name="id" value="<%= member.getId()%>" disabled required>
+                    
                 </div>
             </div>
 
@@ -96,7 +97,7 @@
             <!-- 생년월일 입력 (수정 불가) -->
             <div class="form-group">
                 <label for="birthdate">생년월일 *</label>
-                <input type="text" id="birthdate" name="birthday" value="<%= member.getBirthdate()%>" disabled required>
+                <input type="text" id="birthdate" name="birthdate" value="<%= member.getBirthdate()%>" disabled required>
             </div>
 
             <!-- 휴대폰번호 입력 -->
@@ -124,7 +125,7 @@
             <!-- 감명 깊게 읽은 책 입력 -->
             <div class="form-group">
                 <label for="favorite-book">감명깊게 읽은 책</label>
-                <input type="text" name="fav_book" value="<%= member.getFav_books() %>">
+                <input type="text" name="fav_books" value="<%= member.getFav_books() %>">
             </div>
 
             <!-- 제출 버튼 -->

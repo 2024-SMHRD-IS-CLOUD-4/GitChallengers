@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.smhrd.model.Member;
+import com.smhrd.model.MemberDAO;
 
 
 @WebServlet("/updateMember")
@@ -18,7 +20,10 @@ public class updateMember extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
+		
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		String id = member.getId();
 		String pw = request.getParameter("pw");
 		String name = request.getParameter("name");
 		String nick = request.getParameter("nick");
@@ -33,6 +38,13 @@ public class updateMember extends HttpServlet {
 			update = new Member(id, pw, name, nick, email, phone, birthdate);
 		}else {
 			update = new Member(id, pw, name, nick, email, phone, birthdate, fav_books);			
+		}
+		
+		MemberDAO dao = new MemberDAO();
+		int result = dao.update(update);
+		
+		if(result == 1) {
+			
 		}
 		
 		

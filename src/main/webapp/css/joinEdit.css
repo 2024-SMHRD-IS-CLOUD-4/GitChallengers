@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: #f2efe8;
+	margin: 0;
+	font-family: Arial, sans-serif;
+}
+
+.container {
+	width: 400px;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	position: relative;
+}
+
+/* 뒤로가기 버튼 */
+.back-button {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.container h2 {
+	text-align: center;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 5px;
+	font-size: 14px;
+}
+
+.form-group input {
+	width: 100%;
+	padding: 8px;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.form-group select {
+	width: 100%;
+	padding: 8px;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.form-group .email-group {
+	display: flex;
+}
+
+.form-group .email-group input[type="text"] {
+	flex: 2;
+	margin-right: 5px;
+}
+
+.form-group .email-group select {
+	flex: 1;
+}
+
+/* 아이디 입력과 중복확인 버튼을 위한 스타일 */
+.input-group {
+	display: flex;
+	align-items: center;
+}
+
+.input-group input[type="text"] {
+	flex: 3;
+}
+
+.check-btn {
+	flex: 1;
+	padding: 8px;
+	background-color: #f5d5da;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	color: #fff;
+	margin-left: 8px;
+}
+
+.check-btn:hover {
+	background-color: #e0b2b8;
+}
+
+.submit-btn {
+	width: 100%;
+	padding: 10px;
+	background-color: #f5d5da;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	color: #fff;
+}
+
+.submit-btn:hover {
+	background-color: #e0b2b8;
+}
+
+.submit-btn:disabled {
+	background-color: #e0b2b8;
+}

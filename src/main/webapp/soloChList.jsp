@@ -68,7 +68,7 @@
                     <strong>14일 후 종료 예정</strong>
                 </div>
             </div>
-            <button class="join-button" onClick="location.href='pcWrite.jsp?idx=<%=pc.getPc_idx()%>'">작성하기</button>
+            <button class="join-button" onClick="location.href='soloChRoom.jsp?idx=<%=pc.getPc_idx()%>'">작성하기</button>
         </div>
 			<%} %>
 		<%} %>

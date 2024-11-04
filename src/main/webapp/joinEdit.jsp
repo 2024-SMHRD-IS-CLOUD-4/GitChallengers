@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page language="java" %>
 <!DOCTYPE html>
@@ -46,24 +47,31 @@
 </head>
 
 <body>
+	<%
+		Member member = (Member) session.getAttribute("member");
+		if(member == null) {
+			response.sendRedirect("login.jsp");
+		}
+	%>
+
     <div class="container">
         <!-- 뒤로가기 버튼 -->
         <div class="back-button" onclick="goBack()">←</div>
         <h2>회원정보 수정</h2>
         
-        <form action="RegisterServlet" method="post" onsubmit="validateForm(event)">
+        <form action="updateMember" method="post" onsubmit="validateForm(event)">
             <!-- 아이디 입력 (수정 불가) -->
             <div class="form-group">
                 <label for="id">아이디 *</label>
                 <div class="input-group">
-                    <input type="text" name="id" value="<%= (String) session.getAttribute("userId") %>" disabled required>
+                    <input type="text" name="id" value="<%= member.getId()%>" disabled required>
                 </div>
             </div>
 
             <!-- 닉네임 입력 -->
             <div class="form-group">
                 <label for="nickname">닉네임 *</label>
-                <input type="text" id="nickname" name="nickname" value="<%= (String) session.getAttribute("nickname") %>" required>
+                <input type="text" id="nickname" name="nick" value="<%= member.getNick() %>" required>
             </div>
 
             <!-- 비밀번호와 비밀번호 확인 -->
@@ -75,38 +83,38 @@
                 <label for="confirm-password">비밀번호 확인 *</label>
                 <input type="password" id="confirm-password" name="confirm-pw" required>
             </div>
+            
+            <!-- 오류 메시지 표시 -->
+            <div id="error-message" style="color: red; display: none; font-size: 14px; margin-bottom: 15px;"></div>
 
             <!-- 이름 입력 (수정 불가) -->
             <div class="form-group">
                 <label for="name">이름 *</label>
-                <input type="text" name="name" value="<%= (String) session.getAttribute("name") %>" disabled required>
+                <input type="text" name="name" value="<%= member.getName() %>" disabled required>
             </div>
 
             <!-- 생년월일 입력 (수정 불가) -->
             <div class="form-group">
                 <label for="birthdate">생년월일 *</label>
-                <input type="date" id="birthdate" name="birthdate" value="<%= (String) session.getAttribute("birthdate") %>" disabled required>
+                <input type="text" id="birthdate" name="birthday" value="<%= member.getBirthdate()%>" disabled required>
             </div>
-
-            <!-- 오류 메시지 표시 -->
-            <div id="error-message" style="color: red; display: none; font-size: 14px; margin-bottom: 15px;"></div>
 
             <!-- 휴대폰번호 입력 -->
             <div class="form-group">
                 <label for="phone">휴대폰번호 *</label>
-                <input type="tel" name="phone" value="<%= (String) session.getAttribute("phone") %>" required>
+                <input type="tel" name="phone" value="<%= member.getPhone() %>" required>
             </div>
 
             <!-- 이메일 입력 -->
             <div class="form-group">
                 <label for="email">이메일 *</label>
                 <div class="email-group">
-                    <input type="text" name="email" value="<%= (String) session.getAttribute("email") %>" required>
-                    <select id="domain-select" name="email-domain" onchange="toggleEmailInput(this)" required>
-                        <option value="gmail.com">@gmail.com</option>
-                        <option value="naver.com">@naver.com</option>
-                        <option value="daum.net">@daum.net</option>
-                        <option value="custom">직접 입력</option>
+                    <input type="text" name="email" value="<%= member.getEmail() %>" required>
+                    <select id="domain-select" name="domain" onchange="toggleEmailInput(this)" required>
+                        <option value="@gmail.com">@gmail.com</option>
+                        <option value="@naver.com">@naver.com</option>
+                        <option value="@daum.net">@daum.net</option>
+                        <option value="@custom">직접 입력</option>
                     </select>
                     <input type="text" id="custom-domain" name="custom-domain" placeholder="예: @yourdomain.com"
                         style="display:none; margin-top: 5px;" disabled>
@@ -116,7 +124,7 @@
             <!-- 감명 깊게 읽은 책 입력 -->
             <div class="form-group">
                 <label for="favorite-book">감명깊게 읽은 책</label>
-                <input type="text" name="fav-books" value="<%= (String) session.getAttribute("favBooks") %>">
+                <input type="text" name="fav_book" value="<%= member.getFav_books() %>">
             </div>
 
             <!-- 제출 버튼 -->

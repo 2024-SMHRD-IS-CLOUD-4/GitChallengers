@@ -3,7 +3,7 @@
 <mapper namespace="MemberMapper">
 	<!-- 회원가입 -->
 	<insert id="join" parameterType="Member">
-		insert into ch_member values (#{id}, #{pw}, #{name}, #{nick}, #{email}, #{phone}, #{birthday}, #{fav_book}, sysdate, #{ch_count}, #{ch_suc_count}, #{profile_img})
+		insert into ch_member values (#{id}, #{pw}, #{name}, #{nick}, #{email}, #{phone}, #{birthdate}, #{fav_books}, sysdate, #{ch_count}, #{ch_suc_count}, null)
 	</insert>
 	
 	<!-- 로그인 -->
@@ -21,5 +21,9 @@
 		select * from ch_member
 	</select>
 	
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="Member">
+		update ch_member set id=#{id}, pw=#{pw}
+	</update>
 	
 </mapper>

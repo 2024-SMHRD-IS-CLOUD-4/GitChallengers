@@ -27,10 +27,10 @@ public class Member {
 	private String phone;
 	
 	// 생년월일 
-	private String birthday;
+	private String birthdate;
 	
 	// 선호 도서 
-	private String fav_book;
+	private String fav_books;
 	
 	// 가입 일자 
 	private String joined_at;
@@ -50,7 +50,7 @@ public class Member {
 	}
 
 	public Member(String id, String pw, String name, String nick, String email, String phone,
-			String birthday, String fav_book) {
+			String birthdate, String fav_books) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -58,11 +58,11 @@ public class Member {
 		this.nick = nick;
 		this.email = email;
 		this.phone = phone;
-		this.birthday = birthday;
-		this.fav_book = fav_book;
+		this.birthdate = birthdate;
+		this.fav_books = fav_books;
 	}
 
-	public Member(String id, String pw, String name, String nick, String email, String phone, String birthday) {
+	public Member(String id, String pw, String name, String nick, String email, String phone, String birthdate) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -70,7 +70,7 @@ public class Member {
 		this.nick = nick;
 		this.email = email;
 		this.phone = phone;
-		this.birthday = birthday;
+		this.birthdate = birthdate;
 	}
 
 	

@@ -47,5 +47,15 @@ public class MemberDAO {
 		return result;
 	}
 	
+	// 회원정보 수정
+	public int update(Member m) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.update("MemberMapper.update", m);
+		sqlSession.close();
+		
+		return result;
+	}
+	
+	
 
 }

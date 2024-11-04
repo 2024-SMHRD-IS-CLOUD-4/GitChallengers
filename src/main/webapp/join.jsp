@@ -43,22 +43,22 @@
             <label for="email">이메일 *</label>
                 <div class="email-group">
                     <input type="text" name="email" required>
-                    <select id="domain-select" name="email" onchange="toggleEmailInput(this)" required>
-                        <option value="gmail.com">@gmail.com</option>
-                        <option value="naver.com">@naver.com</option>
-                        <option value="daum.net">@daum.net</option>
-                        <option value="custom">직접 입력</option>
+                    <select id="domain-select" name="domain" onchange="toggleEmailInput(this)" required>
+                        <option value="@gmail.com">@gmail.com</option>
+                        <option value="@naver.com">@naver.com</option>
+                        <option value="@daum.net">@daum.net</option>
+                        <option value="@custom">직접 입력</option>
                     </select>
                     <input type="text" id="custom-domain" name="custom-domain" placeholder="예: @yourdomain.com" style="display:none; margin-top: 5px;" disabled>
                 </div>
         </div>
         <div class="form-group">
 			<label for="birthdate">생년월일 *</label>
-			<input type="date" id="birthdate" name="birthday" required>
+			<input type="date" id="birthdate" name="birthdate" required>
 		</div>
         <div class="form-group">
             <label for="favorite-book">감명깊게 읽은책</label>
-            <input id="favorite-book" name="fav_book">
+            <input id="favorite-book" name="fav_books">
         </div>
         <button type="submit" class="signup-btn">회원가입 완료</button>
     </form>

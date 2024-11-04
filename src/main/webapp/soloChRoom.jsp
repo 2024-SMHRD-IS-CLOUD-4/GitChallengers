@@ -65,7 +65,7 @@
                 <div class="profile-img" id="profilePreview"></div>
             </div>
             <div class="profile-name"></div>
-            <button class="button" onclick="location.href='<%= request.getContextPath() %>/writeChallenge'">오늘의 챌린지 작성</button>
+            <button class="button" onclick="location.href='pcWrite.jsp?idx=<%=idx%>'">오늘의 챌린지 작성</button>
         </div>
 
         <!-- 카드 영역 -->

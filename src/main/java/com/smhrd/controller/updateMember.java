@@ -8,11 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.model.Member;
-import com.smhrd.model.MemberDAO;
 
 
-@WebServlet("/joinCon")
-public class joinCon extends HttpServlet {
+@WebServlet("/updateMember")
+public class updateMember extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -27,23 +26,16 @@ public class joinCon extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String birthdate = request.getParameter("birthdate");
 		String fav_books = request.getParameter("fav_books");
-		birthdate = birthdate.replace("-","");
 		
-		Member join;
+		Member update;
 		
 		if(fav_books == null) {
-			join = new Member(id, pw, name, nick, email, phone, birthdate);
+			update = new Member(id, pw, name, nick, email, phone, birthdate);
 		}else {
-			join = new Member(id, pw, name, nick, email, phone, birthdate, fav_books);			
+			update = new Member(id, pw, name, nick, email, phone, birthdate, fav_books);			
 		}
-		MemberDAO dao = new MemberDAO();
-		int result = dao.join(join);
 		
-		if (result == 1) {
-			response.sendRedirect("login.jsp");
-		}else {
-			response.sendRedirect("join.jsp");
-		}
+		
 		
 		
 	}

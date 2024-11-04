@@ -1,0 +1,88 @@
+@charset "UTF-8";
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2efe8;
+    margin: 0;
+}
+
+.profile-container {
+    background-color: white;
+    width: 350px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+/* 뒤로가기 버튼 */
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    background-color: #f5d5da;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+}
+
+.profile-pic input[type="file"] {
+    display: none; /* 파일 선택 버튼 숨기기 */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group textarea {
+    resize: none;
+    height: 60px;
+}
+
+.save-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f5d5da;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background-color: #e0b2b8;
+}

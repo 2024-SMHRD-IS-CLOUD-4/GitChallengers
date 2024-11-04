@@ -1,7 +1,7 @@
 @charset "UTF-8";
         /* 기본 스타일 */
         body {
-            background-color: #C8B8A6;
+            background-color: #f2efe8;
             font-family: Arial, sans-serif;
             margin: 0;
             padding-top: 80px; /* 헤더 높이만큼 상단 여백 */
@@ -16,7 +16,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #D0C0B0;
+            background-color: #f2efe8;
             display: flex;
             justify-content: space-between;
             align-items: center;

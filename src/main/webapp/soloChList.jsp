@@ -41,6 +41,7 @@
 		        <a href="#">MY 챌린지</a>
 		        <a href="groupChList.jsp">그룹 챌린지</a>
 		        <a href="soloChList.jsp">개인 챌린지</a>
+		        <a href="reviewMain.jsp">리뷰</a>
 		    </div>
 		</div>
 		<div class="header-icons">

@@ -18,6 +18,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenge and Shop Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
@@ -43,16 +44,17 @@
         <!-- Header -->
         <div class="header">
             <div class="logo">
-                <img src="img/team-logo.png" alt="로고">
+                <img src="img/team-logo.png" alt="로고" onClick="location.href='main.jsp'">
                 <div class="nav-links">
                     <a href="#">MY 챌린지</a>
                     <a href="groupChList.jsp">그룹 챌린지</a>
                     <a href="soloChList.jsp">개인 챌린지</a>
+                    <a href="reviewMain.jsp">리뷰</a>
                 </div>
             </div>
             <div class="header-icons">
-                <i class="fas fa-search search-icon">🔍</i>
-                <i class="fas fa-bell notification-icon">🔔</i>
+                <i class="fas fa-search"></i>
+                <i class="fas fa-bell"></i>
                 <a href="profile.jsp" class="welcome-text"><%=member.getNick() %> 환영합니다</a>
                 <form action="logoutCon">
 	                <button class="logout-button">로그아웃</button>

@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.Member_info"%>
+<%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.Pc_challenge"%>
 <%@page import="com.smhrd.model.Pc_challengeDAO"%>
 <%@page import="com.smhrd.model.Member_point"%>
@@ -29,10 +31,11 @@
 		GroupDAO gdao = new GroupDAO();
 		Member_pointDAO mpdao = new Member_pointDAO();
 		Pc_challengeDAO pcdao = new Pc_challengeDAO();
+		Member_infoDAO infodao = new Member_infoDAO();
 		List<Join> list = jdao.selectMy(member.getId()); // 내 그룹 불러오기
 		List<Member_point> rank = mpdao.rank(); // 랭킹 불러오기
 		List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
-		
+		Member_info member_info = infodao.info(member.getId()); // 회원 정보 가져오기
 	%>
 
     <!-- Main Container -->
@@ -72,7 +75,7 @@
                 <h2>챌린지 완료 확률</h2>
                 <div class="progress-chart">
                     <div class="progress-circle" data-progress="<%= request.getAttribute("completionProbability") %>"></div>
-                    <span class="progress-text"><%=member.getCh_count() == 0 ? "0" : member.getCh_suc_count()/member.getCh_count() * 100 %>%</span>
+                    <span class="progress-text"><%=member_info.getCh_count() == 0 ? "0" : member_info.getCh_suc_count()/member_info.getCh_count() * 100 %>%</span>
                 </div>
             </div>
         </div>

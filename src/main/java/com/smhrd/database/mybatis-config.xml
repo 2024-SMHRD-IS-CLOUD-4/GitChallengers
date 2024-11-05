@@ -12,6 +12,7 @@
 		<typeAlias type="com.smhrd.model.Member_point" alias = "point"/>
 		<typeAlias type="com.smhrd.model.Pc_challenge" alias = "Pc_challenge"/>
 		<typeAlias type="com.smhrd.model.Pc_items" alias = "Pc_items"/>
+		<typeAlias type="com.smhrd.model.Member_info" alias = "info"/>
 	</typeAliases>
   <environments default="development">
     <environment id="development">
@@ -32,5 +33,6 @@
     <mapper resource="com/smhrd/database/Member_pointMapper.xml"/>
     <mapper resource="com/smhrd/database/Pc_challengeMapper.xml"/>
     <mapper resource="com/smhrd/database/Pc_itemsMapper.xml"/>
+    <mapper resource="com/smhrd/database/Member_infoMapper.xml"/>
   </mappers>
 </configuration>

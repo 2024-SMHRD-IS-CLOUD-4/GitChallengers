@@ -68,11 +68,19 @@
                 <div class="intro-section">
                     <textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled></textarea>
                 </div>
+                
+            
                 <div class="points-section">
                     <span>보유 포인트: 10000000원</span>
-                    <button>포인트 충전</button>
+                    <span>보유 캐쉬: 10000000원</span>
+                    <button>캐쉬 충전</button>
                 </div>
-
+               
+                    
+               
+                
+               
+				
                 <!-- Book Showcase Section (Moved under Points Section) -->
                 <div class="book-showcase">
                     <h3>MY BOOK</h3>

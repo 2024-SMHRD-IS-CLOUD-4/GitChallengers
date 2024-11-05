@@ -43,6 +43,8 @@ public class Member {
 	
 	// 프로필 사진 
 	private String profile_img;
+	
+	
 
 	public Member(String id, String pw) {
 		this.id = id;

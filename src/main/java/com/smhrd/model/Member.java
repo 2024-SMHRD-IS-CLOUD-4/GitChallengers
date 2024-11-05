@@ -64,16 +64,5 @@ public class Member {
 		this.birthdate = birthdate;
 	}
 
-//	public Member(String id, String nick, String profile_img, String intro) {
-//		super();
-//		this.id = id;
-//		this.nick = nick;
-//		this.profile_img = profile_img;
-//		this.intro = intro;
-//	}
-//	
-	
-
-	
 	
 }

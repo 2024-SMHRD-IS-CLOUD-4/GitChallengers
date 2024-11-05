@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -27,21 +28,20 @@
         </label>
         <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)">
 
-        <!-- 줄거리와 느낀점 -->
+        <!-- 줄거리와 느껴지지 -->
         <textarea class="summary" placeholder="내용"></textarea>
-        <textarea class="impressions" placeholder="느낀점"></textarea>
+        <textarea class="impressions" placeholder="느껴지"></textarea>
 
         <div class="footer">
-            <div class="toggle-buttons">
-                <button id="personal-button" onclick="toggleSelection('personal')">추천</button>
-                <button id="group-button" onclick="toggleSelection('group')">비추천</button>
-                <!-- 추천할 대상 입력 칸 -->
-                <input type="text" class="recommendation-target" placeholder="추천 대상">
-            </div>
-
             <!-- 인증사진첨부 버튼 -->
             <button id="auth-upload-button" onclick="document.getElementById('auth-file-input').click()">인증사진첨부</button>
             <input type="file" id="auth-file-input" accept="image/*" style="display: none;" onchange="previewAuthImage(event)">
+
+            <!-- 추천/비추천 버튼 -->
+            <div class="toggle-buttons">
+                <button id="personal-button" onclick="toggleSelection('personal')">추천</button>
+                <button id="group-button" onclick="toggleSelection('group')">비추천</button>
+            </div>
 
             <!-- 글 작성 버튼 -->
             <button class="action-button">리뷰 작성</button>

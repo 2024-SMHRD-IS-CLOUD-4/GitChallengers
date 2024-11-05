@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smhrd.model.Gc_items;
-import com.smhrd.model.Gc_itemsDAO;
 import com.smhrd.model.Pc_items;
 import com.smhrd.model.Pc_itemsDAO;
 
@@ -34,7 +32,11 @@ public class pcWrite extends HttpServlet {
 		Pc_itemsDAO dao = new Pc_itemsDAO();
 		int result = dao.pcWrite(items);
 		
-		System.out.println(result);
+		if(result == 1) {
+			response.sendRedirect("soloChRoom.jsp?idx=" + pc_idx);
+		}else {
+			response.sendRedirect("pcWrite.jsp?idx=" + pc_idx);
+		}
 		
 	}
 

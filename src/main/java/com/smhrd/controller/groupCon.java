@@ -18,6 +18,7 @@ public class groupCon extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 그룹 챌린지 생성
 		request.setCharacterEncoding("UTF-8");
 		String group_name = request.getParameter("group_name");
 		String group_desc = request.getParameter("group_desc");
@@ -29,6 +30,7 @@ public class groupCon extends HttpServlet {
 		Group group = new Group(group_name, group_desc, manager, sub_manager, group_max);
 		GroupDAO dao = new GroupDAO();
 		int result = dao.createGroup(group);
+		
 		
 		if (result == 1) {
 			response.sendRedirect("groupChList.jsp");

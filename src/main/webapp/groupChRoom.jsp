@@ -23,12 +23,12 @@
 	if(member == null) {
 		response.sendRedirect("login.jsp");
 	}
-	int idx = Integer.parseInt(request.getParameter("idx")); // 방 인덱스
 	GroupDAO dao = new GroupDAO(); 
-	Group group = dao.groupInfo(idx); // 방 정보
 	JoinDAO jdao = new JoinDAO();
-	List<Join> list = jdao.selectAll(idx); // 방 참가 인원 정보
 	Gc_itemsDAO idao = new Gc_itemsDAO();
+	int idx = Integer.parseInt(request.getParameter("idx")); // 방 인덱스
+	Group group = dao.groupInfo(idx); // 방 정보
+	List<Join> list = jdao.selectAll(idx); // 방 참가 인원 정보
 	
 	
 %>

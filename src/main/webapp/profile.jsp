@@ -47,7 +47,7 @@
             <div class="profile-picture">
                 <img src="img/chaechae-1.jpg" alt="Profile Image">
                 <h2><%=member.getNick() %></h2>
-                <button class="button-edit">프로필 편집</button>
+                <button class="button-edit" onClick="location.href='profileEdit.jsp'">프로필 편집</button>
             </div>
             <!-- Stats and Intro Section -->
             <div class="stats-section">

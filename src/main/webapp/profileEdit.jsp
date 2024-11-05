@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page language="java" %>
 <!DOCTYPE html>
@@ -11,7 +12,12 @@
 </head>
 
 <body>
-
+		<%
+		Member member = (Member) session.getAttribute("member");
+		if(member == null) {
+			response.sendRedirect("login.jsp");
+		}
+		%>
     <div class="profile-container">
         <h2>프로필 편집</h2>
         <!-- 뒤로가기 버튼 -->

@@ -80,8 +80,13 @@
                 
             
                 <div class="points-section">
+
                     <span>보유 포인트: 10000000원</span>
                     <span>보유 캐쉬: 10000000원</span>
+
+                    <span>보유 포인트: <%=member_info.getPoint() %>원</span><br>
+                    <span>보유 캐쉬: <%=member_info.getCash() %>원</span>
+
                     <button class="button-edit" onclick="location.href='pay.jsp'">캐쉬 충전</button>
                </div>
                 

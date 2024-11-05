@@ -77,9 +77,4 @@ public class MemberDAO {
 		
 		return result;
 	}
-	
-	//탈퇴
-	
-	
-
 }

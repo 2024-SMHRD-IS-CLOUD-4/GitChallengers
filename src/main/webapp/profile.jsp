@@ -34,7 +34,7 @@
 				<img src="img/team-logo.png" alt="로고" onClick="location.href='main.jsp'">
 				<div class="nav-links">
 					<a href="#">MY 챌린지</a> <a href="#">그룹 챌린지</a> <a href="#">개인
-						챌린지</a>
+						챌린지</a> <a href="reviewMain.jsp">리뷰</a>
 				</div>
 			</div>
 			<div class="header-icons">

@@ -73,13 +73,10 @@
                 
             
                 <div class="points-section">
-                    <span>보유 포인트: 10000000원</span>
-                </div>
-                
-     			<div class="points-section">
+                    <span>보유 포인트: 10000000원</span><br>
                     <span>보유 캐쉬: 10000000원</span>
-                    <button onclick="location.href='pay.jsp'">캐쉬 충전</button>
-                </div>
+                    <button class="button-edit" onclick="location.href='pay.jsp'">캐쉬 충전</button>
+               </div>
                 
                 <!-- Book Showcase Section (Moved under Points Section) -->
                 <div class="book-showcase">

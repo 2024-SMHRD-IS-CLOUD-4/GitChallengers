@@ -9,7 +9,7 @@
 
 	<!-- 개인 챌린지 글 작성하기 -->
 	<insert id="pcWrite" parameterType="Pc_items">
-		insert into ch_pc_items (p_itme_title, p_item_desc, pc_idx, pc_ocr) values (#{p_item_title}, #{p_item_desc}, #{pc_idx}, #{pc_ocr})
+		insert into ch_pc_items values (ch_pc_items_seq.nextval, #{p_item_title}, #{p_item_desc}, sysdate, 'n', #{pc_idx}, #{pc_ocr})
 	</insert>
 	
 </mapper>

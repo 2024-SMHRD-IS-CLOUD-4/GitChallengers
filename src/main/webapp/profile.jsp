@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.Member_info"%>
+<%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.Member_pointDAO"%>
 <%@page import="com.smhrd.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -21,7 +23,8 @@
 		response.sendRedirect("login.jsp");
 	}
 	Member_pointDAO pdao = new Member_pointDAO();
-	
+	Member_infoDAO infodao = new Member_infoDAO();
+	Member_info member_info = infodao.info(member.getId()); // 회원 정보 가져오기
 	%>
 	<!-- Main Container -->
 	<div class="container">
@@ -56,19 +59,19 @@
                 <div class="stats">
                     <div>
                         <p>챌린지 완료 횟수</p>
-                        <span><%=member.getCh_suc_count() %>회</span>
+                        <span><%=member_info.getCh_suc_count() %>회</span>
                     </div>
                     <div>
                         <p>챌린지 완료 확률</p>
-                        <%if(member.getCh_count() == 0) { %>
+                        <%if(member_info.getCh_count() == 0) { %>
                         	<span>0%</span>
                         <%}else{ %>
-                        <span><%=member.getCh_suc_count()/member.getCh_count() * 100 %>%</span>
+                        <span><%=member_info.getCh_suc_count()/member_info.getCh_count() * 100 %>%</span>
                         <%} %>
                     </div>
                 </div>
                 <div class="intro-section">
-                    <textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled><%= (member.getIntro() != null) ? member.getIntro() : "" %></textarea>
+                    <textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled><%= (member_info.getIntro() != null) ? member_info.getIntro() : "" %></textarea>
                 </div>
                 
             

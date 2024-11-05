@@ -74,6 +74,21 @@
 						예정</strong>
 				</div>
 			</div>
+			<!-- MY 챌린지 팝업 -->
+            <div id="myChallengePopup" class="popup hidden">
+                <h3>MY 챌린지</h3>
+                <div>
+                    <p>개인 챌린지</p>
+                    <button class="popup-button"><%= request.getAttribute("personalChallenge1") != null ? request.getAttribute("personalChallenge1") : "돼지책" %></button>
+                    <button class="popup-button"><%= request.getAttribute("personalChallenge2") != null ? request.getAttribute("personalChallenge2") : "돼지책" %></button>
+                    <button class="popup-button"><%= request.getAttribute("personalChallenge3") != null ? request.getAttribute("personalChallenge3") : "돼지책" %></button>
+
+                    <p>그룹 챌린지</p>
+                    <button class="popup-button"><%= request.getAttribute("groupChallenge1") != null ? request.getAttribute("groupChallenge1") : "하루 한권 읽어요~" %></button>
+                    <button class="popup-button"><%= request.getAttribute("groupChallenge2") != null ? request.getAttribute("groupChallenge2") : "하루 두권 읽어요~" %></button>
+                    <button class="popup-button"><%= request.getAttribute("groupChallenge3") != null ? request.getAttribute("groupChallenge3") : "하루 두권 읽어요~" %></button>
+                </div>
+            </div>
 			<%
 			for (Join j : joinMember) {
 				if (member.getId().equals(j.getId())) {

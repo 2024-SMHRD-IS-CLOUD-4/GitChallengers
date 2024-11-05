@@ -215,14 +215,14 @@ body {
 
 /* 참가 버튼 */
 .join-button {
+	color: #fff;
 	padding: 8px 15px;
-	background-color: #D0E4F7;
+	background-color: #f4b1c2;
 	border: none;
 	border-radius: 8px;
 	cursor: pointer;
-	color: #333;
 }
 
 .join-button:hover {
-	background-color: #B0CFE0;
+	background-color: #e092a8;
 }

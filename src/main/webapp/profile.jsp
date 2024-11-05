@@ -70,30 +70,33 @@
                 <div class="intro-section">
                     <textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled><%= (member.getIntro() != null) ? member.getIntro() : "" %></textarea>
                 </div>
+                
+            
                 <div class="points-section">
-                    <span>보유 포인트: 10000000원</span>
-                    <button>포인트 충전</button>
+                    <span>보유 포인트: 10000000원</span><br>
+                    <span>보유 캐쉬: 10000000원</span>
+                    <button class="button-edit" onclick="location.href='pay.jsp'">캐쉬 충전</button>
+               </div>
+                
+                <!-- Book Showcase Section (Moved under Points Section) -->
+                <div class="book-showcase">
+                    <h3>MY BOOK</h3>
+                    <div class="book-list">
+                        <div class="book-item">
+                            <img src="img/pigbook-1.jfif" alt="돼지책">
+                            <p>돼지책</p>
+                        </div>
+                        <div class="book-item">
+                            <img src="img/pigbook-1.jfif" alt="돼지책">
+                            <p>돼지책</p>
+                        </div>
+                        <div class="book-item">
+                            <img src="img/pigbook-1.jfif" alt="돼지책">
+                            <p>돼지책</p>
+                        </div>
+                    </div>
                 </div>
-
-				<!-- Book Showcase Section (Moved under Points Section) -->
-				<div class="book-showcase">
-					<h3>MY BOOK</h3>
-					<div class="book-list">
-						<div class="book-item">
-							<img src="img/pigbook-1.jfif" alt="돼지책">
-							<p>돼지책</p>
-						</div>
-						<div class="book-item">
-							<img src="img/pigbook-1.jfif" alt="돼지책">
-							<p>돼지책</p>
-						</div>
-						<div class="book-item">
-							<img src="img/pigbook-1.jfif" alt="돼지책">
-							<p>돼지책</p>
-						</div>
-					</div>
-				</div>
-			</div>
+            </div>
 
 			<!-- Review Container -->
 			<div class="review-container">

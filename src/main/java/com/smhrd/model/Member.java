@@ -44,6 +44,7 @@ public class Member {
 	// 프로필 사진 
 	private String profile_img;
 	
+
 	// 소개글
 	private String intro;
 

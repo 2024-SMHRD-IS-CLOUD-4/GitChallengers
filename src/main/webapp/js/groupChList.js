@@ -37,29 +37,32 @@ document.querySelectorAll('.popup-button').forEach(button => {
 		alert(`${this.textContent} 버튼을 클릭했습니다.`);
 	});
 });
-	const join = (idx, count, max) => {
-		if (count >= max) {
-			alert('인원초과');
-		} else {
-			var id = "<%=member.getId()%>"
-			$.ajax({
-				url: 'groupJoinCon',
-				method: 'post',
-				data: { "idx": idx, "id": id },
-				success: function(data) {
-					if (data === 'true') {
-						alert("가입 성공");
-						location.reload(true);
-					} else {
-						alert("가입 실패");
-						location.reload(true);
-					}
-				},
-				error: function() {
-					alert("통신실패");
-					location.reload(true);
-				}
+$(document).ready(function() {
+   const join = (idx, count, max) => {
+      if (count >= max) {
+         alert('인원초과');
+      } else {
+         var id = "<%=member.getId() %>";
+         $.ajax({
+            url: 'groupJoinCon',
+            method: 'post',
+            data: { "idx": idx, "id": id },
+            success: function(data) {
+               if (data === 'true') {
+                  alert("가입 성공");
+                  location.reload(true);
+               } else {
+                  alert("가입 실패");
+                  location.reload(true);
+               }
+            },
+            error: function() {
+               alert("통신실패");
+               location.reload(true);
+            }
+         });
+      }
+   };
 
-		})
-	}
-}
+   window.join = join;
+});

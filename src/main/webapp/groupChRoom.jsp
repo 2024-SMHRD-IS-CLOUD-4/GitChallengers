@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.Gc_items"%>
 <%@page import="com.smhrd.model.Gc_itemsDAO"%>
 <%@page import="com.smhrd.model.Member"%>
@@ -26,6 +27,7 @@
 	GroupDAO dao = new GroupDAO(); 
 	JoinDAO jdao = new JoinDAO();
 	Gc_itemsDAO idao = new Gc_itemsDAO();
+	MemberDAO mdao = new MemberDAO();
 	int idx = Integer.parseInt(request.getParameter("idx")); // 방 인덱스
 	Group group = dao.groupInfo(idx); // 방 정보
 	List<Join> list = jdao.selectAll(idx); // 방 참가 인원 정보
@@ -58,20 +60,21 @@
             <div class="profile-upload">
                 <div class="profile-img" id="profilePreview"></div>
             </div>
-            <div class="profile-name"><%=group.getManager()%></div>
+            <div class="profile-name"><%=mdao.memberInfo(group.getManager()).getNick()%></div>
             <ul class="group-list">
             	<li class="group-item">
 					<img src="">
-					<span class="group-name"><%=group.getSub_manager()%></span>
+					<span class="group-name"><%=mdao.memberInfo(group.getSub_manager()).getNick()%></span>
 					<input type="checkbox">
                 </li>
                 <%
                     for(Join j: list) {
+                    	Member m = mdao.memberInfo(j.getId());
                     	if(!j.getId().equals(group.getManager()) && !j.getId().equals(group.getSub_manager())) {
                 %>
 			                <li class="group-item">
 			                    <img src="">
-			                    <span class="group-name"><%=j.getId()%></span>
+			                    <span class="group-name"><%=m.getNick()%></span>
 			                    <input type="checkbox">
 			                </li>
 			                <% } %>
@@ -92,7 +95,7 @@
             %>
             <div class="card">
                 <div class="card-content">
-                    <div class="card-header"><%= j.getId() %></div>
+                    <div class="card-header"><%= mdao.memberInfo(j.getId()).getNick() %></div>
                     <div class="book-title"><%= gi.getG_item_title() %></div>
                     <div class="page-info"></div>
                     <div class="content-placeholder"><%= gi.getG_item_desc() %></div>

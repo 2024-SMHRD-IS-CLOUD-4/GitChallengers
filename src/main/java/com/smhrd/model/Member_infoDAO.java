@@ -21,7 +21,7 @@ public class Member_infoDAO {
 	// 회원정보 수정
 	public int update(Member_info m) {
 		SqlSession sqlSession = factory.openSession(true);
-		int result = sqlSession.selectOne("Member_infoMapper.info", m);
+		int result = sqlSession.update("Member_infoMapper.update", m);
 		sqlSession.close();
 		
 		return result;

@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.Member_info"%>
+<%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.Member_pointDAO"%>
 <%@page import="com.smhrd.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -21,14 +23,15 @@
 		response.sendRedirect("login.jsp");
 	}
 	Member_pointDAO pdao = new Member_pointDAO();
-	
+	Member_infoDAO infodao = new Member_infoDAO();
+	Member_info member_info = infodao.info(member.getId()); // 회원 정보 가져오기
 	%>
 	<!-- Main Container -->
 	<div class="container">
 		<!-- Header -->
 		<div class="header">
 			<div class="logo">
-				<img src="img/team-logo.png" alt="로고">
+				<img src="img/team-logo.png" alt="로고" onClick="location.href='main.jsp'">
 				<div class="nav-links">
 					<a href="#">MY 챌린지</a> <a href="#">그룹 챌린지</a> <a href="#">개인
 						챌린지</a>
@@ -56,44 +59,47 @@
                 <div class="stats">
                     <div>
                         <p>챌린지 완료 횟수</p>
-                        <span><%=member.getCh_suc_count() %>회</span>
+                        <span><%=member_info.getCh_suc_count() %>회</span>
                     </div>
                     <div>
                         <p>챌린지 완료 확률</p>
-                        <%if(member.getCh_count() == 0) { %>
+                        <%if(member_info.getCh_count() == 0) { %>
                         	<span>0%</span>
                         <%}else{ %>
-                        <span><%=member.getCh_suc_count()/member.getCh_count() * 100 %>%</span>
+                        <span><%=member_info.getCh_suc_count()/member_info.getCh_count() * 100 %>%</span>
                         <%} %>
                     </div>
                 </div>
                 <div class="intro-section">
-                    <textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled><%= (member.getIntro() != null) ? member.getIntro() : "" %></textarea>
+                    <textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled><%= (member_info.getIntro() != null) ? member_info.getIntro() : "" %></textarea>
                 </div>
+                
+            
                 <div class="points-section">
-                    <span>보유 포인트: 10000000원</span>
-                    <button>포인트 충전</button>
+                    <span>보유 포인트: 10000000원</span><br>
+                    <span>보유 캐쉬: 10000000원</span>
+                    <button class="button-edit" onclick="location.href='pay.jsp'">캐쉬 충전</button>
+               </div>
+                
+                <!-- Book Showcase Section (Moved under Points Section) -->
+                <div class="book-showcase">
+                    <h3>MY BOOK</h3>
+                    <div class="book-list">
+                        <div class="book-item">
+                            <img src="img/pigbook-1.jfif" alt="돼지책">
+                            <p>돼지책</p>
+                        </div>
+                        <div class="book-item">
+                            <img src="img/pigbook-1.jfif" alt="돼지책">
+                            <p>돼지책</p>
+                        </div>
+                        <div class="book-item">
+                            <img src="img/pigbook-1.jfif" alt="돼지책">
+                            <p>돼지책</p>
+                        </div>
+                    </div>
                 </div>
-
-				<!-- Book Showcase Section (Moved under Points Section) -->
-				<div class="book-showcase">
-					<h3>MY BOOK</h3>
-					<div class="book-list">
-						<div class="book-item">
-							<img src="img/pigbook-1.jfif" alt="돼지책">
-							<p>돼지책</p>
-						</div>
-						<div class="book-item">
-							<img src="img/pigbook-1.jfif" alt="돼지책">
-							<p>돼지책</p>
-						</div>
-						<div class="book-item">
-							<img src="img/pigbook-1.jfif" alt="돼지책">
-							<p>돼지책</p>
-						</div>
-					</div>
-				</div>
-			</div>
+            </div>
 
 			<!-- Review Container -->
 			<div class="review-container">

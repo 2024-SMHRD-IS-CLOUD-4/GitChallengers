@@ -44,7 +44,12 @@ public class updateMember extends HttpServlet {
 		int result = dao.update(update);
 		
 		if(result == 1) {
-			
+			session = request.getSession();
+			Member newMember = dao.memberInfo(id);
+			session.setAttribute("member", newMember);
+			response.sendRedirect("profile.jsp");
+		}else {
+			response.sendRedirect("profileEdit.jsp");
 		}
 		
 		

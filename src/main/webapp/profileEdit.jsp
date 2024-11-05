@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.Member_info"%>
+<%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.Member"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page language="java" %>
@@ -17,6 +19,8 @@
 		if(member == null) {
 			response.sendRedirect("login.jsp");
 		}
+		Member_infoDAO infodao = new Member_infoDAO();
+		Member_info member_info = infodao.info(member.getId()); // 회원 정보 가져오기
 		%>
     <div class="profile-container">
     	<form action="updateProfile" method="post">
@@ -34,13 +38,13 @@
         <div class="form-group">
             <label for="nickname">닉네임</label>
             <!-- 서버에서 닉네임을 받아서 표시하는 부분 -->
-            <input type="text" id="nickname" name="nick" value="<%=member.getNick()%>">
+            <input type="text" id="nickname" name="nick" value="<%=member.getNick()%>" disabled>
         </div>
 
         <div class="form-group">
             <label for="intro">소개</label>
             <!-- 서버에서 소개를 받아서 표시하는 부분 -->
-            <textarea id="intro" placeholder="자기소개를 입력하세요" name="intro"><%= (member.getIntro() != null) ? member.getIntro() : "" %></textarea>
+            <textarea id="intro" placeholder="자기소개를 입력하세요" name="intro"><%= (member_info.getIntro() != null) ? member_info.getIntro() : "" %></textarea>
         </div>
         
         <!-- 저장 완료 버튼 -->

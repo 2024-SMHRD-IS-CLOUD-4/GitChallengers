@@ -65,6 +65,15 @@ public class MemberDAO {
 		return result;
 	}
 	
+	// 업데이트 회원 정보 가져오기
+	public Member memberInfo(String id) {
+		SqlSession sqlSession = factory.openSession(true);
+		Member result = sqlSession.selectOne("MemberMapper.memberInfo", id);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 	
 
 }

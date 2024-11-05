@@ -11,7 +11,7 @@
 <script src="js/jquery-3.7.1.min.js"></script>
 <div class="container">
     <h2>회원가입</h2>
-    <form action="joinCon" method="post">
+    <form action="joinCon" method="post" name="frm">
     	<div class="form-group">
 			<label for="name">이름 *</label>
 			<input type="text" name="name" required>
@@ -42,14 +42,15 @@
         <div class="form-group">
             <label for="email">이메일 *</label>
                 <div class="email-group">
+                	
                     <input type="text" name="email" required>
-                    <select id="domain-select" name="domain" onchange="toggleEmailInput(this)" required>
+                    <input type="text" id="custom-domain" name="domain" required>                    
+                    <select id="domain-select" name="custom" onchange="return checkEmail()">
+                        <option value="">직접 입력</option>
                         <option value="@gmail.com">@gmail.com</option>
                         <option value="@naver.com">@naver.com</option>
                         <option value="@daum.net">@daum.net</option>
-                        <option value="@custom">직접 입력</option>
                     </select>
-                    <input type="text" id="custom-domain" name="custom-domain" placeholder="예: @yourdomain.com" style="display:none; margin-top: 5px;" disabled>
                 </div>
         </div>
         <div class="form-group">
@@ -111,6 +112,17 @@
                 customInput.value = ''; // Clear input when a predefined option is selected
             }
         }
+    	
+    	// 이메일
+    	        function checkEmail() { //도메인 자동 선택
+    		if (document.frm.custom.value != "") {
+    			document.frm.domain.value = document.frm.custom.value;
+    		} else {
+    			document.frm.domain.value = "";
+    			document.frm.domain.focus();
+    		}
+    	}
+    	
     </script>
 </div>
 </body>

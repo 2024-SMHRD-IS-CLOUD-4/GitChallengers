@@ -74,10 +74,12 @@
             
                 <div class="points-section">
                     <span>보유 포인트: 10000000원</span>
-                    <span>보유 캐쉬: 10000000원</span>
-                    <button>캐쉬 충전</button>
                 </div>
-     
+                
+     			<div class="points-section">
+                    <span>보유 캐쉬: 10000000원</span>
+                    <button onclick="location.href='nginx-1.26.0/Allpay.html'">캐쉬 충전</button>
+                </div>
                 
                 <!-- Book Showcase Section (Moved under Points Section) -->
                 <div class="book-showcase">

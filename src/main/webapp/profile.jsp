@@ -79,8 +79,6 @@
                 </div>
      
                 
-               
-				
                 <!-- Book Showcase Section (Moved under Points Section) -->
                 <div class="book-showcase">
                     <h3>MY BOOK</h3>
@@ -100,26 +98,6 @@
                     </div>
                 </div>
             </div>
-
-				<!-- Book Showcase Section (Moved under Points Section) -->
-				<div class="book-showcase">
-					<h3>MY BOOK</h3>
-					<div class="book-list">
-						<div class="book-item">
-							<img src="img/pigbook-1.jfif" alt="돼지책">
-							<p>돼지책</p>
-						</div>
-						<div class="book-item">
-							<img src="img/pigbook-1.jfif" alt="돼지책">
-							<p>돼지책</p>
-						</div>
-						<div class="book-item">
-							<img src="img/pigbook-1.jfif" alt="돼지책">
-							<p>돼지책</p>
-						</div>
-					</div>
-				</div>
-			</div>
 
 			<!-- Review Container -->
 			<div class="review-container">

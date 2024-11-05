@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.smhrd.model.Member;
 import com.smhrd.model.MemberDAO;
@@ -29,6 +30,9 @@ public class updateProfile extends HttpServlet {
 		int result = dao.updateProfile(member);
 		
 		if(result == 1) {
+			HttpSession session = request.getSession();
+			Member newMember = dao.memberInfo(id);
+			session.setAttribute("member", newMember);
 			response.sendRedirect("profile.jsp");
 		}else {
 			response.sendRedirect("profileEdit.jsp");

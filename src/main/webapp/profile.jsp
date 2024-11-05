@@ -28,7 +28,7 @@
 		<!-- Header -->
 		<div class="header">
 			<div class="logo">
-				<img src="img/team-logo.png" alt="로고">
+				<img src="img/team-logo.png" alt="로고" onClick="location.href='main.jsp'">
 				<div class="nav-links">
 					<a href="#">MY 챌린지</a> <a href="#">그룹 챌린지</a> <a href="#">개인
 						챌린지</a>

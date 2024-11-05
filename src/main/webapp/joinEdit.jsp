@@ -25,6 +25,15 @@
                 customInput.value = '';
             }
         }
+        
+        function checkEmail() { //도메인 자동 선택
+    		if (document.frm.custom.value != "") {
+    			document.frm.domain.value = document.frm.custom.value;
+    		} else {
+    			document.frm.domain.value = "";
+    			document.frm.domain.focus();
+    		}
+    	}
 
         function validateForm(event) {
             const password = document.getElementById('password').value;
@@ -59,7 +68,7 @@
         <div class="back-button" onclick="goBack()">←</div>
         <h2>회원정보 수정</h2>
         
-        <form action="updateMember" method="post" onsubmit="validateForm(event)">
+        <form action="updateMember" method="post" onsubmit="validateForm(event)" name="frm">
             <!-- 아이디 입력 (수정 불가) -->
             <div class="form-group">
                 <label for="id">아이디 *</label>
@@ -110,15 +119,20 @@
             <div class="form-group">
                 <label for="email">이메일 *</label>
                 <div class="email-group">
-                    <input type="text" name="email" value="<%= member.getEmail() %>" required>
-                    <select id="domain-select" name="domain" onchange="toggleEmailInput(this)" required>
+                	<%
+                		String fullEmail = member.getEmail();	
+                		int index = fullEmail.indexOf("@");
+                		String email = fullEmail.substring(0, index);
+                		String domain = fullEmail.substring(index, fullEmail.length());
+                	%>
+                    <input type="text" name="email" value="<%= email %>" required>
+                    <input type="text" id="custom-domain" name="domain" value=<%=domain %> required>                    
+                    <select id="domain-select" name="custom" onchange="return checkEmail()">
+                        <option value="">직접 입력</option>
                         <option value="@gmail.com">@gmail.com</option>
                         <option value="@naver.com">@naver.com</option>
                         <option value="@daum.net">@daum.net</option>
-                        <option value="@custom">직접 입력</option>
                     </select>
-                    <input type="text" id="custom-domain" name="custom-domain" placeholder="예: @yourdomain.com"
-                        style="display:none; margin-top: 5px;" disabled>
                 </div>
             </div>
 

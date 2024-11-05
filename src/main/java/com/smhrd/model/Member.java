@@ -43,6 +43,9 @@ public class Member {
 	
 	// 프로필 사진 
 	private String profile_img;
+	
+	// 소개글
+	private String intro;
 
 	public Member(String id, String pw) {
 		this.id = id;
@@ -72,6 +75,16 @@ public class Member {
 		this.phone = phone;
 		this.birthdate = birthdate;
 	}
+
+	public Member(String id, String nick, String profile_img, String intro) {
+		super();
+		this.id = id;
+		this.nick = nick;
+		this.profile_img = profile_img;
+		this.intro = intro;
+	}
+	
+	
 
 	
 	

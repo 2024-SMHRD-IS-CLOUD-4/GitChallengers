@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member_pointDAO"%>
 <%@page import="com.smhrd.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -19,6 +20,8 @@
 	if (member == null) {
 		response.sendRedirect("login.jsp");
 	}
+	Member_pointDAO pdao = new Member_pointDAO();
+	
 	%>
 	<!-- Main Container -->
 	<div class="container">
@@ -33,51 +36,44 @@
 			</div>
 			<div class="header-icons">
 				<i class="fas fa-search"></i> <i class="fas fa-bell"></i>
-				<button class="edit-profile-button">회원정보 수정</button>
+				<button class="edit-profile-button" onClick="location.href='joinEdit.jsp'">회원정보 수정</button>
 				<form action="logoutCon">
 					<button class="logout-button">로그아웃</button>
 				</form>
 			</div>
 		</div>
 
-		<!-- Profile Section -->
-		<div class="profile-section">
-			<!-- Profile Picture and Edit Button -->
-			<div class="profile-picture">
-				<img src="img/chaechae-1.jpg" alt="Profile Image">
-				<h2><%=member.getNick()%></h2>
-				<button class="button-edit">프로필 편집</button>
-			</div>
-			<!-- Stats and Intro Section -->
-			<div class="stats-section">
-				<div class="stats">
-					<div>
-						<p>챌린지 완료 횟수</p>
-						<span><%=member.getCh_suc_count()%>회</span>
-					</div>
-					<div>
-						<p>챌린지 완료 확률</p>
-						<%
-						if (member.getCh_count() == 0) {
-						%>
-						<span>0%</span>
-						<%
-						} else {
-						%>
-						<span><%=member.getCh_suc_count() / member.getCh_count() * 100%>%</span>
-						<%
-						}
-						%>
-					</div>
-				</div>
-				<div class="intro-section">
-					<textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled></textarea>
-				</div>
-				<div class="points-section">
-					<span>보유 포인트: 10000000원</span>
-					<button>포인트 충전</button>
-				</div>
-
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <!-- Profile Picture and Edit Button -->
+            <div class="profile-picture">
+                <img src="img/chaechae-1.jpg" alt="Profile Image">
+                <h2><%=member.getNick() %></h2>
+                <button class="button-edit" onClick="location.href='profileEdit.jsp'">프로필 편집</button>
+            </div>
+            <!-- Stats and Intro Section -->
+            <div class="stats-section">
+                <div class="stats">
+                    <div>
+                        <p>챌린지 완료 횟수</p>
+                        <span><%=member.getCh_suc_count() %>회</span>
+                    </div>
+                    <div>
+                        <p>챌린지 완료 확률</p>
+                        <%if(member.getCh_count() == 0) { %>
+                        	<span>0%</span>
+                        <%}else{ %>
+                        <span><%=member.getCh_suc_count()/member.getCh_count() * 100 %>%</span>
+                        <%} %>
+                    </div>
+                </div>
+                <div class="intro-section">
+                    <textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled><%= (member.getIntro() != null) ? member.getIntro() : "" %></textarea>
+                </div>
+                <div class="points-section">
+                    <span>보유 포인트: 10000000원</span>
+                    <button>포인트 충전</button>
+                </div>
 
 				<!-- Book Showcase Section (Moved under Points Section) -->
 				<div class="book-showcase">
@@ -111,6 +107,7 @@
 					<p>리뷰 내용 예시: 이 책은 정말 재미있고, 가족 모두가 함께 즐길 수 있습니다....</p>
 				</div>
 			</div>
+		</div>
 		</div>
 
 		<script src="./js/profile.js"></script>

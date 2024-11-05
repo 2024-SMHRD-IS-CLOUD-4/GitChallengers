@@ -1,0 +1,157 @@
+@charset "UTF-8";
+body {
+    background-color: #d1c4b2;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.card {
+    position: relative;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    height: 900px;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.back-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: transparent;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    color: #555;
+}
+
+.back-button:hover {
+    color: #333;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 1.2em;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.title:focus {
+    outline: none;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 이미지 업로드 스타일 */
+.card img {
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.summary {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.impressions {
+    width: 100%;
+    height: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.auth-upload {
+    margin-bottom: 10px;
+}
+
+.toggle-buttons {
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.toggle-buttons button {
+    color: #000000;
+    background-color: #f4b1c2;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+    flex: 1;
+}
+
+.toggle-buttons button.active {
+    color: white;
+    background-color: #f0a7b2;
+}
+
+/* 추천 대상 스타일 */
+.recommendation-target {
+    font-size: 0.9em;
+    padding: 8px;
+    width: 60%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-left: 10px;
+}
+
+/* 글 작성 버튼 스타일 */
+.footer button.action-button {
+    color: white;
+    background-color: #f4b1c2;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 40px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.footer button.action-button:hover {
+    background-color: #f0a7b2;
+}
+
+#file-input {
+    display: none;
+}

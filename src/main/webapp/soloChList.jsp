@@ -15,6 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenge Group List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./css/soloChList.css">
 </head>
 <body>
@@ -43,8 +44,10 @@
 		    </div>
 		</div>
 		<div class="header-icons">
-			<button class="create-group-btn">챌린지 만들기</button>
+			<i class="fas fa-search"></i>
+            <i class="fas fa-bell"></i>
 		    <a href="profile.jsp" class="welcome-text"><%=member.getNick() %> 환영합니다</a>
+			<button class="create-group-btn">챌린지 만들기</button>
 		    <form action="logoutCon">
 		     <button class="logout-button">로그아웃</button>
 		    </form>

@@ -42,8 +42,6 @@
             <div class="toggle-buttons">
                 <button id="personal-button" onclick="toggleSelection('personal')">추천</button>
                 <button id="group-button" onclick="toggleSelection('group')">비추천</button>
-                <!-- 추천할 대상 입력 칸 -->
-                <input type="text" class="recommendation-target" placeholder="추천 대상">
             </div>
 
             <!-- 인증사진첨부 버튼 -->

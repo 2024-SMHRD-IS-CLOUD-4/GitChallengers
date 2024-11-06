@@ -23,8 +23,9 @@
 	</select>
 	
 	<!--방장이 그룹원 추방 기능  -->
-	  <delete id="removeMember" parameterType="RemoveMember">
-        DELETE FROM group_members
-        WHERE group_id = #{groupId} AND user_id = #{userId};
+	<delete id="removeMember" parameterType="Join">
+        DELETE FROM ch_join
+        WHERE group_idx = #{group_idx} AND id = #{id}
     </delete>
+    
 </mapper>

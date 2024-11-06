@@ -16,4 +16,9 @@
 		select * from ch_group where group_idx=#{idx}
 	</select>
 	
+	<!-- 그룹 챌린지 검색 -->
+	<select id="search" resultType="Group">
+		select * from ch_group where group_name like '%'||#{keyword}||'%'
+	</select>
+	
 </mapper>

@@ -44,6 +44,16 @@ public class GroupDAO {
 
 
     SqlSessionFactory factory = SqlSessionManager.getSqlSessionFactory();
+    
+    // 그룹 챌린지 검색
+    public List<Group> search(String group_name){
+		SqlSession sqlSession = factory.openSession(true);
+		List<Group> result = sqlSession.selectList("GroupMapper.search", group_name);
+		sqlSession.close();
+
+		return result;
+	}
+    
 
     // 그룹리스트 조회
     public List<Group> selectAll() {

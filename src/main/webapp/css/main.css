@@ -69,12 +69,29 @@ body {
 	margin-right: 20px;
 }
 
-/* 검색 아이콘 스타일 */
-.search-icon {
-	font-size: 20px;
-	color: #333;
-	cursor: pointer;
-	margin-right: 10px;
+.searchOptions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchSelect {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.searchInput {
+    width: 400px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.hidden {
+    display: none;
 }
 
 .profile-circle {

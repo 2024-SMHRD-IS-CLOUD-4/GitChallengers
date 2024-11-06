@@ -29,6 +29,7 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	cursor: pointer;
 }
 
 .logo img {
@@ -60,6 +61,7 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 15px;
+
 }
 
 .header-icons i {

@@ -3,7 +3,7 @@
 <mapper namespace="MemberMapper">
 	<!-- 회원가입 -->
 	<insert id="join" parameterType="Member">
-		insert into ch_member values (#{id}, #{pw}, #{name}, #{nick}, #{email}, #{phone}, #{birthdate}, #{fav_books}, sysdate}
+		insert into ch_member values (#{id}, #{pw}, #{name}, #{nick}, #{email}, #{phone}, #{birthdate}, #{fav_books}, sysdate)
 	</insert>
 	
 	<!-- 로그인 -->

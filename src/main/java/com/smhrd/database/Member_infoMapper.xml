@@ -8,7 +8,9 @@
 	
 	<!-- 프로필 수정 -->
 	<update id="update" parameterType="info">
-		update ch_member_info set profile_img=#{profile_img}, intro=#{intro} where id=#{id}
+		update ch_member_info
+	    set profile_img = #{profile_img, jdbcType=VARCHAR}, intro = #{intro, jdbcType=VARCHAR}
+	    where id = #{id}
 	</update>
 	
 </mapper>

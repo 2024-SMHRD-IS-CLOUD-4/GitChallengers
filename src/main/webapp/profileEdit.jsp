@@ -23,7 +23,7 @@
 		Member_info member_info = infodao.info(member.getId()); // 회원 정보 가져오기
 		%>
     <div class="profile-container">
-    	<form action="updateProfile" method="post">
+    	<form action="updateProfile" method="post" enctype="multipart/form-data">
     	<input type="hidden" name = "id" value = "<%=member.getId()%>">
         <h2>프로필 편집</h2>
         <!-- 뒤로가기 버튼 -->

@@ -13,4 +13,9 @@
 	    where id = #{id}
 	</update>
 	
+	<!-- 전체 회원 포인트 랭킹 -->
+	<select id="rank" resultType="info">
+		select * from ch_member_info order by point desc
+	</select>
+	
 </mapper>

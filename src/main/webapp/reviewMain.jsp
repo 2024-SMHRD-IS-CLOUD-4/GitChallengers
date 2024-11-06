@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.CommentDAO"%>
 <%@page import="com.smhrd.model.Comment"%>
 <%@page import="com.smhrd.model.ReviewDAO"%>
@@ -30,6 +31,7 @@
 		}
 		ReviewDAO rdao = new ReviewDAO();
 		CommentDAO cdao = new CommentDAO();
+		Member_infoDAO infodao = new Member_infoDAO();
 		List<Review> rList = rdao.selectAll(); // 리뷰 리스트 불러오기
 		
 		
@@ -61,7 +63,7 @@
 			int count = cdao.commentCount(review_idx);
 		%>
         <div class="card">
-            <img src="https://example.com/image1.png" alt="Book Image">
+            <img src="profile_img/<%=infodao.info(r.getId()).getProfile_img() %>" alt="Book Image">
             <div class="card-content">
                 <div class="card-title"><%=r.getReview_title()%> <%if(r.getIs_approved().equals("Y")) {%> ✅<%} %></div>
                 <div class="card-body"><%=r.getReview_content() %></div>
@@ -73,33 +75,6 @@
             </div>
         </div>
 		<%} %>
-    <!-- Main Container -->
-    <div class="container">
-        <div class="card">
-            <img src="https://example.com/image2.png" alt="Book Image">
-            <div class="card-content">
-                <div class="card-title">리뷰 제목 ✅</div>
-                <div class="card-body">내용</div>
-            </div>
-            <div class="card-stats">
-                <span class="recommendation positive">추천해요!</span><br>
-                좋아요 150개<br>
-                댓글 10개
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="https://example.com/image3.png" alt="Book Image">
-            <div class="card-content">
-                <div class="card-title">리뷰 제목 ✅</div>
-                <div class="card-body">내용</div>
-            </div>
-            <div class="card-stats">
-                <span class="recommendation negative">추천하지 않아요!</span><br>
-                좋아요 120개<br>
-                댓글 15개
-            </div>
-        </div>
 
         <!-- MY 챌린지 팝업 -->
         <div id="myChallengePopup" class="popup hidden">

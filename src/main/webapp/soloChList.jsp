@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.Group"%>
 <%@page import="com.smhrd.model.Pc_challenge"%>
 <%@page import="com.smhrd.model.Member_point"%>
@@ -28,6 +29,7 @@
 		GroupDAO gdao = new GroupDAO();
 		Member_pointDAO mpdao = new Member_pointDAO();
 		Pc_challengeDAO pcdao = new Pc_challengeDAO();
+		Member_infoDAO infodao = new Member_infoDAO();
 		List<Join> list = jdao.selectMy(member.getId()); // 내 그룹 불러오기
 		List<Member_point> rank = mpdao.rank(); // 랭킹 불러오기
 		List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
@@ -63,7 +65,7 @@
         %>
         <div class="group-card">
             <div class="profile">
-                <img src="https://via.placeholder.com/60" alt="반장 프로필">
+                <img src="profile_img/<%=infodao.info(member.getId()).getProfile_img() %>" alt="반장 프로필">
             </div>
             <div class="content">
                 <h3><%=pc.getPc_title() %></h3>

@@ -152,7 +152,6 @@
 				<%} %>
 			</div>
 		</div>
-    </div>
 
     <script src="./js/groupChRoom.js"></script>
 </body>

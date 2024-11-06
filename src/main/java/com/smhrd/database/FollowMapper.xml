@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FollowMapper">
+	
+	<select id="follower" resultType="int">
+		select count(*) from ch_follow where following=#{following}
+	</select>
+	
+	<select id="following" resultType="int">
+		select count(*) from ch_follow where follower=#{follower}
+	</select>
+	
+</mapper>

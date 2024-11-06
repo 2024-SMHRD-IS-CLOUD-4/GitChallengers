@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.FollowDAO"%>
 <%@page import="com.smhrd.model.Member_info"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.Member_pointDAO"%>
@@ -24,8 +25,10 @@
 	}
 	Member_pointDAO pdao = new Member_pointDAO();
 	Member_infoDAO infodao = new Member_infoDAO();
-	
+	FollowDAO fdao = new FollowDAO();
 	Member_info member_info = infodao.info(member.getId()); // 회원 정보 가져오기
+	int follower = fdao.follower(member.getId());
+	int following = fdao.following(member.getId());
 	%>
 	
 	<!-- Main Container -->
@@ -55,6 +58,9 @@
                 <img src="profile_img/<%=member_info.getProfile_img() %>" alt="Profile Image">
                 <h2><%=member.getNick() %></h2>
                 <button class="button-edit" onClick="location.href='profileEdit.jsp'">프로필 편집</button>
+                <br>
+                <span>팔로워 : <%=follower %></span>
+                <span>팔로잉 : <%=following %></span>
             </div>
             
           

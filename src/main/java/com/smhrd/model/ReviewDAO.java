@@ -19,5 +19,14 @@ public class ReviewDAO {
 
 		return result;
 	}
+	
+	// 리뷰 전체 불러오기
+	public List<Review> selectAll(){
+		SqlSession sqlSession = factory.openSession(true);
+		List<Review> result = sqlSession.selectList("ReviewMapper.selectAll");
+		sqlSession.close();
+
+		return result;
+	}
 
 }

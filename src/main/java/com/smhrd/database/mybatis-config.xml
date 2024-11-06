@@ -14,7 +14,7 @@
 		<typeAlias type="com.smhrd.model.Pc_items" alias = "Pc_items"/>
 		<typeAlias type="com.smhrd.model.Member_info" alias = "info"/>
 		<typeAlias type="com.smhrd.model.Review" alias = "Review"/>
-		<typeAlias type="com.smhrd.model.GroupCheckPoint" alias ="RemoveMember"/>
+		<typeAlias type="com.smhrd.model.Comment" alias = "Comment"/>
 	</typeAliases>
   <environments default="development">
     <environment id="development">
@@ -37,5 +37,6 @@
     <mapper resource="com/smhrd/database/Pc_itemsMapper.xml"/>
     <mapper resource="com/smhrd/database/Member_infoMapper.xml"/>
     <mapper resource="com/smhrd/database/ReviewMapper.xml"/>
+    <mapper resource="com/smhrd/database/CommentMapper.xml"/>
   </mappers>
 </configuration>

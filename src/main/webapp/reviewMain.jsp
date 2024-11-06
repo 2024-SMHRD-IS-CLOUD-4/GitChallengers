@@ -49,7 +49,14 @@
                 </div>
             </div>
             <div class="header-icons">
-                <i class="fas fa-search"></i>             
+                <i class="fas fa-search" id="searchIcon"></i>
+				<div id="searchOptions" class="hidden">
+                    <select id="searchSelect">
+                        <option value="review">리뷰</option>
+                        <option value="group">그룹 챌린지</option>
+                    </select>
+                    <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요...">
+                </div>             
                 <i class="fas fa-bell"></i>
                 <a href="profile.jsp" class="welcome-text"><%=member.getNick() %> 환영합니다</a>
                 <form action="logoutCon">

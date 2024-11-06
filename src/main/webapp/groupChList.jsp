@@ -41,7 +41,14 @@
 		    </div>
         </div>
         <div class="header-icons">
-			<i class="fas fa-search"></i>
+			<i class="fas fa-search" id="searchIcon"></i>
+			<div id="searchOptions" class="hidden">
+                <select id="searchSelect">
+                    <option value="review">리뷰</option>
+                    <option value="group">그룹 챌린지</option>
+                </select>
+                <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요...">
+            </div>
             <i class="fas fa-bell"></i>
 		    <a href="profile.jsp" class="welcome-text"><%=member.getNick() %> 환영합니다</a>
         	<button class="create-group-btn" onClick="location.href='groupCh.jsp'">그룹 만들기</button>
@@ -78,6 +85,7 @@
                     <strong>14일 후 종료 예정</strong>
                 </div>
             </div>
+            	
             	<%for(Join j : joinMember) {
             		if(member.getId().equals(j.getId())) {	
             			isJoined = true;
@@ -94,34 +102,6 @@
     <%} %>
 
     </div>
-    <script type="text/javascript">
-    	const join = (idx, count, max) => {
-    		if (count >= max) {
-    			alert('인원초과');
-    		}else{
-	    		var id = "<%=member.getId() %>"
-	    		$.ajax({
-	    			url : 'groupJoinCon',
-	    			method : 'post',
-	    			data : {"idx":idx,"id":id},
-	    			success : function(data){
-						if(data === 'true'){ 
-							alert("가입 성공");
-							location.reload(true);
-						}else { 
-							alert("가입 실패");
-							location.reload(true);
-						}
-					},
-					error : function(){
-						alert("통신실패");
-						location.reload(true);
-					}
-	    			
-	    		})
-    		}
-    	}
-    	
-    </script>
+    <script src="./js/groupChList.js"></script>
 </body>
 </html>

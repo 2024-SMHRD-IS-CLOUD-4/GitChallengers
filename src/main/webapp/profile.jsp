@@ -90,7 +90,9 @@
                     <button class="button-edit" onclick="location.href='pay.jsp'">캐쉬 충전</button>
                </div>
                 
-                <a href="delete.jsp">회원탈퇴</a>
+                <form action="delete.jsp">
+	                <button class="">회원탈퇴</button>
+                </form>
                 
                 <!-- Book Showcase Section (Moved under Points Section) -->
                 <div class="book-showcase">

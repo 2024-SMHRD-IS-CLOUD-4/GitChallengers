@@ -77,4 +77,17 @@ public class MemberDAO {
 		
 		return result;
 	}
+
+	//회원 탈퇴
+	public int deleteMember(Member m) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.delete("MemberMapper.deleteMember", m);
+		sqlSession.close();
+		
+		return result;
+	}
+
+
+
+	
 }

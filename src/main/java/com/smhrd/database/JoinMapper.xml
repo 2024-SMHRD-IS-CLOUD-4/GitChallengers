@@ -22,4 +22,9 @@
 		select * from ch_join where id=#{id}
 	</select>
 	
+	<!--방장이 그룹원 추방 기능  -->
+	  <delete id="removeMember" parameterType="RemoveMember">
+        DELETE FROM group_members
+        WHERE group_id = #{groupId} AND user_id = #{userId};
+    </delete>
 </mapper>

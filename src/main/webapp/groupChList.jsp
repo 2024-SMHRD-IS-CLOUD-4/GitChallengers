@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.Join"%>
 <%@page import="com.smhrd.model.JoinDAO"%>
@@ -25,6 +26,7 @@
 		
 		GroupDAO dao = new GroupDAO();
 		MemberDAO mdao = new MemberDAO();
+		Member_infoDAO infodao = new Member_infoDAO();
 		List<Group> list = dao.selectAll();
 	%>
     <!-- 헤더 -->
@@ -65,7 +67,7 @@
         <!-- 그룹 카드 1 -->
         <div class="group-card">
             <div class="profile" onClick="location.href='groupChRoom.jsp?idx=<%=idx%>'">
-                <img src="#" alt="반장 프로필">
+                <img src="profile_img/<%=infodao.info(managerInfo.getId()).getProfile_img() %>" alt="반장 프로필">
                 <span><%=manager%></span>
             </div>
             <div class="content" onClick="location.href='groupChRoom.jsp?idx=<%=idx%>'">

@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.Member_info"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.Pc_challenge"%>
@@ -28,15 +29,16 @@
 		if(member == null) {
 			response.sendRedirect("login.jsp");
 		}
+		MemberDAO mdao = new MemberDAO();
 		JoinDAO jdao = new JoinDAO();
 		GroupDAO gdao = new GroupDAO();
 		Member_pointDAO mpdao = new Member_pointDAO();
 		Pc_challengeDAO pcdao = new Pc_challengeDAO();
 		Member_infoDAO infodao = new Member_infoDAO();
 		List<Join> list = jdao.selectMy(member.getId()); // 내 그룹 불러오기
-		List<Member_point> rank = mpdao.rank(); // 랭킹 불러오기
 		List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
-		Member_info member_info = infodao.info(member.getId()); // 회원 정보 가져오기
+		Member_info member_info = infodao.info(member.getId()); // 본인 정보 가져오기
+		List<Member_info> rank = infodao.rank(); // 랭킹 불러오기
 	%>
 
     <!-- Main Container -->
@@ -89,24 +91,24 @@
 
                 <!-- 리더보드 데이터 수동 삽입 -->
                 <div class="leaderboard-item-wrapper">
-                    <img src="<%= request.getAttribute("leaderImage1") != null ? request.getAttribute("leaderImage1") : "img/chaechae-1.jpg" %>" alt="User Image">
+                    <img src="profile_img/<%=infodao.info(rank.get(0).getId()).getProfile_img() %>" alt="User Image">
                     <div class="leaderboard-item">
-                        <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(0) != null && rank.get(0).getId() != null) ? rank.get(0).getId() : "이름" %></span>
-                        <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(0) != null && rank.get(0).getId() != null) ? rank.get(0).getUser_point() : "포인트" %></span>
+                        <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(0) != null && rank.get(0).getId() != null) ? mdao.memberInfo(rank.get(0).getId()).getNick()  : "이름" %></span>
+                        <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(0) != null && rank.get(0).getId() != null) ? rank.get(0).getPoint() : "포인트" %>p</span>
                     </div>
                 </div>
                 <div class="leaderboard-item-wrapper">
-                    <img src="<%= request.getAttribute("leaderImage2") != null ? request.getAttribute("leaderImage2") : "img/chaechae-1.jpg" %>" alt="User Image">
+                    <img src="profile_img/<%=infodao.info(rank.get(1).getId()).getProfile_img() %>" alt="User Image">
                     <div class="leaderboard-item">
-                        <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(1) != null && rank.get(1).getId() != null) ? rank.get(1).getId() : "이름" %></span>
-                        <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(1) != null && rank.get(1).getId() != null) ? rank.get(1).getUser_point() : "포인트" %></span>
+                        <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(1) != null && rank.get(1).getId() != null) ? mdao.memberInfo(rank.get(1).getId()).getNick() : "이름" %></span>
+                        <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(1) != null && rank.get(1).getId() != null) ? rank.get(1).getPoint() : "포인트" %>p</span>
                     </div>
                 </div>
                 <div class="leaderboard-item-wrapper">
-                    <img src="<%= request.getAttribute("leaderImage3") != null ? request.getAttribute("leaderImage3") : "img/chaechae-1.jpg" %>" alt="User Image">
+                    <img src="profile_img/<%=infodao.info(rank.get(2).getId()).getProfile_img() %>" alt="User Image">
                     <div class="leaderboard-item">
-                        <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(2) != null && rank.get(2).getId() != null) ? rank.get(2).getId() : "이름" %></span>
-                        <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(2) != null && rank.get(2).getId() != null) ? rank.get(2).getUser_point() : "포인트" %></span>
+                        <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(2) != null && rank.get(2).getId() != null) ? mdao.memberInfo(rank.get(2).getId()).getNick() : "이름" %></span>
+                        <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(2) != null && rank.get(2).getId() != null) ? rank.get(2).getPoint() : "포인트" %>p</span>
                     </div>
                 </div>
             </div>

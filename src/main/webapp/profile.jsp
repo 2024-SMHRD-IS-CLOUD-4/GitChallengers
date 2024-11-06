@@ -51,7 +51,7 @@
         <div class="profile-section">
             <!-- Profile Picture and Edit Button -->
             <div class="profile-picture">
-                <img src="img/chaechae-1.jpg" alt="Profile Image">
+                <img src="profile_img/<%=member_info.getProfile_img() %>" alt="Profile Image">
                 <h2><%=member.getNick() %></h2>
                 <button class="button-edit" onClick="location.href='profileEdit.jsp'">프로필 편집</button>
             </div>

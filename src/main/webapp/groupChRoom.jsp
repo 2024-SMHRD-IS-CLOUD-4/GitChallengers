@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.Gc_items"%>
 <%@page import="com.smhrd.model.Pc_challenge"%>
@@ -33,6 +34,7 @@
 	JoinDAO jdao = new JoinDAO();
 	Gc_itemsDAO idao = new Gc_itemsDAO();
 	MemberDAO mdao = new MemberDAO();
+	Member_infoDAO infodao = new Member_infoDAO();
 	int idx = Integer.parseInt(request.getParameter("idx")); // 방 인덱스
 	Group group = dao.groupInfo(idx); // 방 정보
 	List<Join> list = jdao.selectAll(idx); // 방 참가 인원 정보
@@ -65,12 +67,12 @@
         <!-- 왼쪽 사이드바 -->
         <div class="sidebar">
             <div class="profile-upload">
-                <div class="profile-img" id="profilePreview"></div>
+               	<img src="profile_img/<%=infodao.info(group.getManager()).getProfile_img() %>" class="profile-img" id="profilePreview">
             </div>
             <div class="profile-name"><%=mdao.memberInfo(group.getManager()).getNick()%></div>
             <ul class="group-list">
             	<li class="group-item">
-					<img src="">
+					<img src="profile_img/<%=infodao.info(group.getSub_manager()).getProfile_img() %>">
 					<span class="group-name"><%=mdao.memberInfo(group.getSub_manager()).getNick()%></span>
 					<%if(member.getId().equals(group.getManager())) {%>
 					<input type="checkbox">
@@ -82,7 +84,7 @@
                     	if(!j.getId().equals(group.getManager()) && !j.getId().equals(group.getSub_manager())) {
                 %>
 			                <li class="group-item">
-			                    <img src="">
+			                    <img src="profile_img/<%=infodao.info(j.getId()).getProfile_img() %>">
 			                    <span class="group-name"><%=m.getNick()%></span>
 			                    <%if(member.getId().equals(group.getManager())) {%>
 			                    <input type="checkbox">

@@ -8,7 +8,7 @@ import lombok.Getter;
 public class Review {
 	
 	// 리뷰순번
-	private String review_idx;
+	private int review_idx;
 	
 	// 사용자 아이디
 	private String id;

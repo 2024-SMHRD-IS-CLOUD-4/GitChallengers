@@ -1,5 +1,7 @@
 package com.smhrd.model;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -25,7 +27,15 @@ public class Member_infoDAO {
 		sqlSession.close();
 		
 		return result;
+	}
+	
+	// 전체 회원 포인트 랭킹
+	public List<Member_info> rank() {
+		SqlSession sqlSession = factory.openSession(true);
+		List<Member_info> result = sqlSession.selectList("Member_infoMapper.rank");
+		sqlSession.close();
 		
+		return result;
 	}
 
 }

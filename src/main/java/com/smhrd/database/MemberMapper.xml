@@ -34,7 +34,7 @@
 	 <!-- 회원 탈퇴 -->
     <delete id="deleteMember" >
         DELETE FROM ch_member
-        WHERE id = #{id} AND pw = #{pw}
+        WHERE id = #{id,jdbcType=VARCHAR} AND pw = #{pw,jdbcType=VARCHAR}
     </delete>
 	
 </mapper>

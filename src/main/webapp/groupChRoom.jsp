@@ -111,22 +111,24 @@
             %>
             <div class="card">
                 <div class="card-content">
-                    <div class="card-header"><%= mdao.memberInfo(j.getId()).getNick() %></div>
+                    <div class="author"><%= mdao.memberInfo(j.getId()).getNick() %></div>
                     <div class="book-title"><%= gi.getG_item_title() %></div>
                     <div class="page-info"></div>
                     <div class="content-placeholder"><%= gi.getG_item_desc() %></div>
                 </div>
-                <div class="card-icons">
-                    <i class="heart">🤍</i>
-                    <i class="comment">💬</i>
-                    <i>📤</i>
+                <div class="actions">
+                    <span class="like">❤</span>
+                    <span class="like-count">좋아요 10개</span>
+                    <span class="comment">💬</span>
+                    <span class="comment-count">댓글 0개</span>
                 </div>
-                <div class="comment-section">
-                    <ul class="comment-list"></ul>
-                    <input type="text" class="comment-input" placeholder="댓글을 입력하세요">
-                    <button class="comment-btn">댓글 작성</button>
+                <div class="comment-input" style="display: none;">
+                    <textarea rows="3" placeholder="댓글을 작성해주세요..."></textarea>
+                    <button>댓글 작성</button>
                 </div>
+                <div class="comments-section"></div>
             </div>
+        </div>
     	        	<%} %>
 	            <%} %>
             <%} %>

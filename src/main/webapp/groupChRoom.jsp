@@ -72,7 +72,9 @@
             	<li class="group-item">
 					<img src="">
 					<span class="group-name"><%=mdao.memberInfo(group.getSub_manager()).getNick()%></span>
+					<%if(member.getId().equals(group.getManager())) {%>
 					<input type="checkbox">
+					<%} %>
                 </li>
                 <%
                     for(Join j: list) {
@@ -82,7 +84,12 @@
 			                <li class="group-item">
 			                    <img src="">
 			                    <span class="group-name"><%=m.getNick()%></span>
+			                    <%if(member.getId().equals(group.getManager())) {%>
 			                    <input type="checkbox">
+			                    <form action="memberDelete">
+									<button type="submit">퇴장</button>			                    
+			                    </form>
+			                    <%} %>
 			                </li>
 			                <% } %>
                 	<% } %>

@@ -1,0 +1,132 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #d3c5b4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    height: 100vh;
+    margin: 0;
+}
+.review-card {
+    width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 90vh;
+    overflow-x: auto;
+    overflow-y: auto;
+    border-radius: 10px;
+    position: relative;
+}
+.review-card img {
+    width: 150px;
+    height: 200px;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto;
+}
+.back-button {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    font-size: 1.5em;
+    color: #888;
+    cursor: pointer;
+}
+.profile {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+}
+.profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.author {
+    font-size: 0.8em;
+    color: #666;
+}
+.title {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 10px 0;
+    position: relative;
+}
+.title::after {
+    content: '✅';
+    color: green;
+    font-size: 1em;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+.content {
+    text-align: center;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 500px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+}
+.actions .like, .actions .comment {
+    font-size: 1.5em;
+    color: #888;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.actions .like-count, .actions .comment-count {
+    font-size: 1em;
+    color: #888;
+    margin-right: 20px;
+}
+.actions .like.liked {
+    color: red;
+}
+.comments-section {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+.comment-item {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #333;
+}
+.comment-input {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.comment-input textarea {
+    resize: none;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 95%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.comment-input button {
+    margin-top: 10px;
+    align-self: flex-end;
+    padding: 5px 10px;
+    border: none;
+    background-color: #888;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -40,6 +40,8 @@ public class Member {
 		this.pw = pw;
 	}
 
+	
+	
 	public Member(String id, String pw, String name, String nick, String email, String phone,
 			String birthdate, String fav_books) {
 		super();

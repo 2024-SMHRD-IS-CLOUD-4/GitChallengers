@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.ReviewDAO"%>
+<%@page import="com.smhrd.model.Review"%>
 <%@page import="com.smhrd.model.Group"%>
 <%@page import="com.smhrd.model.Pc_challenge"%>
 <%@page import="com.smhrd.model.Member_point"%>
@@ -24,6 +26,11 @@
 		if(member == null) {
 			response.sendRedirect("login.jsp");
 		}
+		ReviewDAO rdao = new ReviewDAO();
+		List<Review> rList = rdao.selectAll(); // 리뷰 리스트 불러오기
+		
+		
+		
 	%>
         <!-- Header -->
         <div class="header">
@@ -45,20 +52,21 @@
 		    	</form>
     		</div>
         </div>
-	
+		
+		<%for(Review r : rList) {%>
         <div class="card">
             <img src="https://example.com/image1.png" alt="Book Image">
             <div class="card-content">
-                <div class="card-title">리뷰 제목 ✅</div>
-                <div class="card-body">내용</div>
+                <div class="card-title"><%=r.getReview_title()%> <%if(r.getIs_approved().equals("Y")) {%> ✅<%} %></div>
+                <div class="card-body"><%=r.getReview_content() %></div>
             </div>
             <div class="card-stats">
                 <span class="recommendation positive">추천해요!</span><br>
-                좋아요 203개<br>
+                좋아요 <%=r.getReview_heart() %>개<br>
                 댓글 10개
             </div>
         </div>
-
+		<%} %>
     <!-- Main Container -->
     <div class="container">
         <div class="card">

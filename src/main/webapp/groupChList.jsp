@@ -59,7 +59,8 @@
     		int count = jdao.count(idx);
     		List<Join> joinMember = jdao.selectAll(idx);
     		boolean isJoined = false;
-    		String manager = mdao.memberInfo(g.getManager()).getNick();
+    		Member managerInfo = mdao.memberInfo(g.getManager());
+    		String manager = (managerInfo != null) ? managerInfo.getNick() : "Unknown";
     %>
         <!-- 그룹 카드 1 -->
         <div class="group-card">

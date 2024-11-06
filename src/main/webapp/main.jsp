@@ -68,7 +68,17 @@
         <div class="top-section">
             <div class="challenge">
                 <h2>진행중인 챌린지</h2>
-                <div style="height: 250px; background-color: #fff; border-radius: 5px;"></div>
+                <div class="challenge-content">
+                    <img src="img/pigbook-1.jfif" alt="책 이미지" class="challenge-image">
+                    <div class="challenge-details">
+                        <h3>돼지책</h3>
+                        <p>6일차</p>
+                        <p>페이지: 120-150p</p>
+                        <div class="user-input">
+                            <span>자유 내용</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="status">
                 <h2>현재 챌린지 진행 상황</h2>
@@ -84,13 +94,14 @@
             </div>
         </div>
 
-        <!-- 리더보드 및 빈 네모 칸 -->
+        <!-- 리더보드 및 베스트 리뷰 칸 -->
         <div class="bottom-section-wrapper">
             <div class="leaderboard-section">
                 <h2>LEADERBOARD</h2>
 
                 <!-- 리더보드 데이터 수동 삽입 -->
                 <div class="leaderboard-item-wrapper">
+                    <img src="img/gold.png" alt="Gold Medal" class="medal-icon">
                     <img src="profile_img/<%=infodao.info(rank.get(0).getId()).getProfile_img() %>" alt="User Image">
                     <div class="leaderboard-item">
                         <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(0) != null && rank.get(0).getId() != null) ? mdao.memberInfo(rank.get(0).getId()).getNick()  : "이름" %></span>
@@ -98,6 +109,7 @@
                     </div>
                 </div>
                 <div class="leaderboard-item-wrapper">
+                    <img src="img/silver.png" alt="Silver Medal" class="medal-icon">
                     <img src="profile_img/<%=infodao.info(rank.get(1).getId()).getProfile_img() %>" alt="User Image">
                     <div class="leaderboard-item">
                         <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(1) != null && rank.get(1).getId() != null) ? mdao.memberInfo(rank.get(1).getId()).getNick() : "이름" %></span>
@@ -105,6 +117,7 @@
                     </div>
                 </div>
                 <div class="leaderboard-item-wrapper">
+                    <img src="img/bronze.png" alt="Bronze Medal" class="medal-icon">
                     <img src="profile_img/<%=infodao.info(rank.get(2).getId()).getProfile_img() %>" alt="User Image">
                     <div class="leaderboard-item">
                         <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(2) != null && rank.get(2).getId() != null) ? mdao.memberInfo(rank.get(2).getId()).getNick() : "이름" %></span>
@@ -112,7 +125,23 @@
                     </div>
                 </div>
             </div>
-            <div class="empty-section"></div>
+           <div class="best-review-section">
+                <h2>BEST REVIEW</h2>
+                <div class="review-item">
+                    <img src="img/pigbook-1.jfif" alt="Book Image" class="review-image">
+                    <div class="review-content">
+                        <h3>리뷰 제목</h3>
+                        <p>내용</p>
+                    </div>
+                </div>
+                <div class="review-item">
+                    <img src="img/pigbook-1.jfif" alt="Book Image" class="review-image">
+                    <div class="review-content">
+                        <h3>리뷰 제목</h3>
+                        <p>내용</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- 하단 베스트셀러 및 상품 목록 -->

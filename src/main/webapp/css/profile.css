@@ -257,3 +257,11 @@ body {
     height: 130px;
     border-radius: 8px;
 }
+
+.delete {
+    padding: 5px 10px;
+    background-color: #c0c0c0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

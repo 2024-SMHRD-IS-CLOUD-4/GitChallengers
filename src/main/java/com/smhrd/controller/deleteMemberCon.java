@@ -32,7 +32,7 @@ public class deleteMemberCon extends HttpServlet {
             response.sendRedirect("login.jsp"); // 로그인 페이지로 이동
         } else { // 탈퇴 실패 (ID가 존재하지 않는 경우)
             request.setAttribute("errorMessage", "회원 정보를 찾을 수 없습니다.");
-            response.sendRedirect("delete.jsp");
+            request.getRequestDispatcher("delete.jsp").forward(request, response);
         }
     
     }

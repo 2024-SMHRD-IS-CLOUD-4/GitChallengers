@@ -1,11 +1,12 @@
-
 body {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     background-color: #f2efe8;
     font-family: Arial, sans-serif;
-    padding-top: 80px; /* 헤더 높이만큼 여백 추가 */
+    padding-top: 60px;
+    /* 헤더 높이만큼 여백 추가 */
 }
 
 .container {
@@ -19,141 +20,141 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 헤더 스타일 */
 .header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background-color: #f2efe8;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 30px;
-	z-index: 2000;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f2efe8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    z-index: 2000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .logo img {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .nav-links {
-	display: flex;
-	align-items: center;
-	gap: 20px;
-	font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 16px;
 }
 
 .nav-links a {
-	color: #333;
-	text-decoration: none;
-	padding: 5px 10px;
+    color: #333;
+    text-decoration: none;
+    padding: 5px 10px;
 }
 
 .nav-links a:hover {
-	background-color: #e8e4de;
-	border-radius: 5px;
-}
-
-.header-icons {
-	display: flex;
-	align-items: center;
-	gap: 15px;
-}
-
-.header-icons i {
-	font-size: 20px;
-	color: #333;
-	cursor: pointer;
-	margin-right: 20px;
+    background-color: #e8e4de;
+    border-radius: 5px;
 }
 
 /* 사용자 환영 텍스트 스타일 */
 .welcome-text {
-	color: #333;
-	text-decoration: none;
-	cursor: pointer;
-	font-weight: bold;
-	padding: 5px 10px;
-	border-radius: 5px;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .welcome-text:hover {
-	background-color: #e8e4de;
+    background-color: #e8e4de;
 }
 
 .logout-button {
-	padding: 5px 15px;
-	background-color: #e0c4a8;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-right: 40px;
+    padding: 5px 15px;
+    background-color: #e0c4a8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 40px;
+    /* 왼쪽으로 이동 */
 }
 
-.create-group-btn {
-	padding: 5px 15px;
-	background-color: #D3D3D3;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-left: 40px;
-}
-
-/* 팝업 스타일 */
+/* 팝업 스타일 (위치를 절대값으로 설정) */
 .popup {
-	position: absolute;
-	top: 50px;
-	padding: 20px;
-	background-color: #fff;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	border-radius: 8px;
-	z-index: 1001;
+    position: absolute;
+    top: 50px;
+    /* 기본 위치 */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1001;
 }
 
 .hidden {
-	display: none;
+    display: none;
 }
 
+/* 헤더 중앙 정렬 */
+.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-icons i {
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    margin-right: 20px;
+}
 /* 팝업 내부 버튼 스타일 */
 .popup-button {
-	display: block;
-	width: 100%;
-	padding: 8px 12px;
-	margin: 5px 0;
-	background-color: #e0c4a8;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	text-align: left;
-	font-size: 14px;
-	color: #333;
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    margin: 5px 0;
+    background-color: #e0c4a8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
 }
 
 .popup-button:hover {
-	background-color: #d3b89a;
-}
-/* 헤더 중앙 정렬 */
-.nav-links {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	display: flex;
-	align-items: center;
-	gap: 20px;
+    background-color: #d3b89a;
 }
 
+/* 그룹 만들기 버튼 */
+.header .create-group-btn {
+    padding: 5px 15px;
+    background-color: #D3D3D3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transform: translateX(-50px);
+    /* 왼쪽으로 0px 이동 */
+}
 
 .sidebar {
     width: 300px;
@@ -199,7 +200,8 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    object-fit: cover; /* 비율 유지하면서 사진 틀에 맞추기 */
+    object-fit: cover;
+    /* 비율 유지하면서 사진 틀에 맞추기 */
 }
 
 /* 프로필 업로드의 이미지 크기 조정 */
@@ -210,7 +212,8 @@ body {
     background-color: #ddd;
     background-size: cover;
     background-position: center;
-    object-fit: cover; /* 비율 유지하면서 사진 틀에 맞추기 */
+    object-fit: cover;
+    /* 비율 유지하면서 사진 틀에 맞추기 */
 }
 
 .button {
@@ -260,7 +263,7 @@ body {
     gap: 5px;
 }
 
-.card-header {
+.author {
     width: 100%;
     text-align: left;
     font-size: 14px;
@@ -292,58 +295,56 @@ body {
     border-radius: 10px;
 }
 
-.card-icons {
+.actions {
     display: flex;
-    gap: 20px;
-    font-size: 20px;
-    position: absolute;
-    bottom: 10px;
-}
-
-.card-icons i {
-    cursor: pointer;
-}
-
-.comment-section {
-    display: none;
-    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    width: 100%;
+    margin-top: 8px;
 }
-
-.comment-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.comment-btn {
-    padding: 8px 15px;
-    background-color: #f5d5da;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
+.actions .like, .actions .comment {
+    font-size: 1.5em;
+    color: #888;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin-right: 10px;
 }
-
-.comment-btn:hover {
-    background-color: #e0b2b8;
+.actions .like-count, .actions .comment-count {
+    font-size: 1em;
+    color: #888;
+    margin-right: 20px;
 }
-
-.comment-list {
-    margin-top: 10px;
-    width: 100%;
-    list-style: none;
-    padding: 0;
+.actions .like.liked {
+    color: red;
 }
-
+.comments-section {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
 .comment-item {
-    padding: 8px;
-    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #333;
+}
+.comment-input {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.comment-input textarea {
+    resize: none;
+    padding: 10px;
     border-radius: 5px;
-    margin-top: 5px;
+    border: 1px solid #ccc;
+    width: 95%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.comment-input button {
+    margin-top: 10px;
+    align-self: flex-end;
+    padding: 5px 10px;
+    border: none;
+    background-color: #888;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
 }

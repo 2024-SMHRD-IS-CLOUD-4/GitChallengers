@@ -61,7 +61,7 @@
                     }, function (rsp) {
                         if (rsp.success) {
                             alert('결제가 완료되었습니다.');
-                            location.href = "/success-page";  // 성공 시 이동할 페이지
+                            location.href = "profile.jsp";  // 성공 시 이동할 페이지
                         } else {
                             alert('결제에 실패하였습니다. 에러: ' + rsp.error_msg);
                         }

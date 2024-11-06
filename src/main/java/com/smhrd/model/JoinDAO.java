@@ -47,4 +47,13 @@ public class JoinDAO {
 		return result;
 	}
 	
+	// 그룹 챌린지 회원 삭제
+	public int removeMember(Join j) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.insert("JoinMapper.removeMember", j);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 }

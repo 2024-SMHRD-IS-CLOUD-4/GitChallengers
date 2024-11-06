@@ -87,7 +87,9 @@
 			                    <%if(member.getId().equals(group.getManager())) {%>
 			                    <input type="checkbox">
 			                    <form action="memberDelete">
-									<button type="submit">퇴장</button>			                    
+									<button type="submit">퇴장</button>
+									<input type="hidden" name="group_idx" value = "<%=idx%>">
+									<input type="hidden" name="id" value = "<%=j.getId()%>">
 			                    </form>
 			                    <%} %>
 			                </li>

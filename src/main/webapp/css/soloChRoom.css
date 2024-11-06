@@ -1,9 +1,5 @@
 @charset "UTF-8";
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+
 
 body {
     display: flex;
@@ -27,118 +23,138 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* 헤더 스타일 */
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f2efe8;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 30px;
-    z-index: 2000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #f2efe8;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 30px;
+	z-index: 2000;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 .logo img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 10px;
 }
 
 .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 16px;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	font-size: 16px;
 }
 
 .nav-links a {
-    color: #333;
-    text-decoration: none;
-    padding: 5px 10px;
+	color: #333;
+	text-decoration: none;
+	padding: 5px 10px;
 }
 
 .nav-links a:hover {
-    background-color: #e8e4de;
-    border-radius: 5px;
+	background-color: #e8e4de;
+	border-radius: 5px;
+}
+
+.header-icons {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.header-icons i {
+	font-size: 20px;
+	color: #333;
+	cursor: pointer;
+	margin-right: 20px;
 }
 
 /* 사용자 환영 텍스트 스타일 */
 .welcome-text {
-    color: #333;
-    text-decoration: none;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 5px;
+	color: #333;
+	text-decoration: none;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 5px 10px;
+	border-radius: 5px;
 }
 
 .welcome-text:hover {
-    background-color: #e8e4de;
+	background-color: #e8e4de;
 }
 
 .logout-button {
-    padding: 5px 15px;
-    background-color: #e0c4a8;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 40px;
-    /* 왼쪽으로 이동 */
+	padding: 5px 15px;
+	background-color: #e0c4a8;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 40px;
 }
 
-/* 팝업 스타일 (위치를 절대값으로 설정) */
+.create-group-btn {
+	padding: 5px 15px;
+	background-color: #D3D3D3;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 40px;
+}
+
+/* 팝업 스타일 */
 .popup {
-    position: absolute;
-    top: 50px;
-    /* 기본 위치 */
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    z-index: 1001;
+	position: absolute;
+	top: 50px;
+	padding: 20px;
+	background-color: #fff;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
+	z-index: 1001;
 }
 
 .hidden {
-    display: none;
-}
-
-/* 헤더 중앙 정렬 */
-.nav-links {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 20px;
+	display: none;
 }
 
 /* 팝업 내부 버튼 스타일 */
 .popup-button {
-    display: block;
-    width: 100%;
-    padding: 8px 12px;
-    margin: 5px 0;
-    background-color: #e0c4a8;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: left;
-    font-size: 14px;
-    color: #333;
+	display: block;
+	width: 100%;
+	padding: 8px 12px;
+	margin: 5px 0;
+	background-color: #e0c4a8;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	text-align: left;
+	font-size: 14px;
+	color: #333;
 }
 
 .popup-button:hover {
-    background-color: #d3b89a;
+	background-color: #d3b89a;
+}
+/* 헤더 중앙 정렬 */
+.nav-links {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	align-items: center;
+	gap: 20px;
 }
 
 /* 그룹 만들기 버튼 */

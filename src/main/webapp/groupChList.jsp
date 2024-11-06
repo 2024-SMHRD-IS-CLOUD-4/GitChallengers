@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="./css/groupChList.css">
 <script src="js/jquery-3.7.1.min.js"></script>
 <body>
@@ -28,17 +29,24 @@
 	%>
     <!-- 헤더 -->
     <div class="header">
-        <div class="title">
-            <img src="img/team-logo.png" alt="logo" onClick="location.href='main.jsp'">
-            <span><%=member.getNick()%>님 환영합니다!</span>
+        <div class="logo">
+            <img src="img/team-logo.png" alt="로고" onClick="location.href='main.jsp'">
+             <div class="nav-links">
+		        <a href="#">MY 챌린지</a>
+		        <a href="groupChList.jsp">그룹 챌린지</a>
+		        <a href="soloChList.jsp">개인 챌린지</a>
+		        <a href="reviewMain.jsp">리뷰</a>
+		    </div>
         </div>
-        
-        <!-- 검색창 -->
-        <div class="search-bar">
-            <input type="text" placeholder="검색어를 입력하세요">
-        </div>
-
-        <button class="create-group-btn" onClick="location.href='groupCh.jsp'">그룹 만들기</button>
+        <div class="header-icons">
+			<i class="fas fa-search"></i>
+            <i class="fas fa-bell"></i>
+		    <a href="profile.jsp" class="welcome-text"><%=member.getNick() %> 환영합니다</a>
+        	<button class="create-group-btn" onClick="location.href='groupCh.jsp'">그룹 만들기</button>
+    		<form action="logoutCon">
+		     <button class="logout-button">로그아웃</button>
+		    </form>
+    	</div>
     </div>
 
 

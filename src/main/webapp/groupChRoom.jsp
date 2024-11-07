@@ -87,7 +87,7 @@
             </div>
             <div class="profile-name"><%=mdao.memberInfo(group.getManager()).getNick()%></div>
             <ul class="group-list">
-            	<li class="group-item">
+            	<li class="group-item" data-id="<%=group.getSub_manager()%>">
 					<img src="profile_img/<%=infodao.info(group.getSub_manager()).getProfile_img() %>">
 					<span class="group-name"><%=mdao.memberInfo(group.getSub_manager()).getNick()%></span>
 					<%if(member.getId().equals(group.getManager())) {%>
@@ -99,7 +99,7 @@
                     	Member m = mdao.memberInfo(j.getId());
                     	if(!j.getId().equals(group.getManager()) && !j.getId().equals(group.getSub_manager())) {
                 %>
-			                <li class="group-item">
+			                <li class="group-item" data-id="<%=j.getId()%>">
 			                    <img src="profile_img/<%=infodao.info(j.getId()).getProfile_img() %>">
 			                    <span class="group-name"><%=m.getNick()%></span>
 			                    <%if(member.getId().equals(group.getManager())) {%>
@@ -238,7 +238,28 @@
 				
 			})  		
 		})
+	    $(document).on('click', '.group-item', function() {
+			var id = $(this).data('id');
+			
+			// 폼을 동적으로 생성하여 POST 방식으로 데이터 전송
+		    var form = $('<form>', {
+		        method: 'POST',
+		        action: 'profile.jsp'
+		    });
+	
+		    // 'id' 파라미터 추가
+		    form.append($('<input>', {
+		        type: 'hidden',
+		        name: 'id',
+		        value: id
+		    }));
+	
+		    // 폼 제출
+		    $('body').append(form);
+		    form.submit();		
+		})
 	})
+	
 	
 	
     </script>

@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.FollowDAO"%>
 <%@page import="com.smhrd.model.Member_info"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
@@ -23,12 +24,18 @@
 	if (member == null) {
 		response.sendRedirect("login.jsp");
 	}
+	String id = request.getParameter("id");
+	if(id == null){
+		id = member.getId();
+	}
 	Member_pointDAO pdao = new Member_pointDAO();
 	Member_infoDAO infodao = new Member_infoDAO();
 	FollowDAO fdao = new FollowDAO();
-	Member_info member_info = infodao.info(member.getId()); // 회원 정보 가져오기
-	int follower = fdao.follower(member.getId());
-	int following = fdao.following(member.getId());
+	MemberDAO mdao = new MemberDAO();
+	Member profileMember = mdao.memberInfo(id); // 프로필 주인 정보
+	Member_info member_info = infodao.info(id); // 회원 정보 가져오기
+	int follower = fdao.follower(id); // 팔로워 수
+	int following = fdao.following(id); // 팔로잉 수
 	%>
 	
 	<!-- Main Container -->
@@ -54,7 +61,9 @@
                     <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요...">
                 </div>
 				<i class="fas fa-bell"></i>
+				<%if(member.getId().equals(id)) {%>
 				<button class="edit-profile-button" onClick="location.href='joinEdit.jsp'">회원정보 수정</button>
+				<%} %>
 				<form action="logoutCon">
 					<button class="logout-button">로그아웃</button>
 				</form>
@@ -66,13 +75,17 @@
             <!-- Profile Picture and Edit Button -->
             <div class="profile-picture">
                 <img src="profile_img/<%=member_info.getProfile_img() %>" alt="Profile Image">
-                <h2><%=member.getNick() %></h2>
+                <h2><%=profileMember.getNick() %></h2>
+                <%if(member.getId().equals(id)) {%>
                 <button class="button-edit" onClick="location.href='profileEdit.jsp'">프로필 편집</button>
+                <%} %>
                 <br><br>
                 <span>팔로워 <span id="followerCount"><%=follower %></span></span>
   				<span>팔로잉 <span id="followingCount"><%=following %></span></span>
   				<br><br>
+  				<%if(!member.getId().equals(id)) {%>
   				<button class="follow-button" id="followButton">팔로우</button>
+  				<%} %>
             </div>
             
           
@@ -97,7 +110,7 @@
                     <textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled><%= (member_info.getIntro() != null) ? member_info.getIntro() : "" %></textarea>
                 </div>
                 
-            
+            	<%if(member.getId().equals(id)) {%>
                 <div class="points-section">
 
                     <span>보유 포인트: <%=member_info.getPoint() %>원</span><br>
@@ -111,6 +124,7 @@
 	                <button class="delete">회원탈퇴</button>
                 </form>
                 </div>
+                <%} %>
                 
                 <!-- Book Showcase Section (Moved under Points Section) -->
                 <div class="book-showcase">

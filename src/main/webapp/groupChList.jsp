@@ -73,7 +73,7 @@
     %>
         <!-- 그룹 카드 1 -->
         <div class="group-card">
-            <div class="profile" onClick="location.href='groupChRoom.jsp?idx=<%=idx%>'">
+            <div class="profile" data-id="<%=managerInfo.getId()%>">
                 <img src="profile_img/<%=infodao.info(managerInfo.getId()).getProfile_img() %>" alt="방장 프로필">
                 <span><%=manager%></span>
             </div>
@@ -103,5 +103,27 @@
 
     </div>
     <script src="./js/groupChList.js"></script>
+    <script type="text/javascript">
+    $(document).on('click', '.profile', function() {
+		var id = $(this).data('id');
+		
+		// 폼을 동적으로 생성하여 POST 방식으로 데이터 전송
+	    var form = $('<form>', {
+	        method: 'POST',
+	        action: 'profile.jsp'
+	    });
+
+	    // 'id' 파라미터 추가
+	    form.append($('<input>', {
+	        type: 'hidden',
+	        name: 'id',
+	        value: id
+	    }));
+
+	    // 폼 제출
+	    $('body').append(form);
+	    form.submit();		
+	})
+    </script>
 </body>
 </html>

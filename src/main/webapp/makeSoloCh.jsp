@@ -21,7 +21,7 @@
           <option value="30">30일</option>
         </select>
       </div>
-      <button type="submit" class="submit-button">체리지 생성</button>
+      <button type="submit" class="submit-button">챌린지 생성</button>
     </form>
   </div>
 

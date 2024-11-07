@@ -133,16 +133,15 @@
                     <div class="content-placeholder"><%= gi.getG_item_desc() %></div>
                 </div>
                 <div class="actions">
-                    <span class="like" id="like">❤</span>
+                    <span class="like" id="like" data-id="<%=member.getId() %>" data-g_item_idx="<%=gi.getG_item_idx()%>">❤</span>
                     <span class="like-count">좋아요 <%=hdao.likeCount(gi.getG_item_idx()) %>개</span>
                     <span class="comment">💬</span>
                     <span class="comment-count">댓글 <%=gcdao.commentCount(gi.getG_item_idx()) %>개</span>
                 </div>
                 <div class="comment-input" >
-                    <textarea rows="3" placeholder="댓글을 작성해주세요..." id="comment"></textarea>
-                    <input type="hidden" value="<%=member.getId() %>" id="writerId">
-                    <input type="hidden" value="<%=gi.getG_item_idx()%>" id="g_item_idx">
-                    <button id="check">댓글 작성</button>
+                    <textarea rows="3" placeholder="댓글을 작성해주세요..." id="comment"
+                    			data-g_item_idx="<%=gi.getG_item_idx()%>" data-id="<%=member.getId() %>"></textarea>
+                    <button class="check">댓글 작성</button>
                 </div>
                 <div class="comments-section">
                 	<%
@@ -180,56 +179,66 @@
 
     <script src="./js/groupChRoom.js"></script>
     <script type="text/javascript">
-	$('#check').on('click', () => {
-		var input = {
-				comment : $('#comment').val(),
-				writerId : $('#writerId').val(),
-				g_item_idx : $('#g_item_idx').val()
-		};
-		
-		$.ajax({
-			url : "gc_commentWrite",
-			type : "post",
-			contentType: "application/json; charset=UTF-8",
-			data : JSON.stringify(input),
-			success : function(data){
-				if (data == "true") {
-					document.location.reload(); 
-	            } else {
-	                alert("실패");  
-	            }
-			},
-			error : function(){
-				alert("통신실패")
-			}
+    $(document).ready(function() {
+        // 동적으로 생성되는 요소에 대해 이벤트 위임을 사용
+        // 댓글 작성
+		$(document).on('click', '.check', function() {
 			
-		})  		
+			var textarea = $(this).prev('textarea');
+			
+			var input = {
+					comment : textarea.val(),
+					writerId : textarea.data('id'),
+					g_item_idx : textarea.data('g_item_idx')
+			};
+			
+			$.ajax({
+				url : "gc_commentWrite",
+				type : "post",
+				contentType: "application/json; charset=UTF-8",
+				data : JSON.stringify(input),
+				success : function(data){
+					if (data == "true") {
+						document.location.reload(); 
+		            } else {
+		                alert("실패");  
+		            }
+				},
+				error : function(){
+					alert("통신실패")
+				}
+				
+			})  		
+		})
+		
+		// 좋아요
+		$(document).on('click', '.like', function() {
+			var input = {
+					id : $(this).data('id'),
+					g_item_idx : $(this).data('g_item_idx')
+			};
+			
+			$.ajax({
+				url : "gc_like",
+				type : "post",
+				contentType: "application/json; charset=UTF-8",
+				data : JSON.stringify(input),
+				success : function(data){
+					if (data == "true") {
+						document.location.reload(); 
+		            } else {
+		                alert("실패");  
+		            }
+				},
+				error : function(){
+					alert("통신실패")
+				}
+				
+			})  		
+		})
 	})
 	
-	$('#like').on('click', () => {
-		var input = {
-				id : $('#writerId').val(),
-				g_item_idx : $('#g_item_idx').val()
-		};
-		
-		$.ajax({
-			url : "gc_like",
-			type : "post",
-			contentType: "application/json; charset=UTF-8",
-			data : JSON.stringify(input),
-			success : function(data){
-				if (data == "true") {
-					document.location.reload(); 
-	            } else {
-	                alert("실패");  
-	            }
-			},
-			error : function(){
-				alert("통신실패")
-			}
-			
-		})  		
-	})
+	
     </script>
 </body>
 

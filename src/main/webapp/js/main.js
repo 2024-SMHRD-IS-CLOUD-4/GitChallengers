@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	            if (chart.config.type === 'doughnut') {
 	                const { width, height, ctx } = chart;
 	                ctx.restore();
-	                const fontSize = (height / 100).toFixed(2);
+	                const fontSize = (height / 110).toFixed(2);
 	                ctx.font = fontSize + "em sans-serif";
 	                ctx.textBaseline = "middle";
 

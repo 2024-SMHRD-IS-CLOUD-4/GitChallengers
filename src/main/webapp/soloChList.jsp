@@ -71,9 +71,6 @@
         		if(pc != null) {
         %>
         <div class="group-card">
-            <div class="profile">
-                <img src="profile_img/<%=infodao.info(member.getId()).getProfile_img() %>" alt="반장 프로필">
-            </div>
             <div class="content">
                 <h3><%=pc.getPc_title() %></h3>
                 <div class="details">

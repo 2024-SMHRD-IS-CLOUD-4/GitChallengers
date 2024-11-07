@@ -2,8 +2,7 @@
 function showReview() {
     const reviewContent = document.getElementById("review-content");
     reviewContent.innerHTML = `
-        <p>여기에 리뷰 내용이 표시됩니다. 사용자는 스크롤을 통해 긴 리뷰 내용을 확인할 수 있습니다.</p>
-        <p>리뷰 내용 예시: 이 책은 정말 재미있고, 가족 모두가 함께 즐길 수 있습니다....</p>
+
     `;
 }
 

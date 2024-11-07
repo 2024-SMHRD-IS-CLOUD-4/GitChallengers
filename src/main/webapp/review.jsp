@@ -45,7 +45,7 @@
             </div>
 
             <!-- 인증사진첨부 버튼 -->
-            <button id="auth-upload-button" onclick="document.getElementById('auth-file-input').click()">인증사진첨부</button>
+            <button id="auth-upload-button" onclick="document.getElementById('auth-file-input').click()">영수증사진첨부</button>
             <input type="file" id="auth-file-input" accept="image/*" style="display: none;" onchange="previewAuthImage(event)" name="review_ocr">
 
             <!-- 글 작성 버튼 -->

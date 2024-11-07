@@ -11,5 +11,9 @@
 		select * from ch_review
 	</select>
 	
+	<!-- 리뷰 가져오기 -->
+	<select id="review" resultType="Review">
+		select * from ch_review where review_idx=#{review_idx}
+	</select>
 	
 </mapper>

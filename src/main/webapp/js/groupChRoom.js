@@ -52,6 +52,18 @@
     });
 });
 */
+document.addEventListener('DOMContentLoaded', function () {
+    const kickButton = document.querySelector('.sidebar .kick-button');
+
+    kickButton.addEventListener('click', function () {
+        if (confirm('정말로 방장을 추방하시겠습니까?')) {
+            alert('방장이 추방되었습니다.');
+            // 여기에서 방장을 추방하는 추가 작업을 구현합니다.
+        }
+    });
+});
+
+
 // MY 챌린지 버튼 클릭 시 팝업 토글
 document.querySelector('.nav-links a').addEventListener('click', function (event) {
     event.preventDefault(); // 기본 동작 방지

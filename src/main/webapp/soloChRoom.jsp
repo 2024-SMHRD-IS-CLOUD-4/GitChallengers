@@ -93,16 +93,7 @@
                     <div class="page-info"></div>
                     <div class="content-placeholder"><%=i.getP_item_desc() %></div>
                 </div>
-                <div class="card-icons">
-                    <i class="heart">🤍</i>
-                    <i class="comment">💬</i>
-                    <i>📤</i>
-                </div>
-                <div class="comment-section">
-                    <ul class="comment-list"></ul>
-                    <input type="text" class="comment-input" placeholder="댓글을 입력하세요">
-                    <button class="comment-btn">댓글 작성</button>
-                </div>
+                
             </div>
     	        	<%} %>
 	            <%} %>

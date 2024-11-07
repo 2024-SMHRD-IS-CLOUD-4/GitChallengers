@@ -80,6 +80,8 @@
     <div class="container">
         <!-- 왼쪽 사이드바 -->
         <div class="sidebar">
+            <button class="kick-button">방장 추방</button>
+            
             <div class="profile-upload">
                	<img src="profile_img/<%=infodao.info(group.getManager()).getProfile_img() %>" class="profile-img" id="profilePreview">
             </div>

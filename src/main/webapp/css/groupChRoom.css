@@ -257,6 +257,26 @@ body {
 .button:hover {
     background-color: #e0b2b8;
 }
+.moderator-profile {
+    position: relative;
+}
+
+.sidebar .kick-button {
+    align-self: flex-start;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* 사이드바 내 다른 요소와의 간격 조정 */
+}
+
+.sidebar .kick-button:hover {
+    background-color: #ff4c4c;
+}
 
 .card-container {
     display: grid;

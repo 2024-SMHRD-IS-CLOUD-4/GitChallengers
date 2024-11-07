@@ -42,60 +42,131 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+	    // 사용자 정의 플러그인: 도넛의 중심에 텍스트를 표시
+	    Chart.register({
+	        id: 'centerTextPlugin',
+	        beforeDraw: function (chart) {
+	            if (chart.config.type === 'doughnut') {
+	                const { width, height, ctx } = chart;
+	                ctx.restore();
+	                const fontSize = (height / 100).toFixed(2);
+	                ctx.font = fontSize + "em sans-serif";
+	                ctx.textBaseline = "middle";
+
+	                const text = `${chart.config.data.datasets[0].data[0]}%`;
+	                const textX = Math.round((width - ctx.measureText(text).width) / 2);
+	                const textY = height / 2;
+
+	                ctx.fillText(text, textX, textY);
+	                ctx.save();
+	            }
+	        }
+	    });
+	// 진행 상황 차트
+	const progressCtx = document.getElementById('progressChart').getContext('2d');
+	new Chart(progressCtx, {
+		type: 'doughnut',
+		data: {
+			labels: ['진행된 페이지'],
+			datasets: [{
+				data: [70, 30],
+				backgroundColor: ['#B3261E', '#ffffff'],
+				hoverOffset: 4
+			}]
+		},
+		options: {
+			responsive: true,
+			plugins: {
+				legend: {
+					display: true, // Make sure to show the legend
+					position: 'bottom' // Place it in a visible position
+				}
+			},
+			cutout: '70%'
+		}
+	});
+
+	// 완료 확률 차트
+	const completionCtx = document.getElementById('completionChart').getContext('2d');
+	new Chart(completionCtx, {
+		type: 'doughnut',
+		data: {
+			labels: ['완료 확률'],
+			datasets: [{
+				data: [50, 50],
+				backgroundColor: ['#4867FF', '#ffffff'],
+				hoverOffset: 4
+			}]
+		},
+		options: {
+			responsive: true,
+			plugins: {
+				legend: {
+					display: true,
+					position: 'bottom'
+				}
+			},
+			cutout: '70%'
+		}
+	});
+});
 // 돋보기 버튼 클릭 시 검색창 및 옵션 표시
-document.getElementById('searchIcon').addEventListener('click', function () {
-    const navLinks = document.querySelector('.nav-links');
-    const searchOptions = document.getElementById('searchOptions');
-    const searchInput = document.getElementById('searchInput');
+document.getElementById('searchIcon').addEventListener('click', function() {
+	const navLinks = document.querySelector('.nav-links');
+	const searchOptions = document.getElementById('searchOptions');
+	const searchInput = document.getElementById('searchInput');
 
-    if (searchInput.classList.contains('hidden')) {
-        navLinks.classList.add('hidden'); // 챌린지 링크 숨기기
-        searchOptions.classList.remove('hidden'); // 검색 옵션 보이기
-        searchInput.classList.remove('hidden'); // 검색창 보이기
+	if (searchInput.classList.contains('hidden')) {
+		navLinks.classList.add('hidden'); // 챌린지 링크 숨기기
+		searchOptions.classList.remove('hidden'); // 검색 옵션 보이기
+		searchInput.classList.remove('hidden'); // 검색창 보이기
 
-        // 검색 옵션과 검색창을 헤더의 중앙으로 위치시키고 검색창 왼쪽에 검색 옵션 배치
-        searchOptions.style.position = 'absolute';
-        searchOptions.style.left = '50%';
-        searchOptions.style.transform = 'translateX(-50%)';
-        searchInput.style.position = 'relative';
-        searchInput.style.left = '0';
-        searchInput.style.marginLeft = '10px'; // 검색 옵션 옆으로 위치
-        searchInput.focus(); // 검색창에 포커스
-    } else {
-        navLinks.classList.remove('hidden'); // 챌린지 링크 보이기
-        searchOptions.classList.add('hidden'); // 검색 옵션 숨기기
-        searchInput.classList.add('hidden'); // 검색창 숨기기
+		// 검색 옵션과 검색창을 헤더의 중앙으로 위치시키고 검색창 왼쪽에 검색 옵션 배치
+		searchOptions.style.position = 'absolute';
+		searchOptions.style.left = '50%';
+		searchOptions.style.transform = 'translateX(-50%)';
+		searchInput.style.position = 'relative';
+		searchInput.style.left = '0';
+		searchInput.style.marginLeft = '10px'; // 검색 옵션 옆으로 위치
+		searchInput.focus(); // 검색창에 포커스
+	} else {
+		navLinks.classList.remove('hidden'); // 챌린지 링크 보이기
+		searchOptions.classList.add('hidden'); // 검색 옵션 숨기기
+		searchInput.classList.add('hidden'); // 검색창 숨기기
 
-        // 위치 초기화
-        searchOptions.style.position = '';
-        searchOptions.style.left = '';
-        searchOptions.style.transform = '';
-        searchInput.style.position = '';
-        searchInput.style.left = '';
-        searchInput.style.marginLeft = '';
-    }
+		// 위치 초기화
+		searchOptions.style.position = '';
+		searchOptions.style.left = '';
+		searchOptions.style.transform = '';
+		searchInput.style.position = '';
+		searchInput.style.left = '';
+		searchInput.style.marginLeft = '';
+	}
 });
 
 // 검색창 이외 영역 클릭 시 검색창 및 옵션 숨기기
-document.addEventListener('click', function (event) {
-    const searchInput = document.getElementById('searchInput');
-    const searchIcon = document.getElementById('searchIcon');
-    const searchOptions = document.getElementById('searchOptions');
-    const navLinks = document.querySelector('.nav-links');
+document.addEventListener('click', function(event) {
+	const searchInput = document.getElementById('searchInput');
+	const searchIcon = document.getElementById('searchIcon');
+	const searchOptions = document.getElementById('searchOptions');
+	const navLinks = document.querySelector('.nav-links');
 
-    if (!searchInput.classList.contains('hidden') && event.target !== searchInput && event.target !== searchIcon && event.target !== searchOptions && !searchOptions.contains(event.target)) {
-        searchInput.classList.add('hidden'); // 검색창 숨기기
-        navLinks.classList.remove('hidden'); // 챌린지 링크 보이기
-        searchOptions.classList.add('hidden'); // 검색 옵션 숨기기
+	if (!searchInput.classList.contains('hidden') && event.target !== searchInput && event.target !== searchIcon && event.target !== searchOptions && !searchOptions.contains(event.target)) {
+		searchInput.classList.add('hidden'); // 검색창 숨기기
+		navLinks.classList.remove('hidden'); // 챌린지 링크 보이기
+		searchOptions.classList.add('hidden'); // 검색 옵션 숨기기
 
-        // 위치 초기화
-        searchOptions.style.position = '';
-        searchOptions.style.left = '';
-        searchOptions.style.transform = '';
-        searchInput.style.position = '';
-        searchInput.style.left = '';
-        searchInput.style.marginLeft = '';
-    }
+		// 위치 초기화
+		searchOptions.style.position = '';
+		searchOptions.style.left = '';
+		searchOptions.style.transform = '';
+		searchInput.style.position = '';
+		searchInput.style.left = '';
+		searchInput.style.marginLeft = '';
+	}
 });
 const searchInput = document.getElementById('searchInput');
 searchInput.style.width = '600px';

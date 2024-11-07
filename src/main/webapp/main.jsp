@@ -21,6 +21,7 @@
     <title>Challenge and Shop Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -89,14 +90,12 @@
             </div>
             <div class="status">
                 <h2>현재 챌린지 진행 상황</h2>
-                <div class="progress-chart">
-                    <div class="progress-circle" data-progress="<%= request.getAttribute("challengeProgress") %>"></div>
-                    <span class="progress-text"><%= request.getAttribute("challengeProgress") %>%</span>
+                <div style="width: 25%; margin: auto;">
+                    <canvas id="progressChart"></canvas>
                 </div>
                 <h2>챌린지 완료 확률</h2>
-                <div class="progress-chart">
-                    <div class="progress-circle" data-progress="<%= request.getAttribute("completionProbability") %>"></div>
-                    <span class="progress-text"><%=member_info.getCh_count() == 0 ? "0" : member_info.getCh_suc_count()/member_info.getCh_count() * 100 %>%</span>
+                <div style="width: 25%; margin: auto;">
+                    <canvas id="completionChart"></canvas>
                 </div>
             </div>
         </div>

@@ -74,7 +74,7 @@
         <!-- 그룹 카드 1 -->
         <div class="group-card">
             <div class="profile" onClick="location.href='groupChRoom.jsp?idx=<%=idx%>'">
-                <img src="profile_img/<%=infodao.info(managerInfo.getId()).getProfile_img() %>" alt="반장 프로필">
+                <img src="profile_img/<%=infodao.info(managerInfo.getId()).getProfile_img() %>" alt="방장 프로필">
                 <span><%=manager%></span>
             </div>
             <div class="content" onClick="location.href='groupChRoom.jsp?idx=<%=idx%>'">

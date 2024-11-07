@@ -12,8 +12,8 @@
 	<div class="login-container">
 	    <h2>로그인</h2>
 	    <div class="logo-container">
-	        <img src="img/team-logo.png" alt="로고" class="site-logo">
-	    </div>
+        	<img class="site-logo" src="img/team-logo.png" alt="사이트 로고">
+    	</div>
 	    <form action="loginCon" method="post">
 	        <div class="form-group">
 	            <label for="id">아이디</label>
@@ -30,5 +30,6 @@
 	        </div>
 	    </form>
 	</div>
+
 </body>
 </html>

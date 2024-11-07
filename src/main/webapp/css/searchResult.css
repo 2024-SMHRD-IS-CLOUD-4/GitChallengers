@@ -1,14 +1,22 @@
 @charset "UTF-8";
 body {
-    font-family: Arial, sans-serif;
     background-color: #f2efe8;
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    padding: 100px 20px 20px 20px; /* 헤더와 겹치지 않도록 상단에 패딩 추가 */
+    height: 100vh;
+    margin: 0;
 }
 
+.search-container {
+    background-color: white;
+    width: 60%;
+    height: 60%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
 .header {
     position: fixed;
     top: 0;
@@ -26,7 +34,7 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    cursor: pointer;
+    gap: 10px;
 }
 
 .logo img {
@@ -41,9 +49,6 @@ body {
     align-items: center;
     gap: 20px;
     font-size: 16px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .nav-links a {
@@ -55,19 +60,6 @@ body {
 .nav-links a:hover {
     background-color: #e8e4de;
     border-radius: 5px;
-}
-
-.header-icons {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.header-icons i {
-    font-size: 20px;
-    color: #333;
-    cursor: pointer;
-    margin-right: 20px;
 }
 .searchOptions {
     display: flex;
@@ -93,6 +85,8 @@ body {
 .hidden {
     display: none;
 }
+
+/* 사용자 환영 텍스트 스타일 */
 .welcome-text {
     color: #333;
     text-decoration: none;
@@ -113,6 +107,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin-right: 40px;
+    /* 왼쪽으로 이동 */
 }
 
 /* 팝업 스타일 (위치를 절대값으로 설정) */
@@ -131,6 +126,27 @@ body {
     display: none;
 }
 
+/* 헤더 중앙 정렬 */
+.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-icons i {
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    margin-right: 20px;
+}
 /* 팝업 내부 버튼 스타일 */
 .popup-button {
     display: block;
@@ -150,56 +166,7 @@ body {
     background-color: #d3b89a;
 }
 
-.card {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 1000px;
-    height: 110px;
-    margin: 10px 0;
-    padding: 20px;
-    position: relative;
-}
-
-.card img {
-    width: 100px;
-    height: auto;
-    border-radius: 8px;
-    margin-right: 20px;
-}
-
-.card-content {
-    flex-grow: 1;
-}
-
-.card-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.card-body {
-    margin-bottom: 10px;
-}
-
-.card-stats {
-    font-size: 14px;
-    color: #555;
-    position: absolute;
-    right: 20px;
-    text-align: right;
-}
-
-.recommendation {
-    font-weight: bold;
-}
-
-.recommendation.positive {
-    color: green;
-}
-
-.recommendation.negative {
-    color: red;
+.results {
+    text-align: center;
+    font-size: 1.5em;
 }

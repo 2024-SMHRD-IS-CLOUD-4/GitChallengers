@@ -43,7 +43,15 @@
 				</div>
 			</div>
 			<div class="header-icons">
-				<i class="fas fa-search"></i> <i class="fas fa-bell"></i>
+				<i class="fas fa-search" id="searchIcon"></i> 
+				<div id="searchOptions" class="hidden">
+                    <select id="searchSelect">
+                        <option value="review">리뷰</option>
+                        <option value="group">그룹 챌린지</option>
+                    </select>
+                    <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요...">
+                </div>
+				<i class="fas fa-bell"></i>
 				<button class="edit-profile-button" onClick="location.href='joinEdit.jsp'">회원정보 수정</button>
 				<form action="logoutCon">
 					<button class="logout-button">로그아웃</button>

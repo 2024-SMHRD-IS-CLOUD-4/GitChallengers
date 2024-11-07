@@ -41,7 +41,9 @@
 				<td><%=g.getGroup_desc() %></td>
 			</tr>
 			<%}
-			}%>
+			}else {%>
+				<tr>검색결과가 없습니다</tr>
+			<%} %>
 			
 	</table>
 	

@@ -12,4 +12,19 @@
 		select count(*) from ch_follow where follower=#{follower}
 	</select>
 	
+	<!-- 팔로우 여부 확인 -->
+	<select id="followCheck" parameterType="Follow" resultType="int">
+		select count(*) from ch_follow where follower=#{follower} and following=#{following}
+	</select>
+	
+	<!-- 팔로우 추가 -->
+	<insert id="addFollow" parameterType="Follow">
+		insert into ch_follow values (ch_follow_seq.nextval, #{follower}, #{following}, sysdate)
+	</insert>
+	
+	<!-- 팔로우 삭제 -->
+	<delete id="deleteFollow" parameterType="Follow">
+		delete from ch_follow where follower=#{follower} and following=#{following}
+	</delete>
+	
 </mapper>

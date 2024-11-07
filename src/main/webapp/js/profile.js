@@ -2,8 +2,7 @@
 function showReview() {
     const reviewContent = document.getElementById("review-content");
     reviewContent.innerHTML = `
-        <p>여기에 리뷰 내용이 표시됩니다. 사용자는 스크롤을 통해 긴 리뷰 내용을 확인할 수 있습니다.</p>
-        <p>리뷰 내용 예시: 이 책은 정말 재미있고, 가족 모두가 함께 즐길 수 있습니다....</p>
+
     `;
 }
 
@@ -44,7 +43,7 @@ document.querySelectorAll('.popup-button').forEach(button => {
     });
 });
 
-// 팔로우 버튼 클릭 시 팔로워 숫자 업데이트
+/*// 팔로우 버튼 클릭 시 팔로워 숫자 업데이트
 const followButton = document.getElementById('followButton');
 const followerCountElement = document.getElementById('followerCount'); // 팔로워 수를 표시하는 요소의 ID
 const followingCountElement = document.getElementById('followingCount'); // 팔로잉 수를 표시하는 요소의 ID
@@ -66,7 +65,7 @@ followButton.addEventListener('click', function () {
     }
 
     followerCountElement.textContent = followerCount; // 변경된 팔로워 수 업데이트
-});
+});*/
 // 돋보기 버튼 클릭 시 검색창 및 옵션 표시
 document.getElementById('searchIcon').addEventListener('click', function () {
     const navLinks = document.querySelector('.nav-links');

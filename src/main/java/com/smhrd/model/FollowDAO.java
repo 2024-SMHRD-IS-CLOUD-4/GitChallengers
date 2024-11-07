@@ -26,4 +26,31 @@ public class FollowDAO {
 		
 		return result;
 	}
+	
+	// 팔로우 여부 조회
+	public int followCheck(Follow f) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.selectOne("FollowMapper.followCheck", f);
+		sqlSession.close();
+		
+		return result;
+	}
+	
+	// 팔로우 추가
+	public int addFollow(Follow f) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.insert("FollowMapper.addFollow", f);
+		sqlSession.close();
+		
+		return result;
+	}
+	
+	// 팔로우 삭제
+	public int deleteFollow(Follow f) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.delete("FollowMapper.deleteFollow", f);
+		sqlSession.close();
+		
+		return result;
+	}
 }

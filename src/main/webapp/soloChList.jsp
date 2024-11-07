@@ -57,7 +57,7 @@
             </div>
             <i class="fas fa-bell"></i>
 		    <a href="profile.jsp" class="welcome-text"><%=member.getNick() %> 환영합니다</a>
-			<button class="create-group-btn">챌린지 만들기</button>
+			<button class="create-group-btn" onClick="location.href='makeSoloCh.jsp'">챌린지 만들기</button>
 		    <form action="logoutCon">
 		     <button class="logout-button">로그아웃</button>
 		    </form>

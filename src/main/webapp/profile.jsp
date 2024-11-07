@@ -1,4 +1,6 @@
+<%@page import="com.smhrd.model.Follow"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="com.smhrd.model.FollowDAO"%>
 <%@page import="com.smhrd.model.Member_info"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
@@ -19,6 +21,7 @@
 </head>
 
 <body>
+<script src="js/jquery-3.7.1.min.js"></script>
 	<%
 	Member member = (Member) session.getAttribute("member");
 	if (member == null) {
@@ -83,8 +86,16 @@
                 <span>팔로워 <span id="followerCount"><%=follower %></span></span>
   				<span>팔로잉 <span id="followingCount"><%=following %></span></span>
   				<br><br>
-  				<%if(!member.getId().equals(id)) {%>
-  				<button class="follow-button" id="followButton">팔로우</button>
+  				<%if(!member.getId().equals(id)) {
+  					Follow follow = new Follow(member.getId(), profileMember.getId());
+  				%>
+  				<button class="follow-button" id="followButton" data-follower="<%=member.getId()%>" data-following="<%=profileMember.getId()%>">
+  				<%if (fdao.followCheck(follow) == 1) {%>
+  				언팔로우
+  				<%}else{ %>
+  				팔로우
+  				<%} %>
+  				</button>
   				<%} %>
             </div>
             
@@ -156,14 +167,60 @@
 				</div>
 				<div id="review-content" class="review-content">
 					<!-- 초기에는 리뷰 내용 표시 -->
-					<p>여기에 리뷰 내용이 표시됩니다. 사용자는 스크롤을 통해 긴 리뷰 내용을 확인할 수 있습니다.</p>
-					<p>리뷰 내용 예시: 이 책은 정말 재미있고, 가족 모두가 함께 즐길 수 있습니다....</p>
+				<c:forEach var="review" items="${reviewList}">
+				    <div class="review">
+				        <h3>${review.review_title}</h3> 
+				        <!-- 사진 넣고 a태그로 넘어가게 페이지 이동시에는 idx를 보내던가 아니면 쿼리에 idx넣기 -->
+				    </div>
+				</c:forEach>
 				</div>
 			</div>
 		</div>
 		</div>
 
 		<script src="./js/profile.js"></script>
+
+<script>
+	let reviewList = "${reviewList}";
+	
+	console.log('reviewList', reviewList);
+
+	// 팔로우
+	$(document).on('click', '.follow-button', function() {
+		var input = {
+				follower : $(this).data('follower'),
+				following : $(this).data('following')
+		};
+		
+		$.ajax({
+			url : "follow",
+			type : "post",
+			contentType: "application/json; charset=UTF-8",
+			data : JSON.stringify(input),
+			success : function(data){
+				if (data == "true") {
+					document.location.reload();
+					var followButton = $('#followButton');
+					if (followButton.text() === '팔로우') {
+						followButton.text('언팔로우');
+						followerCount.text(parseInt(followerCount.text()) + 1);
+					}else {
+						followButton.text('팔로우');
+						followerCount.text(parseInt(followerCount.text()) - 1);
+					}
+					
+	            } else {
+	                alert("실패");  
+	            }
+			},
+			error : function(){
+				alert("통신실패")
+			}
+			
+		})  		
+	})
+
+</script>
 </body>
 
 </html>

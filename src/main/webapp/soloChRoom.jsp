@@ -76,6 +76,12 @@
             </div>
             <div class="profile-name"></div>
             <button class="button" onclick="location.href='pcWrite.jsp?idx=<%=idx%>'">오늘의 챌린지 작성</button>
+ 			<!-- Add this canvas for the chart -->
+			<div style="width: 50%; margin: auto; margin-top: 20px;">
+  				<canvas id="myChart"></canvas>
+			</div>
+ 			
+            
         </div>
 
         <!-- 카드 영역 -->
@@ -92,6 +98,7 @@
                     <div class="book-title"><%=i.getP_item_title() %></div>
                     <div class="page-info"></div>
                     <div class="content-placeholder"><%=i.getP_item_desc() %></div>
+                    
                 </div>
                 
             </div>
@@ -117,7 +124,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <script src="./js/soloChRoom.js"></script>
 </body>

@@ -18,6 +18,12 @@ public class Follow {
 	
 	// 팔로우 날짜
 	private String followed_at;
+
+	public Follow(String follower, String following) {
+		super();
+		this.follower = follower;
+		this.following = following;
+	}
 	
 
 }

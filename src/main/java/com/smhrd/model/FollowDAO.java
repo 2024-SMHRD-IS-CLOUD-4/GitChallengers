@@ -7,7 +7,7 @@ import com.smhrd.database.SqlSessionManager;
 
 public class FollowDAO {
 	
-SqlSessionFactory factory = SqlSessionManager.getSqlSessionFactory();
+	SqlSessionFactory factory = SqlSessionManager.getSqlSessionFactory();
 	
 	// 팔로어 수 가져오기
 	public int follower(String following) {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Gc_commentMapper">
+	<!-- 댓글 수 가져오기 -->
+	<select id="commentCount" resultType="int">
+		select count(*) from ch_gc_comment where g_item_idx=#{g_item_idx}
+	</select>
+	
+	<!-- 댓글 작성 -->
+	<insert id="commentWrite">
+		insert into ch_gc_comment values (ch_gc_comment_seq.nextval, #{cmt_content}, sysdate, #{id}, #{g_item_idx})
+	</insert>
+	
+	<!-- 댓글 리스트 가져오기 -->
+	<select id="commentList" resultType="Gc_comment">
+		select * from ch_gc_comment where g_item_idx=#{g_item_idx} order by created_at desc
+	</select>
+	
+</mapper>

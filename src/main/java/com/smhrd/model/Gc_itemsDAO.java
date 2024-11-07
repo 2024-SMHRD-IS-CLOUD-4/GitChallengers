@@ -27,9 +27,6 @@ public class Gc_itemsDAO {
 		sqlSession.close();
 		
 		return result;
-		
-		
-		
 	}
 	
 	

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     const likeButton = document.querySelector('.like');
     const likeCountSpan = document.querySelector('.like-count');
     const commentButton = document.querySelector('.comment');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
+*/
 // MY 챌린지 버튼 클릭 시 팝업 토글
 document.querySelector('.nav-links a').addEventListener('click', function (event) {
     event.preventDefault(); // 기본 동작 방지

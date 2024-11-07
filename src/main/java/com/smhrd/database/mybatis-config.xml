@@ -16,6 +16,8 @@
 		<typeAlias type="com.smhrd.model.Review" alias = "Review"/>
 		<typeAlias type="com.smhrd.model.Comment" alias = "Comment"/>
 		<typeAlias type="com.smhrd.model.Follow" alias = "Follow"/>
+		<typeAlias type="com.smhrd.model.Gc_comment" alias = "Gc_comment"/>
+		<typeAlias type="com.smhrd.model.Gc_heart" alias = "Heart"/>
 	</typeAliases>
   <environments default="development">
     <environment id="development">
@@ -40,5 +42,7 @@
     <mapper resource="com/smhrd/database/ReviewMapper.xml"/>
     <mapper resource="com/smhrd/database/CommentMapper.xml"/>
     <mapper resource="com/smhrd/database/FollowMapper.xml"/>
+    <mapper resource="com/smhrd/database/Gc_commentMapper.xml"/>
+    <mapper resource="com/smhrd/database/Gc_heartMapper.xml"/>
   </mappers>
 </configuration>

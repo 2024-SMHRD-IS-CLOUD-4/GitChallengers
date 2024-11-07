@@ -9,7 +9,7 @@
 	
 	<!-- 그룹 챌린지 글 가져오기 -->
 	<select id="getItem" parameterType="items" resultType="items">
-		select * from ch_gc_items where gc_idx=#{gc_idx} and id=#{id}
+		select * from ch_gc_items where gc_idx=#{gc_idx} and id=#{id} order by created_at desc
 	</select>
 	
 	

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Gc_heartMapper">
+	
+	<!-- 좋아요 여부 확인 -->
+	<select id="likeCheck" parameterType="Heart" resultType="int">
+		select count(*) from gc_ch_heart where g_item_idx=#{g_item_idx} and id=#{id}
+	</select>
+	
+	<!-- 좋아요 추가 -->
+	<insert id="addLike" parameterType="Heart">
+		insert into gc_ch_heart values (gc_ch_heart_seq.nextval, #{g_item_idx}, #{id}, sysdate)
+	</insert>
+	
+	<!-- 좋아요 삭제 -->
+	<delete id="deleteLike" parameterType="Heart">
+		delete from gc_ch_heart where g_item_idx=#{g_item_idx} and id=#{id}
+	</delete>
+	
+	<!-- 좋아요 수 -->
+	<select id="likeCount" resultType="int">
+		select count(*) from gc_ch_heart where g_item_idx=#{g_item_idx}
+	</select>
+	
+</mapper>

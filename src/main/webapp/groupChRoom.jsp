@@ -1,3 +1,7 @@
+<%@page import="com.smhrd.model.Gc_heartDAO"%>
+<%@page import="com.smhrd.model.Gc_heart"%>
+<%@page import="com.smhrd.model.Gc_commentDAO"%>
+<%@page import="com.smhrd.model.Gc_comment"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.Gc_items"%>
@@ -23,6 +27,7 @@
 </head>
 
 <body>
+<script src="js/jquery-3.7.1.min.js"></script>
 <%	
 	Member member = (Member) session.getAttribute("member");
 	if(member == null) {
@@ -35,6 +40,8 @@
 	Gc_itemsDAO idao = new Gc_itemsDAO();
 	MemberDAO mdao = new MemberDAO();
 	Member_infoDAO infodao = new Member_infoDAO();
+	Gc_commentDAO gcdao = new Gc_commentDAO();
+	Gc_heartDAO hdao = new Gc_heartDAO();
 	int idx = Integer.parseInt(request.getParameter("idx")); // 방 인덱스
 	Group group = dao.groupInfo(idx); // 방 정보
 	List<Join> list = jdao.selectAll(idx); // 방 참가 인원 정보
@@ -119,18 +126,29 @@
                     <div class="content-placeholder"><%= gi.getG_item_desc() %></div>
                 </div>
                 <div class="actions">
-                    <span class="like">❤</span>
-                    <span class="like-count">좋아요 10개</span>
+                    <span class="like" id="like">❤</span>
+                    <span class="like-count">좋아요 <%=hdao.likeCount(gi.getG_item_idx()) %>개</span>
                     <span class="comment">💬</span>
-                    <span class="comment-count">댓글 0개</span>
+                    <span class="comment-count">댓글 <%=gcdao.commentCount(gi.getG_item_idx()) %>개</span>
                 </div>
-                <div class="comment-input" style="display: none;">
-                    <textarea rows="3" placeholder="댓글을 작성해주세요..."></textarea>
-                    <button>댓글 작성</button>
+                <div class="comment-input" >
+                    <textarea rows="3" placeholder="댓글을 작성해주세요..." id="comment"></textarea>
+                    <input type="hidden" value="<%=member.getId() %>" id="writerId">
+                    <input type="hidden" value="<%=gi.getG_item_idx()%>" id="g_item_idx">
+                    <button id="check">댓글 작성</button>
                 </div>
-                <div class="comments-section"></div>
+                <div class="comments-section">
+                	<%
+                		List<Gc_comment> commentList = gcdao.commentList(gi.getG_item_idx());
+                		for(Gc_comment gc : commentList) {%>
+                			<span><%=mdao.memberInfo(gc.getId()).getNick() %> : </span>
+                			<span><%=gc.getCmt_content() %></span><br>
+                	<%}%>
+                </div>
             </div>
         </div>
+    	        	<%}else {%>
+    	        	<span>등록된 챌린지가 없습니다</span>
     	        	<%} %>
 	            <%} %>
             <%} %>
@@ -154,6 +172,58 @@
 		</div>
 
     <script src="./js/groupChRoom.js"></script>
+    <script type="text/javascript">
+	$('#check').on('click', () => {
+		var input = {
+				comment : $('#comment').val(),
+				writerId : $('#writerId').val(),
+				g_item_idx : $('#g_item_idx').val()
+		};
+		
+		$.ajax({
+			url : "gc_commentWrite",
+			type : "post",
+			contentType: "application/json; charset=UTF-8",
+			data : JSON.stringify(input),
+			success : function(data){
+				if (data == "true") {
+					document.location.reload(); 
+	            } else {
+	                alert("실패");  
+	            }
+			},
+			error : function(){
+				alert("통신실패")
+			}
+			
+		})  		
+	})
+	
+	$('#like').on('click', () => {
+		var input = {
+				id : $('#writerId').val(),
+				g_item_idx : $('#g_item_idx').val()
+		};
+		
+		$.ajax({
+			url : "gc_like",
+			type : "post",
+			contentType: "application/json; charset=UTF-8",
+			data : JSON.stringify(input),
+			success : function(data){
+				if (data == "true") {
+					document.location.reload(); 
+	            } else {
+	                alert("실패");  
+	            }
+			},
+			error : function(){
+				alert("통신실패")
+			}
+			
+		})  		
+	})
+    </script>
 </body>
 
 </html>

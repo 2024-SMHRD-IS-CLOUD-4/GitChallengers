@@ -69,7 +69,7 @@
 			int review_idx = r.getReview_idx();
 			int count = cdao.commentCount(review_idx);
 		%>
-        <div class="card">
+        <div class="card" onClick="location.href='pReview.jsp?idx=<%=review_idx%>'">
             <img src="profile_img/<%=infodao.info(r.getId()).getProfile_img() %>" alt="Book Image">
             <div class="card-content">
                 <div class="card-title"><%=r.getReview_title()%> <%if(r.getIs_approved().equals("Y")) {%> ✅<%} %></div>

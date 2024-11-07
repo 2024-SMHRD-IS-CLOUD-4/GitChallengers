@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.ReviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -9,6 +10,15 @@
     <script src="./js/pReview.js"></script>
 </head>
 <body>
+<%
+	int idx = Integer.parseInt(request.getParameter("idx"));
+	ReviewDAO rdao = new ReviewDAO();
+	
+	
+	
+%>
+
+
     <div class="review-card">
         <div class="back-button">⬅</div>
         <div class="profile">

@@ -18,7 +18,12 @@ public class Review_heart {
 	
 	// 좋아요 날짜
 	private String heart_date;
-	
+
+	public Review_heart(int review_idx, String id) {
+		super();
+		this.review_idx = review_idx;
+		this.id = id;
+	}
 	
 
 }

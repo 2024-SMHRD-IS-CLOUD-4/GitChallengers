@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     const likeButton = document.querySelector('.like');
     const likeCountSpan = document.querySelector('.like-count');
     const commentButton = document.querySelector('.comment');
@@ -51,3 +51,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+*/

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="com.smhrd.model.FollowDAO"%>
 <%@page import="com.smhrd.model.Member_info"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
@@ -142,13 +143,26 @@
 				</div>
 				<div id="review-content" class="review-content">
 					<!-- 초기에는 리뷰 내용 표시 -->
-				
+				<c:forEach var="review" items="${reviewList}">
+				    <div class="review">
+				        <h3>${review.review_title}</h3> 
+				        <!-- 사진 넣고 a태그로 넘어가게 페이지 이동시에는 idx를 보내던가 아니면 쿼리에 idx넣기 -->
+				    </div>
+				</c:forEach>
 				</div>
 			</div>
 		</div>
 		</div>
 
 		<script src="./js/profile.js"></script>
+
+<script>
+	let reviewList = "${reviewList}";
+	
+	console.log('reviewList', reviewList);
+
+
+</script>
 </body>
 
 </html>

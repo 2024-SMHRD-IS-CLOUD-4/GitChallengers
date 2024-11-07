@@ -1,12 +1,16 @@
 package com.smhrd.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 @AllArgsConstructor
 public class Review {
 	
+	public Review() {
+		// TODO Auto-generated constructor stub
+	}
+
 	// 리뷰순번
 	private int review_idx;
 	

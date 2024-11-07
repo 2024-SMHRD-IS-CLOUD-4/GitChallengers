@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
      // MY 챌린지 버튼 클릭 시 팝업 토글
      document.querySelector('.nav-links a').addEventListener('click', function (event) {
         event.preventDefault(); // 기본 동작 방지

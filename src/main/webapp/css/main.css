@@ -291,7 +291,7 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 17px;
 }
 
 .leaderboard-item-wrapper img {
@@ -307,7 +307,7 @@ body {
 	display: flex;
 	align-items: center;
 	background-color: #fff;
-	padding: 8px;
+	padding: 20px;
 	/* 네모 칸 크기를 줄이기 위해 padding을 줄임 */
 	border-radius: 10px;
 	justify-content: space-between;

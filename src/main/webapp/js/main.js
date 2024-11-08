@@ -43,76 +43,94 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 });
 
-
 document.addEventListener("DOMContentLoaded", function() {
-	    // 사용자 정의 플러그인: 도넛의 중심에 텍스트를 표시
-	    Chart.register({
-	        id: 'centerTextPlugin',
-	        beforeDraw: function (chart) {
-	            if (chart.config.type === 'doughnut') {
-	                const { width, height, ctx } = chart;
-	                ctx.restore();
-	                const fontSize = (height / 110).toFixed(2);
-	                ctx.font = fontSize + "em sans-serif";
-	                ctx.textBaseline = "middle";
+    // 사용자 정의 플러그인: 도넛의 중심에 텍스트를 표시
+    Chart.register({
+        id: 'centerTextPlugin',
+        beforeDraw: function (chart) {
+            if (chart.config.type === 'doughnut') {
+                const { width, height, ctx } = chart;
+                ctx.restore();
+                const fontSize = (height / 110).toFixed(2);
+                ctx.font = fontSize + "em sans-serif";
+                ctx.textBaseline = "middle";
 
-	                const text = `${chart.config.data.datasets[0].data[0]}%`;
-	                const textX = Math.round((width - ctx.measureText(text).width) / 2);
-	                const textY = height / 2;
+                const text = `${chart.config.data.datasets[0].data[0]}%`;
+                const textX = Math.round((width - ctx.measureText(text).width) / 2);
+                const textY = height / 2;
 
-	                ctx.fillText(text, textX, textY);
-	                ctx.save();
-	            }
-	        }
-	    });
-	// 진행 상황 차트
-	const progressCtx = document.getElementById('progressChart').getContext('2d');
-	new Chart(progressCtx, {
-		type: 'doughnut',
-		data: {
-			labels: ['진행된 페이지'],
-			datasets: [{
-				data: [70, 30],
-				backgroundColor: ['#B3261E', '#ffffff'],
-				hoverOffset: 4
-			}]
-		},
-		options: {
-			responsive: true,
-			plugins: {
-				legend: {
-					display: true, // Make sure to show the legend
-					position: 'bottom' // Place it in a visible position
-				}
-			},
-			cutout: '70%'
-		}
-	});
+                ctx.fillText(text, textX, textY);
+                ctx.save();
+            }
+        }
+    });
 
-	// 완료 확률 차트
-	const completionCtx = document.getElementById('completionChart').getContext('2d');
-	new Chart(completionCtx, {
-		type: 'doughnut',
-		data: {
-			labels: ['완료 확률'],
-			datasets: [{
-				data: [50, 50],
-				backgroundColor: ['#4867FF', '#ffffff'],
-				hoverOffset: 4
-			}]
-		},
-		options: {
-			responsive: true,
-			plugins: {
-				legend: {
-					display: true,
-					position: 'bottom'
-				}
-			},
-			cutout: '70%'
-		}
-	});
+    // 진행 상황 차트 생성 함수
+    function createProgressChart(chartElementId, progressValue) {
+        const ctx = document.getElementById(chartElementId).getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['진행된 페이지'],
+                datasets: [{
+                    data: [progressValue, 100 - progressValue],
+                    backgroundColor: ['#B3261E', '#ffffff'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
+                },
+                cutout: '70%'
+            }
+        });
+    }
+
+    // 완료 확률 차트 생성 함수
+    function createCompletionChart(chartElementId, completionValue) {
+        const ctx = document.getElementById(chartElementId).getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['완료 확률'],
+                datasets: [{
+                    data: [completionValue, 100 - completionValue],
+                    backgroundColor: ['#4867FF', '#ffffff'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
+                },
+                cutout: '70%'
+            }
+        });
+    }
+
+    // 예시 차트 생성 (변수를 사용하여 값을 설정)
+    createProgressChart('progressChart', 70); // 진행 상황 차트 (70% 진행)
+    createCompletionChart('completionChart', 50); // 완료 확률 차트 (50% 완료)
 });
+document.addEventListener("DOMContentLoaded", () => {
+    // 베스트 리뷰 섹션의 리뷰 내용을 20자로 자르기
+    const reviewItems = document.querySelectorAll('.review-content p');
+    reviewItems.forEach(item => {
+        if (item.textContent.length > 20) {
+            item.textContent = item.textContent.substring(0, 20) + '...';
+        }
+    });
+});
+
 // 돋보기 버튼 클릭 시 검색창 및 옵션 표시
 document.getElementById('searchIcon').addEventListener('click', function() {
 	const navLinks = document.querySelector('.nav-links');

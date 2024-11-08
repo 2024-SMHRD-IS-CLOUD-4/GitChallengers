@@ -25,7 +25,7 @@ public class Group {
 	
 	// 등록 일자 
 	private String created_at;
-	
+
 	// 최대인원
 	private int group_max;
 	
@@ -35,6 +35,11 @@ public class Group {
 	// 선택 날짜
 	private int days;
 	
+
+
+	// 종료 날짜
+	private String end_date;
+
 
 	public Group(String group_name, String group_desc, String manager, String sub_manager, int group_max) {
 		super();

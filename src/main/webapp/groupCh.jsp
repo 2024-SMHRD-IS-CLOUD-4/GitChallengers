@@ -29,10 +29,10 @@
 			<span id="idCheckResult"></span>
 			<textarea placeholder="그룹 소개글" name="group_desc" required></textarea>
 			<div class="button-group">
-				<select>
-					<option>7일</option>
-					<option>15일</option>
-					<option>30일</option>
+				<select name="days">
+					<option value="7">7일</option>
+					<option value="15">15일</option>
+					<option value="30">30일</option>
 				</select>
 			</div>
 			<button class="submit-button" >챌린지 그룹 생성</button>

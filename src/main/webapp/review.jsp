@@ -17,7 +17,7 @@
 		response.sendRedirect("login.jsp");
 	}
 %>
-	<form action="review" >
+	<form action="review" method="post">
     <div class="card">
         <!-- Back Button -->
         <button class="back-button" onclick="history.back()">←</button>
@@ -25,6 +25,7 @@
         <div class="title-container">
             <input type="text" class="title" placeholder="리뷰 제목" name="review_title">
             <input type="hidden" name = "id" value = "<%=member.getId()%>">
+            <input type="text" name="isbn">
             <!-- 초록색 체크 표시 -->
             <span id="checkmark" style="display: none;">✅</span>
         </div>

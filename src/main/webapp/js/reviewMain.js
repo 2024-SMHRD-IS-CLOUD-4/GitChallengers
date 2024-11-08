@@ -37,6 +37,20 @@ document.querySelectorAll('.popup-button').forEach(button => {
         alert(`${this.textContent} 버튼을 클릭했습니다.`);
     });
 });
+// 리뷰 내용을 자르고 20자까지만 표시하는 함수
+function truncateReviewContent() {
+    const reviews = document.querySelectorAll('.card-body');
+    reviews.forEach(review => {
+        const fullText = review.textContent.trim();
+        if (fullText.length > 30) {
+            review.textContent = fullText.substring(0, 30) + '...';
+        }
+    });
+}
+
+// 페이지 로드 시 리뷰 내용 자르기
+document.addEventListener('DOMContentLoaded', truncateReviewContent);
+
 // 돋보기 버튼 클릭 시 검색창 및 옵션 표시
 document.getElementById('searchIcon').addEventListener('click', function () {
     const navLinks = document.querySelector('.nav-links');

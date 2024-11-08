@@ -168,8 +168,8 @@ h1 {
   max-width: 100%;
   max-height: 100%;
   font-weight: bold;
-  color: #0f0f0f;
-  text-shadow: 2px 2px 0 #1c1c1c;
+  color: white;
+ /*  text-shadow: 2px 2px 0 #1c1c1c;  */
   border-radius: 5%;
   display: block;
   overflow: hidden;

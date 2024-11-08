@@ -183,29 +183,36 @@
             <!-- 굿즈 섹션 -->
             <h2>Goods</h2>
             <div class="goods">
-                <!-- 굿즈 아이템 수동 삽입 -->
-                <div class="goods-item">
-                    <img src="<%= request.getAttribute("goodsImage1") != null ? request.getAttribute("goodsImage1") : "img/bookend-1.jpg" %>" alt="Goods Image">
-                    <div class="cart-icon">🛒</div>
-                </div>
-                <div class="goods-item">
-                    <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/bookholder-1.jpg" %>" alt="Goods Image">
-                    <div class="cart-icon">🛒</div>
-                </div>
-                <div class="goods-item">
-                    <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/booklight-1.jpg" %>" alt="Goods Image">
-                    <div class="cart-icon">🛒</div>
-                </div>
-                <div class="goods-item">
-                    <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/bookmarker-1.jpg" %>" alt="Goods Image">
-                    <div class="cart-icon">🛒</div>
-                </div>
-                <div class="goods-item">
-                    <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/bookrest-1.jpg" %>" alt="Goods Image">
-                    <div class="cart-icon">🛒</div>
-                </div>
-                
-            </div>
+			    <!-- Goods items with external link functionality -->
+			    <div class="goods-item">
+			        <img src="<%= request.getAttribute("goodsImage1") != null ? request.getAttribute("goodsImage1") : "img/bookend-1.jpg" %>" alt="Goods Image">
+			        <div class="cart-icon" onclick="openExternalLink('https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=288710988')">🛒</div>
+			    </div>
+			    <div class="goods-item">
+			        <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/bookholder-1.jpg" %>" alt="Goods Image">
+			        <div class="cart-icon" onclick="openExternalLink('https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=318309467')">🛒</div>
+			    </div>
+			    <div class="goods-item">
+			        <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/booklight-1.jpg" %>" alt="Goods Image">
+			        <div class="cart-icon" onclick="openExternalLink('https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=328047825')">🛒</div>
+			    </div>
+			    <div class="goods-item">
+			        <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/bookmarker-1.jpg" %>" alt="Goods Image">
+			        <div class="cart-icon" onclick="openExternalLink('https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=346794451')">🛒</div>
+			    </div>
+			    <div class="goods-item">
+			        <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/bookrest-1.jpg" %>" alt="Goods Image">
+			        <div class="cart-icon" onclick="openExternalLink('https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=322878449')">🛒</div>
+			    </div>
+			</div>
+
+			<script>
+			    function openExternalLink(url) {
+			        // Open the external link in a new tab
+			        window.open(url, '_blank');
+			    }
+			</script>
+
 
             <!-- MY 챌린지 팝업 -->
             <div id="myChallengePopup" class="popup hidden">

@@ -8,7 +8,17 @@ body {
     padding-top: 60px;
     /* 헤더 높이만큼 여백 추가 */
 }
-
+.wrap-vertical{
+  width: 500px;
+  padding: 20px;
+  overflow: scroll;
+  color: #112031;
+  background: #F0D9FF;
+  border: 1px solid #000;
+   /* 가로 스크롤 */
+  overflow: auto;
+  white-space: nowrap;
+}
 .container {
     display: flex;
     gap: 20px;
@@ -278,13 +288,13 @@ body {
     background-color: #ff4c4c;
 }
 
-.card-container {
+ .card-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     width: calc(100% - 320px);
     height: 100%;
-}
+} 
 
 .card {
     background-color: #ffffff;
@@ -297,6 +307,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 50%;
 }
+
 
 .card-content {
     width: 100%;
@@ -392,3 +403,4 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+

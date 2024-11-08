@@ -83,15 +83,23 @@
  			
             
         </div>
-
+		 
+		  
         <!-- 카드 영역 -->
+         <div class="scroll-item">
+        <div class="horizontal-scroll-container"><!--  -->
         <div class="card-container">
+       
+        
+        
+        
             <!-- 카드 리스트 -->
             <%
                 // 카드 데이터 배열
                 for (Pc_items i : iList) {
                 	if(i != null) {
             %>
+            
             <div class="card">
                 <div class="card-content">
                     <div class="card-header"><%=member.getId() %></div>
@@ -105,7 +113,8 @@
     	        	<%} %>
 	            <%} %>
             </div>
-
+ </div><!--  -->
+ </div>
             <!-- MY 챌린지 팝업 -->
             <div id="myChallengePopup" class="popup hidden">
                 <h3>MY 챌린지</h3>

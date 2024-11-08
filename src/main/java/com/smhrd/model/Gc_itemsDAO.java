@@ -29,6 +29,14 @@ public class Gc_itemsDAO {
 		return result;
 	}
 	
+	// 챌린지 승인
+	public int success(int g_item_idx) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.update("Gc_itemsMapper.success", g_item_idx);
+		sqlSession.close();
+		
+		return result;
+	}
 	
 	
 

@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.ReviewDAO"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.Join"%>
@@ -28,6 +29,7 @@
 		MemberDAO mdao = new MemberDAO();
 		Member_infoDAO infodao = new Member_infoDAO();
 		JoinDAO jdao = new JoinDAO();
+		ReviewDAO reviewdao = new ReviewDAO();
 		List<Group> list = dao.selectAll();
 		
 	%>
@@ -53,7 +55,7 @@
             </div>
             <i class="fas fa-bell"></i>
 		    <a href="profile.jsp" class="welcome-text"><%=member.getNick() %> 환영합니다</a>
-        	<button class="create-group-btn" onClick="location.href='groupCh.jsp'">그룹 만들기</button>
+        	<button class="create-group-btn" id="createGroup">그룹 만들기</button>
     		<form action="logoutCon">
 		     <button class="logout-button">로그아웃</button>
 		    </form>
@@ -105,6 +107,21 @@
     </div>
     <script src="./js/groupChList.js"></script>
     <script type="text/javascript">
+    $('#createGroup').on('click', () => {
+    	if(<%=jdao.countGc(member.getId())%> > 3){
+			alert('가입중인 챌린지가 3개 입니다');    		
+    	}else if (<%=infodao.info(member.getId()).getPoint()%> < 1000){
+			alert('포인트 부족');
+    	}else if (<%=reviewdao.count(member.getId())%> < 6) {
+    		alert('챌린지 완료횟수 부족');
+    	}else {
+    		location.href="groupCh.jsp"
+    	}
+    	
+    	
+    })
+    
+    
     $(document).on('click', '.profile', function() {
 		var id = $(this).data('id');
 		

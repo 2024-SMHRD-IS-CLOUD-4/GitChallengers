@@ -80,8 +80,13 @@
     <div class="container">
         <!-- 왼쪽 사이드바 -->
         <div class="sidebar">
+        	<%if (!member.getId().equals(group.getManager()) && !member.getId().equals(group.getSub_manager())) {%>
             <button class="kick-button">방장 추방</button>
-            
+            <%} %>
+            <form action="groupDelete">
+	            <button type="submit">방 나가기</button>
+	            <input type="hidden" name="group_idx" value="<%=idx%>">
+            </form>
             <div class="profile-upload">
                	<img src="profile_img/<%=infodao.info(group.getManager()).getProfile_img() %>" class="profile-img" id="profilePreview">
             </div>
@@ -90,9 +95,6 @@
             	<li class="group-item" data-id="<%=group.getSub_manager()%>">
 					<img src="profile_img/<%=infodao.info(group.getSub_manager()).getProfile_img() %>">
 					<span class="group-name"><%=mdao.memberInfo(group.getSub_manager()).getNick()%></span>
-					<%if(member.getId().equals(group.getManager())) {%>
-					<input type="checkbox">
-					<%} %>
                 </li>
                 <%
                     for(Join j: list) {
@@ -103,9 +105,8 @@
 			                    <img src="profile_img/<%=infodao.info(j.getId()).getProfile_img() %>">
 			                    <span class="group-name"><%=m.getNick()%></span>
 			                    <%if(member.getId().equals(group.getManager())) {%>
-			                    <input type="checkbox">
 			                    <form action="memberDelete">
-									<button type="submit">퇴장</button>
+									<button type="submit">추방</button>
 									<input type="hidden" name="group_idx" value = "<%=idx%>">
 									<input type="hidden" name="id" value = "<%=j.getId()%>">
 			                    </form>
@@ -132,12 +133,13 @@
             <div class="card">
                 <div class="card-content">
                     <div class="author"><%= mdao.memberInfo(j.getId()).getNick() %></div>
+                    <%if(member.getId().equals(group.getManager())) {%>
+					<input type="checkbox" class="checkBox" data-g_item_idx="<%=gi.getG_item_idx()%>">
+					<%} %>
                     <div class="book-title"><%= gi.getG_item_title() %></div>
                     <div class="page-info"></div>
                     <div class="content-placeholder"><%= gi.getG_item_desc() %></div>
                 </div>
-                
-              
                 
                 <div class="actions">
                     <span class="like" id="like" data-id="<%=member.getId() %>" data-g_item_idx="<%=gi.getG_item_idx()%>">❤</span>
@@ -190,6 +192,31 @@
     <script src="./js/groupChRoom.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
+    	// 승인버튼
+		$(document).on('click', '.checkBox', function() {
+			var input = {
+					g_item_idx : $(this).data('g_item_idx')
+			};
+			
+			$.ajax({
+				url : "checkBox",
+				type : "post",
+				contentType: "application/json; charset=UTF-8",
+				data : JSON.stringify(input),
+				success : function(data){
+					if (data == "true") {
+						
+		            } else {
+		                alert("실패");  
+		            }
+				},
+				error : function(){
+					alert("통신실패")
+				}
+				
+			})  		
+		})
+    	
         // 동적으로 생성되는 요소에 대해 이벤트 위임을 사용
         // 댓글 작성
 		$(document).on('click', '.check', function() {

@@ -19,5 +19,23 @@ public class Pc_challengeDAO {
 		
 		return result;	
 	}
+	
+	// 개인 챌린지 생성
+	public int createCh(Pc_challenge c) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.insert("Pc_challengeMapper.createCh", c);
+		sqlSession.close();
+		
+		return result;	
+	}
+	
+	// 개인 챌린지 수
+	public int count(String id) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.selectOne("Pc_challengeMapper.count", id);
+		sqlSession.close();
+		
+		return result;
+	}
 
 }

@@ -22,4 +22,13 @@ public class Pc_challenge {
 	// 등록 일자
 	private String created_at;
 
+	public Pc_challenge(String pc_title, String pc_desc, String id) {
+		super();
+		this.pc_title = pc_title;
+		this.pc_desc = pc_desc;
+		this.id = id;
+	}
+	
+
+
 }

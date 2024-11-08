@@ -36,7 +36,7 @@ public class Review_heartDAO {
 		return result;
 	}
 	
-	// 좋아요 추가
+	// 좋아요 수
 	public int likeCount(int review_idx) {
 		SqlSession sqlSession = factory.openSession(true);
 		int result = sqlSession.selectOne("Review_heartMapper.likeCount", review_idx);

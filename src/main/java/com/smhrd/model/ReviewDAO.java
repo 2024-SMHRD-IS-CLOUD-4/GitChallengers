@@ -46,4 +46,24 @@ public class ReviewDAO {
 
 		return result;
 	}
+	
+	// 베스트 리뷰
+	public List<Review> bestReview() {
+		SqlSession sqlSession = factory.openSession(true);
+		List<Review> result = sqlSession.selectList("ReviewMapper.bestReview");
+		sqlSession.close();
+
+		return result;
+	}
+	
+	// 리뷰 작성 수 (챌린지 완료 횟수)
+	public int count(String id) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.selectOne("ReviewMapper.count", id);
+		sqlSession.close();
+
+		return result;
+	}
+	
+	
 }

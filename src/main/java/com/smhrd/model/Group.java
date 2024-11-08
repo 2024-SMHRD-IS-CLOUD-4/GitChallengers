@@ -31,6 +31,7 @@ public class Group {
 	
 	// 방장신고스택
 	private int warning_stack;
+	
 
 	public Group(String group_name, String group_desc, String manager, String sub_manager, int group_max) {
 		super();

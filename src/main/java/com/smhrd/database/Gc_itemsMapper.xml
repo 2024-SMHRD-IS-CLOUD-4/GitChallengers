@@ -12,5 +12,9 @@
 		select * from ch_gc_items where gc_idx=#{gc_idx} and id=#{id} order by created_at desc
 	</select>
 	
+	<!-- 챌린지 승인 -->
+	<update id="success">
+		update ch_gc_items set is_success='Y' where g_item_idx=#{g_item_idx}
+	</update>
 	
 </mapper>

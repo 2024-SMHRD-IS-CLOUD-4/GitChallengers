@@ -64,6 +64,12 @@ body {
     display: flex;
     justify-content: space-between;
 }
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
 .login-button,
 .signup-button {
     width: 48%;

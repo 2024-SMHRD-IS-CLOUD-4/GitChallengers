@@ -370,20 +370,19 @@ body {
 .actions .like.liked {
     color: red;
 }
-.comments-section {
+.comments-section,
+.comment-input {
+    display: none; /* 기본적으로 숨김 처리 */
+    width: 100%; /* 댓글 창이 있을 때 부모 요소에 맞게 넓이를 조절 */
     margin-top: 20px;
-    padding: 10px;
-    border-top: 1px solid #ccc;
+}
+.hidden {
+    display: none;
 }
 .comment-item {
     margin-bottom: 10px;
     font-size: 0.9em;
     color: #333;
-}
-.comment-input {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
 }
 .comment-input textarea {
     resize: none;

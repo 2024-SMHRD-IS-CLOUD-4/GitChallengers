@@ -56,4 +56,12 @@ public class JoinDAO {
 		return result;
 	}
 	
+	// 참여중인 그룹챌린지 수
+	public int countGc(String id) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.selectOne("JoinMapper.countGc", id);
+		sqlSession.close();
+		
+		return result;
+	}
 }

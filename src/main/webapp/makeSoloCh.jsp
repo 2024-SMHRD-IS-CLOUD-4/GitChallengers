@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,12 +9,18 @@
   <link rel="stylesheet" href="./css/makeSoloCh.css">
 </head>
 <body>
+<%
+	Member member = (Member) session.getAttribute("member");
+	if(member == null) {
+		response.sendRedirect("login.jsp");
+	}
+%>
   <div class="form-container">
     <span class="back-arrow" onclick="history.back()">←</span>
     <br><br>
-    <form action="createChallenge.jsp" method="post">
-      <input type="text" name="bookName" placeholder="책 이름">
-      <textarea name="description" placeholder="소개글"></textarea>
+    <form action="createCh.jsp" method="post">
+      <input type="text" name="pc_title" placeholder="책 이름">
+      <textarea name="pc_desc" placeholder="소개글"></textarea>
       <div class="button-group">
         <select name="duration">
           <option value="7">7일</option>

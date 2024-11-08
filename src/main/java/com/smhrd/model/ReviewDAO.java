@@ -29,7 +29,7 @@ public class ReviewDAO {
 		return result;
 	}
 
-	// 리뷰 불러오기
+	// 인덱스로 리뷰 불러오기
 	public Review review(int review_idx) {
 		SqlSession sqlSession = factory.openSession(true);
 		Review result = sqlSession.selectOne("ReviewMapper.review", review_idx);
@@ -38,4 +38,12 @@ public class ReviewDAO {
 		return result;
 	}
 	
+	// 아이디로 리뷰 불러오기
+	public List<Review> reviewList(String id) {
+		SqlSession sqlSession = factory.openSession(true);
+		List<Review> result = sqlSession.selectList("ReviewMapper.reviewList", id);
+		sqlSession.close();
+
+		return result;
+	}
 }

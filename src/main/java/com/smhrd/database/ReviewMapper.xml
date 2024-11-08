@@ -16,4 +16,9 @@
 		select * from ch_review where review_idx=#{review_idx}
 	</select>
 	
+	<!-- 아이디로 리뷰 불러오기 -->
+	<select id="reviewList" resultType="Review">
+		select * from ch_review where id=#{id} order by review_idx desc
+	</select>
+	
 </mapper>

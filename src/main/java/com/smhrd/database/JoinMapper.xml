@@ -28,4 +28,10 @@
         WHERE group_idx = #{group_idx} AND id = #{id}
     </delete>
     
+    <!-- 참여중인 그룹챌린지 수 -->
+    <select id="countGc" resultType="int">
+    	select count(*) from ch_join where id=#{id}
+    </select>
+    
+    
 </mapper>

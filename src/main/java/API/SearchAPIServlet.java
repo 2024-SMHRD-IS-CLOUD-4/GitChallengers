@@ -13,10 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 @WebServlet("/SearchAPIServlet")
 public class SearchAPIServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String clientId = "04bFOj2XLXKJ9lNDOaxz"; // 애플리케이션 클라이언트 아이디
         String clientSecret = "9Jz2IKsaUC"; // 애플리케이션 클라이언트 시크릿
 
@@ -40,10 +42,15 @@ public class SearchAPIServlet extends HttpServlet {
         requestHeaders.put("X-Naver-Client-Id", clientId);
         requestHeaders.put("X-Naver-Client-Secret", clientSecret);
         String responseBody = get(apiURL, requestHeaders);
+        
+        // String을 JSONObject로 변환
+        JSONObject jsonObject = new JSONObject(responseBody);
 
-        response.setContentType("text/html; charset=UTF-8");
-        response.getWriter().println("<h2>검색 결과:</h2>");
-        response.getWriter().println("<pre>" + responseBody + "</pre>");
+        // 응답 타입을 JSON으로 설정
+        response.setContentType("application/json; charset=utf-8");
+        
+        // JSON 응답 반환
+        response.getWriter().print(jsonObject.toString());
     }
 
     private String get(String apiUrl, Map<String, String> requestHeaders) {

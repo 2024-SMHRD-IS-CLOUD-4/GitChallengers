@@ -65,5 +65,14 @@ public class ReviewDAO {
 		return result;
 	}
 	
+	// 리뷰 작성
+	public int reviewWrite(Review r) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.insert("ReviewMapper.reviewWrite", r);
+		sqlSession.close();
+
+		return result;
+	}
+	
 	
 }

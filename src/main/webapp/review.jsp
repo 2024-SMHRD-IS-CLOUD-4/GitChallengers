@@ -11,28 +11,31 @@
 </head>
 
 <body>
+<script src="js/jquery-3.7.1.min.js"></script>
 <%
 	Member member = (Member) session.getAttribute("member");
 	if(member == null) {
 		response.sendRedirect("login.jsp");
 	}
 %>
-	<form action="review" method="post">
     <div class="card">
         <!-- Back Button -->
         <button class="back-button" onclick="history.back()">←</button>
 
+        <input type="text" name="isbn" id="isbn" placeholder="isbn입려">
+        <button class="prove">인증확인</button>
+        <span id="proveResult"></span>
+	<form action="review" method="post">
         <div class="title-container">
             <input type="text" class="title" placeholder="리뷰 제목" name="review_title">
-            <input type="hidden" name = "id" value = "<%=member.getId()%>">
-            <input type="text" name="isbn">
+            <input type="hidden" name = "is_approved" value="N" id="is_approved">
             <!-- 초록색 체크 표시 -->
             <span id="checkmark" style="display: none;">✅</span>
         </div>
 
         <!-- Label for Image Upload -->
         <label for="file-input">
-            <img id="preview-image" src="https://via.placeholder.com/150x120" alt="Upload Image">
+            <img id="preview-image" src="https://via.placeholder.com/150x120" alt="Upload Image" name="review_ocr" value="">
         </label>
         <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)">
 
@@ -45,18 +48,37 @@
                 <button id="group-button" onclick="toggleSelection('group')">비추천</button>
             </div>
 
-            <!-- 인증사진첨부 버튼 -->
-            <button id="auth-upload-button" onclick="document.getElementById('auth-file-input').click()">영수증사진첨부</button>
-            <input type="file" id="auth-file-input" accept="image/*" style="display: none;" onchange="previewAuthImage(event)" name="review_ocr">
-
             <!-- 글 작성 버튼 -->
             <button class="action-button">리뷰 작성</button>
         </div>
+    	</form>
     </div>
-    </form>
 
-    <script src="./js/review.js"></script>
-
+<script src="./js/review.js"></script>
+<script type="text/javascript">
+$(document).on('click', '.prove', function() {
+	var input = $('#isbn').val();
+	
+	$.ajax({
+		url : "SearchAPIServlet",
+		type : "post",
+		data : {isbn: input},
+		success : function(data){
+			if (data && data.items && data.items.length > 0) { // 데이터가 있으면
+				var book = data.items[0];
+				if(book.isbn == input){
+					$('#proveResult').text("인증성공");
+					$('#is_approved').val("Y");
+				}
+			}
+		},
+		error : function(){
+			alert("통신실패")
+		}
+		
+	})  		
+})
+</script>
 </body>
 
 </html>

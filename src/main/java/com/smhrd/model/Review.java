@@ -20,13 +20,24 @@ public class Review {
 	private String review_ocr;
 	
 	// 인증여부
-	private String is_approved;
+	private char is_approved;
 	
 	// 리뷰좋아요
 	private int review_heart;
 	
 	// 리뷰제목
 	private String review_title;
+
+	public Review(String id, String review_content, String review_ocr, char is_approved, String review_title) {
+		super();
+		this.id = id;
+		this.review_content = review_content;
+		this.review_ocr = review_ocr;
+		this.is_approved = is_approved;
+		this.review_title = review_title;
+	}
+
+
 	
 	
 

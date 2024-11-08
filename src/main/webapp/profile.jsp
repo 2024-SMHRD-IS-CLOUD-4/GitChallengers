@@ -174,7 +174,7 @@
 					<!-- 초기에는 리뷰 내용 표시 -->
 					<%for(Review r : list) {%>
 				    <div class="review">
-				        <h3 onClick="location.href='reviewBook.jsp?idx=<%=r.getReview_idx()%>'"><%=r.getReview_title() %></h3> 
+				        <h3 onClick="location.href='reviewBook?idx=<%=r.getReview_idx()%>'"><%=r.getReview_title() %></h3> 
 				        <!-- 사진 넣고 a태그로 넘어가게 페이지 이동시에는 idx를 보내던가 아니면 쿼리에 idx넣기 -->
 				    </div>
 				    <%} %>

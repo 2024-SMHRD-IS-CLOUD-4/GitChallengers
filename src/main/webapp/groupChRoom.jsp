@@ -82,11 +82,11 @@
         <div class="sidebar">
         	<%if (!member.getId().equals(group.getManager()) && !member.getId().equals(group.getSub_manager())) {%>
             <button class="kick-button">방장 추방</button>
-            <%} %>
             <form action="groupDelete">
 	            <button type="submit">방 나가기</button>
 	            <input type="hidden" name="group_idx" value="<%=idx%>">
             </form>
+            <%} %>
             <div class="profile-upload">
                	<img src="profile_img/<%=infodao.info(group.getManager()).getProfile_img() %>" class="profile-img" id="profilePreview">
             </div>
@@ -133,9 +133,11 @@
             <div class="card">
                 <div class="card-content">
                     <div class="author"><%= mdao.memberInfo(j.getId()).getNick() %></div>
-                    <%if(member.getId().equals(group.getManager())) {%>
-					<input type="checkbox" class="checkBox" data-g_item_idx="<%=gi.getG_item_idx()%>">
-					<%} %>
+                    <%	if (gi.getIs_success() == 'Y') {%>
+                    	<span id="checkmark">✅</span>
+                    <% 	}else if(member.getId().equals(group.getManager())) {%>
+						<input type="checkbox" class="checkBox" data-g_item_idx="<%=gi.getG_item_idx()%>">
+                   		<%}%>
                     <div class="book-title"><%= gi.getG_item_title() %></div>
                     <div class="page-info"></div>
                     <div class="content-placeholder"><%= gi.getG_item_desc() %></div>
@@ -205,7 +207,7 @@
 				data : JSON.stringify(input),
 				success : function(data){
 					if (data == "true") {
-						
+						document.location.reload(); 
 		            } else {
 		                alert("실패");  
 		            }

@@ -26,7 +26,7 @@ public class Gc_items {
 	private String created_at;
 	
 	// 성공 여부
-	private String is_success;
+	private char is_success;
 	
 	// 그룹챌린지 이미지
 	private String gc_ocr;

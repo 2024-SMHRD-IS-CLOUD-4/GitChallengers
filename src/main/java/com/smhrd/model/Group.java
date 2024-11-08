@@ -25,12 +25,13 @@ public class Group {
 	
 	// 등록 일자 
 	private String created_at;
-	
+
 	// 최대인원
 	private int group_max;
 	
 	// 방장신고스택
 	private int warning_stack;
+	
 
 	public Group(String group_name, String group_desc, String manager, String sub_manager, int group_max) {
 		super();

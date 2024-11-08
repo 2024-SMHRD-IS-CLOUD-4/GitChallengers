@@ -33,8 +33,10 @@ public class Group {
 	private int warning_stack;
 	
 
+
 	// 종료 날짜
 	private String end_date;
+
 
 	public Group(String group_name, String group_desc, String manager, String sub_manager, int group_max) {
 		super();

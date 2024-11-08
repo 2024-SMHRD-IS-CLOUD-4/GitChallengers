@@ -4,6 +4,7 @@ body {
 	background-color: #f2efe8;
 	margin: 0;
 	padding-top: 80px;
+	padding-bottom: 60px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -362,8 +363,9 @@ body {
 
 /* 상품 이미지 스타일 */
 .product-item img, .goods-item img {
-	width: 150px;
-	height: 150px;
+	width: 220px;
+	height: 300px;
+	
 	object-fit: cover;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

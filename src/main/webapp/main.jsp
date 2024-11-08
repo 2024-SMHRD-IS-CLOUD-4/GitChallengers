@@ -166,6 +166,18 @@
                     <img src="<%= request.getAttribute("bestSellerImage2") != null ? request.getAttribute("bestSellerImage2") : "img/harry-porter.jfif" %>" alt="Product Image">
                     <div class="cart-icon">🛒</div>
                 </div>
+                <div class="product-item">
+                    <img src="<%= request.getAttribute("bestSellerImage2") != null ? request.getAttribute("bestSellerImage2") : "img/harry-porter.jfif" %>" alt="Product Image">
+                    <div class="cart-icon">🛒</div>
+                </div>
+                <div class="product-item">
+                    <img src="<%= request.getAttribute("bestSellerImage2") != null ? request.getAttribute("bestSellerImage2") : "img/harry-porter.jfif" %>" alt="Product Image">
+                    <div class="cart-icon">🛒</div>
+                </div>
+                <div class="product-item">
+                    <img src="<%= request.getAttribute("bestSellerImage2") != null ? request.getAttribute("bestSellerImage2") : "img/harry-porter.jfif" %>" alt="Product Image">
+                    <div class="cart-icon">🛒</div>
+                </div>
             </div>
 
             <!-- 굿즈 섹션 -->
@@ -173,13 +185,26 @@
             <div class="goods">
                 <!-- 굿즈 아이템 수동 삽입 -->
                 <div class="goods-item">
-                    <img src="<%= request.getAttribute("goodsImage1") != null ? request.getAttribute("goodsImage1") : "img/book-holder.jpg" %>" alt="Goods Image">
+                    <img src="<%= request.getAttribute("goodsImage1") != null ? request.getAttribute("goodsImage1") : "img/bookend-1.jpg" %>" alt="Goods Image">
                     <div class="cart-icon">🛒</div>
                 </div>
                 <div class="goods-item">
-                    <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/book-marker.jfif" %>" alt="Goods Image">
+                    <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/bookholder-1.jpg" %>" alt="Goods Image">
                     <div class="cart-icon">🛒</div>
                 </div>
+                <div class="goods-item">
+                    <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/booklight-1.jpg" %>" alt="Goods Image">
+                    <div class="cart-icon">🛒</div>
+                </div>
+                <div class="goods-item">
+                    <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/bookmarker-1.jpg" %>" alt="Goods Image">
+                    <div class="cart-icon">🛒</div>
+                </div>
+                <div class="goods-item">
+                    <img src="<%= request.getAttribute("goodsImage2") != null ? request.getAttribute("goodsImage2") : "img/bookrest-1.jpg" %>" alt="Goods Image">
+                    <div class="cart-icon">🛒</div>
+                </div>
+                
             </div>
 
             <!-- MY 챌린지 팝업 -->

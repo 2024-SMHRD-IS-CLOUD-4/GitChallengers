@@ -8,7 +8,17 @@ body {
     padding-top: 60px;
     /* 헤더 높이만큼 여백 추가 */
 }
-
+.wrap-vertical{
+  width: 500px;
+  padding: 20px;
+  overflow: scroll;
+  color: #112031;
+  background: #F0D9FF;
+  border: 1px solid #000;
+   /* 가로 스크롤 */
+  overflow: auto;
+  white-space: nowrap;
+}
 .container {
     display: flex;
     gap: 20px;
@@ -278,15 +288,23 @@ body {
     background-color: #ff4c4c;
 }
 
-.card-container {
+/* .card-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     width: calc(100% - 320px);
     height: 100%;
+} */
+.card-container {
+    display: flex;
+    flex-direction: row;
+        grid-template-columns: repeat(3, 1fr);
+    gap: 15px; /* 카드 간격 조절 */
+    width: calc(100% - 320px);
+    height: 100%;
 }
 
-.card {
+/* .card {
     background-color: #ffffff;
     border-radius: 10px;
     display: flex;
@@ -296,8 +314,21 @@ body {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 50%;
-}
+} */
 
+.card {
+    width: 250px;
+    flex-shrink: 0; /* 카드 크기 유지 */
+    margin-right: 10px;
+     background-color: #ffffff;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 50%;
+}
 .card-content {
     width: 100%;
     display: flex;
@@ -391,4 +422,23 @@ body {
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
+}
+
+/* 가로 스크롤 컨테이너 */
+.horizontal-scroll-container {
+    display: flex;           /* 가로로 정렬 */
+    overflow-x: auto;        /* x축 스크롤 활성화 */
+    white-space: nowrap;     /* 요소가 줄바꿈 없이 가로로 나열 */
+    gap: 16px;               /* 각 요소 사이 간격 설정 */
+    padding: 16px;           /* 스크롤 컨테이너 안쪽 여백 */
+}
+
+/* 각 항목 스타일 */
+.scroll-item {
+    min-width: 200px;        /* 항목의 최소 너비 */
+    flex: 0 0 auto;          /* 항목 크기 고정 */
+    background-color: #f0f0f0; /* 항목 배경색 (임의) */
+    padding: 16px;           /* 항목 안쪽 여백 */
+    border-radius: 8px;      /* 항목 모서리 둥글게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 항목 그림자 */
 }

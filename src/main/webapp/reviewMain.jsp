@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Review_heartDAO"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.CommentDAO"%>
 <%@page import="com.smhrd.model.Comment"%>
@@ -32,6 +33,7 @@
 		ReviewDAO rdao = new ReviewDAO();
 		CommentDAO cdao = new CommentDAO();
 		Member_infoDAO infodao = new Member_infoDAO();
+		Review_heartDAO likedao = new Review_heartDAO();
 		List<Review> rList = rdao.selectAll(); // 리뷰 리스트 불러오기
 		
 		
@@ -68,6 +70,7 @@
 		<%for(Review r : rList) {
 			int review_idx = r.getReview_idx();
 			int count = cdao.commentCount(review_idx);
+			
 		%>
         <div class="card" onClick="location.href='pReview.jsp?idx=<%=review_idx%>'">
             <img src="profile_img/<%=infodao.info(r.getId()).getProfile_img() %>" alt="Book Image">
@@ -77,7 +80,7 @@
             </div>
             <div class="card-stats">
                 <span class="recommendation positive">추천해요!</span><br>
-                좋아요 <%=r.getReview_heart() %>개<br>
+                좋아요 <%=likedao.likeCount(review_idx) %>개<br>
                 댓글 <%=count %>개
             </div>
         </div>

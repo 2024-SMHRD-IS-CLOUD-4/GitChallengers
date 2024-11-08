@@ -43,7 +43,7 @@
 	Member_info member_info = infodao.info(id); // 회원 정보 가져오기
 	int follower = fdao.follower(id); // 팔로워 수
 	int following = fdao.following(id); // 팔로잉 수
-	List<Review> list = rdao.reviewList(id); // 리뷰 불러오기
+	List<Review> rlist = rdao.reviewList(id); // 리뷰 불러오기
 	%>
 	
 	<!-- Main Container -->
@@ -172,9 +172,9 @@
 				</div>
 				<div id="review-content" class="review-content">
 					<!-- 초기에는 리뷰 내용 표시 -->
-					<%for(Review r : list) {%>
+					<%for(Review r : rlist) {%>
 				    <div class="review">
-				        <h3 onClick="location.href='reviewBook.jsp?idx=<%=r.getReview_idx()%>'"><%=r.getReview_title() %></h3> 
+				        <h3 onClick="location.href='reviewBook?idx=<%=r.getReview_idx()%>'"><%=r.getReview_title() %></h3> 
 				        <!-- 사진 넣고 a태그로 넘어가게 페이지 이동시에는 idx를 보내던가 아니면 쿼리에 idx넣기 -->
 				    </div>
 				    <%} %>

@@ -121,6 +121,15 @@ document.addEventListener("DOMContentLoaded", function() {
     createProgressChart('progressChart', 70); // 진행 상황 차트 (70% 진행)
     createCompletionChart('completionChart', 50); // 완료 확률 차트 (50% 완료)
 });
+document.addEventListener("DOMContentLoaded", () => {
+    // 베스트 리뷰 섹션의 리뷰 내용을 20자로 자르기
+    const reviewItems = document.querySelectorAll('.review-content p');
+    reviewItems.forEach(item => {
+        if (item.textContent.length > 20) {
+            item.textContent = item.textContent.substring(0, 20) + '...';
+        }
+    });
+});
 
 // 돋보기 버튼 클릭 시 검색창 및 옵션 표시
 document.getElementById('searchIcon').addEventListener('click', function() {

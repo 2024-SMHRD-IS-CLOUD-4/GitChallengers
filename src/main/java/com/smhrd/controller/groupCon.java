@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.model.Group;
 import com.smhrd.model.GroupDAO;
+import com.smhrd.model.Member_pointDAO;
 
 
 @WebServlet("/groupCon")
@@ -25,14 +26,16 @@ public class groupCon extends HttpServlet {
 		String manager = request.getParameter("manager");
 		String sub_manager = request.getParameter("sub_manager");
 		int group_max = 10;
+		int days = Integer.parseInt(request.getParameter("days"));
 		
-		
-		Group group = new Group(group_name, group_desc, manager, sub_manager, group_max);
+		Group group = new Group(group_name, group_desc, manager, sub_manager, group_max, days);
 		GroupDAO dao = new GroupDAO();
 		int result = dao.createGroup(group);
 		
 		
 		if (result == 1) {
+			Member_pointDAO pointdao = new Member_pointDAO();
+			pointdao.groupCh(manager);
 			response.sendRedirect("groupChList.jsp");
 		}else {
 			response.sendRedirect("groupCh.jsp");

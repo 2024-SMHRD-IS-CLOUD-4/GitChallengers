@@ -21,5 +21,8 @@ public class Member_point {
 	
 	// 등록 일자
 	private String created_at;
+	
+	// 캐시
+	private int cash;
 
 }

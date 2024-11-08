@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.model.Join;
 import com.smhrd.model.JoinDAO;
+import com.smhrd.model.Member_pointDAO;
 
 
 @WebServlet("/groupJoinCon")
@@ -31,6 +32,8 @@ public class groupJoinCon extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		if(result == 1) {
+			Member_pointDAO pointdao = new Member_pointDAO();
+			pointdao.groupCh(id);
 			out.print(true);			
 		}else {
 			out.print(false);

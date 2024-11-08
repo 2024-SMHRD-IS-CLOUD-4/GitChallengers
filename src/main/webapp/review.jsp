@@ -35,7 +35,7 @@
 
         <!-- Label for Image Upload -->
         <label for="file-input">
-            <img id="preview-image" src="https://via.placeholder.com/150x120" alt="Upload Image" name="review_ocr" value="">
+            <img id="preview-image" src="https://via.placeholder.com/150x120" alt="Upload Image" name="review_ocr">
         </label>
         <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)">
 

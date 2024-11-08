@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.model.Member;
 import com.smhrd.model.MemberDAO;
+import com.smhrd.model.Member_point;
+import com.smhrd.model.Member_pointDAO;
 
 
 @WebServlet("/joinCon")

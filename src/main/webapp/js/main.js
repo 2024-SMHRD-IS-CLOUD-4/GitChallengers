@@ -65,61 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // 진행 상황 차트 생성 함수
-    function createProgressChart(chartElementId, progressValue) {
-        const ctx = document.getElementById(chartElementId).getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['진행된 페이지'],
-                datasets: [{
-                    data: [progressValue, 100 - progressValue],
-                    backgroundColor: ['#B3261E', '#ffffff'],
-                    hoverOffset: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'bottom'
-                    }
-                },
-                cutout: '70%'
-            }
-        });
-    }
 
-    // 완료 확률 차트 생성 함수
-    function createCompletionChart(chartElementId, completionValue) {
-        const ctx = document.getElementById(chartElementId).getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['완료 확률'],
-                datasets: [{
-                    data: [completionValue, 100 - completionValue],
-                    backgroundColor: ['#4867FF', '#ffffff'],
-                    hoverOffset: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'bottom'
-                    }
-                },
-                cutout: '70%'
-            }
-        });
-    }
-
-    // 예시 차트 생성 (변수를 사용하여 값을 설정)
-    createProgressChart('progressChart', 70); // 진행 상황 차트 (70% 진행)
-    createCompletionChart('completionChart', 50); // 완료 확률 차트 (50% 완료)
 });
 document.addEventListener("DOMContentLoaded", () => {
     // 베스트 리뷰 섹션의 리뷰 내용을 20자로 자르기

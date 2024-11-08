@@ -18,8 +18,24 @@ public class Member_pointDAO {
 		sqlSession.close();
 		
 		return result;
+	}
+	
+	// 회원가입시 포인트 충전
+	public int join(String id) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.insert("Member_pointMapper.join", id);
+		sqlSession.close();
 		
+		return result;
+	}
+	
+	// 그룹챌린지 가입시 포인트 차감
+	public int groupCh(String id) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.insert("Member_pointMapper.groupCh", id);
+		sqlSession.close();
 		
+		return result;
 	}
 	
 	

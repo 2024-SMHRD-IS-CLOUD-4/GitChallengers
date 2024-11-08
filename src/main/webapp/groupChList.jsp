@@ -146,7 +146,7 @@
 		const join = (idx, count, max) => {
 			if (count >= max) {
 	        	alert('인원초과');
-			}else if(<%=jdao.countGc(member.getId())%> > 3){
+			}else if(<%=jdao.countGc(member.getId())%> >= 3){
 				alert('가입중인 챌린지가 3개 입니다');
 			}else if(<%=infodao.info(member.getId()).getPoint()%> < 1000){
 				alert('포인트 부족');

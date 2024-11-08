@@ -9,7 +9,7 @@
 	<!-- 그룹 생성 -->
 	<insert id="createGroup" parameterType="Group">
 
-		insert into ch_group values (ch_group_seq.nextval, #{group_name}, #{group_desc}, #{manager}, #{sub_manager}, sysdate, 10, 0, 0)
+		insert into ch_group values (ch_group_seq.nextval, #{group_name}, #{group_desc}, #{manager}, #{sub_manager}, sysdate, 10, 0, #{days})
 
 	</insert>
 	

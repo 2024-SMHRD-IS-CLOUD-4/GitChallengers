@@ -44,6 +44,8 @@
 		Member_info member_info = infodao.info(member.getId()); // 본인 정보 가져오기
 		List<Member_info> rank = infodao.rank(); // 랭킹 불러오기
 		List<Review> reviewList = reviewdao.bestReview(); // 리뷰 리스트 불러오기
+		int ch_count = member_info.getCh_count(); // 챌린지 도전 횟수
+		int ch_suc_count = reviewdao.count(member.getId()); // 챌린지 성공 횟수
 		
 	%>
 
@@ -239,7 +241,62 @@
         </div>
     </div>
     <script src="./js/main.js"></script>
+<script type="text/javascript">
+// 진행 상황 차트 생성 함수
+function createProgressChart(chartElementId, progressValue) {
+    const ctx = document.getElementById(chartElementId).getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['진행된 페이지'],
+            datasets: [{
+                data: [progressValue, 100 - progressValue],
+                backgroundColor: ['#B3261E', '#ffffff'],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            cutout: '70%'
+        }
+    });
+}
 
+// 완료 확률 차트 생성 함수
+function createCompletionChart(chartElementId, completionValue) {
+    const ctx = document.getElementById(chartElementId).getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['완료 확률'],
+            datasets: [{
+                data: [completionValue, 100 - completionValue],
+                backgroundColor: ['#4867FF', '#ffffff'],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            cutout: '70%'
+        }
+    });
+}
+
+createProgressChart('progressChart', 70); 
+createCompletionChart('completionChart', <%=(ch_count != 0) ? ch_suc_count/ch_count * 100 : 0%>);
+</script>
 </body>
 
 </html>

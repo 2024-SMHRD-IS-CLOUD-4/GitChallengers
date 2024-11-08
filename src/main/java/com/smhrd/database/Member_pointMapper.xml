@@ -4,6 +4,15 @@
 	<select id="rank" resultType="point">
 		select * from ch_member_point order by user_point desc
 	</select>
-
+	
+	<!-- 회원가입시 포인트 충전 -->
+	<insert id="join" parameterType="String">
+		insert into ch_member_point values (ch_member_point_seq.nextval, 2, 3000, #{id}, sysdate, 0)
+	</insert>
+	
+	<!-- 그룹챌린지 가입시 포인트 차감 -->
+	<insert id="groupCh" parameterType="String">
+		insert into ch_member_point values (ch_member_point_seq.nextval, 3, -1000, #{id}, sysdate, 0)
+	</insert>
 
 </mapper>

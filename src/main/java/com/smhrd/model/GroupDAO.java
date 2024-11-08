@@ -19,7 +19,6 @@ public class GroupDAO {
 
 		return result;
 	}
-    
 
     // 그룹리스트 조회
     public List<Group> selectAll() {

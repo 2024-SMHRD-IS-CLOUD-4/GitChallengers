@@ -82,7 +82,7 @@
         <div class="card" onClick="location.href='pReview.jsp?idx=<%=review_idx%>'">
             <img src="profile_img/<%=infodao.info(r.getId()).getProfile_img() %>" alt="Book Image">
             <div class="card-content">
-                <div class="card-title"><%=r.getReview_title()%> <%if(r.getIs_approved().equals("Y")) {%> ✅<%} %></div>
+                <div class="card-title"><%=r.getReview_title()%> <%if(r.getIs_approved() == 'Y') {%> ✅<%} %></div>
                 <div class="card-body"><%=r.getReview_content() %></div>
             </div>
             <div class="card-stats">

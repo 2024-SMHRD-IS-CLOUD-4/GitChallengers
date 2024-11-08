@@ -36,18 +36,14 @@ public class Group {
 	private int days;
 	
 
-
-	// 종료 날짜
-	private String end_date;
-
-
-	public Group(String group_name, String group_desc, String manager, String sub_manager, int group_max) {
+	public Group(String group_name, String group_desc, String manager, String sub_manager, int group_max, int days) {
 		super();
 		this.group_name = group_name;
 		this.group_desc = group_desc;
 		this.manager = manager;
 		this.sub_manager = sub_manager;
 		this.group_max = group_max;
+		this.days = days;
 	}
 	
 	

@@ -4,6 +4,7 @@ body {
 	background-color: #f2efe8;
 	margin: 0;
 	padding-top: 80px;
+	padding-bottom: 60px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -204,7 +205,8 @@ body {
 .challenge, .status {
 	flex: 1;
 	background-color: #e5dfcf;
-	padding: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	text-align: center;
@@ -362,8 +364,9 @@ body {
 
 /* 상품 이미지 스타일 */
 .product-item img, .goods-item img {
-	width: 150px;
-	height: 150px;
+	width: 220px;
+	height: 300px;
+	
 	object-fit: cover;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

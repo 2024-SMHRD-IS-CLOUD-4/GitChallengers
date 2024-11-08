@@ -121,6 +121,7 @@
         </div>
 
         <!-- 카드 영역 -->
+         
         <div class="card-container">
             <%
                 // 카드 데이터 배열
@@ -130,6 +131,7 @@
                 	for (Gc_items gi : getItem) {
                 		if (gi != null) {
             %>
+            
             <div class="card">
                 <div class="card-content">
                     <div class="author"><%= mdao.memberInfo(j.getId()).getNick() %></div>
@@ -137,12 +139,16 @@
                     <div class="page-info"></div>
                     <div class="content-placeholder"><%= gi.getG_item_desc() %></div>
                 </div>
+                
+              
+                
                 <div class="actions">
                     <span class="like" id="like" data-id="<%=member.getId() %>" data-g_item_idx="<%=gi.getG_item_idx()%>">❤</span>
                     <span class="like-count">좋아요 <%=hdao.likeCount(gi.getG_item_idx()) %>개</span>
                     <span class="comment">💬</span>
                     <span class="comment-count">댓글 <%=gcdao.commentCount(gi.getG_item_idx()) %>개</span>
                 </div>
+                
                 <div class="comment-input" >
                     <textarea rows="3" placeholder="댓글을 작성해주세요..." id="comment"
                     			data-g_item_idx="<%=gi.getG_item_idx()%>" data-id="<%=member.getId() %>"></textarea>
@@ -157,13 +163,15 @@
                 	<%}%>
                 </div>
             </div>
-        </div>
+        
     	        	<%}else {%>
     	        	<span>등록된 챌린지가 없습니다</span>
     	        	<%} %>
 	            <%} %>
             <%} %>
+            </div>
         </div>
+       
     	 <!-- MY 챌린지 팝업 -->
         <div id="myChallengePopup" class="popup hidden">
 			<h3>MY 챌린지</h3>

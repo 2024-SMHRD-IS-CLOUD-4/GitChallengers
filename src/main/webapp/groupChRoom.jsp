@@ -118,7 +118,7 @@
         </div>
 
         <!-- 카드 영역 -->
-          <div class="horizontal-scroll-container"><!--  -->
+         
         <div class="card-container">
             <%
                 // 카드 데이터 배열
@@ -138,7 +138,7 @@
                 </div>
                 
               
-                 <div class="scroll-item">
+                
                 <div class="actions">
                     <span class="like" id="like" data-id="<%=member.getId() %>" data-g_item_idx="<%=gi.getG_item_idx()%>">❤</span>
                     <span class="like-count">좋아요 <%=hdao.likeCount(gi.getG_item_idx()) %>개</span>
@@ -160,7 +160,7 @@
                 	<%}%>
                 </div>
             </div>
-        </div>
+        
     	        	<%}else {%>
     	        	<span>등록된 챌린지가 없습니다</span>
     	        	<%} %>
@@ -168,7 +168,7 @@
             <%} %>
             </div>
         </div>
-        </div><!--  -->
+       
     	 <!-- MY 챌린지 팝업 -->
         <div id="myChallengePopup" class="popup hidden">
 			<h3>MY 챌린지</h3>

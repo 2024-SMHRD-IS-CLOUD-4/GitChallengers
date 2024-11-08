@@ -1,19 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const commentButton = document.querySelector('.comment');
-    const commentsSection = document.querySelector('.comments-section');
-    const commentInputSection = document.querySelector('.comment-input');
-
-    commentButton.addEventListener('click', function () {
-        // 댓글 섹션과 입력 섹션의 상태를 반대로 전환
-        if (commentsSection.style.display === 'none' || commentsSection.style.display === '') {
-            commentsSection.style.display = 'block';
-            commentInputSection.style.display = 'block';
-        } else {
-            commentsSection.style.display = 'none';
-            commentInputSection.style.display = 'none';
-        }
+    const commentButtons = document.querySelectorAll('.comment');
+    
+    commentButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const card = button.closest('.card'); // 댓글 버튼이 속한 카드 요소 찾기
+            const commentsSection = card.querySelector('.comments-section');
+            const commentInputSection = card.querySelector('.comment-input');
+            
+            // 댓글 섹션과 입력 섹션의 상태를 반대로 전환
+            if (commentsSection.style.display === 'none' || commentsSection.style.display === '') {
+                commentsSection.style.display = 'block';
+                commentInputSection.style.display = 'block';
+            } else {
+                commentsSection.style.display = 'none';
+                commentInputSection.style.display = 'none';
+            }
+        });
     });
 });
+
 
 
 document.addEventListener('DOMContentLoaded', function () {

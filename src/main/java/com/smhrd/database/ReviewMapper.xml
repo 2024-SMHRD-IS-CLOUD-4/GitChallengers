@@ -26,4 +26,9 @@
 		select * from ch_review order by (select count(*) from review_heart where review_heart.review_idx=ch_review.review_idx) desc
 	</select>
 	
+	<!-- 리뷰 작성 수 (챌린지 완료 횟수) -->
+	<select id="count" resultType="int">
+		select count(*) from ch_review where id=#{id}
+	</select>
+	
 </mapper>

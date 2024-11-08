@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./css/soloChList.css">
 </head>
 <body>
+<script src="js/jquery-3.7.1.min.js"></script>
 	<%
 		Member member = (Member) session.getAttribute("member");
 		if(member == null) {
@@ -33,6 +34,8 @@
 		List<Join> list = jdao.selectMy(member.getId()); // 내 그룹 불러오기
 		List<Member_point> rank = mpdao.rank(); // 랭킹 불러오기
 		List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
+		String memberId = (member != null) ? member.getId() : null;
+		int count = (memberId != null) ? pcdao.count(memberId) : 0;
 		
 	%>
     <!-- 헤더 -->
@@ -57,7 +60,7 @@
             </div>
             <i class="fas fa-bell"></i>
 		    <a href="profile.jsp" class="welcome-text"><%=member.getNick() %> 환영합니다</a>
-			<button class="create-group-btn" onClick="location.href='makeSoloCh.jsp'">챌린지 만들기</button>
+			<button class="create-group-btn" id="createCh">챌린지 만들기</button>
 		    <form action="logoutCon">
 		     <button class="logout-button">로그아웃</button>
 		    </form>
@@ -102,5 +105,15 @@
     </div>
 
     <script src="./js/soloChList.js"></script>
+    <script type="text/javascript">
+    $('#createCh').on('click', () => {
+		if (<%=count%> >3){
+			alert("개인 챌린지 최대 3개")
+		}else {
+			location.href="makeSoloCh.jsp"
+		}
+				
+	})
+    </script>
 </body>
 </html>

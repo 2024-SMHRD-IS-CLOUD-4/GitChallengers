@@ -81,7 +81,10 @@
         <!-- 왼쪽 사이드바 -->
         <div class="sidebar">
             <button class="kick-button">방장 추방</button>
-            
+            <form action="groupDelete">
+	            <button type="submit">방 나가기</button>
+	            <input type="hidden" name="group_idx" value="<%=idx%>">
+            </form>
             <div class="profile-upload">
                	<img src="profile_img/<%=infodao.info(group.getManager()).getProfile_img() %>" class="profile-img" id="profilePreview">
             </div>
@@ -105,7 +108,7 @@
 			                    <%if(member.getId().equals(group.getManager())) {%>
 			                    <input type="checkbox">
 			                    <form action="memberDelete">
-									<button type="submit">퇴장</button>
+									<button type="submit">추방</button>
 									<input type="hidden" name="group_idx" value = "<%=idx%>">
 									<input type="hidden" name="id" value = "<%=j.getId()%>">
 			                    </form>

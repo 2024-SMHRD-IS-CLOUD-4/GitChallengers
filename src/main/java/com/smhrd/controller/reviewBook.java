@@ -41,7 +41,6 @@ public class reviewBook extends HttpServlet {
                 // review 객체를 request에 속성으로 저장하여 JSP로 전달
                 request.setAttribute("review", review);
             }
-            System.out.println("review" + review);
             if(review != null) {
     			request.setAttribute("review", review);
     		} 

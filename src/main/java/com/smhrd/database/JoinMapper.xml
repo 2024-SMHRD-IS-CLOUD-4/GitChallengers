@@ -33,5 +33,11 @@
     	select count(*) from ch_join where id=#{id}
     </select>
     
+    <!-- 방 나가기 -->
+    <delete id="joinDelete" parameterType="Join">
+    	delete from ch_join where group_idx=#{group_idx} and id=#{id}
+    </delete>
+    
+    
     
 </mapper>

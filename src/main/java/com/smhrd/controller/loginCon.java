@@ -1,6 +1,8 @@
 package com.smhrd.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +29,9 @@ public class loginCon extends HttpServlet {
 		Member result = dao.login(login);
 		
 		if(result == null) {
-			response.sendRedirect("login.jsp");
+			 request.setAttribute("errorMessage", "회원정보가 일치하지 않습니다!");
+			 RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			 dispatcher.forward(request, response);
 		}else {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", result);

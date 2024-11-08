@@ -64,4 +64,14 @@ public class JoinDAO {
 		
 		return result;
 	}
+	
+	// 방 나가기
+	public int joinDelete(Join j) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.delete("JoinMapper.joinDelete", j);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 }

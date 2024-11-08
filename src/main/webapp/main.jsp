@@ -180,7 +180,7 @@
                     <div class="cart-icon" onclick="openExternalLink('https://product.kyobobook.co.kr/detail/S000000780090')">🛒</div>
                 </div>
                 <div class="product-item">
-                    <img src="<%= request.getAttribute("bestSellerImage2") != null ? request.getAttribute("bestSellerImage2") : "img/bestbook-5.jpg" %>" alt="Product Image">
+                    <img src="<%= request.getAttribute("bestSellerImage2") != null ? request.getAttribute("bestSellerImage2") : "img/harry-porter.jfif" %>" alt="Product Image">
                     <div class="cart-icon" onclick="openExternalLink('https://product.kyobobook.co.kr/detail/S000000569962')">🛒</div>
                 </div>
             </div>

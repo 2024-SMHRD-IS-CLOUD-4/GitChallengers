@@ -46,4 +46,15 @@ public class ReviewDAO {
 
 		return result;
 	}
+	
+	// 베스트 리뷰
+	public List<Review> bestReview() {
+		SqlSession sqlSession = factory.openSession(true);
+		List<Review> result = sqlSession.selectList("ReviewMapper.bestReview");
+		sqlSession.close();
+
+		return result;
+	}
+	
+	
 }

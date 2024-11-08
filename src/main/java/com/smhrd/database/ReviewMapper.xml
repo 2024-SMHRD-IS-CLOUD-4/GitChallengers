@@ -13,12 +13,17 @@
 	
 	<!-- 리뷰 가져오기 -->
 	<select id="review" resultType="Review">
-		select * from ch_review where review_idx=#{review_idx}
+		select * from ch_review where review_idx=#{review_idx} order by review_idx desc
 	</select>
 	
 	<!-- 아이디로 리뷰 불러오기 -->
 	<select id="reviewList" resultType="Review">
 		select * from ch_review where id=#{id} order by review_idx desc
+	</select>
+	
+	<!-- 베스트 리뷰 -->
+	<select id="bestReview" resultType="Review">
+		select * from ch_review order by (select count(*) from review_heart where review_heart.review_idx=ch_review.review_idx) desc
 	</select>
 	
 </mapper>

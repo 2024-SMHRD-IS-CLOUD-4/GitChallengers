@@ -18,7 +18,7 @@
   <div class="form-container">
     <span class="back-arrow" onclick="history.back()">←</span>
     <br><br>
-    <form action="createCh.jsp" method="post">
+    <form action="createCh" method="post">
       <input type="text" name="pc_title" placeholder="책 이름">
       <textarea name="pc_desc" placeholder="소개글"></textarea>
       <div class="button-group">

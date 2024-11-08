@@ -56,6 +56,7 @@
 	int follower = fdao.follower(id); // 팔로워 수
 	int following = fdao.following(id); // 팔로잉 수
 	List<Review> rlist = rdao.reviewList(id); // 리뷰 불러오기
+
 	JoinDAO jdao = new JoinDAO();
 	GroupDAO gdao = new GroupDAO();
 	Member_pointDAO mpdao = new Member_pointDAO();

@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.ReviewDAO"%>
+<%@page import="com.smhrd.model.Review"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.Member_info"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
@@ -36,10 +38,13 @@
 		Member_pointDAO mpdao = new Member_pointDAO();
 		Pc_challengeDAO pcdao = new Pc_challengeDAO();
 		Member_infoDAO infodao = new Member_infoDAO();
+		ReviewDAO reviewdao = new ReviewDAO();
 		List<Join> list = jdao.selectMy(member.getId()); // 내 그룹 불러오기
 		List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
 		Member_info member_info = infodao.info(member.getId()); // 본인 정보 가져오기
 		List<Member_info> rank = infodao.rank(); // 랭킹 불러오기
+		List<Review> reviewList = reviewdao.bestReview(); // 리뷰 리스트 불러오기
+		
 	%>
 
     <!-- Main Container -->
@@ -139,15 +144,15 @@
                 <div class="review-item">
                     <img src="img/pigbook-1.jfif" alt="Book Image" class="review-image">
                     <div class="review-content">
-                        <h3>리뷰 제목</h3>
-                        <p>내용</p>
+                        <h3><%=reviewList.get(0).getReview_title() %></h3>
+                        <p><%=reviewList.get(0).getReview_content() %></p>
                     </div>
                 </div>
                 <div class="review-item">
                     <img src="img/pigbook-1.jfif" alt="Book Image" class="review-image">
                     <div class="review-content">
-                        <h3>리뷰 제목</h3>
-                        <p>내용</p>
+                        <h3><%=reviewList.get(1).getReview_title() %></h3>
+                        <p><%=reviewList.get(1).getReview_content() %></p>
                     </div>
                 </div>
             </div>

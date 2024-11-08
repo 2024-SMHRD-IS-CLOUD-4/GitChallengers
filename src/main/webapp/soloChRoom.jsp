@@ -83,7 +83,8 @@
  			
             
         </div>
-
+		 <div class="horizontal-scroll-container"><!--  -->
+		  <div class="scroll-item">
         <!-- 카드 영역 -->
         <div class="card-container">
             <!-- 카드 리스트 -->
@@ -105,7 +106,8 @@
     	        	<%} %>
 	            <%} %>
             </div>
-
+ </div><!--  -->
+ </div>
             <!-- MY 챌린지 팝업 -->
             <div id="myChallengePopup" class="popup hidden">
                 <h3>MY 챌린지</h3>

@@ -6,8 +6,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="com.smhrd.model.FollowDAO"%>
 <%@page import="com.smhrd.model.Member_info"%>
+<%@page import="com.smhrd.model.GroupDAO"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.Member_pointDAO"%>
+<%@page import="com.smhrd.model.Member"%>
+<%@page import="com.smhrd.model.Member_infoDAO"%>
+<%@page import="com.smhrd.model.Group"%>
+<%@page import="com.smhrd.model.Pc_challenge"%>
+<%@page import="com.smhrd.model.Member_point"%>
+<%@page import="com.smhrd.model.Join"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smhrd.model.Pc_challengeDAO"%>
+<%@page import="com.smhrd.model.Member_pointDAO"%>
+<%@page import="com.smhrd.model.GroupDAO"%>
+<%@page import="com.smhrd.model.JoinDAO"%>
 <%@page import="com.smhrd.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -43,7 +55,15 @@
 	Member_info member_info = infodao.info(id); // 회원 정보 가져오기
 	int follower = fdao.follower(id); // 팔로워 수
 	int following = fdao.following(id); // 팔로잉 수
-	List<Review> list = rdao.reviewList(id); // 리뷰 불러오기
+	List<Review> rlist = rdao.reviewList(id); // 리뷰 불러오기
+	JoinDAO jdao = new JoinDAO();
+	GroupDAO gdao = new GroupDAO();
+	Member_pointDAO mpdao = new Member_pointDAO();
+	Pc_challengeDAO pcdao = new Pc_challengeDAO();
+	List<Join> list = jdao.selectMy(member.getId()); // 내 그룹 불러오기
+	List<Member_point> rank = mpdao.rank(); // 랭킹 불러오기
+	List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
+	
 	%>
 	
 	<!-- Main Container -->
@@ -172,7 +192,7 @@
 				</div>
 				<div id="review-content" class="review-content">
 					<!-- 초기에는 리뷰 내용 표시 -->
-					<%for(Review r : list) {%>
+					<%for(Review r : rlist) {%>
 				    <div class="review">
 				        <h3 onClick="location.href='reviewBook?idx=<%=r.getReview_idx()%>'"><%=r.getReview_title() %></h3> 
 				        <!-- 사진 넣고 a태그로 넘어가게 페이지 이동시에는 idx를 보내던가 아니면 쿼리에 idx넣기 -->
@@ -180,6 +200,23 @@
 				    <%} %>
 				</div>
 			</div>
+			 <!-- MY 챌린지 팝업 -->
+        <div id="myChallengePopup" class="popup hidden">
+			<h3>MY 챌린지</h3>
+			<div>
+			    <p>개인 챌린지</p>
+			    <%for (Pc_challenge p: pcList) {%>
+				<button class="popup-button" onClick="location.href='soloChRoom.jsp?idx=<%=p.getPc_idx()%>'"><%= p.getPc_title() != null ? p.getPc_title() : "진행중인 챌린지 없음" %></button>
+				<%} %>
+			
+				<p>그룹 챌린지</p>
+				<%for (Join j : list) {
+				Group g = gdao.groupInfo(j.getGroup_idx());                    	
+				%>
+				<button class="popup-button" onClick="location.href='groupChRoom.jsp?idx=<%=g.getGroup_idx()%>'"><%=g.getGroup_name() != null?g.getGroup_name() : "진행중인 챌린지 없음"%></button>
+				<%} %>
+			</div>
+		</div>
 		</div>
 		</div>
 

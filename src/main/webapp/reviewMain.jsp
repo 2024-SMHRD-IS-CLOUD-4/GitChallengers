@@ -33,6 +33,13 @@
 		CommentDAO cdao = new CommentDAO();
 		Member_infoDAO infodao = new Member_infoDAO();
 		List<Review> rList = rdao.selectAll(); // 리뷰 리스트 불러오기
+		JoinDAO jdao = new JoinDAO();
+		GroupDAO gdao = new GroupDAO();
+		Member_pointDAO mpdao = new Member_pointDAO();
+		Pc_challengeDAO pcdao = new Pc_challengeDAO();
+		List<Join> list = jdao.selectMy(member.getId()); // 내 그룹 불러오기
+		List<Member_point> rank = mpdao.rank(); // 랭킹 불러오기
+		List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
 		
 		
 		
@@ -85,14 +92,21 @@
 
         <!-- MY 챌린지 팝업 -->
         <div id="myChallengePopup" class="popup hidden">
-            <h3>MY 챌린지</h3>
-            <div>
-                <p>개인 챌린지</p>
-                <button class="popup-button">돼지책</button>
-                <button class="popup-button">하루 한권 읽어요</button>
-            </div>
-        </div>
-    </div>
+			<h3>MY 챌린지</h3>
+			<div>
+			    <p>개인 챌린지</p>
+			    <%for (Pc_challenge p: pcList) {%>
+				<button class="popup-button" onClick="location.href='soloChRoom.jsp?idx=<%=p.getPc_idx()%>'"><%= p.getPc_title() != null ? p.getPc_title() : "진행중인 챌린지 없음" %></button>
+				<%} %>
+			
+				<p>그룹 챌린지</p>
+				<%for (Join j : list) {
+				Group g = gdao.groupInfo(j.getGroup_idx());                    	
+				%>
+				<button class="popup-button" onClick="location.href='groupChRoom.jsp?idx=<%=g.getGroup_idx()%>'"><%=g.getGroup_name() != null?g.getGroup_name() : "진행중인 챌린지 없음"%></button>
+				<%} %>
+			</div>
+		</div>
 
     <script src="./js/reviewMain.js"></script>
 </body>

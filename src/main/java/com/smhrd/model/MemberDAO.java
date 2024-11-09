@@ -1,7 +1,5 @@
 package com.smhrd.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,8 +10,6 @@ import com.smhrd.database.SqlSessionManager;
 public class MemberDAO {
 	
 	SqlSessionFactory factory = SqlSessionManager.getSqlSessionFactory();
-	Connection conn = null;
-	PreparedStatement psmt = null;
 	
 	// 회원가입
 	public int join(Member m) {

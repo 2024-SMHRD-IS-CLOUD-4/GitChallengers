@@ -4,7 +4,7 @@
 
 	<!-- 그룹 챌린지 글 작성하기 -->
 	<insert id="chWrite" parameterType="items">
-		insert into ch_gc_items values (ch_gc_items_seq.nextval, #{g_item_title}, #{g_item_desc}, #{gc_idx}, #{id}, sysdate, 'N', #{gc_ocr}, 0)
+		insert into ch_gc_items values (ch_gc_items_seq.nextval, #{g_item_title}, #{g_item_desc}, #{gc_idx}, #{id}, sysdate, 'N', 0, #{gc_ocr})
 	</insert>
 	
 	<!-- 그룹 챌린지 글 가져오기 -->

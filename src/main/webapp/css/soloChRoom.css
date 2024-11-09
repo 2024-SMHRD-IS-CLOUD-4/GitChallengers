@@ -39,6 +39,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
 
 .logo img {
@@ -299,7 +300,7 @@ body {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 350px;
-    width: 370px;
+    width: 380px;
 }
 
 

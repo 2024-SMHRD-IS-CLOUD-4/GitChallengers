@@ -13,7 +13,7 @@
 <%@page import="com.smhrd.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -55,11 +55,14 @@
             <div class="header-icons">
                 <i class="fas fa-search" id="searchIcon"></i>
                 <div id="searchOptions" class="hidden">
-                    <select id="searchSelect">
-                        <option value="review">리뷰</option>
-                        <option value="group">그룹 챌린지</option>
-                    </select>
-                    <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요...">
+                    <form action="search">
+             	       <select id="searchSelect" name="type">
+                 	       <option value="ch_review">리뷰</option>
+              	          <option value="ch_group">그룹 챌린지</option>
+             	       </select>
+	                    <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요..." name="keyword">
+	                    <input type="submit" value="검색">
+                	</form>
                 </div>
                 <i class="fas fa-bell"></i>
                 <a href="#" class="welcome-text"><%= session.getAttribute("userName") %>님 환영합니다</a>

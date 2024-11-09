@@ -28,11 +28,11 @@ public class Gc_items {
 	// 성공 여부
 	private char is_success;
 	
-	// 그룹챌린지 이미지
-	private String gc_ocr;
-	
 	// 그룹 좋아요
 	private int gc_con_heart;
+	
+	// 그룹챌린지 이미지
+	private String gc_ocr;
 
 	public Gc_items(String g_item_title, String g_item_desc, int gc_idx, String id, String gc_ocr) {
 		super();

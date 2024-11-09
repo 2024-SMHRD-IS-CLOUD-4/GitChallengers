@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     const kickButton = document.querySelector('.sidebar .kick-button');
 
     kickButton.addEventListener('click', function () {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // 여기에서 방장을 추방하는 추가 작업을 구현합니다.
         }
     });
-});
+});*/
 
 
 // MY 챌린지 버튼 클릭 시 팝업 토글

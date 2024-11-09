@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member_info"%>
 <%@page import="com.smhrd.model.Review_heartDAO"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.CommentDAO"%>
@@ -60,27 +61,31 @@
             <div class="header-icons">
                 <i class="fas fa-search" id="searchIcon"></i>
 				<div id="searchOptions" class="hidden">
-                    <select id="searchSelect">
-                        <option value="review">리뷰</option>
-                        <option value="group">그룹 챌린지</option>
-                    </select>
-                    <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요...">
+                   <form action="search">
+             	       <select id="searchSelect" name="type">
+                 	       <option value="ch_review">리뷰</option>
+              	          <option value="ch_group">그룹 챌린지</option>
+             	       </select>
+	                    <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요..." name="keyword">
+	                    <input type="submit" value="검색">
+                	</form>
                 </div>             
                 <i class="fas fa-bell"></i>
-                <a href="profile.jsp" class="welcome-text"><%=member.getNick() %> 환영합니다</a>
+                <a href="profile.jsp" class="welcome-text"><%=member.getNick() %>님 환영합니다</a>
                 <form action="logoutCon">
 		     	<button class="logout-button">로그아웃</button>
 		    	</form>
     		</div>
         </div>
 		
-		<%for(Review r : rList) {
-			int review_idx = r.getReview_idx();
-			int count = cdao.commentCount(review_idx);
-			
+		<%if(rList != null && !rList.isEmpty()){
+			for(Review r : rList) {
+				int review_idx = r.getReview_idx();
+				int count = cdao.commentCount(review_idx);
+				Member_info reviewMemberInfo = infodao.info(r.getId());
 		%>
         <div class="card" onClick="location.href='pReview.jsp?idx=<%=review_idx%>'">
-            <img src="profile_img/<%=infodao.info(r.getId()).getProfile_img() %>" alt="Book Image">
+            <img src="profile_img/<%=(reviewMemberInfo != null) ? reviewMemberInfo.getProfile_img() : "" %>" alt="Book Image">
             <div class="card-content">
                 <div class="card-title"><%=r.getReview_title()%> <%if(r.getIs_approved() == 'Y') {%> ✅<%} %></div>
                 <div class="card-body"><%=r.getReview_content() %></div>
@@ -91,6 +96,7 @@
                 댓글 <%=count %>개
             </div>
         </div>
+		<%} %>
 		<%} %>
 
         <!-- MY 챌린지 팝업 -->

@@ -53,11 +53,14 @@
         <div class="header-icons">
             <i class="fas fa-search" id="searchIcon"></i>
 			<div id="searchOptions" class="hidden">
-                <select id="searchSelect">
-                    <option value="review">리뷰</option>
-                    <option value="group">그룹 챌린지</option>
-                </select>
-                <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요...">
+                <form action="search">
+             	       <select id="searchSelect" name="type">
+                 	       <option value="ch_review">리뷰</option>
+              	          <option value="ch_group">그룹 챌린지</option>
+             	       </select>
+	                    <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요..." name="keyword">
+	                    <input type="submit" value="검색">
+                	</form>
             </div>            
             <i class="fas fa-bell"></i>
             <!-- 사용자 환영 텍스트 추가 -->
@@ -75,16 +78,10 @@
                 <div class="profile-img" id="profilePreview"></div>
             </div>
             <div class="profile-name"><%=member.getId() %></div>
-            <button class="button" onclick="location.href='pcWrite.jsp?idx=<%=idx%>'">오늘의 챌린지 작성</button>
- 			<!-- Add this canvas for the chart -->
-			<div style="width: 50%; margin: auto; margin-top: 20px;">
-  				<canvas id="myChart"></canvas>
-			</div>
- 			
+            <button class="button" onclick="location.href='pcWrite.jsp?idx=<%=idx%>'">오늘의 챌린지 작성</button>			
             
         </div>
-		 
-		  
+ 
         <!-- 카드 영역 -->
         <div class="card-container">
  
@@ -108,7 +105,7 @@
     	        	<%} %>
 	            <%} %>
             </div>
- </div><!--  -->
+ 	</div>
             <!-- MY 챌린지 팝업 -->
             <div id="myChallengePopup" class="popup hidden">
                 <h3>MY 챌린지</h3>

@@ -1,3 +1,6 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
+<%@page import="java.time.ZoneId"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="com.smhrd.model.Gc_heartDAO"%>
 <%@page import="com.smhrd.model.Gc_heart"%>
 <%@page import="com.smhrd.model.Gc_commentDAO"%>
@@ -46,8 +49,14 @@
 	Group group = dao.groupInfo(idx); // 방 정보
 	List<Join> list = jdao.selectAll(idx); // 방 참가 인원 정보
 	List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
+    LocalDate now = LocalDate.now(); // 현재 날짜 구하기 (시스템 시계, 시스템 타임존)
+	Gc_items my = new Gc_items(idx, member.getId());
+    List<Gc_items> myItemList = idao.getItem(my);
+    Gc_items myItem = myItemList.get(0); // 내 최신글
+    String time = myItem.getCreated_at();
+	time = time.substring(0,10);
 	
-	
+    
 %>
 
     <div class="header">
@@ -115,7 +124,7 @@
 			                <% } %>
                 	<% } %>
             </ul>
-            <button class="button" onClick="location.href='chWrite.jsp?idx=<%=idx%>'">오늘의 챌린지 작성</button>
+            <button class="button">오늘의 챌린지 작성</button>
         </div>
 
         <!-- 카드 영역 -->
@@ -194,6 +203,19 @@
     <script src="./js/groupChRoom.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
+    	// 글 작성은 하루에 하나
+	    $(document).on('click', '.button', function() {
+	    	var now = <%=now%>;
+	    	var time = <%=time%>;
+	    	var idx = <%= idx %>;
+	    	
+	    	if(now === time) {
+	    		alert('오늘의 챌린지를 이미 작성하였습니다');
+	    	}else {
+	    		document.location.href='chWrite.jsp?idx='+idx;
+	    	}
+	    })
+    
     	// 승인버튼
 		$(document).on('click', '.checkBox', function() {
 			var input = {

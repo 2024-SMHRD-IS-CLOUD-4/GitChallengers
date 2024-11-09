@@ -38,6 +38,5 @@ public class Gc_itemsDAO {
 		return result;
 	}
 	
-	
 
 }

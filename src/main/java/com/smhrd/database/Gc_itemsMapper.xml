@@ -16,5 +16,5 @@
 	<update id="success">
 		update ch_gc_items set is_success='Y' where g_item_idx=#{g_item_idx}
 	</update>
-	
+
 </mapper>

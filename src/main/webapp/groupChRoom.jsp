@@ -89,7 +89,7 @@
                 	</form>
             </div>            
             <i class="fas fa-bell"></i>
-            <a href="profile.jsp" class="welcome-text"><%=member.getNick() %> 환영합니다</a>
+            <a href="profile.jsp" class="welcome-text"><%=member.getNick() %>님 환영합니다</a>
             <form action="logoutCon">
             <button class="logout-button">로그아웃</button>
             </form>
@@ -103,8 +103,17 @@
         	<div class="kickManager">
         	<form action="kickManager" method="post">
         		<div class="kickManager_popup">
-        			<h2>popup</h2>
-        			<p>saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        			<h2>방장 추방</h2>
+        			<h3>다음 부방장 선택</h3>
+        			<select>
+        			<%for(Join j : list) { 
+        				if(!j.getId().equals(group.getManager()) && !j.getId().equals(group.getSub_manager())) {%>
+        				<option value="<%=j.getId()%>"> <%=mdao.memberInfo(j.getId()).getNick() %>
+        			<%} %>
+        			<%} %>
+        			</select>
+        			<br>
+        			<button type="button">추방</button>
         			<button type="button" class="close_btn">닫기</button>
         		</div>
         	</form>
@@ -238,7 +247,7 @@
     <script type="text/javascript">
     
     const modal = document.querySelector('.kickManager');
-    const modalOpen = document.querySelector('.kickbutton');
+    const modalOpen = document.querySelector('.kick-button');
     const modalClose = document.querySelector('.close_btn');
 
     //열기 버튼을 눌렀을 때 모달팝업이 열림

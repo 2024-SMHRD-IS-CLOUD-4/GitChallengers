@@ -62,7 +62,7 @@
                 	</form>
             </div>
             <i class="fas fa-bell"></i>
-		    <a href="profile.jsp" class="welcome-text"><%=member.getNick() %> 환영합니다</a>
+		    <a href="profile.jsp" class="welcome-text"><%=member.getNick() %>님 환영합니다</a>
 			<button class="create-group-btn" id="createCh">챌린지 만들기</button>
 		    <form action="logoutCon">
 		     <button class="logout-button">로그아웃</button>

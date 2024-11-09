@@ -10,7 +10,7 @@
 <%@page import="com.smhrd.model.Pc_challengeDAO"%>
 <%@page import="com.smhrd.model.Member"%>
 <%@page import="java.util.List"%>
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -79,9 +79,59 @@
             </div>
             <div class="profile-name"><%=member.getId() %></div>
             <button class="button" onclick="location.href='pcWrite.jsp?idx=<%=idx%>'">오늘의 챌린지 작성</button>			
-            
+            <canvas id="challengeProgressChart" width="200" height="200"></canvas>
         </div>
- 
+ 	<%@ page import="java.sql.*" %>
+
+<%--
+
+    int completedPages = 0;
+    int totalPages = 100; // 예시값 (전체 페이지 수)
+
+
+    // 진행률 계산
+    int remainingPages = totalPages - completedPages;
+--%>
+ <%--
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const ctx = document.getElementById('challengeProgressChart').getContext('2d');
+
+        // JSP에서 전달받은 데이터
+        const completedPages = <%= completedPages %>;
+        const totalPages = <%= totalPages %>;
+        const remainingPages = totalPages - completedPages;
+
+        // 차트 데이터 설정
+        const progressData = {
+            labels: ['완료한 페이지', '남은 페이지'],
+            datasets: [{
+                data: [completedPages, remainingPages],
+                backgroundColor: ['#4caf50', '#e0e0e0'],
+                hoverOffset: 4
+            }]
+        };
+
+        // 도넛 차트 생성
+        const challengeProgressChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: progressData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    });
+</script>
+  --%>
+ 	
         <!-- 카드 영역 -->
         <div class="card-container">
  
@@ -105,7 +155,7 @@
     	        	<%} %>
 	            <%} %>
             </div>
- </div><!--  -->
+ 	</div>
             <!-- MY 챌린지 팝업 -->
             <div id="myChallengePopup" class="popup hidden">
                 <h3>MY 챌린지</h3>
@@ -125,6 +175,7 @@
             </div>
 
     <script src="./js/soloChRoom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>

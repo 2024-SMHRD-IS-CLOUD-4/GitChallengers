@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member_info"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.time.ZoneId"%>
 <%@page import="java.time.LocalDate"%>
@@ -38,7 +39,6 @@
 	}
 	Pc_challengeDAO pcdao = new Pc_challengeDAO();
 	GroupDAO gdao = new GroupDAO();
-	GroupDAO dao = new GroupDAO(); 
 	JoinDAO jdao = new JoinDAO();
 	Gc_itemsDAO idao = new Gc_itemsDAO();
 	MemberDAO mdao = new MemberDAO();
@@ -46,15 +46,19 @@
 	Gc_commentDAO gcdao = new Gc_commentDAO();
 	Gc_heartDAO hdao = new Gc_heartDAO();
 	int idx = Integer.parseInt(request.getParameter("idx")); // 방 인덱스
-	Group group = dao.groupInfo(idx); // 방 정보
+	Group group = gdao.groupInfo(idx); // 방 정보
 	List<Join> list = jdao.selectAll(idx); // 방 참가 인원 정보
+	List<Join> myList = jdao.selectMy(member.getId()); // 내 그룹 불러오기
 	List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
     LocalDate now = LocalDate.now(); // 현재 날짜 구하기 (시스템 시계, 시스템 타임존)
 	Gc_items my = new Gc_items(idx, member.getId());
     List<Gc_items> myItemList = idao.getItem(my);
-    Gc_items myItem = myItemList.get(0); // 내 최신글
-    String time = myItem.getCreated_at();
-	time = time.substring(0,10);
+    String time = "0";
+    if (myItemList != null && !myItemList.isEmpty()) {
+	    Gc_items myItem = myItemList.get(0); // 내 최신글
+	    time = myItem.getCreated_at();
+		time = time.substring(0,10);
+    }
 	
     
 %>
@@ -90,20 +94,32 @@
         <!-- 왼쪽 사이드바 -->
         <div class="sidebar">
         	<%if (!member.getId().equals(group.getManager()) && !member.getId().equals(group.getSub_manager())) {%>
-            <button class="kick-button">방장 추방</button>
+            <button class="kick-button">방장 추방 투표</button>
             <form action="groupDelete">
 	            <button type="submit">방 나가기</button>
 	            <input type="hidden" name="group_idx" value="<%=idx%>">
             </form>
             <%} %>
+            <% 
+				Member_info managerInfo = infodao.info(group.getManager());
+          			Member managerMemberInfo = mdao.memberInfo(group.getManager());
+				String managerProfileImg = (managerInfo != null) ? managerInfo.getProfile_img() : "default_profile.png";
+				String managerNick = (managerMemberInfo != null) ? managerMemberInfo.getNick()  : "정보없음";
+			%>
             <div class="profile-upload">
-               	<img src="profile_img/<%=infodao.info(group.getManager()).getProfile_img() %>" class="profile-img" id="profilePreview">
+               	<img src="profile_img/<%=managerProfileImg %>" class="profile-img" id="profilePreview">
             </div>
-            <div class="profile-name"><%=mdao.memberInfo(group.getManager()).getNick()%></div>
+            <div class="profile-name"><%=managerNick%></div>
             <ul class="group-list">
             	<li class="group-item" data-id="<%=group.getSub_manager()%>">
-					<img src="profile_img/<%=infodao.info(group.getSub_manager()).getProfile_img() %>">
-					<span class="group-name"><%=mdao.memberInfo(group.getSub_manager()).getNick()%></span>
+            	<% 
+					Member_info subManagerInfo = infodao.info(group.getSub_manager());
+           			Member subManagerMemberInfo = mdao.memberInfo(group.getSub_manager());
+					String subManagerProfileImg = (subManagerInfo != null) ? subManagerInfo.getProfile_img() : "default_profile.png";
+					String subManagerNick = (subManagerMemberInfo != null) ? subManagerMemberInfo.getNick()  : "정보없음";
+				%>
+					<img src="profile_img/<%=subManagerProfileImg %>">
+					<span class="group-name"><%=subManagerNick%></span>
                 </li>
                 <%
                     for(Join j: list) {
@@ -192,7 +208,7 @@
 				<%} %>
 			
 				<p>그룹 챌린지</p>
-				<%for (Join j : list) {
+				<%for (Join j : myList) {
 				Group g = gdao.groupInfo(j.getGroup_idx());                    	
 				%>
 				<button class="popup-button" onClick="location.href='groupChRoom.jsp?idx=<%=g.getGroup_idx()%>'"><%=g.getGroup_name() != null?g.getGroup_name() : "진행중인 챌린지 없음"%></button>
@@ -203,12 +219,36 @@
     <script src="./js/groupChRoom.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
+    	// 방장 추방 투표
+    	$(document).on('click', '.kick-button', function() {
+    		var input ={
+    				group_idx : <%=idx%>
+    		};
+    		
+    		$.ajax({
+    			url : "vote",
+				type : "post",
+				contentType: "application/json; charset=UTF-8",
+				data : JSON.stringify(input),
+				success : function(data){
+					if (data == "true") {
+						document.location.reload();
+		            } else {
+		                alert("실패");  
+		            }
+				},
+				error : function(){
+					alert("통신실패")
+				}
+    		})
+    	}
+    	
     	// 글 작성은 하루에 하나
 	    $(document).on('click', '.button', function() {
 	    	var now = <%=now%>;
-	    	var time = <%=time%>;
 	    	var idx = <%= idx %>;
-	    	
+	    	var time = <%=time%>;
+
 	    	if(now === time) {
 	    		alert('오늘의 챌린지를 이미 작성하였습니다');
 	    	}else {

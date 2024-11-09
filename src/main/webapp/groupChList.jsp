@@ -65,7 +65,7 @@
 
     <!-- 메인 컨테이너 -->
     <div class="main-container">
-    <%
+    <% //try {
     	for(Group g : list) {
     		int idx = g.getGroup_idx();
     		int count = jdao.count(idx);
@@ -103,16 +103,18 @@
             <%} %>
         </div>
     <%} %>
-
+<%--     <%}catch (NullPointerException e) {%>
+			<span>진행중인 챌린지 없음</span>
+	<%} %> --%>
     </div>
     <script src="./js/groupChList.js"></script>
     <script type="text/javascript">
     $('#createGroup').on('click', () => {
     	if(<%=jdao.countGc(member.getId())%> > 3){
-			alert('가입중인 챌린지가 3개 입니다');    		
+			alert('가입중인 챌린지가 3개 입니다');
     	}else if (<%=infodao.info(member.getId()).getPoint()%> < 1000){
 			alert('포인트 부족');
-    	}else if (<%=reviewdao.count(member.getId())%> < 6) {
+    	}else if (<%=reviewdao.count(member.getId())%> < 5) {
     		alert('챌린지 완료횟수 부족');
     	}else {
     		location.href="groupCh.jsp"

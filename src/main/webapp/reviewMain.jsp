@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member_info"%>
 <%@page import="com.smhrd.model.Review_heartDAO"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.CommentDAO"%>
@@ -74,13 +75,14 @@
     		</div>
         </div>
 		
-		<%for(Review r : rList) {
-			int review_idx = r.getReview_idx();
-			int count = cdao.commentCount(review_idx);
-			
+		<%if(rList != null && !rList.isEmpty()){
+			for(Review r : rList) {
+				int review_idx = r.getReview_idx();
+				int count = cdao.commentCount(review_idx);
+				Member_info reviewMemberInfo = infodao.info(r.getId());
 		%>
         <div class="card" onClick="location.href='pReview.jsp?idx=<%=review_idx%>'">
-            <img src="profile_img/<%=infodao.info(r.getId()).getProfile_img() %>" alt="Book Image">
+            <img src="profile_img/<%=(reviewMemberInfo != null) ? reviewMemberInfo.getProfile_img() : "" %>" alt="Book Image">
             <div class="card-content">
                 <div class="card-title"><%=r.getReview_title()%> <%if(r.getIs_approved() == 'Y') {%> ✅<%} %></div>
                 <div class="card-body"><%=r.getReview_content() %></div>
@@ -91,6 +93,7 @@
                 댓글 <%=count %>개
             </div>
         </div>
+		<%} %>
 		<%} %>
 
         <!-- MY 챌린지 팝업 -->

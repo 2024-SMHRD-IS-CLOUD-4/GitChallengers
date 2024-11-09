@@ -1,86 +1,69 @@
-@charset "UTF-8";
-
-
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: auto;
     background-color: #f2efe8;
     font-family: Arial, sans-serif;
-    padding-top: 60px;
+    padding-top: 100px;
     /* 헤더 높이만큼 여백 추가 */
 }
 
 .container {
     display: flex;
     gap: 20px;
-    width: 90%;
+    width: 1600px;
     height: 90%;
     padding: 20px;
     background-color: #f5f5f5;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: auto;
 }
 
-/* 헤더 스타일 */
 .header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background-color: #f2efe8;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 30px;
-	z-index: 2000;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f2efe8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    z-index: 2000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .logo img {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .nav-links {
-	display: flex;
-	align-items: center;
-	gap: 20px;
-	font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 16px;
 }
 
 .nav-links a {
-	color: #333;
-	text-decoration: none;
-	padding: 5px 10px;
+    color: #333;
+    text-decoration: none;
+    padding: 5px 10px;
 }
 
 .nav-links a:hover {
-	background-color: #e8e4de;
-	border-radius: 5px;
-}
-
-.header-icons {
-	display: flex;
-	align-items: center;
-	gap: 15px;
-}
-
-.header-icons i {
-	font-size: 20px;
-	color: #333;
-	cursor: pointer;
-	margin-right: 20px;
+    background-color: #e8e4de;
+    border-radius: 5px;
 }
 .searchOptions {
     display: flex;
@@ -106,79 +89,85 @@ body {
 .hidden {
     display: none;
 }
+
 /* 사용자 환영 텍스트 스타일 */
 .welcome-text {
-	color: #333;
-	text-decoration: none;
-	cursor: pointer;
-	font-weight: bold;
-	padding: 5px 10px;
-	border-radius: 5px;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .welcome-text:hover {
-	background-color: #e8e4de;
+    background-color: #e8e4de;
 }
 
 .logout-button {
-	padding: 5px 15px;
-	background-color: #e0c4a8;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-right: 40px;
+    padding: 5px 15px;
+    background-color: #e0c4a8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 40px;
+    /* 왼쪽으로 이동 */
 }
 
-.create-group-btn {
-	padding: 5px 15px;
-	background-color: #D3D3D3;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-left: 40px;
-}
-
-/* 팝업 스타일 */
+/* 팝업 스타일 (위치를 절대값으로 설정) */
 .popup {
-	position: absolute;
-	top: 50px;
-	padding: 20px;
-	background-color: #fff;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	border-radius: 8px;
-	z-index: 1001;
+    position: absolute;
+    top: 50px;
+    /* 기본 위치 */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1001;
 }
 
 .hidden {
-	display: none;
+    display: none;
 }
 
+/* 헤더 중앙 정렬 */
+.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-icons i {
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    margin-right: 20px;
+}
 /* 팝업 내부 버튼 스타일 */
 .popup-button {
-	display: block;
-	width: 100%;
-	padding: 8px 12px;
-	margin: 5px 0;
-	background-color: #e0c4a8;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	text-align: left;
-	font-size: 14px;
-	color: #333;
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    margin: 5px 0;
+    background-color: #e0c4a8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
 }
 
 .popup-button:hover {
-	background-color: #d3b89a;
-}
-/* 헤더 중앙 정렬 */
-.nav-links {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	display: flex;
-	align-items: center;
-	gap: 20px;
+    background-color: #d3b89a;
 }
 
 /* 그룹 만들기 버튼 */
@@ -193,7 +182,7 @@ body {
 }
 
 .sidebar {
-    width: 300px;
+    width: 250px;
     background-color: white;
     border-radius: 10px;
     padding: 30px;
@@ -269,7 +258,49 @@ body {
 .button:hover {
     background-color: #e0b2b8;
 }
+.moderator-profile {
+    position: relative;
+}
 
+.sidebar .kick-button {
+    align-self: flex-start;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* 사이드바 내 다른 요소와의 간격 조정 */
+}
+
+.sidebar .kick-button:hover {
+    background-color: #ff4c4c;
+}
+
+.card-container {
+    display: flex; /* flexbox 레이아웃으로 변경 */
+    flex-wrap: wrap; /* 내용이 넘칠 경우 다음 줄로 이동 */
+    gap: 20px; /* 카드 간의 간격 */
+    justify-content: flex-start; /* 카드들이 왼쪽에서부터 정렬 */
+    width: 100%;
+    height: auto; /* 높이를 자동으로 설정 */
+}
+
+
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 350px;
+    width: 370px;
+}
 
 
 .card-content {
@@ -281,15 +312,12 @@ body {
     gap: 5px;
 }
 
-.card-header {
+.author {
     width: 100%;
     text-align: left;
     font-size: 14px;
     color: #555;
     margin-bottom: 10px;
-}
-.myChart {
-    margin-top: 20px;
 }
 
 .book-title {
@@ -306,7 +334,7 @@ body {
 
 .content-placeholder {
     width: 100%;
-    height: 200px;
+    height: 250px;
     background-color: #e0e0e0;
     display: flex;
     align-items: center;
@@ -316,101 +344,4 @@ body {
     border-radius: 10px;
 }
 
-.card-icons {
-    display: flex;
-    gap: 20px;
-    font-size: 20px;
-    position: absolute;
-    bottom: 10px;
-}
 
-.card-icons i {
-    cursor: pointer;
-}
-
-.comment-section {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.comment-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.comment-btn {
-    padding: 8px 15px;
-    background-color: #f5d5da;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.comment-btn:hover {
-    background-color: #e0b2b8;
-}
-
-.comment-list {
-    margin-top: 10px;
-    width: 100%;
-    list-style: none;
-    padding: 0;
-}
-
-.comment-item {
-    padding: 8px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    margin-top: 5px;
-}
-
-.card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 80%;
-} 
-
-
-.card-container {
-    display: flex;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    width: calc(100% - 320px);
-    height: 100%;
-} 
-
-
-/* 가로 스크롤 컨테이너 */
-.horizontal-scroll-container {
-    display: flex;           /* 가로로 정렬 */
-    overflow-x: auto;        /* x축 스크롤 활성화 */
-    white-space: nowrap;     /* 요소가 줄바꿈 없이 가로로 나열 */
-    gap: 16px;               /* 각 요소 사이 간격 설정 */
-    padding: 16px;    
-    width:100%;       		/* 스크롤 컨테이너 안쪽 여백 */
-   
-}
-
-/* 각 항목 스타일 */
-.scroll-item {
-    min-width: 200px;        /* 항목의 최소 너비 */
-    flex: 0 0 auto;          /* 항목 크기 고정 */
-    background-color: #f0f0f0; /* 항목 배경색 (임의) */
-    padding: 16px;           /* 항목 안쪽 여백 */
-    border-radius: 8px;      /* 항목 모서리 둥글게 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 항목 그림자 */
-}

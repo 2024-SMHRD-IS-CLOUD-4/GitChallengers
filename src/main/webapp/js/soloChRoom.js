@@ -43,6 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const cardContainer = document.querySelector('.card-container');
+    if (cardContainer) {
+        // 카드 배치 확인
+        console.log('카드가 3개씩 배치되도록 설정되었습니다.');
+    }
+});
+
 // 돋보기 버튼 클릭 시 검색창 및 옵션 표시
 document.getElementById('searchIcon').addEventListener('click', function () {
     const navLinks = document.querySelector('.nav-links');

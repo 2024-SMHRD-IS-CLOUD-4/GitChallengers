@@ -26,5 +26,14 @@ public class WarningDAO {
 		
 		return result;
 	}
+	
+	// 신고자 수 확인
+	public int warningCount(int group_idx) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.selectOne("WarningMapper.warningCount", group_idx);
+		sqlSession.close();
+		
+		return result;
+	}
 
 }

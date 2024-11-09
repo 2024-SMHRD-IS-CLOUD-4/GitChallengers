@@ -23,7 +23,7 @@ import com.smhrd.model.WarningDAO;
 public class vote extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
+	// 방장 추방 투표
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 요청 본문에서 JSON 데이터를 읽어오기
@@ -57,7 +57,7 @@ public class vote extends HttpServlet {
         	dao.addWarning(warning);
         	out.print("true");
         }else {
-        	out.print("true");
+        	out.print("false");
         }
         
         

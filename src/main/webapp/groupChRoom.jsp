@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.WarningDAO"%>
 <%@page import="com.smhrd.model.Member_info"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.time.ZoneId"%>
@@ -45,6 +46,7 @@
 	Member_infoDAO infodao = new Member_infoDAO();
 	Gc_commentDAO gcdao = new Gc_commentDAO();
 	Gc_heartDAO hdao = new Gc_heartDAO();
+	WarningDAO wdao = new WarningDAO();
 	int idx = Integer.parseInt(request.getParameter("idx")); // 방 인덱스
 	Group group = gdao.groupInfo(idx); // 방 정보
 	List<Join> list = jdao.selectAll(idx); // 방 참가 인원 정보
@@ -59,7 +61,8 @@
 	    time = myItem.getCreated_at();
 		time = time.substring(0,10);
     }
-	
+    int joinMember = jdao.count(idx); // 그룹인원 수 
+	int warningMember = wdao.warningCount(idx); // 신고 인원 수
     
 %>
 
@@ -96,8 +99,11 @@
     <div class="container">
         <!-- 왼쪽 사이드바 -->
         <div class="sidebar">
+        	<%if (joinMember >= 3 && joinMember == warningMember && member.getId().equals(group.getSub_manager())) {%>
+        	<button class="kick-button">방장 추방</button>
+        	<%} %>
         	<%if (!member.getId().equals(group.getManager()) && !member.getId().equals(group.getSub_manager())) {%>
-            <button class="kick-button">방장 추방 투표</button>
+            <button class="vote-button">방장 추방 투표</button>
             <form action="groupDelete">
 	            <button type="submit">방 나가기</button>
 	            <input type="hidden" name="group_idx" value="<%=idx%>">
@@ -223,9 +229,10 @@
     <script type="text/javascript">
     $(document).ready(function() {
     	// 방장 추방 투표
-    	$(document).on('click', '.kick-button', function() {
+    	$(document).on('click', '.vote-button', function() {
+    		var idx = <%=idx%>
     		var input ={
-    				group_idx : <%=idx%>
+    				group_idx : idx
     		};
     		
     		$.ajax({
@@ -234,17 +241,20 @@
 				contentType: "application/json; charset=UTF-8",
 				data : JSON.stringify(input),
 				success : function(data){
-					if (data == "true") {
+					if (data === "true") {
+						alert("추방투표 완료");
 						document.location.reload();
-		            } else {
-		                alert("실패");  
+		            }else if(data === "false"){
+		                alert("이미 투표했습니다");  
+		            }else {
+		            	alert("실패");
 		            }
 				},
 				error : function(){
 					alert("통신실패")
 				}
     		})
-    	}
+    	})
     	
     	// 글 작성은 하루에 하나
 	    $(document).on('click', '.button', function() {

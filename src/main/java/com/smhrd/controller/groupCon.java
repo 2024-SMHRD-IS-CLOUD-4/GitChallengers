@@ -27,13 +27,23 @@ public class groupCon extends HttpServlet {
 		String manager = request.getParameter("manager");
 		String sub_manager = request.getParameter("sub_manager");
 		int group_max = 10;
-		int days = Integer.parseInt(request.getParameter("days"));
+		
+		int days = 0;
+		try {
+		    String daysParam = request.getParameter("days");
+		    if (daysParam != null && !daysParam.isEmpty()) {
+		        days = Integer.parseInt(daysParam);
+		    }
+		} catch (NumberFormatException e) {
+		    // 예외 처리 (days 값이 유효하지 않은 경우)
+		    e.printStackTrace();
+		    days = 7; // 기본값 7일 설정
+		}
 		
 		Group group = new Group(group_idx, group_name, group_desc, manager, sub_manager, group_max, days);
 		GroupDAO dao = new GroupDAO();
 		int result = dao.createGroup(group);
 		 
-		
 		
 		if (result == 1) {
 			Member_pointDAO pointdao = new Member_pointDAO();

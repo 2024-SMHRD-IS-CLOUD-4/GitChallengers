@@ -12,14 +12,13 @@ import com.smhrd.model.MemberDAO;
 import com.smhrd.model.Member_point;
 import com.smhrd.model.Member_pointDAO;
 
-
 @WebServlet("/joinCon")
 public class joinCon extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -29,25 +28,24 @@ public class joinCon extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String birthdate = request.getParameter("birthdate");
 		String fav_books = request.getParameter("fav_books");
-		birthdate = birthdate.replace("-","");
-		
+		birthdate = birthdate.replace("-", "");
+
 		Member join;
-		
-		if(fav_books == null) {
+
+		if (fav_books == null) {
 			join = new Member(id, pw, name, nick, email, phone, birthdate);
-		}else {
-			join = new Member(id, pw, name, nick, email, phone, birthdate, fav_books);			
+		} else {
+			join = new Member(id, pw, name, nick, email, phone, birthdate, fav_books);
 		}
 		MemberDAO dao = new MemberDAO();
 		int result = dao.join(join);
-		
+
 		if (result == 1) {
 			response.sendRedirect("login.jsp");
-		}else {
+		} else {
 			response.sendRedirect("join.jsp");
 		}
-		
-		
+
 	}
 
 }

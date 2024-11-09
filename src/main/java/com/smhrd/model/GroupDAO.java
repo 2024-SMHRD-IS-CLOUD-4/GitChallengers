@@ -1,6 +1,9 @@
 package com.smhrd.model;
 
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -46,5 +49,35 @@ public class GroupDAO {
 
         return result;
     }
+ 
+    
+    
+    public void scheduleGroupDeletion(Group g) {
+        // 스케줄러 설정
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        
+        // days 값만큼 초로 기다린 후 그룹 삭제 작업 실행
+        scheduler.schedule(() -> {
+            try {
+            	deleteGroup(g);
+            } catch (Exception e) {
+                e.printStackTrace(); // 예외 처리
+            }
+        }, g.getDays(), TimeUnit.SECONDS); // 초 단위로 대기 후 실행
+    }
+
+    // 그룹 및 관련 데이터 삭제 메소드
+    public int deleteGroup(Group g) {
+        SqlSession sqlSession = factory.openSession(true);
+        int result = sqlSession.delete("GroupMapper.deleteGroup", g);
+        sqlSession.close();
+
+        return result;
+    }
+
+    
+    
+    
+    
     
 }

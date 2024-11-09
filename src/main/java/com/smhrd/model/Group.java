@@ -36,8 +36,9 @@ public class Group {
 	private int days;
 	
 
-	public Group(String group_name, String group_desc, String manager, String sub_manager, int group_max, int days) {
+	public Group(int group_idx, String group_name, String group_desc, String manager, String sub_manager, int group_max, int days) {
 		super();
+		this.group_idx = group_idx;
 		this.group_name = group_name;
 		this.group_desc = group_desc;
 		this.manager = manager;
@@ -46,6 +47,7 @@ public class Group {
 		this.days = days;
 	}
 	
+
 	
  
 }

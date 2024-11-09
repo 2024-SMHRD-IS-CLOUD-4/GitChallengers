@@ -10,7 +10,7 @@
 	<insert id="createGroup" parameterType="Group">
 
 		insert into ch_group values (ch_group_seq.nextval, #{group_name}, #{group_desc}, #{manager}, #{sub_manager}, sysdate, 10, 0, #{days})
-
+	
 	</insert>
 	
 	<!-- 그룹 정보 가져오기 -->
@@ -22,5 +22,10 @@
 	<select id="search" resultType="Group">
 		select * from ch_group where group_name like '%'||#{keyword}||'%'
 	</select>
+	
+	<!-- 방 자동 삭제 -->
+	<delete id="deleteGroup" parameterType="int">
+    DELETE FROM ch_join WHERE group_idx = #{group_idx};
+	</delete>
 	
 </mapper>

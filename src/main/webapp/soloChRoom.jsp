@@ -78,16 +78,10 @@
                 <div class="profile-img" id="profilePreview"></div>
             </div>
             <div class="profile-name"><%=member.getId() %></div>
-            <button class="button" onclick="location.href='pcWrite.jsp?idx=<%=idx%>'">오늘의 챌린지 작성</button>
- 			<!-- Add this canvas for the chart -->
-			<div style="width: 50%; margin: auto; margin-top: 20px;">
-  				<canvas id="myChart"></canvas>
-			</div>
- 			
+            <button class="button" onclick="location.href='pcWrite.jsp?idx=<%=idx%>'">오늘의 챌린지 작성</button>			
             
         </div>
-		 
-		  
+ 
         <!-- 카드 영역 -->
         <div class="card-container">
  

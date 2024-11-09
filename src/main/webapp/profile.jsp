@@ -3,7 +3,7 @@
 <%@page import="com.smhrd.model.ReviewDAO"%>
 <%@page import="com.smhrd.model.Follow"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="com.smhrd.model.FollowDAO"%>
 <%@page import="com.smhrd.model.Member_info"%>
 <%@page import="com.smhrd.model.GroupDAO"%>
@@ -36,14 +36,14 @@
 </head>
 
 <body>
-<script src="js/jquery-3.7.1.min.js"></script>
+	<script src="js/jquery-3.7.1.min.js"></script>
 	<%
 	Member member = (Member) session.getAttribute("member");
 	if (member == null) {
 		response.sendRedirect("login.jsp");
 	}
 	String id = request.getParameter("id");
-	if(id == null){
+	if (id == null) {
 		id = member.getId();
 	}
 	Member_pointDAO pdao = new Member_pointDAO();
@@ -64,205 +64,275 @@
 	List<Join> list = jdao.selectMy(member.getId()); // 내 그룹 불러오기
 	List<Member_point> rank = mpdao.rank(); // 랭킹 불러오기
 	List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
-	
 	%>
-	
+
 	<!-- Main Container -->
 	<div class="container">
 		<!-- Header -->
 		<div class="header">
 			<div class="logo">
-				<img src="img/team-logo.png" alt="로고" onClick="location.href='main.jsp'">
+				<img src="img/team-logo.png" alt="로고"
+					onClick="location.href='main.jsp'">
 				<div class="nav-links">
-					<a href="#">MY 챌린지</a>     
-					<a href="groupChList.jsp">그룹 챌린지</a>
-                    <a href="soloChList.jsp">개인 챌린지</a>
-                    <a href="reviewMain.jsp">리뷰</a>
+					<a href="#">MY 챌린지</a> <a href="groupChList.jsp">그룹 챌린지</a> <a
+						href="soloChList.jsp">개인 챌린지</a> <a href="reviewMain.jsp">리뷰</a>
 				</div>
 			</div>
 			<div class="header-icons">
-				<i class="fas fa-search" id="searchIcon"></i> 
+				<i class="fas fa-search" id="searchIcon"></i>
 				<div id="searchOptions" class="hidden">
-                    <form action="search">
-             	       <select id="searchSelect" name="type">
-                 	       <option value="ch_review">리뷰</option>
-              	          <option value="ch_group">그룹 챌린지</option>
-             	       </select>
-	                    <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요..." name="keyword">
-	                    <input type="submit" value="검색">
-                	</form>
-                </div>
+					<form action="search">
+						<select id="searchSelect" name="type">
+							<option value="ch_review">리뷰</option>
+							<option value="ch_group">그룹 챌린지</option>
+						</select> <input type="text" id="searchInput" class="hidden"
+							placeholder="검색어를 입력하세요..." name="keyword"> <input
+							type="submit" value="검색">
+					</form>
+				</div>
 				<i class="fas fa-bell"></i>
-				<%if(member.getId().equals(id)) {%>
-				<button class="edit-profile-button" onClick="location.href='joinEdit.jsp'">회원정보 수정</button>
-				<%} %>
+				<%
+				if (member.getId().equals(id)) {
+				%>
+				<button class="edit-profile-button"
+					onClick="location.href='joinEdit.jsp'">회원정보 수정</button>
+				<%
+				}
+				%>
 				<form action="logoutCon">
 					<button class="logout-button">로그아웃</button>
 				</form>
 			</div>
 		</div>
 
-        <!-- Profile Section -->
-        <div class="profile-section">
-            <!-- Profile Picture and Edit Button -->
-            <div class="profile-picture">
-                <img src="profile_img/<%=member_info.getProfile_img() %>" alt="Profile Image">
-                <h2><%=profileMember.getNick() %></h2>
-                <%if(member.getId().equals(id)) {%>
-                <button class="button-edit" onClick="location.href='profileEdit.jsp'">프로필 편집</button>
-                <%} %>
-                <br><br>
-                <span>팔로워 <span id="followerCount"><%=follower %></span></span>
-  				<span>팔로잉 <span id="followingCount"><%=following %></span></span>
-  				<br><br>
-  				<%if(!member.getId().equals(id)) {
-  					Follow follow = new Follow(member.getId(), profileMember.getId());
-  				%>
-  				<button class="follow-button" id="followButton" data-follower="<%=member.getId()%>" data-following="<%=profileMember.getId()%>">
-  				<%if (fdao.followCheck(follow) == 1) {%>
-  				언팔로우
-  				<%}else{ %>
-  				팔로우
-  				<%} %>
-  				</button>
-  				<%} %>
-            </div>
-            
-          
-            
-            <!-- Stats and Intro Section -->
-            <div class="stats-section">
-                <div class="stats">
-                    <div>
-                        <p>챌린지 완료 횟수</p>
-                        <span><%=member_info.getCh_suc_count() %>회</span>
-                    </div>
-                    <div>
-                        <p>챌린지 완료 확률</p>
-                        <%if(member_info.getCh_count() == 0) { %>
-                        	<span>0%</span>
-                        <%}else{ %>
-                        <span><%=member_info.getCh_suc_count()/member_info.getCh_count() * 100 %>%</span>
-                        <%} %>
-                    </div>
-                </div>
-                <div class="intro-section">
-                    <textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled><%= (member_info.getIntro() != null) ? member_info.getIntro() : "" %></textarea>
-                </div>
-                
-            	<%if(member.getId().equals(id)) {%>
-                <div class="points-section">
+		<!-- Profile Section -->
+		<div class="profile-section">
+			<!-- Profile Picture and Edit Button -->
+			<div class="profile-picture">
+				<img src="profile_img/<%=member_info.getProfile_img()%>"
+					alt="Profile Image">
+				<h2><%=profileMember.getNick()%></h2>
+				<%
+				if (member.getId().equals(id)) {
+				%>
+				<button class="button-edit"
+					onClick="location.href='profileEdit.jsp'">프로필 편집</button>
+				<%
+				}
+				%>
+				<br>
+				<br> <span>팔로워 <span id="followerCount"><%=follower%></span></span>
+				<span>팔로잉 <span id="followingCount"><%=following%></span></span> <br>
+				<br>
+				<%
+				if (!member.getId().equals(id)) {
+					Follow follow = new Follow(member.getId(), profileMember.getId());
+				%>
+				<button class="follow-button" id="followButton"
+					data-follower="<%=member.getId()%>"
+					data-following="<%=profileMember.getId()%>">
+					<%
+					if (fdao.followCheck(follow) == 1) {
+					%>
+					언팔로우
+					<%
+					} else {
+					%>
+					팔로우
+					<%
+					}
+					%>
+				</button>
+				<%
+				}
+				%>
+			</div>
 
-                    <span>보유 포인트: <%=member_info.getPoint() %>원</span><br>
-                    <span>보유 캐쉬: <%=member_info.getCash() %>원</span>
 
-                    <button class="button-edit" onclick="location.href='pay.jsp'">캐쉬 충전</button>
-               </div>
-                
-                <div class="points-section">
-                <form action="delete.jsp">
-	                <button class="delete">회원탈퇴</button>
-                </form>
-                </div>
-                <%} %>
-                
-                <!-- Book Showcase Section (Moved under Points Section) -->
-                <div class="book-showcase">
-                    <h3>MY BOOK</h3>
-                    <div class="book-list">
-                        <div class="book-item">
-                            <img src="img/pigbook-1.jfif" alt="돼지책">
-                            <p>돼지책</p>
-                        </div>
-                        <div class="book-item">
-                            <img src="img/pigbook-1.jfif" alt="돼지책">
-                            <p>돼지책</p>
-                        </div>
-                        <div class="book-item">
-                            <img src="img/pigbook-1.jfif" alt="돼지책">
-                            <p>돼지책</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
+
+			<!-- Stats and Intro Section -->
+			<div class="stats-section">
+				<div class="stats">
+					<div>
+						<p>챌린지 완료 횟수</p>
+						<span><%=member_info.getCh_suc_count()%>회</span>
+					</div>
+					<div>
+						<p>챌린지 완료 확률</p>
+						<%
+						if (member_info.getCh_count() == 0) {
+						%>
+						<span>0%</span>
+						<%
+						} else {
+						%>
+						<span><%=member_info.getCh_suc_count() / member_info.getCh_count() * 100%>%</span>
+						<%
+						}
+						%>
+					</div>
+				</div>
+				<div class="intro-section">
+					<textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled><%=(member_info.getIntro() != null) ? member_info.getIntro() : ""%></textarea>
+				</div>
+
+				<%
+				if (member.getId().equals(id)) {
+				%>
+				<div class="points-section">
+
+					<span>보유 포인트: <%=member_info.getPoint()%>원
+					</span><br> <span>보유 캐쉬: <%=member_info.getCash()%>원
+					</span>
+
+					<button class="button-edit" onclick="location.href='pay.jsp'">캐쉬
+						충전</button>
+				</div>
+
+				<div class="points-section">
+					<form action="delete.jsp">
+						<button class="delete">회원탈퇴</button>
+					</form>
+				</div>
+				<%
+				}
+				%>
+
+				<!-- Book Showcase Section (Moved under Points Section) -->
+				<div class="book-showcase">
+					<h3>MY BOOK</h3>
+					<div class="book-list">
+						<div class="book-item">
+							<img src="img/pigbook-1.jfif" alt="돼지책">
+							<p>돼지책</p>
+						</div>
+						<div class="book-item">
+							<img src="img/pigbook-1.jfif" alt="돼지책">
+							<p>돼지책</p>
+						</div>
+						<div class="book-item">
+							<img src="img/pigbook-1.jfif" alt="돼지책">
+							<p>돼지책</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 
 			<!-- Review Container -->
-			<div class="review-container">
-				<div class="review-buttons">
-					<button onclick="showReview()">리뷰</button>
-					<button onclick="showReviewCount()">작성 수</button>
-				</div>
-				<div id="review-content" class="review-content">
-					<!-- 초기에는 리뷰 내용 표시 -->
-					<%for(Review r : rlist) {%>
-				    <div class="review">
-				        <h3 onClick="location.href='reviewBook?idx=<%=r.getReview_idx()%>'"><%=r.getReview_title() %></h3> 
-				        <!-- 사진 넣고 a태그로 넘어가게 페이지 이동시에는 idx를 보내던가 아니면 쿼리에 idx넣기 -->
-				    </div>
-				    <%} %>
+			<div class="review-container" id="review-content">
+				<div class="book-grid">
+					<div class="book-review" onclick="openBookReview()">
+						<img src="img/bestbook-1.jpg" class="book-cover" alt="Book Cover" />
+					</div>
+					<div class="book-review" onclick="openBookReview()">
+						<img src="img/bestbook-2.jpg" class="book-cover" alt="Book Cover" />
+					</div>
+					<div class="book-review" onclick="openBookReview()">
+						<img src="img/bestbook-3.jpg" class="book-cover" alt="Book Cover" />
+					</div>
+					<div class="book-review" onclick="openBookReview()">
+						<img src="img/bestbook-4.jpg" class="book-cover" alt="Book Cover" />
+					</div>
+					<div class="book-review" onclick="openBookReview()">
+						<img src="img/bestbook-1.jpg" class="book-cover" alt="Book Cover" />
+					</div>
+					<div class="book-review" onclick="openBookReview()">
+						<img src="img/bestbook-1.jpg" class="book-cover" alt="Book Cover" />
+					</div>
+					<div class="book-review" onclick="openBookReview()">
+						<img src="img/bestbook-1.jpg" class="book-cover" alt="Book Cover" />
+					</div>
 				</div>
 			</div>
-			 <!-- MY 챌린지 팝업 -->
-        <div id="myChallengePopup" class="popup hidden">
+
+			<div id="review-content" class="review-content">
+				<!-- 초기에는 리뷰 내용 표시 -->
+				<%
+				for (Review r : rlist) {
+				%>
+				<div class="review">
+					<h3 onClick="location.href='reviewBook?idx=<%=r.getReview_idx()%>'"><%=r.getReview_title()%></h3>
+					<!-- 사진 넣고 a태그로 넘어가게 페이지 이동시에는 idx를 보내던가 아니면 쿼리에 idx넣기 -->
+				</div>
+				<%
+				}
+				%>
+			</div>
+		</div>
+		<!-- MY 챌린지 팝업 -->
+		<div id="myChallengePopup" class="popup hidden">
 			<h3>MY 챌린지</h3>
 			<div>
-			    <p>개인 챌린지</p>
-			    <%for (Pc_challenge p: pcList) {%>
-				<button class="popup-button" onClick="location.href='soloChRoom.jsp?idx=<%=p.getPc_idx()%>'"><%= p.getPc_title() != null ? p.getPc_title() : "진행중인 챌린지 없음" %></button>
-				<%} %>
-			
-				<p>그룹 챌린지</p>
-				<%for (Join j : list) {
-				Group g = gdao.groupInfo(j.getGroup_idx());                    	
+				<p>개인 챌린지</p>
+				<%
+				for (Pc_challenge p : pcList) {
 				%>
-				<button class="popup-button" onClick="location.href='groupChRoom.jsp?idx=<%=g.getGroup_idx()%>'"><%=g.getGroup_name() != null?g.getGroup_name() : "진행중인 챌린지 없음"%></button>
-				<%} %>
+				<button class="popup-button"
+					onClick="location.href='soloChRoom.jsp?idx=<%=p.getPc_idx()%>'"><%=p.getPc_title() != null ? p.getPc_title() : "진행중인 챌린지 없음"%></button>
+				<%
+				}
+				%>
+
+				<p>그룹 챌린지</p>
+				<%
+				for (Join j : list) {
+					Group g = gdao.groupInfo(j.getGroup_idx());
+				%>
+				<button class="popup-button"
+					onClick="location.href='groupChRoom.jsp?idx=<%=g.getGroup_idx()%>'"><%=g.getGroup_name() != null ? g.getGroup_name() : "진행중인 챌린지 없음"%></button>
+				<%
+				}
+				%>
 			</div>
 		</div>
-		</div>
-		</div>
+	</div>
 
-		<script src="./js/profile.js"></script>
 
-<script>
-	// 팔로우
-	$(document).on('click', '.follow-button', function() {
-		var input = {
-				follower : $(this).data('follower'),
-				following : $(this).data('following')
-		};
-		
-		$.ajax({
-			url : "follow",
-			type : "post",
-			contentType: "application/json; charset=UTF-8",
-			data : JSON.stringify(input),
-			success : function(data){
-				if (data == "true") {
-					document.location.reload();
-					var followButton = $('#followButton');
-					if (followButton.text() === '팔로우') {
-						followButton.text('언팔로우');
-						followerCount.text(parseInt(followerCount.text()) + 1);
-					}else {
-						followButton.text('팔로우');
-						followerCount.text(parseInt(followerCount.text()) - 1);
-					}
-					
-	            } else {
-	                alert("실패");  
-	            }
-			},
-			error : function(){
-				alert("통신실패")
-			}
-			
-		})  		
-	})
+	<script src="./js/profile.js"></script>
 
-</script>
+	<script>
+		// 팔로우
+		$(document).on(
+				'click',
+				'.follow-button',
+				function() {
+					var input = {
+						follower : $(this).data('follower'),
+						following : $(this).data('following')
+					};
+
+					$.ajax({
+						url : "follow",
+						type : "post",
+						contentType : "application/json; charset=UTF-8",
+						data : JSON.stringify(input),
+						success : function(data) {
+							if (data == "true") {
+								document.location.reload();
+								var followButton = $('#followButton');
+								if (followButton.text() === '팔로우') {
+									followButton.text('언팔로우');
+									followerCount.text(parseInt(followerCount
+											.text()) + 1);
+								} else {
+									followButton.text('팔로우');
+									followerCount.text(parseInt(followerCount
+											.text()) - 1);
+								}
+
+							} else {
+								alert("실패");
+							}
+						},
+						error : function() {
+							alert("통신실패")
+						}
+
+					})
+				})
+	</script>
 </body>
 
 </html>

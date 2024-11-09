@@ -53,15 +53,18 @@
         <div class="header-icons">
             <i class="fas fa-search" id="searchIcon"></i>
 			<div id="searchOptions" class="hidden">
-                <select id="searchSelect">
-                    <option value="review">리뷰</option>
-                    <option value="group">그룹 챌린지</option>
-                </select>
-                <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요...">
+                <form action="search">
+             	       <select id="searchSelect" name="type">
+                 	       <option value="ch_review">리뷰</option>
+              	          <option value="ch_group">그룹 챌린지</option>
+             	       </select>
+	                    <input type="text" id="searchInput" class="hidden" placeholder="검색어를 입력하세요..." name="keyword">
+	                    <input type="submit" value="검색">
+                	</form>
             </div>            
             <i class="fas fa-bell"></i>
             <!-- 사용자 환영 텍스트 추가 -->
-            <a href="profile.jsp" class="welcome-text"><%=member.getNick() %> 환영합니다</a>
+            <a href="profile.jsp" class="welcome-text"><%=member.getNick() %>님 환영합니다</a>
             <form action="logoutCon">
 	                <button class="logout-button">로그아웃</button>
             </form>
@@ -74,25 +77,14 @@
             <div class="profile-upload">
                 <div class="profile-img" id="profilePreview"></div>
             </div>
-            <div class="profile-name"></div>
-            <button class="button" onclick="location.href='pcWrite.jsp?idx=<%=idx%>'">오늘의 챌린지 작성</button>
- 			<!-- Add this canvas for the chart -->
-			<div style="width: 50%; margin: auto; margin-top: 20px;">
-  				<canvas id="myChart"></canvas>
-			</div>
- 			
+            <div class="profile-name"><%=member.getId() %></div>
+            <button class="button" onclick="location.href='pcWrite.jsp?idx=<%=idx%>'">오늘의 챌린지 작성</button>			
             
         </div>
-		 
-		  
+ 
         <!-- 카드 영역 -->
-         <div class="scroll-item">
-        <div class="horizontal-scroll-container"><!--  -->
         <div class="card-container">
-       
-        
-        
-        
+ 
             <!-- 카드 리스트 -->
             <%
                 // 카드 데이터 배열
@@ -102,7 +94,7 @@
             
             <div class="card">
                 <div class="card-content">
-                    <div class="card-header"><%=member.getId() %></div>
+                    <div class="card-header"></div>
                     <div class="book-title"><%=i.getP_item_title() %></div>
                     <div class="page-info"></div>
                     <div class="content-placeholder"><%=i.getP_item_desc() %></div>
@@ -114,7 +106,6 @@
 	            <%} %>
             </div>
  </div><!--  -->
- </div>
             <!-- MY 챌린지 팝업 -->
             <div id="myChallengePopup" class="popup hidden">
                 <h3>MY 챌린지</h3>
@@ -132,7 +123,6 @@
                     <%} %>
                 </div>
             </div>
-        </div>
 
     <script src="./js/soloChRoom.js"></script>
 </body>

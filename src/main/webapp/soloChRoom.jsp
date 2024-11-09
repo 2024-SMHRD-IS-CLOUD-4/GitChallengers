@@ -105,7 +105,7 @@
     	        	<%} %>
 	            <%} %>
             </div>
- </div><!--  -->
+ 	</div>
             <!-- MY 챌린지 팝업 -->
             <div id="myChallengePopup" class="popup hidden">
                 <h3>MY 챌린지</h3>

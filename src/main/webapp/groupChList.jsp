@@ -30,7 +30,22 @@
 		Member_infoDAO infodao = new Member_infoDAO();
 		JoinDAO jdao = new JoinDAO();
 		ReviewDAO reviewdao = new ReviewDAO();
-		List<Group> list = dao.selectAll();
+		List<Group> list = dao.selectAll(); // 그룹 챌린지 전체 리스트
+		List<Join> myList = jdao.selectMy(member.getId()); // 내가 가입한 그룹 챌린지
+		int myJoin1 = 0;
+		int myJoin2 = 0;
+		int myJoin3 = 0;
+		if (myList.size() > 2 && myList.get(2) != null){
+			myJoin1 = myList.get(0).getGroup_idx();
+			myJoin2 = myList.get(1).getGroup_idx();
+			myJoin3 = myList.get(2).getGroup_idx();
+		}else if (myList.size() > 1  && myList.get(1) != null){
+			myJoin1 = myList.get(0).getGroup_idx();
+			myJoin2 = myList.get(1).getGroup_idx();
+		}else if (myList.size() > 0  && myList.get(0) != null){
+			myJoin1 = myList.get(0).getGroup_idx();
+		}
+		
 		
 	%>
     <!-- 헤더 -->
@@ -68,7 +83,7 @@
 
     <!-- 메인 컨테이너 -->
     <div class="main-container">
-    <% //try {
+    <%
     	for(Group g : list) {
     		int idx = g.getGroup_idx();
     		int count = jdao.count(idx);
@@ -83,7 +98,7 @@
                 <img src="profile_img/<%=infodao.info(managerInfo.getId()).getProfile_img() %>" alt="방장 프로필">
                 <span><%=manager%></span>
             </div>
-            <div class="content" onClick="location.href='groupChRoom.jsp?idx=<%=idx%>'">
+            <div class="content" data-idx="<%=idx%>">
                 <h3><%=g.getGroup_name()%></h3>
                 <p><%=g.getGroup_desc() %></p>
                 <div class="details">
@@ -106,12 +121,21 @@
             <%} %>
         </div>
     <%} %>
-<%--     <%}catch (NullPointerException e) {%>
-			<span>진행중인 챌린지 없음</span>
-	<%} %> --%>
+
     </div>
     <script src="./js/groupChList.js"></script>
     <script type="text/javascript">
+    $(document).on('click', '.content', function() {
+    	var idx = $(this).data('idx');
+    	var myIdx1 = <%=myJoin1%>
+        var myIdx2 = <%=myJoin2%>
+        var myIdx3 = <%=myJoin3%>
+    	if (idx == myIdx1 || idx == myIdx2 || idx == myIdx3){
+    		document.location.href="groupChRoom.jsp?idx="+idx
+    	}
+    })
+    
+    
     $('#createGroup').on('click', () => {
     	if(<%=jdao.countGc(member.getId())%> > 3){
 			alert('가입중인 챌린지가 3개 입니다');
@@ -122,7 +146,6 @@
     	}else {
     		location.href="groupCh.jsp"
     	}
-    	
     	
     })
     

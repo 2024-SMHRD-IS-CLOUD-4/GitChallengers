@@ -110,7 +110,7 @@
     <script src="./js/soloChList.js"></script>
     <script type="text/javascript">
     $('#createCh').on('click', () => {
-		if (<%=count%> >3){
+		if (<%=count%> >= 3){
 			alert("개인 챌린지 최대 3개")
 		}else {
 			location.href="makeSoloCh.jsp"

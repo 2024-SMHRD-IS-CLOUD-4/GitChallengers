@@ -99,8 +99,17 @@
     <div class="container">
         <!-- 왼쪽 사이드바 -->
         <div class="sidebar">
-        	<%if (joinMember >= 3 && joinMember == warningMember && member.getId().equals(group.getSub_manager())) {%>
-        	<button class="kick-button">방장 추방</button>
+        	<%if (joinMember >= 3 && joinMember-2 == warningMember && member.getId().equals(group.getSub_manager())) {%>
+        	<div class="kickManager">
+        	<form action="kickManager" method="post">
+        		<div class="kickManager_popup">
+        			<h2>popup</h2>
+        			<p>saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        			<button type="button" class="close_btn">닫기</button>
+        		</div>
+        	</form>
+        	</div>
+        	<button type="button" class="kick-button" >방장 추방</button>
         	<%} %>
         	<%if (!member.getId().equals(group.getManager()) && !member.getId().equals(group.getSub_manager())) {%>
             <button class="vote-button">방장 추방 투표</button>
@@ -227,6 +236,22 @@
 
     <script src="./js/groupChRoom.js"></script>
     <script type="text/javascript">
+    
+    const modal = document.querySelector('.kickManager');
+    const modalOpen = document.querySelector('.kickbutton');
+    const modalClose = document.querySelector('.close_btn');
+
+    //열기 버튼을 눌렀을 때 모달팝업이 열림
+    modalOpen.addEventListener('click',function(){
+      	//'on' class 추가
+        modal.classList.add('on');
+    });
+    //닫기 버튼을 눌렀을 때 모달팝업이 닫힘
+    modalClose.addEventListener('click',function(){
+        //'on' class 제거
+        modal.classList.remove('on');
+    });
+    
     $(document).ready(function() {
     	// 방장 추방 투표
     	$(document).on('click', '.vote-button', function() {

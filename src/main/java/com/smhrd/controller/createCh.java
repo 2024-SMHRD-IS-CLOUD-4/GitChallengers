@@ -20,6 +20,7 @@ public class createCh extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("member");
 		String id = member.getId();

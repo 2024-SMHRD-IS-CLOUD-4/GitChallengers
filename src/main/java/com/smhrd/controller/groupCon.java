@@ -21,7 +21,18 @@ public class groupCon extends HttpServlet {
 		
 		// 그룹 챌린지 생성
 		request.setCharacterEncoding("UTF-8");
-		int group_idx = Integer.parseInt(request.getParameter("group_idx"));
+		
+		String groupIdxParam = request.getParameter("group_idx");
+		int group_idx = 0;  // 기본값 설정
+		if (groupIdxParam != null && !groupIdxParam.isEmpty()) {
+		    try {
+		        group_idx = Integer.parseInt(groupIdxParam);
+		    } catch (NumberFormatException e) {
+		        // 잘못된 형식일 경우 예외 처리
+		        e.printStackTrace();
+		    }
+		}
+
 		String group_name = request.getParameter("group_name");
 		String group_desc = request.getParameter("group_desc");
 		String manager = request.getParameter("manager");

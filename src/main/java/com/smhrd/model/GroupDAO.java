@@ -53,25 +53,36 @@ public class GroupDAO {
     
     
     public void scheduleGroupDeletion(Group g) {
+    	 SqlSession sqlSession = factory.openSession(true);
         // 스케줄러 설정
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         
         // days 값만큼 초로 기다린 후 그룹 삭제 작업 실행
         scheduler.schedule(() -> {
-            try {
-            	deleteGroup(g);
-            } catch (Exception e) {
-                e.printStackTrace(); // 예외 처리
-            }
-        }, g.getDays(), TimeUnit.SECONDS); // 초 단위로 대기 후 실행
+        	 try {
+                 System.out.println("그룹 삭제 작업 시작: " + g.getGroup_name());
+                 int group_idx = g.getGroup_idx();
+
+                 // 그룹 삭제 작업 실행
+                 deleteGroup(sqlSession, group_idx);
+
+             } catch (Exception e) {
+                 e.printStackTrace(); // 예외 처리
+             } finally {
+                 // 예외 발생 여부와 관계없이 세션 종료
+                 sqlSession.close();
+             }
+         }, g.getDays(), TimeUnit.SECONDS); // 초 단위로 대기 후 실행
+       
     }
 
     // 그룹 및 관련 데이터 삭제 메소드
-    public int deleteGroup(Group g) {
-        SqlSession sqlSession = factory.openSession(true);
-        int result = sqlSession.delete("GroupMapper.deleteGroup", g);
+    public int deleteGroup(SqlSession sqlSession, int group_idx) {
+        sqlSession = factory.openSession(true);
+        int result = sqlSession.delete("GroupMapper.deleteGroup", group_idx);
+        sqlSession.commit();  // 트랜잭션 커밋
         sqlSession.close();
-
+        System.out.println("삭제된 행의 수: " + result);
         return result;
     }
 

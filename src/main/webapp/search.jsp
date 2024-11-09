@@ -88,35 +88,67 @@
                     <%} %>
                 </div>
             </div>
-    <div class="search-container">
-	<%
-		String type = (String) request.getAttribute("type");
-	%>
-	<table>
-	<%
-		if (type != null && type.equals("ch_review")){
-			List<Review> list = (List<Review>) request.getAttribute("list");
-			for(Review r : list){%>
-			<tr>
-				<td><%=r.getReview_idx() %></td>			
-				<td><%=r.getReview_title() %></td>
-				<td><%=r.getReview_content() %></td>
-			</tr>
-	<%}
-		}else if (type != null && type.equals("ch_group")){
-			List<Group> list = (List<Group>) request.getAttribute("list");
-			for(Group g: list) {%>
-			<tr>
-				<td><%=g.getGroup_idx() %></td>			
-				<td><%=g.getGroup_name() %></td>
-				<td><%=g.getGroup_desc() %></td>
-			</tr>
-			<%}
-			}else {%>
-				<tr>검색결과가 없습니다</tr>
-			<%} %>
-			
-	</table>
+<div class="search-container">
+    <%
+        String type = (String) request.getAttribute("type");
+    %>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>내용</th>
+            </tr>
+        </thead>
+        <tbody>
+        <%
+            if (type != null && type.equals("ch_review")) {
+                List<Review> list = (List<Review>) request.getAttribute("list");
+                for (Review r : list) {
+                    String content = r.getReview_content();
+                    // 내용이 40자를 넘으면 자르고 "..."을 추가
+                    if (content.length() > 40) {
+                        content = content.substring(0, 40) + "...";
+                    }
+        %>
+            <tr>
+                <td><%= r.getReview_idx() %></td>
+                <td><%= r.getReview_title() %></td>
+                <td><%= content %></td>
+            </tr>
+        <%
+                }
+            } else if (type != null && type.equals("ch_group")) {
+                List<Group> list = (List<Group>) request.getAttribute("list");
+                for (Group g : list) {
+                    String desc = g.getGroup_desc();
+                    // 설명이 40자를 넘으면 자르고 "..."을 추가
+                    if (desc.length() > 40) {
+                        desc = desc.substring(0, 40) + "...";
+                    }
+        %>
+            <tr>
+                <td><%= g.getGroup_idx() %></td>
+                <td><%= g.getGroup_name() %></td>
+                <td><%= desc %></td>
+            </tr>
+        <%
+                }
+            } else {
+        %>
+            <tr>
+                <td colspan="3">검색결과가 없습니다</td>
+            </tr>
+        <%
+            }
+        %>
+        </tbody>
+    </table>
+</div>
+
+    </table>
+</div>
+
 	
 	
 	

@@ -35,5 +35,13 @@ public class WarningDAO {
 		
 		return result;
 	}
-
+	
+	// 방장 삭제
+	public int warningDelete(Warning w) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.selectOne("WarningMapper.warningDelete", w);
+		sqlSession.close();
+		
+		return result;
+	}
 }

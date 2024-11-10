@@ -50,6 +50,14 @@ public class GroupDAO {
         return result;
     }
  
+    // 방장 교체
+    public int update(Group g) {
+        SqlSession sqlSession = factory.openSession(true);
+        int result = sqlSession.update("GroupMapper.update", g);
+        sqlSession.close();
+
+        return result;
+    }
     
     
     public void scheduleGroupDeletion(Group g) {

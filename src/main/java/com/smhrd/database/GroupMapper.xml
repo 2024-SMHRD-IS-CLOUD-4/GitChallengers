@@ -28,4 +28,9 @@
 		DELETE FROM ch_join WHERE group_idx = #{group_idx}
 	</delete>
 	
+	<!-- 방장 교체 -->
+	<update id="update" parameterType="Group">
+		update ch_group set manager=#{manager}, sub_manager=#{sub_manager} where group_idx=#{group_idx}
+	</update>
+	
 </mapper>

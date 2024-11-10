@@ -113,7 +113,7 @@
                 <h3><%=g.getGroup_name()%></h3>
                 <p><%=g.getGroup_desc() %></p>
                 <div class="details">
-                    현재 참가인원 <%=count%>/<%=g.getGroup_max() %><br>
+                    현재 참가인원 <%=gcount%>/<%=g.getGroup_max() %><br>
                     <strong>14일 후 종료 예정</strong>
                 </div>
             </div>
@@ -140,7 +140,7 @@
 					}%>
 	            <%} %>
            	<%if (member.getId().equals(g.getManager()) || isJoined) { %>
-            	<button class="join-button">참여중</button>
+            	<button class="join-button" onClick="location.href='groupChRoom.jsp?idx=<%=idx%>'">참여중</button>
             <%}else if(count >= g.getGroup_max()) { %>	
             	<button class="join-button">입장 불가</button>
             <%}else { %>

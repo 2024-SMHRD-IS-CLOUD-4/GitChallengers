@@ -99,13 +99,15 @@
     <div class="container">
         <!-- 왼쪽 사이드바 -->
         <div class="sidebar">
-        	<%if (joinMember >= 3 && joinMember-2 == warningMember && member.getId().equals(group.getSub_manager())) {%>
+        	<%if (joinMember >= 3 && joinMember-2 <= warningMember && member.getId().equals(group.getSub_manager())) {%>
         	<div class="kickManager">
         	<form action="kickManager" method="post">
         		<div class="kickManager_popup">
+        			<input type="hidden" name="manager" value="<%=group.getManager()%>">
+        			<input type="hidden" name="idx" value="<%=idx%>">
         			<h2>방장 추방</h2>
         			<h3>다음 부방장 선택</h3>
-        			<select>
+        			<select name="sub_manager">
         			<%for(Join j : list) { 
         				if(!j.getId().equals(group.getManager()) && !j.getId().equals(group.getSub_manager())) {%>
         				<option value="<%=j.getId()%>"> <%=mdao.memberInfo(j.getId()).getNick() %>
@@ -113,7 +115,7 @@
         			<%} %>
         			</select>
         			<br>
-        			<button type="button">추방</button>
+        			<button type="submit" class="kick_btn">추방</button>
         			<button type="button" class="close_btn">닫기</button>
         		</div>
         	</form>
@@ -245,22 +247,7 @@
 
     <script src="./js/groupChRoom.js"></script>
     <script type="text/javascript">
-    
-    const modal = document.querySelector('.kickManager');
-    const modalOpen = document.querySelector('.kick-button');
-    const modalClose = document.querySelector('.close_btn');
 
-    //열기 버튼을 눌렀을 때 모달팝업이 열림
-    modalOpen.addEventListener('click',function(){
-      	//'on' class 추가
-        modal.classList.add('on');
-    });
-    //닫기 버튼을 눌렀을 때 모달팝업이 닫힘
-    modalClose.addEventListener('click',function(){
-        //'on' class 제거
-        modal.classList.remove('on');
-    });
-    
     $(document).ready(function() {
     	// 방장 추방 투표
     	$(document).on('click', '.vote-button', function() {
@@ -404,6 +391,27 @@
 		    $('body').append(form);
 		    form.submit();		
 		})
+	    const modal = document.querySelector('.kickManager');
+        const modalOpen = document.querySelector('.kick-button');
+        const modalClose = document.querySelector('.close_btn');
+
+        //열기 버튼을 눌렀을 때 모달팝업이 열림
+        modalOpen.addEventListener('click',function(){
+          	//'on' class 추가
+            modal.classList.add('on');
+        });
+        //닫기 버튼을 눌렀을 때 모달팝업이 닫힘
+        modalClose.addEventListener('click',function(){
+            //'on' class 제거
+            modal.classList.remove('on');
+        });
+        
+        $(document).on('click' , '.kick_btn', function() {
+        	alert('추방완료')
+        	document.location.reload();
+        });
+
+		
 	})
 	
 	

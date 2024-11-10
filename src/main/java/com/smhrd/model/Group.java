@@ -46,7 +46,17 @@ public class Group {
 		this.group_max = group_max;
 		this.days = days;
 	}
-	
+
+
+	public Group(int group_idx, String manager, String sub_manager) {
+		super();
+		this.group_idx = group_idx;
+		this.manager = manager;
+		this.sub_manager = sub_manager;
+	}
+
+
+
 
 	
  

@@ -34,7 +34,7 @@ document.addEventListener('click', function (event) {
 // 팝업 내부 버튼 클릭 이벤트
 document.querySelectorAll('.popup-button').forEach(button => {
     button.addEventListener('click', function () {
-        alert(`${this.textContent} 버튼을 클릭했습니다.`);
+        alert(`챌린지 ${this.textContent} 을 선택했습니다.`);
     });
 });
 // 리뷰 내용을 자르고 20자까지만 표시하는 함수

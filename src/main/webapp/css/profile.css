@@ -254,6 +254,14 @@ body {
     font-size: 14px;
     color: #666;
 }
+.chart-container {
+    width: 300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
 .review-container {
     position: relative;
@@ -270,7 +278,6 @@ body {
     border-radius: 8px;
     padding: 20px;
     display: flex;
-    align-items: center;
     justify-content: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

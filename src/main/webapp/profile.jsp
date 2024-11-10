@@ -120,8 +120,7 @@
 				<%
 				}
 				%>
-				<br>
-				<br> <span>팔로워 <span id="followerCount"><%=follower%></span></span>
+				<br> <br> <span>팔로워 <span id="followerCount"><%=follower%></span></span>
 				<span>팔로잉 <span id="followingCount"><%=following%></span></span> <br>
 				<br>
 				<%
@@ -152,26 +151,6 @@
 
 			<!-- Stats and Intro Section -->
 			<div class="stats-section">
-				<div class="stats">
-					<div>
-						<p>챌린지 완료 횟수</p>
-						<span><%=member_info.getCh_suc_count()%>회</span>
-					</div>
-					<div>
-						<p>챌린지 완료 확률</p>
-						<%
-						if (member_info.getCh_count() == 0) {
-						%>
-						<span>0%</span>
-						<%
-						} else {
-						%>
-						<span><%=member_info.getCh_suc_count() / member_info.getCh_count() * 100%>%</span>
-						<%
-						}
-						%>
-					</div>
-				</div>
 				<div class="intro-section">
 					<textarea rows="3" placeholder="여기에 소개글을 입력하세요." disabled><%=(member_info.getIntro() != null) ? member_info.getIntro() : ""%></textarea>
 				</div>
@@ -197,142 +176,128 @@
 				<%
 				}
 				%>
-
-				<!-- Book Showcase Section (Moved under Points Section) -->
-				<div class="book-showcase">
-					<h3>MY BOOK</h3>
-					<div class="book-list">
-						<div class="book-item">
-							<img src="img/pigbook-1.jfif" alt="돼지책">
-							<p>돼지책</p>
-						</div>
-						<div class="book-item">
-							<img src="img/pigbook-1.jfif" alt="돼지책">
-							<p>돼지책</p>
-						</div>
-						<div class="book-item">
-							<img src="img/pigbook-1.jfif" alt="돼지책">
-							<p>돼지책</p>
-						</div>
+				<div class="stats">
+					<div>
+						<p>챌린지 완료 횟수</p>
+						<span><%=member_info.getCh_suc_count()%>회</span>
+					</div>
+					<div>
+						<p>챌린지 완료 확률</p>
+						<%
+						if (member_info.getCh_count() == 0) {
+						%>
+						<span>0%</span>
+						<%
+						} else {
+						%>
+						<span><%=member_info.getCh_suc_count() / member_info.getCh_count() * 100%>%</span>
+						<%
+						}
+						%>
 					</div>
 				</div>
+
+				<div class="chart-container">
+                    <canvas id="challengeCompletionChart"></canvas>
+                </div>
 			</div>
 
 
-
-			<!-- Review Container -->
 			<div class="review-container" id="review-content">
 				<div class="book-grid">
-					<div class="book-review" onclick="openBookReview()">
-						<img src="img/bestbook-1.jpg" class="book-cover" alt="Book Cover" />
+					<%
+					for (Review r : rlist) {
+					%>
+					<div class="book-review"
+						onclick="location.href='reviewBook?idx=<%=r.getReview_idx()%>'">
+						<div class="book-cover-container">
+							<img src="img/bestbook-<%=r.getReview_idx()%>.jpg"
+								class="book-cover" alt="Book Cover" />
+							<div class="review">
+								<h3><%=r.getReview_title()%></h3>
+							</div>
+						</div>
 					</div>
-					<div class="book-review" onclick="openBookReview()">
-						<img src="img/bestbook-2.jpg" class="book-cover" alt="Book Cover" />
-					</div>
-					<div class="book-review" onclick="openBookReview()">
-						<img src="img/bestbook-3.jpg" class="book-cover" alt="Book Cover" />
-					</div>
-					<div class="book-review" onclick="openBookReview()">
-						<img src="img/bestbook-4.jpg" class="book-cover" alt="Book Cover" />
-					</div>
-					<div class="book-review" onclick="openBookReview()">
-						<img src="img/bestbook-1.jpg" class="book-cover" alt="Book Cover" />
-					</div>
-					<div class="book-review" onclick="openBookReview()">
-						<img src="img/bestbook-1.jpg" class="book-cover" alt="Book Cover" />
-					</div>
-					<div class="book-review" onclick="openBookReview()">
-						<img src="img/bestbook-1.jpg" class="book-cover" alt="Book Cover" />
-					</div>
+					<%
+					}
+					%>
 				</div>
 			</div>
 
-			<div id="review-content" class="review-content">
-				<!-- 초기에는 리뷰 내용 표시 -->
-				<%
-				for (Review r : rlist) {
-				%>
-				<div class="review">
-					<h3 onClick="location.href='reviewBook?idx=<%=r.getReview_idx()%>'"><%=r.getReview_title()%></h3>
-					<!-- 사진 넣고 a태그로 넘어가게 페이지 이동시에는 idx를 보내던가 아니면 쿼리에 idx넣기 -->
+			<!-- MY 챌린지 팝업 -->
+			<div id="myChallengePopup" class="popup hidden">
+				<h3>MY 챌린지</h3>
+				<div>
+					<p>개인 챌린지</p>
+					<%
+					for (Pc_challenge p : pcList) {
+					%>
+					<button class="popup-button"
+						onClick="location.href='soloChRoom.jsp?idx=<%=p.getPc_idx()%>'"><%=p.getPc_title() != null ? p.getPc_title() : "진행중인 챌린지 없음"%></button>
+					<%
+					}
+					%>
+
+					<p>그룹 챌린지</p>
+					<%
+					for (Join j : list) {
+						Group g = gdao.groupInfo(j.getGroup_idx());
+					%>
+					<button class="popup-button"
+						onClick="location.href='groupChRoom.jsp?idx=<%=g.getGroup_idx()%>'"><%=g.getGroup_name() != null ? g.getGroup_name() : "진행중인 챌린지 없음"%></button>
+					<%
+					}
+					%>
 				</div>
-				<%
-				}
-				%>
 			</div>
 		</div>
-		<!-- MY 챌린지 팝업 -->
-		<div id="myChallengePopup" class="popup hidden">
-			<h3>MY 챌린지</h3>
-			<div>
-				<p>개인 챌린지</p>
-				<%
-				for (Pc_challenge p : pcList) {
-				%>
-				<button class="popup-button"
-					onClick="location.href='soloChRoom.jsp?idx=<%=p.getPc_idx()%>'"><%=p.getPc_title() != null ? p.getPc_title() : "진행중인 챌린지 없음"%></button>
-				<%
-				}
-				%>
-
-				<p>그룹 챌린지</p>
-				<%
-				for (Join j : list) {
-					Group g = gdao.groupInfo(j.getGroup_idx());
-				%>
-				<button class="popup-button"
-					onClick="location.href='groupChRoom.jsp?idx=<%=g.getGroup_idx()%>'"><%=g.getGroup_name() != null ? g.getGroup_name() : "진행중인 챌린지 없음"%></button>
-				<%
-				}
-				%>
-			</div>
-		</div>
-	</div>
 
 
-	<script src="./js/profile.js"></script>
+		<script src="./js/profile.js"></script>
 
-	<script>
-		// 팔로우
-		$(document).on(
-				'click',
-				'.follow-button',
-				function() {
-					var input = {
-						follower : $(this).data('follower'),
-						following : $(this).data('following')
-					};
+		<script>
+			// 팔로우
+			$(document).on(
+					'click',
+					'.follow-button',
+					function() {
+						var input = {
+							follower : $(this).data('follower'),
+							following : $(this).data('following')
+						};
 
-					$.ajax({
-						url : "follow",
-						type : "post",
-						contentType : "application/json; charset=UTF-8",
-						data : JSON.stringify(input),
-						success : function(data) {
-							if (data == "true") {
-								document.location.reload();
-								var followButton = $('#followButton');
-								if (followButton.text() === '팔로우') {
-									followButton.text('언팔로우');
-									followerCount.text(parseInt(followerCount
-											.text()) + 1);
+						$.ajax({
+							url : "follow",
+							type : "post",
+							contentType : "application/json; charset=UTF-8",
+							data : JSON.stringify(input),
+							success : function(data) {
+								if (data == "true") {
+									document.location.reload();
+									var followButton = $('#followButton');
+									if (followButton.text() === '팔로우') {
+										followButton.text('언팔로우');
+										followerCount
+												.text(parseInt(followerCount
+														.text()) + 1);
+									} else {
+										followButton.text('팔로우');
+										followerCount
+												.text(parseInt(followerCount
+														.text()) - 1);
+									}
+
 								} else {
-									followButton.text('팔로우');
-									followerCount.text(parseInt(followerCount
-											.text()) - 1);
+									alert("실패");
 								}
-
-							} else {
-								alert("실패");
+							},
+							error : function() {
+								alert("통신실패")
 							}
-						},
-						error : function() {
-							alert("통신실패")
-						}
 
+						})
 					})
-				})
-	</script>
+		</script>
 </body>
 
 </html>

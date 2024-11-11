@@ -89,7 +89,7 @@
         <!-- 왼쪽 사이드바 -->
         <div class="sidebar">
             <div class="profile-upload">
-                <div class="profile-img" id="profilePreview"></div>
+               	<img src="profile_img/" class="profile-img" id="profilePreview" onerror="this.src='img/team-logo.png'">
             </div>
             <div class="profile-name"><%=member.getId() %></div>
             <%if (totalDays == totalCount) {%>

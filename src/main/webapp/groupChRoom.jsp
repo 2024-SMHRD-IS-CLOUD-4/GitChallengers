@@ -109,7 +109,8 @@
 				String managerNick = (managerMemberInfo != null) ? managerMemberInfo.getNick()  : "정보없음";
 			%>
             <div class="profile-upload">
-               	<img src="profile_img/<%=managerProfileImg %>" class="profile-img" id="profilePreview">
+               	<img src="profile_img/<%=managerProfileImg %>" class="profile-img" id="profilePreview" onerror="this.src='img/team-logo.png'">
+
             </div>
             <div class="profile-name"><%=managerNick%></div>
             <ul class="group-list">
@@ -120,7 +121,8 @@
 					String subManagerProfileImg = (subManagerInfo != null) ? subManagerInfo.getProfile_img() : "default_profile.png";
 					String subManagerNick = (subManagerMemberInfo != null) ? subManagerMemberInfo.getNick()  : "정보없음";
 				%>
-					<img src="profile_img/<%=subManagerProfileImg %>">
+					<img src="profile_img/<%=subManagerProfileImg %>" onerror="this.src='img/team-logo.png'">
+
 					<span class="group-name"><%=subManagerNick%></span>
                 </li>
                 <%
@@ -129,7 +131,8 @@
                     	if(!j.getId().equals(group.getManager()) && !j.getId().equals(group.getSub_manager())) {
                 %>
 			                <li class="group-item" data-id="<%=j.getId()%>">
-			                    <img src="profile_img/<%=infodao.info(j.getId()).getProfile_img() %>">
+			                   <img src="profile_img/<%=infodao.info(j.getId()).getProfile_img() %>" onerror="this.src='img/team-logo.png'">
+
 			                    <span class="group-name"><%=m.getNick()%></span>
 			                    <%if(member.getId().equals(group.getManager())) {%>
 			                    <form action="memberDelete">

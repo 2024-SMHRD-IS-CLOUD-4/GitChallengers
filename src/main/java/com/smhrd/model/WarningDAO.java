@@ -37,9 +37,9 @@ public class WarningDAO {
 	}
 	
 	// 방장 삭제
-	public int warningDelete(Warning w) {
+	public int warningDelete(int group_idx) {
 		SqlSession sqlSession = factory.openSession(true);
-		int result = sqlSession.selectOne("WarningMapper.warningDelete", w);
+		int result = sqlSession.selectOne("WarningMapper.warningDelete", group_idx);
 		sqlSession.close();
 		
 		return result;

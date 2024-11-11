@@ -1,3 +1,6 @@
+<%@page import="java.time.temporal.ChronoUnit"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.Group"%>
 <%@page import="com.smhrd.model.Pc_challenge"%>
@@ -36,6 +39,8 @@
 		List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
 		String memberId = (member != null) ? member.getId() : null;
 		int count = (memberId != null) ? pcdao.count(memberId) : 0;
+		LocalDate now = LocalDate.now(); // 현재 날짜 구하기 (시스템 시계, 시스템 타임존)
+		
 		
 	%>
     <!-- 헤더 -->
@@ -75,13 +80,29 @@
         <%
         	for (Pc_challenge pc : pcList) {
         		if(pc != null) {
+        			String created = pc.getCreated_at();
+        			String dateOnly = created.split(" ")[0];
+        			LocalDate start = LocalDate.parse(dateOnly);
+        			long daysBetween = start.until(now, ChronoUnit.DAYS);
+        			int end = pc.getDays();
+        			LocalDate endDate = null;
+        			if (end == 7) {
+        				endDate = start.plusDays(7);
+        			}else if (end == 15){
+        				endDate = start.plusDays(15);
+        			}else if (end == 30){
+        				endDate = start.plusDays(30);
+        			}else {
+        		        endDate = start.plusDays(0); 
+        		    }
+        			long between = now.until(endDate, ChronoUnit.DAYS);
         %>
         <div class="group-card">
             <div class="content">
                 <h3><%=pc.getPc_title() %></h3>
                 <div class="details">
-                    현재 8일차 진행중!!<br>
-                    <strong>14일 후 종료 예정</strong>
+                    현재 <%=daysBetween+1 %>일차 진행중!!<br>
+                    <strong><%=between%>일 후 종료 예정</strong>
                 </div>
             </div>
             <button class="join-button" onClick="location.href='soloChRoom.jsp?idx=<%=pc.getPc_idx()%>'">작성하기</button>
@@ -117,6 +138,7 @@
 		}
 				
 	})
+	
     </script>
 </body>
 </html>

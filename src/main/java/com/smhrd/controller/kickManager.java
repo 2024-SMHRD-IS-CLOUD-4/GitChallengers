@@ -32,16 +32,15 @@ public class kickManager extends HttpServlet {
 		String id = request.getParameter("manager");
 		int group_idx = Integer.parseInt(request.getParameter("idx"));
 		
-		
 		Group group = new Group(group_idx, manager, sub_manager);
 		Join join = new Join(group_idx, id);
-		Warning warning = new Warning(group_idx, id);
 		GroupDAO dao = new GroupDAO();
 		JoinDAO jdao = new JoinDAO();
 		WarningDAO wdao = new WarningDAO();
-		dao.update(group);
-		jdao.removeMember(join);
-		wdao.warningDelete(warning);
+		dao.update(group); // 방장 교체
+		jdao.removeMember(join); // 방장 삭제
+		wdao.warningDelete(group_idx); // 신고스택 삭제
+		
 		
 		response.sendRedirect("groupChRoom.jsp?idx="+group_idx);
 		

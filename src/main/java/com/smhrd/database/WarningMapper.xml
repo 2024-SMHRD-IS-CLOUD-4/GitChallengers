@@ -17,8 +17,8 @@
 	</select>
 	
 	<!-- 방장 삭제 -->
-	<delete id="warningDelete" parameterType="Warning">
-		delete from ch_warning where group_idx=#{group_idx} and id=#{id}
+	<delete id="warningDelete" parameterType="int">
+		delete from ch_warning where group_idx=#{group_idx}
 	</delete>
 	
 </mapper>

@@ -95,6 +95,19 @@ body {
 .auth-upload {
     margin-bottom: 10px;
 }
+#ocr-check-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #f4b1c2;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#ocr-check-button:hover {
+    background-color: #f0a7b2;
+}
 
 .toggle-buttons {
     display: flex;

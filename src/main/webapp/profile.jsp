@@ -64,6 +64,9 @@
 	List<Join> list = jdao.selectMy(member.getId()); // 내 그룹 불러오기
 	List<Member_point> rank = mpdao.rank(); // 랭킹 불러오기
 	List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
+	ReviewDAO reviewdao = new ReviewDAO();
+	int ch_count = member_info.getCh_count(); // 챌린지 도전 횟수
+	int ch_suc_count = reviewdao.count(member.getId()); // 챌린지 성공 횟수
 	%>
 
 	<!-- Main Container -->
@@ -196,8 +199,8 @@
 						%>
 					</div>
 				</div>
-
 				<div class="chart-container">
+				<h2>나의 챌린지 완료 확률</h2>
                     <canvas id="challengeCompletionChart"></canvas>
                 </div>
 			</div>

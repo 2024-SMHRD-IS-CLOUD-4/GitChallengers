@@ -48,7 +48,8 @@
 			<!-- ISBN 입력칸 -->
 			<div class="isbn-container">
 			    <input type="text" id="isbn-input" placeholder="ISBN 입력">
-			    <button id="isbn-check-button">인증 확인</button>
+			    <button id="isbn-check-button">ISBN 확인</button>
+			    <button id="ocr-check-button">OCR 인증</button>
 			</div>
             <!-- 글 작성 버튼 -->
             <button class="action-button">리뷰 작성</button>

@@ -112,7 +112,7 @@
                	<img src="profile_img/<%=managerProfileImg %>" class="profile-img" id="profilePreview" onerror="this.src='img/team-logo.png'">
 
             </div>
-            <div class="profile-name"><%=managerNick%></div>
+            <div class="profile-name"><%=managerNick%> <i class="fas fa-crown" style="color: gold;"></i></div>
             <ul class="group-list">
             	<li class="group-item" data-id="<%=group.getSub_manager()%>">
             	<% 
@@ -123,7 +123,7 @@
 				%>
 					<img src="profile_img/<%=subManagerProfileImg %>" onerror="this.src='img/team-logo.png'">
 
-					<span class="group-name"><%=subManagerNick%></span>
+					<span class="group-name"><%=subManagerNick%> <i class="fas fa-crown" style="color: silver;"></i></span>
                 </li>
                 <%
                     for(Join j: list) {

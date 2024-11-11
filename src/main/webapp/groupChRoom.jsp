@@ -63,6 +63,7 @@
     }
     int joinMember = jdao.count(idx); // 그룹인원 수 
 	int warningMember = wdao.warningCount(idx); // 신고 인원 수
+	
     
 %>
 

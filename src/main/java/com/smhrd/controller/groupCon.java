@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.smhrd.model.Group;
 import com.smhrd.model.GroupDAO;
 import com.smhrd.model.Member_pointDAO;
+import com.smhrd.model.ReviewDAO;
 
 
 @WebServlet("/groupCon")
@@ -37,6 +38,7 @@ public class groupCon extends HttpServlet {
 		String group_desc = request.getParameter("group_desc");
 		String manager = request.getParameter("manager");
 		String sub_manager = request.getParameter("sub_manager");
+		
 		int group_max = 10;
 		
 		int days = 0;
@@ -50,6 +52,10 @@ public class groupCon extends HttpServlet {
 		    e.printStackTrace();
 		    days = 7; // 기본값 7일 설정
 		}
+		
+		
+		// 선택된 날짜 정보 확인
+		System.out.println("선택된 날짜: " + days);
 		
 		Group group = new Group(group_idx, group_name, group_desc, manager, sub_manager, group_max, days);
 		GroupDAO dao = new GroupDAO();

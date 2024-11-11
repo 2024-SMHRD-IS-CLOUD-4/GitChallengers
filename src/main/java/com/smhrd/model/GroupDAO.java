@@ -60,6 +60,18 @@ public class GroupDAO {
     }
     
     
+    // 가장 최근 챌린지 행 가져오기
+    public Group latest(String group_desc) {
+        SqlSession sqlSession = factory.openSession();
+        Group latestGroup = sqlSession.selectOne("GroupMapper.latest", group_desc);  // 최신 그룹을 가져오는 매핑
+        sqlSession.close();
+        return latestGroup;
+    }
+
+    
+    
+    
+    //방이 사라지면 데이터 사라지게->db
     public void scheduleGroupDeletion(Group g) {
     	 SqlSession sqlSession = factory.openSession(true);
         // 스케줄러 설정

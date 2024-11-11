@@ -25,12 +25,23 @@
 
 	<!-- 방 자동 삭제 -->
 	<delete id="deleteGroup">
-		DELETE FROM ch_join WHERE group_idx = #{group_idx}
+		DELETE FROM ch_group WHERE group_idx = #{group_idx}
 	</delete>
 	
 	<!-- 방장 교체 -->
 	<update id="update" parameterType="Group">
 		update ch_group set manager=#{manager}, sub_manager=#{sub_manager} where group_idx=#{group_idx}
 	</update>
+	
+	<!-- 가장 최근 작성한 것 가져오기 -->
+	<select id="latest" resultType="Group">
+    SELECT * 
+    FROM ch_group
+    WHERE group_desc = #{group_desc}  <!-- 특정 사용자의 ID로 필터링 -->
+    ORDER BY created_at DESC  <!-- 작성일자(created_at) 기준으로 내림차순 정렬 -->
+    FETCH FIRST 1 ROWS ONLY;  <!-- 가장 최근 1개 그룹만 선택 -->
+</select>
+
+
 	
 </mapper>

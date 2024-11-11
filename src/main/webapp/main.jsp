@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.controller.groupCon"%>
 <%@page import="com.smhrd.model.ReviewDAO"%>
 <%@page import="com.smhrd.model.Review"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
@@ -46,8 +47,11 @@
 		List<Review> reviewList = reviewdao.bestReview(); // 리뷰 리스트 불러오기
 		int ch_count = member_info.getCh_count(); // 챌린지 도전 횟수
 		int ch_suc_count = reviewdao.count(member.getId()); // 챌린지 성공 횟수
+		Group latestGroup = (Group) request.getAttribute("latestGroup");
 		
 	%>
+		
+		
 
     <!-- Main Container -->
     <div class="container">
@@ -82,22 +86,42 @@
             </div>
         </div>
         
+       
+        
         <!-- 상단 챌린지 정보 및 상태 -->
         <div class="top-section">
+        <% 
+    
+    if (latestGroup == null) {%>
+    	<div class="challenge">
+        <h2>진행중인 챌린지</h2>
+        <div class="challenge-content">
+            <div class="challenge-details">
+            <p>진행중인 챌린지가 없습니다.</p>
+                <div class="user-input">
+                    <span>자유 내용</span>
+                </div>
+            </div>
+        </div>
+    </div>
+  <%  } else {
+%>
+        
             <div class="challenge">
                 <h2>진행중인 챌린지</h2>
                 <div class="challenge-content">
                     <img src="img/pigbook-1.jfif" alt="책 이미지" class="challenge-image">
                     <div class="challenge-details">
-                        <h3>돼지책</h3>
+                        <h3><%= latestGroup.getGroup_name() %></h3>
                         <p>6일차</p>
-                        <p>페이지: 120-150p</p>
+               			 <p>페이지 : </p>
                         <div class="user-input">
                             <span>자유 내용</span>
                         </div>
                     </div>
                 </div>
             </div>
+            <%}%>
             <div class="status">
                 <h2>현재 챌린지 진행 상황</h2>
                 <div style="width: 25%; margin: auto;">
@@ -296,6 +320,7 @@ function createCompletionChart(chartElementId, completionValue) {
 
 createProgressChart('progressChart', 70); 
 createCompletionChart('completionChart', <%=(ch_count != 0) ? ch_suc_count/ch_count * 100 : 0%>);
+
 </script>
 </body>
 

@@ -321,36 +321,36 @@
 			})  		
 		})
     	
-        // 동적으로 생성되는 요소에 대해 이벤트 위임을 사용
-        // 댓글 작성
-		$(document).on('click', '.check', function() {
-			
-			var textarea = $(this).prev('textarea');
-			
-			var input = {
-					comment : textarea.val(),
-					writerId : textarea.data('id'),
-					g_item_idx : textarea.data('g_item_idx')
-			};
-			
-			$.ajax({
-				url : "gc_commentWrite",
-				type : "post",
-				contentType: "application/json; charset=UTF-8",
-				data : JSON.stringify(input),
-				success : function(data){
-					if (data == "true") {
-						document.location.reload(); 
-		            } else {
-		                alert("실패");  
-		            }
-				},
-				error : function(){
-					alert("통신실패")
-				}
-				
-			})  		
-		})
+ // 동적으로 생성되는 요소에 대해 이벤트 위임을 사용
+    // 댓글 작성
+    $(document).on('click', '.check', function() {
+        if (confirm("댓글 작성 후에는 수정이 불가능합니다. 댓글을 작성하시겠습니까?")) {
+            var textarea = $(this).prev('textarea');
+            
+            var input = {
+                    comment : textarea.val(),
+                    writerId : textarea.data('id'),
+                    g_item_idx : textarea.data('g_item_idx')
+            };
+            
+            $.ajax({
+                url : "gc_commentWrite",
+                type : "post",
+                contentType: "application/json; charset=UTF-8",
+                data : JSON.stringify(input),
+                success : function(data){
+                    if (data == "true") {
+                        document.location.reload(); 
+                    } else {
+                        alert("실패");  
+                    }
+                },
+                error : function(){
+                    alert("통신실패")
+                }
+            })      
+        }
+    })
 		
 		// 좋아요
 		$(document).on('click', '.like', function() {

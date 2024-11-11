@@ -116,8 +116,9 @@
 %>
         
             <div class="challenge">
-                <h2>진행중인 챌린지</h2>
-                <select id="myCh">
+                 <h2 style="display: inline-block; vertical-align: middle;">진행중인 챌린지</h2>
+                <select id="myCh" style="display: inline-block; vertical-align: middle; margin-left: 10px;">
+                	
                 	<%int i = 0;
                 	for (Join j : list) {
                 		Group groupName = gdao.groupInfo(j.getGroup_idx());

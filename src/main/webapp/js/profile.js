@@ -6,6 +6,9 @@ function showReview() {
     `;
 }
 
+function showScrollMessage() {
+    alert("리뷰를 클릭하셨습니다. 마우스 스크롤로 페이지를 넘길 수 있습니다.");
+}
 
 // MY 챌린지 버튼 클릭 시 팝업 토글
 document.querySelector('.nav-links a').addEventListener('click', function (event) {

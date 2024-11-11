@@ -102,6 +102,54 @@
     <div class="container">
         <!-- 왼쪽 사이드바 -->
         <div class="sidebar">
+            <% 
+				Member_info managerInfo = infodao.info(group.getManager());
+          			Member managerMemberInfo = mdao.memberInfo(group.getManager());
+				String managerProfileImg = (managerInfo != null) ? managerInfo.getProfile_img() : "default_profile.png";
+				String managerNick = (managerMemberInfo != null) ? managerMemberInfo.getNick()  : "정보없음";
+			%>
+            <div class="profile-upload">
+               	<img src="profile_img/<%=managerProfileImg %>" class="profile-img" id="profilePreview" onerror="this.src='img/team-logo.png'">
+
+            </div>
+            <div class="profile-name"><%=managerNick%> <i class="fas fa-crown" style="color: gold;"></i></div>
+            <ul class="group-list">
+            	<li class="group-item" data-id="<%=group.getSub_manager()%>">
+            	<% 
+					Member_info subManagerInfo = infodao.info(group.getSub_manager());
+           			Member subManagerMemberInfo = mdao.memberInfo(group.getSub_manager());
+					String subManagerProfileImg = (subManagerInfo != null) ? subManagerInfo.getProfile_img() : "default_profile.png";
+					String subManagerNick = (subManagerMemberInfo != null) ? subManagerMemberInfo.getNick()  : "정보없음";
+				%>
+					<img src="profile_img/<%=subManagerProfileImg %>" onerror="this.src='img/team-logo.png'">
+
+					<span class="group-name"><%=subManagerNick%> <i class="fas fa-crown" style="color: silver;"></i></span>
+                </li>
+                <%
+                    for(Join j: list) {
+                    	Member m = mdao.memberInfo(j.getId());
+                    	if(!j.getId().equals(group.getManager()) && !j.getId().equals(group.getSub_manager())) {
+                %>
+			                <li class="group-item" data-id="<%=j.getId()%>">
+			                   <img src="profile_img/<%=infodao.info(j.getId()).getProfile_img() %>" onerror="this.src='img/team-logo.png'">
+
+			                    <span class="group-name"><%=m.getNick()%></span>
+			                    <%if(member.getId().equals(group.getManager())) {%>
+			                    <form action="memberDelete">
+									<button type="submit">추방</button>
+									<input type="hidden" name="group_idx" value = "<%=idx%>">
+									<input type="hidden" name="id" value = "<%=j.getId()%>">
+			                    </form>
+			                    <%} %>
+			                </li>
+			                <% } %>
+                	<% } %>
+            </ul>
+            <%if (totalDays == totalCount) {%>
+            <button class="button2" onClick="location.href='review.jsp'">리뷰 작성하기</button>
+            <%}else { %>
+            <button class="button">오늘의 챌린지 작성</button>
+            <%} %>
         	<%if (joinMember >= 3 && joinMember-2 <= warningMember && member.getId().equals(group.getSub_manager())) {%>
         	<div class="kickManager">
         	<form action="kickManager" method="post">
@@ -131,51 +179,6 @@
 	            <button type="submit">방 나가기</button>
 	            <input type="hidden" name="group_idx" value="<%=idx%>">
             </form>
-            <%} %>
-            <% 
-				Member_info managerInfo = infodao.info(group.getManager());
-          			Member managerMemberInfo = mdao.memberInfo(group.getManager());
-				String managerProfileImg = (managerInfo != null) ? managerInfo.getProfile_img() : "default_profile.png";
-				String managerNick = (managerMemberInfo != null) ? managerMemberInfo.getNick()  : "정보없음";
-			%>
-            <div class="profile-upload">
-               	<img src="profile_img/<%=managerProfileImg %>" class="profile-img" id="profilePreview">
-            </div>
-            <div class="profile-name"><%=managerNick%></div>
-            <ul class="group-list">
-            	<li class="group-item" data-id="<%=group.getSub_manager()%>">
-            	<% 
-					Member_info subManagerInfo = infodao.info(group.getSub_manager());
-           			Member subManagerMemberInfo = mdao.memberInfo(group.getSub_manager());
-					String subManagerProfileImg = (subManagerInfo != null) ? subManagerInfo.getProfile_img() : "default_profile.png";
-					String subManagerNick = (subManagerMemberInfo != null) ? subManagerMemberInfo.getNick()  : "정보없음";
-				%>
-					<img src="profile_img/<%=subManagerProfileImg %>">
-					<span class="group-name"><%=subManagerNick%></span>
-                </li>
-                <%
-                    for(Join j: list) {
-                    	Member m = mdao.memberInfo(j.getId());
-                    	if(!j.getId().equals(group.getManager()) && !j.getId().equals(group.getSub_manager())) {
-                %>
-			                <li class="group-item" data-id="<%=j.getId()%>">
-			                    <img src="profile_img/<%=infodao.info(j.getId()).getProfile_img() %>">
-			                    <span class="group-name"><%=m.getNick()%></span>
-			                    <%if(member.getId().equals(group.getManager())) {%>
-			                    <form action="memberDelete">
-									<button type="submit">추방</button>
-									<input type="hidden" name="group_idx" value = "<%=idx%>">
-									<input type="hidden" name="id" value = "<%=j.getId()%>">
-			                    </form>
-			                    <%} %>
-			                </li>
-			                <% } %>
-                	<% } %>
-            </ul>
-            <%if (totalDays == totalCount) {%>
-            <button class="button2" onClick="location.href='review.jsp'">리뷰 작성하기</button>
-            <%}else { %>
-            <button class="button">오늘의 챌린지 작성</button>
             <%} %>
         </div>
 

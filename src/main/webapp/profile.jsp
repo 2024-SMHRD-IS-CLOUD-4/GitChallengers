@@ -112,7 +112,8 @@
 		<div class="profile-section">
 			<!-- Profile Picture and Edit Button -->
 			<div class="profile-picture">
-				<img src="profile_img/<%=member_info.getProfile_img()%>"
+				<img
+					src="<%=member_info.getProfile_img() != null ? "profile_img/" + member_info.getProfile_img() : "img/team-logo.png"%>"
 					alt="Profile Image">
 				<h2><%=profileMember.getNick()%></h2>
 				<%
@@ -200,9 +201,9 @@
 					</div>
 				</div>
 				<div class="chart-container">
-				<h2>나의 챌린지 완료 확률</h2>
-                    <canvas id="challengeCompletionChart"></canvas>
-                </div>
+					<h2>나의 챌린지 완료 확률</h2>
+					<canvas id="challengeCompletionChart"></canvas>
+				</div>
 			</div>
 
 
@@ -212,7 +213,7 @@
 					for (Review r : rlist) {
 					%>
 					<div class="book-review"
-						onclick="location.href='reviewBook?idx=<%=r.getReview_idx()%>'">
+						onclick="showScrollMessage(); location.href='reviewBook?idx=<%=r.getReview_idx()%>'">
 						<div class="book-cover-container">
 							<img src="img/bestbook-<%=r.getReview_idx()%>.jpg"
 								class="book-cover" alt="Book Cover" />

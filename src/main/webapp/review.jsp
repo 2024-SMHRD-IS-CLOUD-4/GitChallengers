@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reading Post</title>
     <link rel="stylesheet" href="./css/review.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -26,8 +27,6 @@
         <div class="title-container">
             <input type="text" class="title" placeholder="리뷰 제목" name="review_title">
             <input type="hidden" name = "is_approved" value="N" id="is_approved">
-            <!-- 초록색 체크 표시 -->
-            <span id="checkmark" style="display: none;">✅</span>
         </div>
 
         <!-- Label for Image Upload -->
@@ -36,7 +35,7 @@
         </label>
         <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)">
 
-        <!-- 줄거리와 느낀점 -->
+        <!-- 줄과리와 느기진 -->
         <textarea class="summary" placeholder="내용" name="review_content"></textarea>
 
         <div class="footer">
@@ -46,10 +45,11 @@
             </div>
 			<!-- ISBN 입력칸 -->
 			<div class="isbn-container">
-			    <input type="text" id="isbn" placeholder="ISBN 입력">
-			    <button type="button" class="prove" id="isbn-check-button">인증 확인</button>
-			    <span id="proveResult"></span>
 			    <button type="button" id="ocr-check-button">OCR 인증</button>
+			    <input type="text" id="isbn" placeholder="ISBN 입력">
+			    <button type="button" class="prove" id="isbn-check-button">ISBN 인증</button>
+			    <span id="proveResult"></span>
+			    <span id="success-icon" class="success-icon" style="display: none;"><i class="fas fa-check"></i></span>
 			</div>
             <!-- 글 작성 버튼 -->
             <button type="submit" class="action-button">리뷰 작성</button>
@@ -72,9 +72,16 @@ $(document).on('click', '.prove', function() {
 				if(book.isbn == input){
 					$('#proveResult').text("인증성공");
 					$('#is_approved').val("Y");
+					$('#success-icon').show(); // Show the success icon
 				}else {
-					alert('인증 실패')
+					$('#proveResult').text("인증 실패");
+					$('#success-icon').hide(); // Hide the success icon if failed
+					alert('인증 실패');
 				}
+			} else {
+				$('#proveResult').text("인증 실패");
+				$('#success-icon').hide(); // Hide the success icon if failed
+				alert('인증 실패');
 			}
 		},
 		error : function(){
@@ -87,7 +94,7 @@ function confirmReviewSubmission() {
     if (confirm('리뷰 작성 후에는 수정이 불가능합니다. 리뷰을 작성하시겠습니까?')) {
         return true;
     } else {
-        alert('리뷰 작성을 취소하였습니다.');
+        alert('리뷰 작성을 취소했습니다.');
         return false;
     }
 }

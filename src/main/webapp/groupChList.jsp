@@ -109,7 +109,7 @@
         <!-- 그룹 카드 1 -->
         <div class="group-card">
             <div class="profile" data-id="<%=managerInfo.getId()%>">
-                <img src="profile_img/<%=infodao.info(managerInfo.getId()).getProfile_img() %>" alt="방장 프로필">
+               <img src="<%= (infodao.info(managerInfo.getId()).getProfile_img() == null || infodao.info(managerInfo.getId()).getProfile_img().isEmpty()) ? "img/team-logo.png" : "profile_img/" + infodao.info(managerInfo.getId()).getProfile_img() %>" alt="방장 프로필">
                 <span><%=manager%></span>
             </div>
             <div class="content" data-idx="<%=idx%>">

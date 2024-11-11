@@ -197,15 +197,15 @@
                 <div class="review-item">
                     <img src="img/pigbook-1.jfif" alt="Book Image" class="review-image">
                     <div class="review-content">
-                        <h3><%=reviewList.get(0).getReview_title() %></h3>
-                        <p><%=reviewList.get(0).getReview_content() %></p>
+                        <h3><%=(reviewList != null && !reviewList.isEmpty()) ? reviewList.get(0).getReview_title() : "리뷰가 없습니다" %></h3>
+                        <p><%=(reviewList != null && !reviewList.isEmpty()) ? reviewList.get(0).getReview_content() : "리뷰가 없습니다" %></p>
                     </div>
                 </div>
                 <div class="review-item">
                     <img src="img/pigbook-1.jfif" alt="Book Image" class="review-image">
                     <div class="review-content">
-                        <h3><%=reviewList.get(1).getReview_title() %></h3>
-                        <p><%=reviewList.get(1).getReview_content() %></p>
+                       <h3><%=(reviewList != null && !reviewList.isEmpty()) ? reviewList.get(1).getReview_title() : "리뷰가 없습니다" %></h3>
+                        <p><%=(reviewList != null && !reviewList.isEmpty()) ? reviewList.get(1).getReview_content() : "리뷰가 없습니다" %></p>
                     </div>
                 </div>
             </div>

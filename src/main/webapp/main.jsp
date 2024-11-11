@@ -37,7 +37,6 @@
 		Member member = (Member) session.getAttribute("member");
 		if(member == null) {
 			response.sendRedirect("login.jsp");
-			return;
 		}
 		MemberDAO mdao = new MemberDAO();
 		JoinDAO jdao = new JoinDAO();
@@ -56,7 +55,7 @@
 		int ch_suc_count = reviewdao.count(member.getId()); // 챌린지 성공 횟수
 		LocalDate now = LocalDate.now(); // 현재 날짜 구하기 (시스템 시계, 시스템 타임존)
 		int days = 0;
-		int progress = 0;
+		int progress = 0; 
 		
 	%>
 		
@@ -115,14 +114,16 @@
     </div>
   <%  } else {
 %>
+        
             <div class="challenge">
-                <h2 style="display: inline-block; vertical-align: middle;">진행중인 챌린지</h2>
+                 <h2 style="display: inline-block; vertical-align: middle;">진행중인 챌린지</h2>
                 <select id="myCh" style="display: inline-block; vertical-align: middle; margin-left: 10px;">
-                	<%
+                	
+                	<%int i = 0;
                 	for (Join j : list) {
                 		Group groupName = gdao.groupInfo(j.getGroup_idx());
                 	%>
-                	<option value="<%=j.getGroup_idx()%>"><%=groupName.getGroup_name() %></option>
+                	<option value="<%=i++%>"><%=groupName.getGroup_name() %></option>
                 	<%} %>
                 </select>
                 	<%	
@@ -166,31 +167,19 @@
             <div class="leaderboard-section">
                 <h2>LEADERBOARD</h2>
 
-                <!-- 리더보드 데이터 수동 삽입 -->
-                <div class="leaderboard-item-wrapper">
-                    <img src="img/gold.png" alt="Gold Medal" class="medal-icon">
-                    <img src="profile_img/<%=infodao.info(rank.get(0).getId()).getProfile_img() %>" alt="User Image">
-                    <div class="leaderboard-item">
-                        <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(0) != null && rank.get(0).getId() != null) ? mdao.memberInfo(rank.get(0).getId()).getNick()  : "이름" %></span>
-                        <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(0) != null && rank.get(0).getId() != null) ? rank.get(0).getPoint() : "포인트" %>p</span>
-                    </div>
-                </div>
-                <div class="leaderboard-item-wrapper">
-                    <img src="img/silver.png" alt="Silver Medal" class="medal-icon">
-                    <img src="profile_img/<%=infodao.info(rank.get(1).getId()).getProfile_img() %>" alt="User Image">
-                    <div class="leaderboard-item">
-                        <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(1) != null && rank.get(1).getId() != null) ? mdao.memberInfo(rank.get(1).getId()).getNick() : "이름" %></span>
-                        <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(1) != null && rank.get(1).getId() != null) ? rank.get(1).getPoint() : "포인트" %>p</span>
-                    </div>
-                </div>
-                <div class="leaderboard-item-wrapper">
-                    <img src="img/bronze.png" alt="Bronze Medal" class="medal-icon">
-                    <img src="profile_img/<%=infodao.info(rank.get(2).getId()).getProfile_img() %>" alt="User Image">
-                    <div class="leaderboard-item">
-                        <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(2) != null && rank.get(2).getId() != null) ? mdao.memberInfo(rank.get(2).getId()).getNick() : "이름" %></span>
-                        <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(2) != null && rank.get(2).getId() != null) ? rank.get(2).getPoint() : "포인트" %>p</span>
-                    </div>
-                </div>
+              <% for(int i = 0; i < 3; i++) { %>
+    <div class="leaderboard-item-wrapper">
+        <img src="img/<%= i == 0 ? "gold" : i == 1 ? "silver" : "bronze" %>.png" alt="<%= i == 0 ? "Gold" : i == 1 ? "Silver" : "Bronze" %> Medal" class="medal-icon">
+
+        <img src="<%= (rank != null && !rank.isEmpty() && rank.get(i) != null && rank.get(i).getId() != null && infodao.info(rank.get(i).getId()).getProfile_img() != null && !infodao.info(rank.get(i).getId()).getProfile_img().isEmpty()) ? "profile_img/" + infodao.info(rank.get(i).getId()).getProfile_img() : "img/team-logo.png" %>" alt="User Image">
+
+        <div class="leaderboard-item">
+            <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(i) != null && rank.get(i).getId() != null) ? mdao.memberInfo(rank.get(i).getId()).getNick() : "이름" %></span>
+            <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(i) != null && rank.get(i).getId() != null) ? rank.get(i).getPoint() : "포인트" %>p</span>
+        </div>
+    </div>
+<% } %>
+
             </div>
            <div class="best-review-section">
                 <h2>BEST REVIEW</h2>
@@ -294,29 +283,47 @@
     <script src="./js/main.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	// 진행중인 챌린지 변경
+	$('#myCh').change(function() {
+		var listIdx = $(this).val();
+		$.ajax({
+			url: 'main.jsp',
+			type: 'POST',
+			data: {
+				'listIdx' : listIdx
+			},
+			success: function(response) {
+				if(listIdx == 0){
+					$('#title').html('<%= gdao.groupInfo(list.get(0).getGroup_idx()).getGroup_name()%>');					
+					$('#date').html('<%= LocalDate.parse(gdao.groupInfo(list.get(0).getGroup_idx()).getCreated_at().split(" ")[0]).until(now, ChronoUnit.DAYS) +1%>일차');					
+					$('#content').html('<%= gdao.groupInfo(list.get(0).getGroup_idx()).getGroup_desc()%>');
+					createProgressChart('progressChart', <%=(gdao.groupInfo(list.get(0).getGroup_idx()).getDays() != 0) ? (gidao.count(new Gc_items(list.get(0).getGroup_idx(), member.getId()))/gdao.groupInfo(list.get(0).getGroup_idx()).getDays()) * 100 : 0%>);
+				}else if(listIdx == 1){
+					$('#title').html('<%= gdao.groupInfo(list.get(1).getGroup_idx()).getGroup_name()%>');
+					$('#date').html('<%= LocalDate.parse(gdao.groupInfo(list.get(1).getGroup_idx()).getCreated_at().split(" ")[0]).until(now, ChronoUnit.DAYS) +1%>일차');
+					$('#content').html('<%= gdao.groupInfo(list.get(1).getGroup_idx()).getGroup_desc()%>');
+					createProgressChart('progressChart', <%=(gdao.groupInfo(list.get(1).getGroup_idx()).getDays() != 0) ? (gidao.count(new Gc_items(list.get(1).getGroup_idx(), member.getId()))/gdao.groupInfo(list.get(1).getGroup_idx()).getDays()) * 100 : 0%>);
+				}else if(listIdx == 2){
+					$('#title').html('<%= gdao.groupInfo(list.get(2).getGroup_idx()).getGroup_name()%>');
+					$('#date').html('<%= LocalDate.parse(gdao.groupInfo(list.get(2).getGroup_idx()).getCreated_at().split(" ")[0]).until(now, ChronoUnit.DAYS) +1%>일차');
+					$('#content').html('<%= gdao.groupInfo(list.get(2).getGroup_idx()).getGroup_desc()%>');
+					createProgressChart('progressChart', <%=(gdao.groupInfo(list.get(2).getGroup_idx()).getDays() != 0) ? (gidao.count(new Gc_items(list.get(2).getGroup_idx(), member.getId()))/gdao.groupInfo(list.get(2).getGroup_idx()).getDays()) * 100 : 0%>);
+				}
+				
+			},
+			error: function(xhr, status, error) {
+	            alert("서버 오류 발생");
+	        }
+		});
+	});
 	
 	// 진행 상황 차트 생성 함수
 	function createProgressChart(chartElementId, progressValue) {
-		
-		progressValue = parseFloat(progressValue.toFixed(1));
-		
-	    if (isNaN(progressValue) || progressValue < 0 || progressValue > 100) {
-	        console.error("Invalid progress value:", progressValue);
-	        return; // progressValue가 유효하지 않으면 차트를 만들지 않습니다.
-	    }
-
 	    const ctx = document.getElementById(chartElementId).getContext('2d');
-
-	    // 기존 차트가 있으면 삭제
-	    if (window.progressChartInstance) {
-	        window.progressChartInstance.destroy();  // 기존 차트 파괴
-	    }
-
-	    // 새 차트 생성
-	    window.progressChartInstance = new Chart(ctx, {
+	    new Chart(ctx, {
 	        type: 'doughnut',
 	        data: {
-	            labels: ['진행된 챌린지'],
+	            labels: ['진행된 페이지'],
 	            datasets: [{
 	                data: [progressValue, 100 - progressValue],
 	                backgroundColor: ['#B3261E', '#ffffff'],
@@ -331,30 +338,15 @@ $(document).ready(function() {
 	                    position: 'bottom'
 	                }
 	            },
-	            cutout: '70%'  // 원형 차트의 가운데를 비움
+	            cutout: '70%'
 	        }
 	    });
 	}
-
+	
 	// 완료 확률 차트 생성 함수
 	function createCompletionChart(chartElementId, completionValue) {
-		
-		completionValue = parseFloat(completionValue.toFixed(1));
-		
-	    if (isNaN(completionValue) || completionValue < 0 || completionValue > 100) {
-	        console.error("Invalid completion value:", completionValue);
-	        return; // completionValue가 유효하지 않으면 차트를 만들지 않습니다.
-	    }
-
 	    const ctx = document.getElementById(chartElementId).getContext('2d');
-
-	    // 기존 차트가 있으면 삭제
-	    if (window.completionChartInstance) {
-	        window.completionChartInstance.destroy();  // 기존 차트 파괴
-	    }
-
-	    // 새 차트 생성
-	    window.completionChartInstance = new Chart(ctx, {
+	    new Chart(ctx, {
 	        type: 'doughnut',
 	        data: {
 	            labels: ['완료 확률'],
@@ -372,41 +364,12 @@ $(document).ready(function() {
 	                    position: 'bottom'
 	                }
 	            },
-	            cutout: '70%'  // 원형 차트의 가운데를 비움
+	            cutout: '70%'
 	        }
 	    });
 	}
-
-
-    // 진행 상황 차트와 완료 확률 차트 생성
-    createProgressChart('progressChart', <%=(days != 0) ? (progress/days) * 100 : 0%>);
-    createCompletionChart('completionChart', <%=(ch_count != 0) ? (ch_suc_count/ch_count) * 100 : 0%>);
-	
-	// 진행중인 챌린지 변경
-	$('#myCh').change(function() {
-		var listIdx = $(this).val();
-		$.ajax({
-			url: 'mainCon',
-			type: 'get',
-			data: {
-				"listIdx" : listIdx
-			},
-			dataType: 'json',
-			success: function(response) {
-				var progress = response.progress;
-				$('#title').html(response.title);
-				$('#date').html(response.daysBetween);
-				$('#content').html(response.groupDesc);
-				createProgressChart('progressChart', progress/<%=days%> *100);
-
-			},
-			error: function(xhr, status, error) {
-	            alert("서버 오류 발생");
-	        }
-		});
-	});
-
-	
+	createProgressChart('progressChart', <%=(days != 0) ? progress/days * 100 : 0%>);
+	createCompletionChart('completionChart', <%=(ch_count != 0) ? ch_suc_count/ch_count * 100 : 0%>);
 });
 </script>
 </body>

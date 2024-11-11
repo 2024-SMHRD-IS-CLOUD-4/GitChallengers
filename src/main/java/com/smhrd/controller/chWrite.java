@@ -15,7 +15,8 @@ import com.smhrd.model.Gc_itemsDAO;
 public class chWrite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
+	
+	// 그룹 챌린지 작성
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");

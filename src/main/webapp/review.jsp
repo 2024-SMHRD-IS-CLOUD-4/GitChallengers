@@ -22,8 +22,7 @@
         <!-- Back Button -->
         <button class="back-button" onclick="history.back()">←</button>
 
-        <span id="proveResult"></span>
-	<form action="review" method="post">
+	<form action="review" method="post" onsubmit="return confirmReviewSubmission()">
         <div class="title-container">
             <input type="text" class="title" placeholder="리뷰 제목" name="review_title">
             <input type="hidden" name = "is_approved" value="N" id="is_approved">
@@ -42,16 +41,18 @@
 
         <div class="footer">
             <div class="toggle-buttons">
-                <button id="personal-button" onclick="toggleSelection('personal')">추천</button>
-                <button id="group-button" onclick="toggleSelection('group')">비추천</button>
+                <button type="button" id="personal-button" onclick="toggleSelection('personal')">추천</button>
+                <button type="button" id="group-button" onclick="toggleSelection('group')">비추천</button>
             </div>
 			<!-- ISBN 입력칸 -->
 			<div class="isbn-container">
-			    <input type="text" id="isbn-input" placeholder="ISBN 입력">
-			    <button id="isbn-check-button">인증 확인</button>
+			    <input type="text" id="isbn" placeholder="ISBN 입력">
+			    <button type="button" class="prove" id="isbn-check-button">인증 확인</button>
+			    <span id="proveResult"></span>
+			    <button type="button" id="ocr-check-button">OCR 인증</button>
 			</div>
             <!-- 글 작성 버튼 -->
-            <button class="action-button">리뷰 작성</button>
+            <button type="submit" class="action-button">리뷰 작성</button>
         </div>
     	</form>
     </div>
@@ -71,15 +72,25 @@ $(document).on('click', '.prove', function() {
 				if(book.isbn == input){
 					$('#proveResult').text("인증성공");
 					$('#is_approved').val("Y");
+				}else {
+					alert('인증 실패')
 				}
 			}
 		},
 		error : function(){
 			alert("통신실패")
 		}
-		
 	})  		
 })
+
+function confirmReviewSubmission() {
+    if (confirm('리뷰 작성 후에는 수정이 불가능합니다. 리뷰을 작성하시겠습니까?')) {
+        return true;
+    } else {
+        alert('리뷰 작성을 취소하였습니다.');
+        return false;
+    }
+}
 </script>
 </body>
 

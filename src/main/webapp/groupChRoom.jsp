@@ -63,8 +63,10 @@
     }
     int joinMember = jdao.count(idx); // 그룹인원 수 
 	int warningMember = wdao.warningCount(idx); // 신고 인원 수
-	
-    
+
+	int totalDays = group.getDays(); // 챌린지 전체 기간
+	int totalCount = idao.count(my); // 총 진행한 챌린지 수
+
 %>
 
     <div class="header">
@@ -170,7 +172,11 @@
 			                <% } %>
                 	<% } %>
             </ul>
+            <%if (totalDays == totalCount) {%>
+            <button class="button2" onClick="location.href='review.jsp'">리뷰 작성하기</button>
+            <%}else { %>
             <button class="button">오늘의 챌린지 작성</button>
+            <%} %>
         </div>
 
         <!-- 카드 영역 -->
@@ -316,36 +322,38 @@
 			})  		
 		})
     	
-        // 동적으로 생성되는 요소에 대해 이벤트 위임을 사용
-        // 댓글 작성
-		$(document).on('click', '.check', function() {
-			
-			var textarea = $(this).prev('textarea');
-			
-			var input = {
-					comment : textarea.val(),
-					writerId : textarea.data('id'),
-					g_item_idx : textarea.data('g_item_idx')
-			};
-			
-			$.ajax({
-				url : "gc_commentWrite",
-				type : "post",
-				contentType: "application/json; charset=UTF-8",
-				data : JSON.stringify(input),
-				success : function(data){
-					if (data == "true") {
-						document.location.reload(); 
-		            } else {
-		                alert("실패");  
-		            }
-				},
-				error : function(){
-					alert("통신실패")
-				}
-				
-			})  		
-		})
+ // 동적으로 생성되는 요소에 대해 이벤트 위임을 사용
+    // 댓글 작성
+    $(document).on('click', '.check', function() {
+        if (confirm("댓글 작성 후에는 수정이 불가능합니다. 댓글을 작성하시겠습니까?")) {
+            var textarea = $(this).prev('textarea');
+            
+            var input = {
+                    comment : textarea.val(),
+                    writerId : textarea.data('id'),
+                    g_item_idx : textarea.data('g_item_idx')
+            };
+            
+            $.ajax({
+                url : "gc_commentWrite",
+                type : "post",
+                contentType: "application/json; charset=UTF-8",
+                data : JSON.stringify(input),
+                success : function(data){
+                    if (data == "true") {
+                        document.location.reload(); 
+                    } else {
+                        alert("실패");  
+                    }
+                },
+                error : function(){
+                    alert("통신실패")
+                }
+            })      
+        } else {
+            alert("댓글 작성을 취소하였습니다");
+        }
+    })
 		
 		// 좋아요
 		$(document).on('click', '.like', function() {

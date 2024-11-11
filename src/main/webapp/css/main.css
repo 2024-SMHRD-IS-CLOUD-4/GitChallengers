@@ -241,7 +241,12 @@ body {
     align-items: center;
     justify-content: center;
 }
-
+.challenge-content.empty-message {
+    font-size: 20px;
+    color: #8673a1;
+    text-align: center;
+    line-height: 300px; /* height와 일치 */
+}
 /* 진행률 원형 그래프 */
 .progress-chart {
 	display: flex;

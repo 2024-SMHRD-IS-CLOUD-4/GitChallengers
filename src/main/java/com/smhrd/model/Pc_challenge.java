@@ -21,14 +21,24 @@ public class Pc_challenge {
 	
 	// 등록 일자
 	private String created_at;
+	
+	// 선택 날짜
+	private int days;
 
-	public Pc_challenge(String pc_title, String pc_desc, String id) {
+	public Pc_challenge(String pc_title, String pc_desc, String id, int days) {
 		super();
 		this.pc_title = pc_title;
 		this.pc_desc = pc_desc;
 		this.id = id;
+		this.days = days;
+	}
+
+	public Pc_challenge(int pc_idx, String id) {
+		super();
+		this.pc_idx = pc_idx;
+		this.id = id;
 	}
 	
-
+	
 
 }

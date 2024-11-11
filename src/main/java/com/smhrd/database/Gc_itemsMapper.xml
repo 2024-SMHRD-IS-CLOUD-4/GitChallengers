@@ -16,5 +16,10 @@
 	<update id="success">
 		update ch_gc_items set is_success='Y' where g_item_idx=#{g_item_idx}
 	</update>
+	
+	<!-- 그룹내에서 작성한 챌린지 수 -->
+	<select id="count" parameterType="items" resultType="int">
+		select count(*) from ch_gc_items where gc_idx=#{gc_idx} and id=#{id} and is_success='Y'
+	</select>
 
 </mapper>

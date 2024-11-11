@@ -254,14 +254,7 @@ body {
     font-size: 14px;
     color: #666;
 }
-.chart-container {
-    width: 300px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
+
 
 .review-container {
     position: relative;

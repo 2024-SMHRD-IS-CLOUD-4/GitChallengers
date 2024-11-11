@@ -42,6 +42,26 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const challengeContent = document.querySelector('.challenge-content');
+
+    // 진행 중인 챌린지가 없을 경우 메시지 표시
+    if (!challengeContent.hasChildNodes()) {
+        challengeContent.classList.add('empty-message');
+        challengeContent.textContent = '진행 중인 챌린지가 없습니다!';
+    }
+
+    // 진행 중인 챌린지가 추가될 경우 메시지를 제거하고 기존 형식으로 표시
+    function addChallenge(challengeData) {
+        if (challengeContent.classList.contains('empty-message')) {
+            challengeContent.classList.remove('empty-message');
+            challengeContent.textContent = ''; // 기존 메시지 제거
+        }
+
+        // 챌린지 내용 추가하는 로직 구현
+        // 예: challengeContent.appendChild(challengeData);
+    }
+});
 
 document.addEventListener("DOMContentLoaded", function() {
     // 사용자 정의 플러그인: 도넛의 중심에 텍스트를 표시

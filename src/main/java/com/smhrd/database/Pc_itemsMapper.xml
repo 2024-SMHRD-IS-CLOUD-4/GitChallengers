@@ -4,12 +4,17 @@
 	
 	<!-- 내 챌린지 가져오기 -->
 	<select id="selectAll" resultType="Pc_items">
-		select * from ch_pc_items where pc_idx=#{pc_idx}
+		select * from ch_pc_items where pc_idx=#{pc_idx} order by created_at desc
 	</select>
 
 	<!-- 개인 챌린지 글 작성하기 -->
 	<insert id="pcWrite" parameterType="Pc_items">
 		insert into ch_pc_items values (ch_pc_items_seq.nextval, #{p_item_title}, #{p_item_desc}, sysdate, 'n', #{pc_idx}, #{pc_ocr})
 	</insert>
+	
+	<!-- 챌린지 작성 수 -->
+	<select id="count" resultType="int" parameterType="int">
+		select count(*) from ch_pc_items where pc_idx=#{pc_idx}
+	</select>
 	
 </mapper>

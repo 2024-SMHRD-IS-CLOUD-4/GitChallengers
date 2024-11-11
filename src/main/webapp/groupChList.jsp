@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="com.smhrd.model.ReviewDAO"%>
 <%@page import="com.smhrd.model.Member_infoDAO"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
@@ -55,8 +56,8 @@
 		}else if (myList.size() > 0  && myList.get(0) != null){
 			myJoin1 = myList.get(0).getGroup_idx();
 		}
-
-
+		String now = LocalDate.now().toString(); // 현재 날짜 구하기 (시스템 시계, 시스템 타임존)
+		
 		
 	%>
     <!-- 헤더 -->
@@ -96,12 +97,14 @@
     <div class="main-container">
     <%
     	for(Group g : list) {
-    		int idx = g.getGroup_idx();
-    		int gcount = jdao.count(idx);
-    		List<Join> joinMember = jdao.selectAll(idx);
-    		boolean isJoined = false;
-    		Member managerInfo = mdao.memberInfo(g.getManager());
-    		String manager = (managerInfo != null) ? managerInfo.getNick() : "Unknown";
+    		String created = g.getCreated_at().substring(0, 10);
+    		if(now.equals(created)){
+	    		int idx = g.getGroup_idx();
+	    		int gcount = jdao.count(idx);
+	    		List<Join> joinMember = jdao.selectAll(idx);
+	    		boolean isJoined = false;
+	    		Member managerInfo = mdao.memberInfo(g.getManager());
+	    		String manager = (managerInfo != null) ? managerInfo.getNick() : "Unknown";
     %>
         <!-- 그룹 카드 1 -->
         <div class="group-card">
@@ -114,7 +117,7 @@
                 <p><%=g.getGroup_desc() %></p>
                 <div class="details">
                     현재 참가인원 <%=gcount%>/<%=g.getGroup_max() %><br>
-                    <strong>14일 후 종료 예정</strong>
+                    <strong><%=g.getDays() %>일 챌린지</strong>
                 </div>
             </div>
             <!-- MY 챌린지 팝업 -->
@@ -147,6 +150,7 @@
             	<button class="join-button" onClick="join(<%=idx%>, <%=count%>, <%=g.getGroup_max()%>)">참가하기</button>
             <%} %>
         </div>
+    <%} %>
     <%} %>
 
     </div>

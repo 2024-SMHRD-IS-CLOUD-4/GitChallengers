@@ -28,4 +28,13 @@ public class Pc_itemsDAO {
 		
 		return result;
 	}
+	
+	// 작성한 챌린지 수
+	public int count(int pc_idx) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.selectOne("Pc_itemsMapper.count", pc_idx);
+		sqlSession.close();
+		
+		return result;
+	}
 }

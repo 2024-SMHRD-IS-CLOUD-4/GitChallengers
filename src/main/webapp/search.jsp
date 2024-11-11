@@ -113,6 +113,7 @@
 				<%
 				if (type != null && type.equals("ch_review")) {
 					List<Review> list = (List<Review>) request.getAttribute("list");
+					int i = 1;
 					for (Review r : list) {
 						String content = r.getReview_content();
 						// 내용이 40자를 넘으면 자르고 "..."을 추가
@@ -121,7 +122,7 @@
 						}
 				%>
 				<tr>
-					<td><%=r.getReview_idx()%></td>
+					<td><%=i++%></td>
 					<td><%=r.getReview_title()%></td>
 					<td><%=content%></td>
 				</tr>

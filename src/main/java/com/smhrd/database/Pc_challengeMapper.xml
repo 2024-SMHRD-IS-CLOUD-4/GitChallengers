@@ -8,12 +8,18 @@
 	
 	<!-- 개인챌린지 생성 -->
 	<insert id="createCh" parameterType="Pc_challenge">
-		insert into ch_pc_challenge values (ch_pc_challenge_seq.nextval, #{pc_title}, #{pc_desc}, #{id}, sysdate)
+		insert into ch_pc_challenge values (ch_pc_challenge_seq.nextval, #{pc_title}, #{pc_desc}, #{id}, sysdate, #{days})
 	</insert>
 	
 	<!-- 개인챌린지 수 -->
 	<select id="count" resultType="int">
 		select count(*) from ch_pc_challenge where id=#{id}
 	</select>
+	
+	<!-- 개인 챌린지 방 정보 -->
+	<select id="info" resultType="Pc_challenge" parameterType="Pc_challenge">
+		select * from ch_pc_challenge where pc_idx=#{pc_idx} and id=#{id}
+	</select>
+
 
 </mapper>

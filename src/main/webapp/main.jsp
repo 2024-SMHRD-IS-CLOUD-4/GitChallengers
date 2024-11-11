@@ -121,7 +121,38 @@
                     </div>
                 </div>
             </div>
+
             <%}%>
+
+            <%--
+              <div class="top-section">
+            <div class="challenge">
+                <h2>진행 중인 챌린지</h2>
+                <div class="challenge-content" id="challengeContent">
+                    <%-- 진행 중인 챌린지가 없을 때 표시될 기본 메시지 --%>
+       
+<%--
+                     <% if (currentChallenges == null || currentChallenges.isEmpty()) { %>
+                        진행 중인 챌린지가 없습니다!
+                    <% } else { %>
+ --%>
+                        <%-- 진행 중인 챌린지가 있을 때의 콘텐츠 렌더링 --%>
+ <%--
+                         <% for (Challenge challenge : currentChallenges) { %>
+                            <div class="challenge-details">
+                                <img src="<%= challenge.getImageUrl() %>" alt="<%= challenge.getName() %>" class="challenge-image">
+                                <div class="challenge-description">
+                                    <h3><%= challenge.getName() %></h3>
+                                    <p><%= challenge.getDescription() %></p>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+  --%>
+
             <div class="status">
                 <h2>현재 챌린지 진행 상황</h2>
                 <div style="width: 25%; margin: auto;">

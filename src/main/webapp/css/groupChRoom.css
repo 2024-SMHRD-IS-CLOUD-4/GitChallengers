@@ -474,7 +474,6 @@ body {
     z-index: 1000;
 }
 .kickManager .kickManager_popup {
-/*팝업*/
     position: absolute;
     top: 50%;
     left: 50%;
@@ -483,18 +482,61 @@ body {
     background: #ffffff;
     border-radius: 20px;
     z-index: 1001;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
 }
-.kickManager .kickManager_popup .close_btn {
-    display: block;
+
+.kickManager .kickManager_popup h2, .kickManager .kickManager_popup h3 {
+    margin: 10px 0;
+}
+
+.kickManager .kickManager_popup select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.kickManager .kickManager_popup .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.kickManager .kickManager_popup .kick_btn {
+    display: inline-block;
     padding: 10px 20px;
-    background-color: rgb(116, 0, 0);
+    background-color: #ff0000; /* Red for kick button */
     border: none;
     border-radius: 5px;
     color: #fff;
     cursor: pointer;
-    transition: box-shadow 0.2s;
+    transition: background-color 0.2s;
     z-index: 1001;
+    flex: 1;
 }
-.kickManager .kickManager_popup h2{
-	text-align : center;
+
+.kickManager .kickManager_popup .kick_btn:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+.kickManager .kickManager_popup .close_btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffffff; /* White for close button */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    z-index: 1001;
+    flex: 1;
+}
+
+.kickManager .kickManager_popup .close_btn:hover {
+    background-color: #f0f0f0; /* Light gray on hover */
 }

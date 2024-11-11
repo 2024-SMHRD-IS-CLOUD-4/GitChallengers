@@ -105,24 +105,24 @@
         	<%if (joinMember >= 3 && joinMember-2 <= warningMember && member.getId().equals(group.getSub_manager())) {%>
         	<div class="kickManager">
         	<form action="kickManager" method="post">
-        		<div class="kickManager_popup">
-        			<input type="hidden" name="manager" value="<%=group.getManager()%>">
-        			<input type="hidden" name="idx" value="<%=idx%>">
-        			<h2>방장 추방</h2>
-        			<h3>다음 부방장 선택</h3>
-        			<select name="sub_manager">
-        			<%for(Join j : list) { 
-        				if(!j.getId().equals(group.getManager()) && !j.getId().equals(group.getSub_manager())) {%>
-        				<option value="<%=j.getId()%>"> <%=mdao.memberInfo(j.getId()).getNick() %>
-        			<%} %>
-        			<%} %>
-        			</select>
-        			<br>
-        			<button type="submit" class="kick_btn">추방</button>
-        			<button type="button" class="close_btn">닫기</button>
-        		</div>
-        	</form>
-        	</div>
+        		 <div class="kickManager_popup card">
+            <h2>방장 추방</h2>
+            <h3>다음 부방장 선택</h3>
+            <input type="hidden" name="manager" value="<%=group.getManager()%>">
+            <input type="hidden" name="idx" value="<%=idx%>">
+            <select name="sub_manager">
+                <% for (Join j : list) { 
+                    if (!j.getId().equals(group.getManager()) && !j.getId().equals(group.getSub_manager())) { %>
+                        <option value="<%=j.getId()%>"> <%=mdao.memberInfo(j.getId()).getNick() %> </option>
+                <% } } %>
+            </select>
+            <div class="button-group">
+                <button type="submit" class="kick_btn">추방</button>
+                <button type="button" class="close_btn">닫기</button>
+            </div>
+        </div>
+    </form>
+</div>
         	<button type="button" class="kick-button" >방장 추방</button>
         	<%} %>
         	<%if (!member.getId().equals(group.getManager()) && !member.getId().equals(group.getSub_manager())) {%>

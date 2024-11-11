@@ -49,6 +49,7 @@
 			    <input type="text" id="isbn" placeholder="ISBN 입력">
 			    <button type="button" class="prove" id="isbn-check-button">인증 확인</button>
 			    <span id="proveResult"></span>
+			    <button type="button" id="ocr-check-button">OCR 인증</button>
 			</div>
             <!-- 글 작성 버튼 -->
             <button class="action-button">리뷰 작성</button>
@@ -71,6 +72,8 @@ $(document).on('click', '.prove', function() {
 				if(book.isbn == input){
 					$('#proveResult').text("인증성공");
 					$('#is_approved').val("Y");
+				}else {
+					alert('인증 실패')
 				}
 			}
 		},

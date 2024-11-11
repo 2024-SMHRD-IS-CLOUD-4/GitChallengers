@@ -37,5 +37,13 @@ public class Pc_challengeDAO {
 		
 		return result;
 	}
-
+	
+	// 개인 챌린지 방 정보 
+	public Pc_challenge info(Pc_challenge c) {
+		SqlSession sqlSession = factory.openSession(true);
+		Pc_challenge result = sqlSession.selectOne("Pc_challengeMapper.info", c);
+		sqlSession.close();
+		
+		return result;	
+	}
 }

@@ -22,7 +22,7 @@
       <input type="text" name="pc_title" placeholder="책 이름">
       <textarea name="pc_desc" placeholder="소개글"></textarea>
       <div class="button-group">
-        <select name="duration">
+        <select name="days">
           <option value="7">7일</option>
           <option value="15">15일</option>
           <option value="30">30일</option>

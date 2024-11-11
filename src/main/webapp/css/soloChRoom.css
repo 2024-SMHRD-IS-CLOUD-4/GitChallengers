@@ -259,6 +259,24 @@ body {
 .button:hover {
     background-color: #e0b2b8;
 }
+.button2 {
+    margin-top: 20px;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    background-color: #f5d5da;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.button2:hover {
+    background-color: #e0b2b8;
+}
+
 .moderator-profile {
     position: relative;
 }

@@ -17,7 +17,7 @@ import com.smhrd.model.Pc_challengeDAO;
 public class createCh extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
+	// 개인챌린지 생성
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
@@ -26,8 +26,9 @@ public class createCh extends HttpServlet {
 		String id = member.getId();
 		String pc_title = request.getParameter("pc_title");
 		String pc_desc = request.getParameter("pc_desc");
+		int days = Integer.parseInt(request.getParameter("days"));
 		
-		Pc_challenge ch = new Pc_challenge(pc_title, pc_desc, id);
+		Pc_challenge ch = new Pc_challenge(pc_title, pc_desc, id, days);
 		Pc_challengeDAO dao = new Pc_challengeDAO();
 		int result = dao.createCh(ch);
 		

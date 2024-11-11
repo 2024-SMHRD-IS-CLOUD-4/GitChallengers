@@ -471,6 +471,7 @@ body {
     height: 100vh;
     overflow: hidden;
     background: rgba(0,0,0,0.5);
+    z-index: 1000;
 }
 .kickManager .kickManager_popup {
 /*팝업*/
@@ -481,6 +482,7 @@ body {
     padding: 20px;
     background: #ffffff;
     border-radius: 20px;
+    z-index: 1001;
 }
 .kickManager .kickManager_popup .close_btn {
     display: block;
@@ -491,6 +493,7 @@ body {
     color: #fff;
     cursor: pointer;
     transition: box-shadow 0.2s;
+    z-index: 1001;
 }
 .kickManager .kickManager_popup h2{
 	text-align : center;

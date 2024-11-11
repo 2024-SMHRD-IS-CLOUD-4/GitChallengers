@@ -63,9 +63,10 @@
     }
     int joinMember = jdao.count(idx); // 그룹인원 수 
 	int warningMember = wdao.warningCount(idx); // 신고 인원 수
+
 	int totalDays = group.getDays(); // 챌린지 전체 기간
 	int totalCount = idao.count(my); // 총 진행한 챌린지 수
-    
+
 %>
 
     <div class="header">

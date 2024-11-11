@@ -63,6 +63,8 @@
     }
     int joinMember = jdao.count(idx); // 그룹인원 수 
 	int warningMember = wdao.warningCount(idx); // 신고 인원 수
+	int totalDays = group.getDays(); // 챌린지 전체 기간
+	int totalCount = idao.count(my); // 총 진행한 챌린지 수
     
 %>
 
@@ -169,7 +171,11 @@
 			                <% } %>
                 	<% } %>
             </ul>
+            <%if (totalDays == totalCount) {%>
+            <button class="button2" onClick="location.href='review.jsp'">리뷰 작성하기</button>
+            <%}else { %>
             <button class="button">오늘의 챌린지 작성</button>
+            <%} %>
         </div>
 
         <!-- 카드 영역 -->

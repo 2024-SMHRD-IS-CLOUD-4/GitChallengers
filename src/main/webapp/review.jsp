@@ -22,7 +22,6 @@
         <!-- Back Button -->
         <button class="back-button" onclick="history.back()">←</button>
 
-        <span id="proveResult"></span>
 	<form action="review" method="post">
         <div class="title-container">
             <input type="text" class="title" placeholder="리뷰 제목" name="review_title">
@@ -47,8 +46,9 @@
             </div>
 			<!-- ISBN 입력칸 -->
 			<div class="isbn-container">
-			    <input type="text" id="isbn-input" placeholder="ISBN 입력">
-			    <button id="isbn-check-button">인증 확인</button>
+			    <input type="text" id="isbn" placeholder="ISBN 입력">
+			    <button type="button" class="prove" id="isbn-check-button">인증 확인</button>
+			    <span id="proveResult"></span>
 			</div>
             <!-- 글 작성 버튼 -->
             <button class="action-button">리뷰 작성</button>

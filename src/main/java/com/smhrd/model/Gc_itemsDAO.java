@@ -38,5 +38,14 @@ public class Gc_itemsDAO {
 		return result;
 	}
 	
+	// 그룹안에서 작성한 챌린지
+	public int count(Gc_items i) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.selectOne("Gc_itemsMapper.count", i);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 
 }

@@ -18,7 +18,7 @@
   <div class="form-container">
     <span class="back-arrow" onclick="history.back()">←</span>
     <br><br>
-    <form action="createCh" method="post">
+    <form id="challengeForm" action="createCh" method="post">
       <input type="text" name="pc_title" placeholder="책 이름">
       <textarea name="pc_desc" placeholder="소개글"></textarea>
       <div class="button-group">
@@ -28,7 +28,7 @@
           <option value="30">30일</option>
         </select>
       </div>
-      <button type="submit" class="submit-button">챌린지 생성</button>
+      <button type="button" class="submit-button" onclick="confirmChallengeCreation()">챌린지 생성</button>
     </form>
   </div>
 
@@ -38,6 +38,16 @@
       buttons.forEach(btn => btn.classList.remove('selected'));
       button.classList.add('selected');
     }
+
+    function confirmChallengeCreation() {
+        const confirmation = confirm('챌린지 생성 후에는 수정이 불가능합니다. 챌린지를 생성하겠습니까?');
+        if (confirmation) {
+          document.getElementById('challengeForm').submit();
+        } else {
+          alert('챌린지 생성을 취소했습니다.');
+        }
+      }
   </script>
 </body>
 </html>
+

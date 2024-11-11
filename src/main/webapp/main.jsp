@@ -1,3 +1,7 @@
+<%@page import="com.smhrd.model.Gc_itemsDAO"%>
+<%@page import="com.smhrd.model.Gc_items"%>
+<%@page import="java.time.temporal.ChronoUnit"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="com.smhrd.controller.groupCon"%>
 <%@page import="com.smhrd.model.ReviewDAO"%>
 <%@page import="com.smhrd.model.Review"%>
@@ -28,6 +32,7 @@
 </head>
 
 <body>
+<script src="js/jquery-3.7.1.min.js"></script>
 	<%
 		Member member = (Member) session.getAttribute("member");
 		if(member == null) {
@@ -40,6 +45,7 @@
 		Pc_challengeDAO pcdao = new Pc_challengeDAO();
 		Member_infoDAO infodao = new Member_infoDAO();
 		ReviewDAO reviewdao = new ReviewDAO();
+		Gc_itemsDAO gidao = new Gc_itemsDAO();
 		List<Join> list = jdao.selectMy(member.getId()); // 내 그룹 불러오기
 		List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
 		Member_info member_info = infodao.info(member.getId()); // 본인 정보 가져오기
@@ -47,7 +53,9 @@
 		List<Review> reviewList = reviewdao.bestReview(); // 리뷰 리스트 불러오기
 		int ch_count = member_info.getCh_count(); // 챌린지 도전 횟수
 		int ch_suc_count = reviewdao.count(member.getId()); // 챌린지 성공 횟수
-		Group latestGroup = (Group) request.getAttribute("latestGroup");
+		LocalDate now = LocalDate.now(); // 현재 날짜 구하기 (시스템 시계, 시스템 타임존)
+		int days = 0;
+		int progress = 0; 
 		
 	%>
 		
@@ -92,7 +100,7 @@
         <div class="top-section">
         <% 
     
-    if (latestGroup == null) {%>
+    if (list == null || list.isEmpty()) {%>
     	<div class="challenge">
         <h2>진행중인 챌린지</h2>
         <div class="challenge-content">
@@ -109,49 +117,37 @@
         
             <div class="challenge">
                 <h2>진행중인 챌린지</h2>
+                <select id="myCh">
+                	<%int i = 0;
+                	for (Join j : list) {
+                		Group groupName = gdao.groupInfo(j.getGroup_idx());
+                	%>
+                	<option value="<%=i++%>"><%=groupName.getGroup_name() %></option>
+                	<%} %>
+                </select>
+                	<%	
+                		int group_idx =  list.get(0).getGroup_idx();
+                		Group myGroup = gdao.groupInfo(group_idx);
+                		String created = myGroup.getCreated_at();
+                		String dateOnly = created.split(" ")[0];
+                		LocalDate start = LocalDate.parse(dateOnly);
+                		long daysBetween = start.until(now, ChronoUnit.DAYS);
+                		days = myGroup.getDays();
+                		progress = gidao.count(new Gc_items(group_idx, member.getId()));
+                	%>
                 <div class="challenge-content">
                     <img src="img/pigbook-1.jfif" alt="책 이미지" class="challenge-image">
                     <div class="challenge-details">
-                        <h3><%= latestGroup.getGroup_name() %></h3>
-                        <p>6일차</p>
-               			 <p>페이지 : </p>
+                        <h3 id="title"><%= myGroup.getGroup_name()%></h3>
+                        <p id="date"><%=daysBetween+1%>일차</p>
                         <div class="user-input">
-                            <span>자유 내용</span>
+                            <span id="content"><%=myGroup.getGroup_desc() %></span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <%}%>
-
-            <%--
-              <div class="top-section">
-            <div class="challenge">
-                <h2>진행 중인 챌린지</h2>
-                <div class="challenge-content" id="challengeContent">
-                    <%-- 진행 중인 챌린지가 없을 때 표시될 기본 메시지 --%>
-       
-<%--
-                     <% if (currentChallenges == null || currentChallenges.isEmpty()) { %>
-                        진행 중인 챌린지가 없습니다!
-                    <% } else { %>
- --%>
-                        <%-- 진행 중인 챌린지가 있을 때의 콘텐츠 렌더링 --%>
- <%--
-                         <% for (Challenge challenge : currentChallenges) { %>
-                            <div class="challenge-details">
-                                <img src="<%= challenge.getImageUrl() %>" alt="<%= challenge.getName() %>" class="challenge-image">
-                                <div class="challenge-description">
-                                    <h3><%= challenge.getName() %></h3>
-                                    <p><%= challenge.getDescription() %></p>
-                                </div>
-                            </div>
-                        <% } %>
-                    <% } %>
-                </div>
-            </div>
-        </div>
-  --%>
 
             <div class="status">
                 <h2>현재 챌린지 진행 상황</h2>
@@ -297,61 +293,95 @@
     </div>
     <script src="./js/main.js"></script>
 <script type="text/javascript">
-// 진행 상황 차트 생성 함수
-function createProgressChart(chartElementId, progressValue) {
-    const ctx = document.getElementById(chartElementId).getContext('2d');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['진행된 페이지'],
-            datasets: [{
-                data: [progressValue, 100 - progressValue],
-                backgroundColor: ['#B3261E', '#ffffff'],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'bottom'
-                }
-            },
-            cutout: '70%'
-        }
-    });
-}
-
-// 완료 확률 차트 생성 함수
-function createCompletionChart(chartElementId, completionValue) {
-    const ctx = document.getElementById(chartElementId).getContext('2d');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['완료 확률'],
-            datasets: [{
-                data: [completionValue, 100 - completionValue],
-                backgroundColor: ['#4867FF', '#ffffff'],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'bottom'
-                }
-            },
-            cutout: '70%'
-        }
-    });
-}
-
-createProgressChart('progressChart', 70); 
-createCompletionChart('completionChart', <%=(ch_count != 0) ? ch_suc_count/ch_count * 100 : 0%>);
-
+$(document).ready(function() {
+	// 진행중인 챌린지 변경
+	$('#myCh').change(function() {
+		var listIdx = $(this).val();
+		$.ajax({
+			url: 'main.jsp',
+			type: 'POST',
+			data: {
+				'listIdx' : listIdx
+			},
+			success: function(response) {
+				if(listIdx == 0){
+					$('#title').html('<%= gdao.groupInfo(list.get(0).getGroup_idx()).getGroup_name()%>');					
+					$('#date').html('<%= LocalDate.parse(gdao.groupInfo(list.get(0).getGroup_idx()).getCreated_at().split(" ")[0]).until(now, ChronoUnit.DAYS) +1%>일차');					
+					$('#content').html('<%= gdao.groupInfo(list.get(0).getGroup_idx()).getGroup_desc()%>');
+					createProgressChart('progressChart', <%=(gdao.groupInfo(list.get(0).getGroup_idx()).getDays() != 0) ? (gidao.count(new Gc_items(list.get(0).getGroup_idx(), member.getId()))/gdao.groupInfo(list.get(0).getGroup_idx()).getDays()) * 100 : 0%>);
+				}else if(listIdx == 1){
+					$('#title').html('<%= gdao.groupInfo(list.get(1).getGroup_idx()).getGroup_name()%>');
+					$('#date').html('<%= LocalDate.parse(gdao.groupInfo(list.get(1).getGroup_idx()).getCreated_at().split(" ")[0]).until(now, ChronoUnit.DAYS) +1%>일차');
+					$('#content').html('<%= gdao.groupInfo(list.get(1).getGroup_idx()).getGroup_desc()%>');
+					createProgressChart('progressChart', <%=(gdao.groupInfo(list.get(1).getGroup_idx()).getDays() != 0) ? (gidao.count(new Gc_items(list.get(1).getGroup_idx(), member.getId()))/gdao.groupInfo(list.get(1).getGroup_idx()).getDays()) * 100 : 0%>);
+				}else if(listIdx == 2){
+					$('#title').html('<%= gdao.groupInfo(list.get(2).getGroup_idx()).getGroup_name()%>');
+					$('#date').html('<%= LocalDate.parse(gdao.groupInfo(list.get(2).getGroup_idx()).getCreated_at().split(" ")[0]).until(now, ChronoUnit.DAYS) +1%>일차');
+					$('#content').html('<%= gdao.groupInfo(list.get(2).getGroup_idx()).getGroup_desc()%>');
+					createProgressChart('progressChart', <%=(gdao.groupInfo(list.get(2).getGroup_idx()).getDays() != 0) ? (gidao.count(new Gc_items(list.get(2).getGroup_idx(), member.getId()))/gdao.groupInfo(list.get(2).getGroup_idx()).getDays()) * 100 : 0%>);
+				}
+				
+			},
+			error: function(xhr, status, error) {
+	            alert("서버 오류 발생");
+	        }
+		});
+	});
+	
+	// 진행 상황 차트 생성 함수
+	function createProgressChart(chartElementId, progressValue) {
+	    const ctx = document.getElementById(chartElementId).getContext('2d');
+	    new Chart(ctx, {
+	        type: 'doughnut',
+	        data: {
+	            labels: ['진행된 페이지'],
+	            datasets: [{
+	                data: [progressValue, 100 - progressValue],
+	                backgroundColor: ['#B3261E', '#ffffff'],
+	                hoverOffset: 4
+	            }]
+	        },
+	        options: {
+	            responsive: true,
+	            plugins: {
+	                legend: {
+	                    display: true,
+	                    position: 'bottom'
+	                }
+	            },
+	            cutout: '70%'
+	        }
+	    });
+	}
+	
+	// 완료 확률 차트 생성 함수
+	function createCompletionChart(chartElementId, completionValue) {
+	    const ctx = document.getElementById(chartElementId).getContext('2d');
+	    new Chart(ctx, {
+	        type: 'doughnut',
+	        data: {
+	            labels: ['완료 확률'],
+	            datasets: [{
+	                data: [completionValue, 100 - completionValue],
+	                backgroundColor: ['#4867FF', '#ffffff'],
+	                hoverOffset: 4
+	            }]
+	        },
+	        options: {
+	            responsive: true,
+	            plugins: {
+	                legend: {
+	                    display: true,
+	                    position: 'bottom'
+	                }
+	            },
+	            cutout: '70%'
+	        }
+	    });
+	}
+	createProgressChart('progressChart', <%=(days != 0) ? progress/days * 100 : 0%>);
+	createCompletionChart('completionChart', <%=(ch_count != 0) ? ch_suc_count/ch_count * 100 : 0%>);
+});
 </script>
 </body>
 

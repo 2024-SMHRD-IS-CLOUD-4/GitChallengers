@@ -26,8 +26,6 @@
         <div class="title-container">
             <input type="text" class="title" placeholder="리뷰 제목" name="review_title">
             <input type="hidden" name = "is_approved" value="N" id="is_approved">
-            <!-- 초록색 체크 표시 -->
-            <span id="checkmark" style="display: none;">✅</span>
         </div>
 
         <!-- Label for Image Upload -->

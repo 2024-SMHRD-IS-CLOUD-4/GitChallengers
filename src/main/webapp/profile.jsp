@@ -110,9 +110,9 @@
 
 		<!-- Profile Section -->
 		<div class="profile-section">
-			<!-- Profile Picture and Edit Button -->
+<!-- Profile Picture and Edit Button -->
 			<div class="profile-picture">
-				<img src="profile_img/<%=member_info.getProfile_img()%>"
+				<img src="<%=member_info.getProfile_img() != null ? "profile_img/" + member_info.getProfile_img() : "img/team-logo.png" %>"
 					alt="Profile Image">
 				<h2><%=profileMember.getNick()%></h2>
 				<%

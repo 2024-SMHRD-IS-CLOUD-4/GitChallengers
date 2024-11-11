@@ -31,10 +31,29 @@
 		select * from ch_member where id=#{id}
 	</select>
 	
+
 	 <!-- 회원 탈퇴 -->
-    <delete id="deleteMember"  >
-        DELETE FROM ch_member
-        WHERE id = #{id,jdbcType=VARCHAR} AND pw = #{pw,jdbcType=VARCHAR}
-    </delete>
+	 
+	<!-- CH_GC_ITEMS에서 회원의 데이터를 삭제 -->
+<delete id="deleteFromGcItems" >
+    DELETE FROM ch_gc_items WHERE id = #{id}
+</delete>
+
+<!-- CH_GROUP에서 관리자 또는 부방장이 해당하는 그룹을 삭제 -->
+<delete id="deleteFromGroup" >
+    DELETE FROM ch_group WHERE manager = #{id} 
+</delete>
+
+<!-- CH_JOIN에서 해당 회원이 가입한 그룹을 삭제 -->
+<delete id="deleteFromJoin" >
+    DELETE FROM ch_join WHERE id = #{id}
+</delete>
+
+<!-- CH_MEMBER에서 회원 데이터를 삭제 -->
+<delete id="deleteFromMember" >
+    DELETE FROM ch_member WHERE id = #{id}
+</delete>
+
+	
 	
 </mapper>

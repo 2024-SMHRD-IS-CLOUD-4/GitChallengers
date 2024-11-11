@@ -77,13 +77,32 @@ public class MemberDAO {
 	//회원 탈퇴
 	public int deleteMember(Member m) {
 		SqlSession sqlSession = factory.openSession(true);
-		int result = sqlSession.delete("MemberMapper.deleteMember", m);
-		sqlSession.close();
 		
-		return result;
+        try {
+        	int deletedRows = 0;
+        	// 4. CH_MEMBER에서 회원 데이터를 삭제
+        	deletedRows += sqlSession.delete("MemberMapper.deleteFromMember", m);
+        	// 2. CH_JOIN에서 해당 회원이 가입한 그룹을 먼저 삭제
+        	deletedRows += sqlSession.delete("MemberMapper.deleteFromJoin", m);
+        	
+        	// 3. CH_GROUP에서 해당 회원과 관련된 그룹을 삭제 (관리자/부방장 관련 그룹 삭제)
+        	deletedRows += sqlSession.delete("MemberMapper.deleteFromGroup", m);
+        	
+        	 // 1. CH_GC_ITEMS에서 해당 회원의 데이터를 삭제
+            deletedRows += sqlSession.delete("MemberMapper.deleteFromGcItems", m);
+
+
+            // 트랜잭션 커밋
+            sqlSession.commit();
+            return deletedRows;
+        } catch (Exception e) {
+            // 오류 발생 시 롤백
+            sqlSession.rollback();
+            throw e;
+        } finally {
+            sqlSession.close();
+		
 	}
-
-
-
 	
+}
 }

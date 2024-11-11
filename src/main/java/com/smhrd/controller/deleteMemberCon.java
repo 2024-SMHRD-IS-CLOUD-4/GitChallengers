@@ -26,7 +26,7 @@ public class deleteMemberCon extends HttpServlet {
 		MemberDAO dao = new MemberDAO();
 		int result = dao.deleteMember(deleteMember);
 		
-		if (result == 1) { // 탈퇴 성공
+		if (result > 0) { // 탈퇴 성공
 			HttpSession session = request.getSession();
             session.invalidate(); // 세션 무효화
             response.sendRedirect("login.jsp"); // 로그인 페이지로 이동

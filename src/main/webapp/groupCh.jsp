@@ -45,7 +45,7 @@
 <div id="pointsModal" class="modal">
     <div class="modal-content">
         <h2>포인트 소모 확인</h2>
-        <p>이 그룹 챌린지를 생성하면 포인트가 소모됩니다. 계속하시겠습니까?</p>
+        <p>이 그룹 챌린지를 생성하면 1000포인트가 소모됩니다. 계속하시겠습니까?</p>
         <button id="confirmBtn">확인</button>
         <button id="cancelBtn">취소</button>
     </div>

@@ -70,16 +70,16 @@ $(document).on('click', '.prove', function() {
 			if (data && data.items && data.items.length > 0) { // 데이터가 있으면
 				var book = data.items[0];
 				if(book.isbn == input){
-					$('#proveResult').text("인증성공");
+					$('#proveResult').text("인증성공").css({"color": "green", "font-weight": "bold"}); // Set text color to green on success
 					$('#is_approved').val("Y");
-					$('#success-icon').show(); // Show the success icon
+					$('#success-icon').css("color", "green").show(); // Show the success icon
 				}else {
-					$('#proveResult').text("인증 실패");
+					$('#proveResult').text("인증 실패").css({"color": "red", "font-weight": "bold"}); // Set text color to red on failure
 					$('#success-icon').hide(); // Hide the success icon if failed
 					alert('인증 실패');
 				}
 			} else {
-				$('#proveResult').text("인증 실패");
+				$('#proveResult').text("인증 실패").css({"color": "red", "font-weight": "bold"}); // Set text color to red on failure
 				$('#success-icon').hide(); // Hide the success icon if failed
 				alert('인증 실패');
 			}

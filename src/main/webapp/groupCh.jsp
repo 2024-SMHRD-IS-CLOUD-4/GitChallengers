@@ -25,7 +25,7 @@
         <h2><input type="text" placeholder="그룹 이름" name="group_name" required></h2>
         <input type="hidden" name="manager" value="<%= member.getId() %>">
         <input type="text" placeholder="부방장" name="sub_manager" id="sub_manager" required>
-        <button type="button" id="idCheck">id 확인</button>
+        <button type="button" id="idCheck">ID 확인</button>
         <span id="idCheckResult"></span>
         <textarea placeholder="그룹 소개글" name="group_desc" required></textarea>
         <div class="button-group">
@@ -96,7 +96,7 @@ window.onclick = function(event) {
 						$("#idCheckResult").text("확인");
 						idCheckPassed = true;
 					}else { 
-						$("#idCheckResult").text("등록되지 않은 id");
+						$("#idCheckResult").text("등록되지 않은 ID");
 						idCheckPassed = false;
 					}
 				},
@@ -108,7 +108,7 @@ window.onclick = function(event) {
 
 		$('#createGroup').on('click', () => {
 			if (!idCheckPassed) {
-				alert('부방장 id 확인이 필요합니다.');
+				alert('부방장 ID 확인이 필요합니다.');
 				return;
 			}
 

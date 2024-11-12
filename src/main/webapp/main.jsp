@@ -196,7 +196,7 @@
                     </div>
                 </div>
             </div>
-           <div class="best-review-section">
+           <div class="best-review-section" onClick="location.href='pReview.jsp?idx=<%=reviewList.get(0).getReview_idx()%>'">
                 <h2>BEST REVIEW</h2>
                 <div class="review-item">
                     <img src="img/<%=reviewList.get(0).getReview_ocr() %>" alt="Book Image" class="review-image">
@@ -205,7 +205,7 @@
                         <p><%=(reviewList != null && !reviewList.isEmpty()) ? reviewList.get(0).getReview_content() : "리뷰가 없습니다" %></p>
                     </div>
                 </div>
-                <div class="review-item">
+                <div class="review-item" onClick="location.href='pReview.jsp?idx=<%=reviewList.get(1).getReview_idx()%>'">
                     <img src="img/<%=reviewList.get(1).getReview_ocr() %>" alt="Book Image" class="review-image">
                     <div class="review-content">
                        <h3><%=(reviewList != null && !reviewList.isEmpty()) ? reviewList.get(1).getReview_title() : "리뷰가 없습니다" %></h3>

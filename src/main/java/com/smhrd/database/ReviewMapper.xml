@@ -33,7 +33,7 @@
 	
 	<!-- 리뷰 작성 -->
 	<insert id="reviewWrite" parameterType="Review">
-		insert into ch_review values (ch_review_seq.nextval, #{id}, #{review_content}, null, #{is_approved}, #{review_heart}, #{review_title})
+		insert into ch_review values (ch_review_seq.nextval, #{id}, #{review_content}, #{review_ocr, jdbcType=VARCHAR}, #{is_approved}, #{review_heart}, #{review_title})
 	</insert>
 	
 </mapper>

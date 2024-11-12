@@ -1,9 +1,9 @@
 package com.smhrd.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @AllArgsConstructor
 public class Review {
 
@@ -45,6 +45,34 @@ public class Review {
 		this.review_ocr = review_ocr;
 		this.is_approved = is_approved;
 		this.review_heart = review_heart;
+		this.review_title = review_title;
+	}
+
+	public void setReview_idx(int review_idx) {
+		this.review_idx = review_idx;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setReview_content(String review_content) {
+		this.review_content = review_content;
+	}
+
+	public void setReview_ocr(String review_ocr) {
+		this.review_ocr = review_ocr;
+	}
+
+	public void setIs_approved(char is_approved) {
+		this.is_approved = is_approved;
+	}
+
+	public void setReview_heart(int review_heart) {
+		this.review_heart = review_heart;
+	}
+
+	public void setReview_title(String review_title) {
 		this.review_title = review_title;
 	}
 

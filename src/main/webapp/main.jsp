@@ -199,14 +199,14 @@
            <div class="best-review-section">
                 <h2>BEST REVIEW</h2>
                 <div class="review-item">
-                    <img src="img/pigbook-1.jfif" alt="Book Image" class="review-image">
+                    <img src="img/<%=reviewList.get(0).getReview_ocr() %>" alt="Book Image" class="review-image">
                     <div class="review-content">
                         <h3><%=(reviewList != null && !reviewList.isEmpty()) ? reviewList.get(0).getReview_title() : "리뷰가 없습니다" %></h3>
                         <p><%=(reviewList != null && !reviewList.isEmpty()) ? reviewList.get(0).getReview_content() : "리뷰가 없습니다" %></p>
                     </div>
                 </div>
                 <div class="review-item">
-                    <img src="img/pigbook-1.jfif" alt="Book Image" class="review-image">
+                    <img src="img/<%=reviewList.get(1).getReview_ocr() %>" alt="Book Image" class="review-image">
                     <div class="review-content">
                        <h3><%=(reviewList != null && !reviewList.isEmpty()) ? reviewList.get(1).getReview_title() : "리뷰가 없습니다" %></h3>
                         <p><%=(reviewList != null && !reviewList.isEmpty()) ? reviewList.get(1).getReview_content() : "리뷰가 없습니다" %></p>

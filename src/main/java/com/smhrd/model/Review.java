@@ -37,6 +37,17 @@ public class Review {
 		this.review_title = review_title;
 	}
 
+	public Review(String id, String review_content, String review_ocr, char is_approved, int review_heart,
+			String review_title) {
+		super();
+		this.id = id;
+		this.review_content = review_content;
+		this.review_ocr = review_ocr;
+		this.is_approved = is_approved;
+		this.review_heart = review_heart;
+		this.review_title = review_title;
+	}
+
 
 	
 	

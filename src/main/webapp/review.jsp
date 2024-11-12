@@ -45,8 +45,9 @@
 
         <div class="footer">
             <div class="toggle-buttons">
-                <button type="button" id="personal-button" onclick="toggleSelection('personal')">추천</button>
-                <button type="button" id="group-button" onclick="toggleSelection('group')">비추천</button>
+                <button type="button" id="personal-button" onclick="toggleSelection('personal'); setRecommendValue(1);">추천</button>
+                <button type="button" id="group-button" onclick="toggleSelection('group'); setRecommendValue(0);">비추천</button>
+                <input type="hidden" id="setrecommend" name="review_heart" value="0">
             </div>
 			<!-- ISBN 입력칸 -->
 			<div class="isbn-container">
@@ -64,6 +65,11 @@
 
 <script src="./js/review.js"></script>
 <script type="text/javascript">
+function setRecommendValue(actionValue) {
+    document.getElementById('setrecommend').value = actionValue;
+  }
+
+
 $(document).on('click', '.prove', function() {
 	var input = $('#isbn').val();
 	

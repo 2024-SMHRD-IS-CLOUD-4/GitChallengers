@@ -29,8 +29,9 @@ public class review extends HttpServlet {
 		String review_title = request.getParameter("review_title");
 		String review_ocr = request.getParameter("review_ocr");
 		System.out.println(review_ocr);
+		int review_heart = Integer.parseInt(request.getParameter("review_heart"));
 		
-		Review review = new Review(id, review_content, review_ocr, is_approved, review_title);
+		Review review = new Review(id, review_content, review_ocr, is_approved, review_heart, review_title);
 		ReviewDAO dao = new ReviewDAO();
 		int result = dao.reviewWrite(review);
 		

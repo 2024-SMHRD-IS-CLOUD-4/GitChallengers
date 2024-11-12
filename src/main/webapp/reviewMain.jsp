@@ -95,7 +95,9 @@
                 <div class="card-body"><%=r.getReview_content() %></div>
             </div>
             <div class="card-stats">
+            	<%if (r.getReview_heart() == 1) {%>
                 <span class="recommendation positive">추천해요!</span><br>
+                <%} %>
                 좋아요 <%=likedao.likeCount(review_idx) %>개<br>
                 댓글 <%=count %>개
             </div>

@@ -66,7 +66,7 @@
 	List<Pc_challenge> pcList = pcdao.selectAll(member.getId()); // 개인 챌린지 리스트
 	ReviewDAO reviewdao = new ReviewDAO();
 	int ch_count = member_info.getCh_count(); // 챌린지 도전 횟수
-	int ch_suc_count = reviewdao.count(member.getId()); // 챌린지 성공 횟수
+	int ch_suc_count = reviewdao.count(member_info.getId()); // 챌린지 성공 횟수
 	%>
 
 	<!-- Main Container -->
@@ -215,7 +215,7 @@
 					<div class="book-review"
 						onclick="showScrollMessage(); location.href='reviewBook?idx=<%=r.getReview_idx()%>'">
 						<div class="book-cover-container">
-							<img src="img/bestbook-<%=r.getReview_idx()%>.jpg"
+							<img src="img/<%=r.getReview_ocr()%>"
 								class="book-cover" alt="Book Cover" />
 							<div class="review">
 								<h3><%=r.getReview_title()%></h3>

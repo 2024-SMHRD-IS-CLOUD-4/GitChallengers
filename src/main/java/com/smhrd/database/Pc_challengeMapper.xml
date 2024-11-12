@@ -3,7 +3,7 @@
 <mapper namespace="Pc_challengeMapper">
 	<!-- 개인 챌린지 리스트 불러오기 -->
 	<select id="selectAll" resultType="Pc_challenge">
-		select * from ch_pc_challenge where id=#{id}
+		select * from ch_pc_challenge where id=#{id} order by created_at desc
 	</select>
 	
 	<!-- 개인챌린지 생성 -->

@@ -50,35 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log('카드가 3개씩 배치되도록 설정되었습니다.');
     }
 });
-// 그래프 초기화 코드 (soloChRoom.js)
-document.addEventListener("DOMContentLoaded", () => {
-    const ctx = document.getElementById('challengeProgressChart').getContext('2d');
-
-    // 챌린지 진행 데이터 (예시)
-    const progressData = {
-        labels: ['완료한 페이지', '남은 페이지'],
-        datasets: [{
-            data: [70, 30], // 진행도 예시 (70% 완료, 30% 남음)
-            backgroundColor: ['#4caf50', '#e0e0e0'],
-            hoverOffset: 4
-        }]
-    };
-
-    // 도넛 차트 생성
-    const challengeProgressChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: progressData,
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'bottom'
-                }
-            }
-        }
-    });
-});
 
 // 돋보기 버튼 클릭 시 검색창 및 옵션 표시
 document.getElementById('searchIcon').addEventListener('click', function () {

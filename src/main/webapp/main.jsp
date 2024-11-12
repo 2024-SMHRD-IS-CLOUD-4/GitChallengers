@@ -395,7 +395,7 @@ $(document).ready(function() {
 			success: function(response) {
 				var progress = response.progress;
 				$('#title').html(response.title);
-				$('#date').html(response.daysBetween);
+				$('#date').html(response.daysBetween + 1 +'일차');
 				$('#content').html(response.groupDesc);
 				createProgressChart('progressChart', progress/<%=days%> *100);
 

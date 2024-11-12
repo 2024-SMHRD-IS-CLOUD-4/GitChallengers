@@ -209,7 +209,7 @@
 				alert('가입중인 챌린지가 3개 입니다');
 			}else if(<%=infodao.info(member.getId()).getPoint()%> < 1000){
 				alert('포인트 부족');
-			}else{
+			}else {
 	        	var id = "<%=member.getId() %>";
 				$.ajax({
 				   url: 'groupJoinCon',

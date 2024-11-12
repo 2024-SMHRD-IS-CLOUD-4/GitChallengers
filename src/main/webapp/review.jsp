@@ -45,7 +45,7 @@
             </div>
 			<!-- ISBN 입력칸 -->
 			<div class="isbn-container">
-			    <button type="button" id="ocr-check-button">OCR 인증</button>
+			    <button type="button" id="ocr-check-button" onClick="location.href='ocr.jsp'">OCR 인증</button>
 			    <input type="text" id="isbn" placeholder="ISBN 입력">
 			    <button type="button" class="prove" id="isbn-check-button">ISBN 인증</button>
 			    <span id="proveResult"></span>

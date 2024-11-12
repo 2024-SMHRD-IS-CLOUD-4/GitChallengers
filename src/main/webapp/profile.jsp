@@ -188,13 +188,13 @@
 					<div>
 						<p>챌린지 완료 확률</p>
 						<%
-						if (member_info.getCh_count() == 0) {
+						if (ch_count == 0) {
 						%>
 						<span>0%</span>
 						<%
 						} else {
 						%>
-						<span><%=member_info.getCh_suc_count() / member_info.getCh_count() * 100%>%</span>
+						<span><%=ch_suc_count/ ch_count * 100%>%</span>
 						<%
 						}
 						%>
@@ -255,11 +255,51 @@
 				</div>
 			</div>
 		</div>
+		</div>
 
 
 		<script src="./js/profile.js"></script>
 
 		<script>
+		// Chart.js 라이브러리 로드
+		const script = document.createElement('script');
+		script.src = "https://cdn.jsdelivr.net/npm/chart.js";
+		document.head.appendChild(script);
+		var success = 0;
+		if (<%=ch_count%> != 0) {
+			success = <%=ch_suc_count%>/<%=ch_count%> *100;	
+		}else {
+			success = 0;
+		}
+		script.onload = function () {
+		    const ctx = document.getElementById('challengeCompletionChart').getContext('2d');
+		    const data = {
+		        labels: ['완료된 챌린지', '미완료된 챌린지'],
+		        datasets: [{
+		            data: [success, 100-success], // 예시로 75% 완료된 상태를 표시합니다.
+		            backgroundColor: ['#4caf50', '#e8e4de'],
+		            hoverBackgroundColor: ['#45a049', '#ccc'],
+		            borderWidth: 1
+		        }]
+		    };
+
+		    const options = {
+		        cutout: '70%', // 도넛형 그래프로 만들기 위해 가운데 부분을 잘라냅니다.
+		        responsive: true,
+		        plugins: {
+		            legend: {
+		                position: 'bottom'
+		            }
+		        }
+		    };
+
+		    new Chart(ctx, {
+		        type: 'doughnut',
+		        data: data,
+		        options: options
+		    });
+		};
+		
 			// 팔로우
 			$(document).on(
 					'click',

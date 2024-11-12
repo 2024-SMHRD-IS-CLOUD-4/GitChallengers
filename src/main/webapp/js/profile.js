@@ -38,64 +38,9 @@ document.querySelectorAll('.popup-button').forEach(button => {
         alert(`챌린지 ${this.textContent} 을 선택했습니다.`);
     });
 });
-// Chart.js 라이브러리 로드
-const script = document.createElement('script');
-script.src = "https://cdn.jsdelivr.net/npm/chart.js";
-document.head.appendChild(script);
-
-script.onload = function () {
-    const ctx = document.getElementById('challengeCompletionChart').getContext('2d');
-    const data = {
-        labels: ['완료된 챌린지', '미완료된 챌린지'],
-        datasets: [{
-            data: [75, 25], // 예시로 75% 완료된 상태를 표시합니다.
-            backgroundColor: ['#4caf50', '#e8e4de'],
-            hoverBackgroundColor: ['#45a049', '#ccc'],
-            borderWidth: 1
-        }]
-    };
-
-    const options = {
-        cutout: '70%', // 도넛형 그래프로 만들기 위해 가운데 부분을 잘라냅니다.
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'bottom'
-            }
-        }
-    };
-
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: data,
-        options: options
-    });
-};
 
 
-/*// 팔로우 버튼 클릭 시 팔로워 숫자 업데이트
-const followButton = document.getElementById('followButton');
-const followerCountElement = document.getElementById('followerCount'); // 팔로워 수를 표시하는 요소의 ID
-const followingCountElement = document.getElementById('followingCount'); // 팔로잉 수를 표시하는 요소의 ID
 
-followButton.addEventListener('click', function () {
-    const button = this;
-    let followerCount = parseInt(followerCountElement.textContent, 10); // 현재 팔로워 수를 가져오기
-
-    if (button.classList.contains('followed')) {
-        // 언팔로우 상태로 변경
-        button.classList.remove('followed');
-        button.textContent = '팔로우';
-        followerCount -= 1; // 팔로워 수 감소
-    } else {
-        // 팔로우 상태로 변경
-        button.classList.add('followed');
-        button.textContent = '언팔로우';
-        followerCount += 1; // 팔로워 수 증가
-    }
-
-    followerCountElement.textContent = followerCount; // 변경된 팔로워 수 업데이트
-});*/
 // 돋보기 버튼 클릭 시 검색창 및 옵션 표시
 document.getElementById('searchIcon').addEventListener('click', function () {
     const navLinks = document.querySelector('.nav-links');

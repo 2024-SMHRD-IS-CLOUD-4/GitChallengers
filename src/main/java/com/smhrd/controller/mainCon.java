@@ -36,8 +36,6 @@ public class mainCon extends HttpServlet {
         HttpSession session = request.getSession();
         Member member = (Member) session.getAttribute("member");
         String id = member.getId();
-        System.out.println(id);
-        System.out.println(group_idx);
 
         LocalDate now = LocalDate.now();
         GroupDAO gdao = new GroupDAO();

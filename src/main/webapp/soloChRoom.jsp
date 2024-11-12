@@ -81,7 +81,6 @@
 	                    <input type="submit" value="검색">
                 	</form>
             </div>            
-            <i class="fas fa-bell"></i>
             <!-- 사용자 환영 텍스트 추가 -->
             <a href="profile.jsp" class="welcome-text"><%=member.getNick() %>님 환영합니다</a>
             <form action="logoutCon">

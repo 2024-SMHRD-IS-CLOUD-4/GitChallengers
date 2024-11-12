@@ -69,7 +69,6 @@
 	                    <input type="submit" value="검색">
                 	</form>
                 </div>
-                <i class="fas fa-bell"></i>
                 <a href="#" class="welcome-text"><%= session.getAttribute("userName") %>님 환영합니다</a>
                 <form action="logout" method="post" style="display:inline;">
                     <button class="logout-button">로그아웃</button>

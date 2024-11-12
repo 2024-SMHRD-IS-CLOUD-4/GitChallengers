@@ -98,7 +98,6 @@
 							type="submit" value="검색">
 					</form>
 				</div>
-				<i class="fas fa-bell"></i>
 				<%
 				if (member.getId().equals(id)) {
 				%>

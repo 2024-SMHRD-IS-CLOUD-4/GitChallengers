@@ -24,6 +24,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="./css/groupChList.css">
 <script src="js/jquery-3.7.1.min.js"></script>
+<style>
+    body {
+        font-family: 'BMJUA', sans-serif;
+    }
+</style>
 <body>
 	<%
 		Member member = (Member) session.getAttribute("member");
@@ -83,7 +88,7 @@
 	                    <input type="submit" value="검색">
                 	</form>
             </div>
-            <i class="fas fa-bell"></i>
+            
 		    <a href="profile.jsp" class="welcome-text"><%=member.getNick() %>님 환영합니다</a>
         	<button class="create-group-btn" id="createGroup">그룹 만들기</button>
     		<form action="logoutCon">

@@ -7,6 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Group Creation Form</title>
   <link rel="stylesheet" href="./css/makeSoloCh.css">
+  <style>
+    body {
+        font-family: 'BMJUA', sans-serif;
+    }
+</style>
 </head>
 <body>
 <%

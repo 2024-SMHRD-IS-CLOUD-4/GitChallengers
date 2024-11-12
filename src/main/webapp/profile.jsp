@@ -33,6 +33,11 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="./css/profile.css">
+<style>
+    body {
+        font-family: 'BMJUA', sans-serif;
+    }
+</style>
 </head>
 
 <body>
@@ -93,7 +98,6 @@
 							type="submit" value="검색">
 					</form>
 				</div>
-				<i class="fas fa-bell"></i>
 				<%
 				if (member.getId().equals(id)) {
 				%>

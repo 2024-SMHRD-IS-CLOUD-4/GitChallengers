@@ -21,6 +21,11 @@
     <title>Challenge Group List</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./css/soloChList.css">
+    <style>
+    body {
+        font-family: 'BMJUA', sans-serif;
+    }
+</style>
 </head>
 <body>
 <script src="js/jquery-3.7.1.min.js"></script>
@@ -66,7 +71,6 @@
 	                    <input type="submit" value="검색">
                 	</form>
             </div>
-            <i class="fas fa-bell"></i>
 		    <a href="profile.jsp" class="welcome-text"><%=member.getNick() %>님 환영합니다</a>
 			<button class="create-group-btn" id="createCh">챌린지 만들기</button>
 		    <form action="logoutCon">

@@ -21,6 +21,11 @@
     <title>검색 결과</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./css/searchResult.css">
+    <style>
+    body {
+        font-family: 'BMJUA', sans-serif;
+    }
+</style>
 </head>
 
 <body>
@@ -64,7 +69,6 @@
 	                    <input type="submit" value="검색">
                 	</form>
                 </div>
-                <i class="fas fa-bell"></i>
                 <a href="#" class="welcome-text"><%= session.getAttribute("userName") %>님 환영합니다</a>
                 <form action="logout" method="post" style="display:inline;">
                     <button class="logout-button">로그아웃</button>

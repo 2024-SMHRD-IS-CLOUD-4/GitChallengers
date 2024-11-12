@@ -18,6 +18,11 @@
     <title>책 리뷰</title>
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="./js/pReview.js"></script>
+    <style>
+    body {
+        font-family: 'BMJUA', sans-serif;
+    }
+</style>
 </head>
 <body>
 

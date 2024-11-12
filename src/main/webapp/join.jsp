@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+    body {
+        font-family: 'BMJUA', sans-serif;
+    }
+</style>
 </head>
 <body>
 <link rel="stylesheet" href="./css/join.css">

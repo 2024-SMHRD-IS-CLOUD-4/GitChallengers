@@ -1,4 +1,10 @@
 /* 기본 설정 */
+@font-face {
+    font-family: 'BMJUA';
+    src: url('./font/BMJUA_ttf.ttf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
 	font-family: Arial, sans-serif;
 	background-color: #f2efe8;

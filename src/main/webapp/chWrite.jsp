@@ -12,6 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reading Post</title>
     <link rel="stylesheet" href="./css/chWrite.css">
+    <style>
+    body {
+        font-family: 'BMJUA', sans-serif;
+    }
+</style>
 </head>
 <body>
 	<%

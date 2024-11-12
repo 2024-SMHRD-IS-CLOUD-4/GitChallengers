@@ -9,6 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원정보 수정</title>
     <link rel="stylesheet" href="./css/joinEdit.css">
+    <style>
+    body {
+        font-family: 'BMJUA', sans-serif;
+    }
+</style>
     <script>
         function toggleEmailInput(select) {
             const customInput = document.getElementById('custom-domain');

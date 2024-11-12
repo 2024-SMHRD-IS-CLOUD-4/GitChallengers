@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'BMJUA';
+    src: url('./font/BMJUA_ttf.ttf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #f2efe8;

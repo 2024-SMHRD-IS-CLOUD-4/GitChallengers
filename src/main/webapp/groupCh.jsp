@@ -10,6 +10,11 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/groupCh.css">
 <script src="js/jquery-3.7.1.min.js"></script>
+<style>
+    body {
+        font-family: 'BMJUA', sans-serif;
+    }
+</style>
 </head>
 <body>
 	<%

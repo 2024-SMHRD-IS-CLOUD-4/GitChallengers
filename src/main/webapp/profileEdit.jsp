@@ -11,6 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로필 설정</title>
     <link rel="stylesheet" href="./css/profileEdit.css">
+    <style>
+    body {
+        font-family: 'BMJUA', sans-serif;
+    }
+</style>
 </head>
 
 <body>

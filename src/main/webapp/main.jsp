@@ -173,7 +173,7 @@
                 <!-- 리더보드 데이터 수동 삽입 -->
                 <div class="leaderboard-item-wrapper">
                     <img src="img/gold.png" alt="Gold Medal" class="medal-icon">
-                    <img src="profile_img/<%=infodao.info(rank.get(0).getId()).getProfile_img() %>" alt="User Image">
+                    <img src="profile_img/<%=infodao.info(rank.get(0).getId()).getProfile_img() %>" alt="User Image" onerror="this.src='img/team-logo.png'">
                     <div class="leaderboard-item">
                         <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(0) != null && rank.get(0).getId() != null) ? mdao.memberInfo(rank.get(0).getId()).getNick()  : "이름" %></span>
                         <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(0) != null && rank.get(0).getId() != null) ? rank.get(0).getPoint() : "포인트" %>p</span>
@@ -181,7 +181,7 @@
                 </div>
                 <div class="leaderboard-item-wrapper">
                     <img src="img/silver.png" alt="Silver Medal" class="medal-icon">
-                    <img src="profile_img/<%=infodao.info(rank.get(1).getId()).getProfile_img() %>" alt="User Image">
+                    <img src="profile_img/<%=infodao.info(rank.get(1).getId()).getProfile_img() %>" alt="User Image" onerror="this.src='img/team-logo.png'">
                     <div class="leaderboard-item">
                         <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(1) != null && rank.get(1).getId() != null) ? mdao.memberInfo(rank.get(1).getId()).getNick() : "이름" %></span>
                         <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(1) != null && rank.get(1).getId() != null) ? rank.get(1).getPoint() : "포인트" %>p</span>
@@ -189,7 +189,7 @@
                 </div>
                 <div class="leaderboard-item-wrapper">
                     <img src="img/bronze.png" alt="Bronze Medal" class="medal-icon">
-                    <img src="profile_img/<%=infodao.info(rank.get(2).getId()).getProfile_img() %>" alt="User Image">
+                    <img src="profile_img/<%=infodao.info(rank.get(2).getId()).getProfile_img() %>" alt="User Image" onerror="this.src='img/team-logo.png'">
                     <div class="leaderboard-item">
                         <span class="name"><%=(rank != null && !rank.isEmpty() && rank.get(2) != null && rank.get(2).getId() != null) ? mdao.memberInfo(rank.get(2).getId()).getNick() : "이름" %></span>
                         <span class="points"><%=(rank != null && !rank.isEmpty() && rank.get(2) != null && rank.get(2).getId() != null) ? rank.get(2).getPoint() : "포인트" %>p</span>

@@ -46,7 +46,7 @@
 <div class="review-card">
     <div class="back-button">⬅</div>
     <div class="profile">
-        <img src="profile_img/<%= (reviewMemberInfo != null)? reviewMemberInfo.getProfile_img(): "" %>" alt="프로필">
+        <img src="profile_img/<%= (reviewMemberInfo != null)? reviewMemberInfo.getProfile_img(): "" %>" alt="프로필" onerror="this.src='img/team-logo.png'">
         <div class="author"><%=reviewMember.getNick() %></div>
     </div>
     <div class="title"><%=review.getReview_title() %></div>

@@ -187,7 +187,7 @@
 				<div class="stats">
 					<div>
 						<p>챌린지 완료 횟수</p>
-						<span><%=member_info.getCh_suc_count()%>회</span>
+						<span><%=ch_suc_count%>회</span>
 					</div>
 					<div>
 						<p>챌린지 완료 확률</p>

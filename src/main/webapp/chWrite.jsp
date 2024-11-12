@@ -34,7 +34,7 @@
 	    <button class="back-button" onclick="history.back()">←</button>
 	    
 	<form action="chWrite" method="post" onsubmit="return confirmSubmission()">
-	    <input type="text" class="title" placeholder="제목" name="g_item_title">
+	    <input type="text" class="title" placeholder="제목" name="g_item_title" required>
 	    <input type="hidden" name = "id" value = "<%=member.getId()%>">
 	    <input type="hidden" name = "gc_idx" value = "<%=idx%>">
 	    <!-- Label for Image Upload -->
@@ -44,7 +44,7 @@
 	    <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)" name="gc_ocr">
 	    
 	    <input type="text" class="page-info-input" placeholder="페이지: 120~150p">
-	    <textarea class="content" placeholder="자유 내용" name="g_item_desc"></textarea>
+	    <textarea class="content" placeholder="자유 내용" name="g_item_desc" required></textarea>
 	    
 	    <div class="footer">
 	        <button class="action-button" type="submit">챌린지 작성</button>

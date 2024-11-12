@@ -50,7 +50,7 @@
         <div class="author"><%=reviewMember.getNick() %></div>
     </div>
     <div class="title"><%=review.getReview_title() %></div>
-    <img src="<%= request.getContextPath() %>/img/pigbook-1.jfif" alt="책">
+    <img src="img/<%= (review.getReview_ocr() != null)? review.getReview_ocr(): "" %>" alt="책">
     <div class="content"><%=review.getReview_content() %></div>
     <div class="actions">
         <span class="like" data-id="<%=member.getId()%>" data-review_idx="<%=idx%>">❤</span>

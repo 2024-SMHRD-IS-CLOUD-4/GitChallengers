@@ -264,8 +264,8 @@ body {
 
 .review-container {
     position: relative;
-    width: 600px;
-    height: 600px;
+    width: 640px;
+    height: 700px;
     background-image: url('bookshelf.jpg');
     background-size: 450px 450px; /* 넓이 500px, 높이 500px로 고정 */
     background-position: center;
